@@ -3,6 +3,7 @@ import { getStatic } from './assets';
 
 type FontFamily =
     | 'GH Guardian Headline'
+    | 'Guardian Text Egyptian Web'
     | 'GuardianTextEgyptian'
     | 'GuardianTextSans';
 
@@ -71,6 +72,17 @@ const fontList: FontDisplay[] = [
         ttf:
             'fonts/guardian-headline/latin1-not-hinted/GHGuardianHeadline-Bold.ttf',
         weight: 700,
+        style: 'normal',
+    },
+    {
+        family: 'Guardian Text Egyptian Web',
+        woff2:
+            'fonts/guardian-textegyptian/noalts-not-hinted/GuardianTextEgyptian-Regular.woff2',
+        woff:
+            'fonts/guardian-textegyptian/noalts-not-hinted/GuardianTextEgyptian-Regular.woff',
+        ttf:
+            'fonts/guardian-textegyptian/latin1-not-hinted/GuardianTextEgyptian-Regular.ttf',
+        weight: 400,
         style: 'normal',
     },
     {

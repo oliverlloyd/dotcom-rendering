@@ -10,6 +10,7 @@ import {
 import { palette } from '@guardian/src-foundations';
 import { headline, body, textSans } from '@guardian/src-foundations/typography';
 import { Ticker } from "@root/src/amp/components/Ticker";
+import {contributionsServiceUrl} from "@root/src/lib/contribsHelpers";
 
 const epic = css`
     border-top: 0.0625rem solid ${palette.brandAlt[400]};
@@ -128,9 +129,10 @@ const buildUrl = (
 };
 
 export const Epic: React.FC<{ webURL: string }> = ({ webURL }) => {
-    const epicUrl = process.env.NODE_ENV === 'production'
-        ? 'https://contributions.guardianapis.com/amp/epic'
-        : 'https://contributions.code.dev-guardianapis.com/amp/epic';
+    const epicUrl = contributionsServiceUrl('/amp/epic')
+    // const epicUrl = process.env.NODE_ENV === 'production'
+    //     ? 'https://contributions.guardianapis.com/amp/epic'
+    //     : 'https://contributions.code.dev-guardianapis.com/amp/epic';
 
     return (
         <div>

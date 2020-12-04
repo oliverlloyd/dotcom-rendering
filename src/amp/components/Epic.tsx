@@ -130,9 +130,6 @@ const buildUrl = (
 
 export const Epic: React.FC<{ webURL: string }> = ({ webURL }) => {
     const epicUrl = contributionsServiceUrl('/amp/epic')
-    // const epicUrl = process.env.NODE_ENV === 'production'
-    //     ? 'https://contributions.guardianapis.com/amp/epic'
-    //     : 'https://contributions.code.dev-guardianapis.com/amp/epic';
 
     return (
         <div>

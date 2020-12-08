@@ -37,6 +37,7 @@ import { ContributorAvatar } from '@root/src/web/components/ContributorAvatar';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { parse } from '@frontend/lib/slot-machine-flags';
+import { Display } from '@root/src/lib/display';
 
 import { getCurrentPillar } from '@root/src/web/lib/layoutHelpers';
 import { Hide } from '../components/Hide';
@@ -206,7 +207,7 @@ export const ImmersiveCommentLayout = ({
     // 2) Otherwise, ensure slot only renders if `CAPI.config.shouldHideReaderRevenue` equals false.
 
     const seriesTag = CAPI.tags.find(
-        tag => tag.type === 'Series' || tag.type === 'Blog',
+        (tag) => tag.type === 'Series' || tag.type === 'Blog',
     );
     const showOnwardsLower = seriesTag && CAPI.hasStoryPackage;
 
@@ -215,10 +216,10 @@ export const ImmersiveCommentLayout = ({
     const mainMedia = CAPI.mainMediaElements[0] as ImageBlockElement;
     const captionText = decideCaption(mainMedia);
 
-    const contributorTag = CAPI.tags.find(tag => tag.type === 'Contributor');
+    const contributorTag = CAPI.tags.find((tag) => tag.type === 'Contributor');
     const avatarUrl = contributorTag && contributorTag.bylineImageUrl;
     const onlyOneContributor: boolean =
-        CAPI.tags.filter(tag => tag.type === 'Contributor').length === 1;
+        CAPI.tags.filter((tag) => tag.type === 'Contributor').length === 1;
 
     const showAvatar = avatarUrl && onlyOneContributor;
 
@@ -326,6 +327,7 @@ export const ImmersiveCommentLayout = ({
                         <Hide when="above" breakpoint="leftCol">
                             <Caption
                                 display={display}
+                                designType="Article"
                                 captionText={captionText}
                                 pillar={pillar}
                                 shouldLimitWidth={false}
@@ -353,7 +355,8 @@ export const ImmersiveCommentLayout = ({
                                 webTitle={CAPI.webTitle}
                                 author={CAPI.author}
                                 tags={CAPI.tags}
-                                webPublicationDateDisplay={
+                                primaryDateline={CAPI.webPublicationDateDisplay}
+                                secondaryDateline={
                                     CAPI.webPublicationDateDisplay
                                 }
                             />

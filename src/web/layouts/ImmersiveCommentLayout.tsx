@@ -125,19 +125,6 @@ const ImmersiveGrid = ({
     </div>
 );
 
-// const RowAboveMobileMedium = ({ children }: { children: React.ReactNode }) => (
-//     <div
-//         className={css`
-//             display: flex;
-//             ${from.mobileMedium} {
-//                 flex-direction: row;
-//             }
-//         `}
-//     >
-//         {children}
-//     </div>
-// );
-
 const avatarPositionStyles = css`
     position: absolute;
     right: 20px;
@@ -149,17 +136,6 @@ const maxWidth = css`
         max-width: 620px;
     }
 `;
-
-// const stretchLines = css`
-//     ${until.phablet} {
-//         margin-left: -20px;
-//         margin-right: -20px;
-//     }
-//     ${until.mobileLandscape} {
-//         margin-left: -10px;
-//         margin-right: -10px;
-//     }
-// `;
 
 interface Props {
     CAPI: CAPIType;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css, cx } from 'emotion';
 
 import {
     neutral,
@@ -13,6 +13,7 @@ import { pillarPalette } from '@root/src/lib/pillars';
 import { namedAdSlotParameters } from '@root/src/model/advertisement';
 import { ArticleBody } from '@root/src/web/components/ArticleBody';
 import { RightColumn } from '@root/src/web/components/RightColumn';
+import { ContainerLayout } from '@root/src/web/components/ContainerLayout';
 import { ArticleContainer } from '@root/src/web/components/ArticleContainer';
 import { ArticleMeta } from '@root/src/web/components/ArticleMeta';
 import { GuardianLines } from '@root/src/web/components/GuardianLines';
@@ -20,7 +21,6 @@ import { SubMeta } from '@root/src/web/components/SubMeta';
 import { MainMedia } from '@root/src/web/components/MainMedia';
 import { ArticleTitle } from '@root/src/web/components/ArticleTitle';
 import { ArticleHeadline } from '@root/src/web/components/ArticleHeadline';
-import { ArticleHeadlinePadding } from '@root/src/web/components/ArticleHeadlinePadding';
 import { ArticleStandfirst } from '@root/src/web/components/ArticleStandfirst';
 import { Footer } from '@root/src/web/components/Footer';
 import { SubNav } from '@root/src/web/components/SubNav/SubNav';
@@ -32,7 +32,6 @@ import { GridItem } from '@root/src/web/components/GridItem';
 import { Caption } from '@root/src/web/components/Caption';
 import { CommentsLayout } from '@frontend/web/components/CommentsLayout';
 import { Flex } from '@frontend/web/components/Flex';
-import { LeftColumn } from '@frontend/web/components/LeftColumn';
 import { ContributorAvatar } from '@root/src/web/components/ContributorAvatar';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
@@ -140,10 +139,9 @@ const ImmersiveGrid = ({
 // );
 
 const avatarPositionStyles = css`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin-bottom: 29px;
+    position: absolute;
+    right: 20px;
+    bottom: -33px;
 `;
 
 const maxWidth = css`
@@ -239,53 +237,43 @@ export const ImmersiveCommentLayout = ({
                     edition={CAPI.editionId}
                 />
             </Section>
-            <Section
-                showTopBorder={false}
-                showSideBorders={false}
+
+            <ContainerLayout
                 backgroundColour={pillarPalette[pillar].main}
+                padContent={false}
+                showTopBorder={false}
+                sideBorders={false}
+                leftContent={
+                    // eslint-disable-next-line react/jsx-wrap-multilines
+                    <ArticleTitle
+                        display={display}
+                        designType={designType}
+                        tags={CAPI.tags}
+                        sectionLabel={CAPI.sectionLabel}
+                        sectionUrl={CAPI.sectionUrl}
+                        guardianBaseURL={CAPI.guardianBaseURL}
+                        pillar={pillar}
+                        badge={CAPI.badge}
+                    />
+                }
             >
-                <Flex>
-                    <LeftColumn showRightBorder={false}>
-                        <ArticleTitle
-                            display={display}
-                            designType={designType}
-                            tags={CAPI.tags}
-                            sectionLabel={CAPI.sectionLabel}
-                            sectionUrl={CAPI.sectionUrl}
-                            guardianBaseURL={CAPI.guardianBaseURL}
-                            pillar={pillar}
-                            badge={CAPI.badge}
-                        />
-                    </LeftColumn>
+                <Flex direction="row">
                     <div
-                        className={css`
-                            flex-grow: 1;
-                        `}
+                        className={cx(
+                            maxWidth,
+                            css`
+                                min-height: 180px;
+                            `,
+                        )}
                     >
-                        <div className={maxWidth}>
-                            <Hide when="above" breakpoint="leftCol">
-                                <ArticleTitle
-                                    display={display}
-                                    designType={designType}
-                                    tags={CAPI.tags}
-                                    sectionLabel={CAPI.sectionLabel}
-                                    sectionUrl={CAPI.sectionUrl}
-                                    guardianBaseURL={CAPI.guardianBaseURL}
-                                    pillar={pillar}
-                                    badge={CAPI.badge}
-                                />
-                            </Hide>
-                            <ArticleHeadlinePadding designType={designType}>
-                                <ArticleHeadline
-                                    display={display}
-                                    headlineString={CAPI.headline}
-                                    designType={designType}
-                                    pillar={pillar}
-                                    tags={CAPI.tags}
-                                    byline={CAPI.author.byline}
-                                />
-                            </ArticleHeadlinePadding>
-                        </div>
+                        <ArticleHeadline
+                            display={display}
+                            headlineString={CAPI.headline}
+                            designType={designType}
+                            pillar={pillar}
+                            tags={CAPI.tags}
+                            byline={CAPI.author.byline}
+                        />
                     </div>
                     <>
                         {showAvatar && avatarUrl && (
@@ -298,9 +286,15 @@ export const ImmersiveCommentLayout = ({
                         )}
                     </>
                 </Flex>
-            </Section>
+            </ContainerLayout>
 
-            <GuardianLines pillar={pillar} count={8} effect="straight" />
+            <div
+                className={css`
+                    background-color: ${pillarPalette[pillar].main};
+                `}
+            >
+                <GuardianLines pillar={pillar} count={8} effect="straight" />
+            </div>
 
             {mainMedia && (
                 <MainMedia

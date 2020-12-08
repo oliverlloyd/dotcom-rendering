@@ -3,6 +3,7 @@ import { css, cx } from 'emotion';
 
 import { from, until } from '@guardian/src-foundations/mq';
 import { Badge } from '@frontend/web/components/Badge';
+import { Display } from '@root/src/lib/display';
 import { SeriesSectionLink } from './SeriesSectionLink';
 
 type Props = {
@@ -44,8 +45,17 @@ const marginTop = css`
     margin-top: 6px;
 `;
 
-const marginBottom = css`
+const immersiveMargins = css`
     margin-bottom: 5px;
+    /*
+        Make sure we vertically align the title font with the body font
+    */
+    ${from.tablet} {
+        margin-left: 10px;
+    }
+    ${from.leftCol} {
+        margin-left: 19px;
+    }
 `;
 
 export const ArticleTitle = ({
@@ -59,7 +69,7 @@ export const ArticleTitle = ({
     badge,
 }: Props) => (
     <div className={cx(sectionStyles, badge && badgeContainer)}>
-        {badge && display !== 'immersive' && (
+        {badge && display !== Display.Immersive && (
             <div className={titleBadgeWrapper}>
                 <Badge imageUrl={badge.imageUrl} seriesTag={badge.seriesTag} />
             </div>
@@ -67,7 +77,7 @@ export const ArticleTitle = ({
         <div
             className={cx(
                 badge && marginTop,
-                display === 'immersive' && marginBottom,
+                display === Display.Immersive && immersiveMargins,
             )}
         >
             <SeriesSectionLink

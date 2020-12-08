@@ -1,23 +1,19 @@
 import resetCSS from /* preval */ '@root/src/lib/reset-css';
 import { getFontsCss } from '@root/src/lib/fonts-css';
-import { getStatic, CDN } from '@root/src/lib/assets';
-import { prepareCmpString } from '@root/src/web/browser/prepareCmp';
-
+import { CDN } from '@root/src/lib/assets';
 import { brandBackground } from '@guardian/src-foundations/palette';
+import he from 'he';
 
 export const htmlTemplate = ({
     title = 'The Guardian',
     description,
     linkedData,
-    priorityScripts,
-    priorityLegacyScripts,
-    priorityNonLegacyScripts,
-    lowPriorityScripts,
-    lowPriorityLegacyScripts,
-    lowPriorityNonLegacyScripts,
+    priorityScriptTags,
+    lowPriorityScriptTags,
     css,
     html,
     windowGuardian,
+    gaPath,
     fontFiles = [],
     ampLink,
     openGraphData,
@@ -27,16 +23,13 @@ export const htmlTemplate = ({
     title?: string;
     description: string;
     linkedData: object;
-    priorityScripts: string[];
-    priorityLegacyScripts: string[];
-    priorityNonLegacyScripts: string[];
-    lowPriorityScripts: string[];
-    lowPriorityLegacyScripts: string[];
-    lowPriorityNonLegacyScripts: string[];
+    priorityScriptTags: string[];
+    lowPriorityScriptTags: string[];
     css: string;
     html: string;
     fontFiles?: string[];
     windowGuardian: string;
+    gaPath: { modern: string, legacy: string };
     ampLink?: string;
     openGraphData: { [key: string]: string };
     twitterData: { [key: string]: string };
@@ -47,41 +40,9 @@ export const htmlTemplate = ({
             ? 'favicon-32x32.ico'
             : 'favicon-32x32-dev-yellow.ico';
 
-    // ********************************
-    // ****** high priority script ****
-    // ********************************
-    const priorityScriptTags = priorityScripts.map(
-        src => `<script defer src="${src}"></script>`,
-    );
-    // transpiled with preset-env
-    const priorityLegacyScriptTags = priorityLegacyScripts.map(
-        src => `<script defer nomodule src="${src}"></script>`,
-    );
-    // transpiled with preset-modules
-    const priorityNonLegacyScriptTags = priorityNonLegacyScripts.map(
-        src => `<script defer type="module" src="${src}"></script>`,
-    );
-
-    // ********************************
-    // **** low priority scripts ******
-    // ********************************
-    const lowPriorityScriptTags = lowPriorityScripts.map(
-        src => `<script async src="${src}"></script>`,
-    );
-    // transpiled with preset-env
-    const lowPriorityLegacyScriptTags = lowPriorityLegacyScripts.map(
-        src => `<script async nomodule src="${src}"></script>`,
-    );
-    // transpiled with preset-modules
-    const lowPriorityNonLegacyScriptTags = lowPriorityNonLegacyScripts.map(
-        src => `<script async type="module" src="${src}"></script>`,
-    );
-
     const fontPreloadTags = fontFiles.map(
-        fontFile =>
-            `<link rel="preload" href="${getStatic(
-                fontFile,
-            )}" as="font" crossorigin>`,
+        (fontFile) =>
+            `<link rel="preload" href="${fontFile}" as="font" crossorigin>`,
     );
 
     const generateMetaTags = (
@@ -100,6 +61,10 @@ export const htmlTemplate = ({
     };
 
     const openGraphMetaTags = generateMetaTags(openGraphData, 'property');
+
+    // Opt out of having information from our website used for personalization of content and suggestions for Twitter users, including ads
+    // See https://developer.twitter.com/en/docs/twitter-for-websites/webpage-properties/overview
+    const twitterSecAndPrivacyMetaTags = `<meta name="twitter:dnt" content="on">`;
 
     const twitterMetaTags = generateMetaTags(twitterData, 'name');
 
@@ -134,18 +99,18 @@ export const htmlTemplate = ({
     ];
 
     const preconnectTags = staticPreconnectUrls.map(
-        src => `<link rel="preconnect" href="${src}">`,
+        (src) => `<link rel="preconnect" href="${src}">`,
     );
 
     const prefetchTags = staticPrefetchUrls.map(
-        src => `<link rel="dns-prefetch" href="${src}">`,
+        (src) => `<link rel="dns-prefetch" href="${src}">`,
     );
 
     return `<!doctype html>
         <html lang="en">
             <head>
                 <title>${title}</title>
-                <meta name="description" content="${escape(description)}" />
+                <meta name="description" content="${he.encode(description)}" />
                 <meta charset="utf-8">
 
                 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -166,7 +131,13 @@ export const htmlTemplate = ({
 
                 ${openGraphMetaTags}
 
+                ${twitterSecAndPrivacyMetaTags}
+
                 ${twitterMetaTags}
+
+                <!--  This tag enables pages to be featured in Google Discover as large previews
+                    See: https://developers.google.com/search/docs/advanced/mobile/google-discover?hl=en&visit_id=637424198370039526-3805703503&rd=1 -->
+                <meta name="robots" content="max-image-preview:large">
 
                 <script>
                     window.guardian = ${windowGuardian};
@@ -175,11 +146,13 @@ export const htmlTemplate = ({
 
                 <script type="module">
                     window.guardian.mustardCut = true;
+                    window.guardian.gaPath = "${gaPath.modern}";
                 </script>
 
                 <script nomodule>
                     // Browser fails mustard check
                     window.guardian.mustardCut = false;
+                    window.guardian.gaPath = "${gaPath.legacy}";
                 </script>
 
                 <script>
@@ -207,28 +180,43 @@ export const htmlTemplate = ({
                     };
                 </script>
 
-                <script>${prepareCmpString}</script>
+                <script>
+                    // Set the browserId from the bwid cookie on the ophan object created above
+                    // This will need to be replaced later with an async request to an endpoint
+                    (function (window, document) {
+
+                        function getCookieValue(name) {
+                            var nameEq = name + "=",
+                                cookies = document.cookie.split(';'),
+                                value = null;
+                            cookies.forEach(function (cookie) {
+                                while (cookie.charAt(0) === ' ') {
+                                    cookie = cookie.substring(1, cookie.length);
+                                }
+                                if (cookie.indexOf(nameEq) === 0) {
+                                    value = cookie.substring(nameEq.length, cookie.length);
+                                }
+                            });
+                            return value;
+                        }
+
+                        window.guardian.config.ophan.browserId = getCookieValue("bwid");
+
+                    })(window, document);
+                </script>
 
                 <noscript>
                     <img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035250&cv=2.0&cj=1&cs_ucfr=0&comscorekw=${keywords}" />
                 </noscript>
-                ${[
-                    ...priorityScriptTags,
-                    ...priorityLegacyScriptTags,
-                    ...priorityNonLegacyScriptTags,
-                ].join('\n')}
-                <style>${getFontsCss()}${resetCSS}${css}</style>
+                ${[...priorityScriptTags].join('\n')}
+                <style class="webfont">${getFontsCss()}${resetCSS}${css}</style>
 
             </head>
 
             <body>
                 <div id="react-root"></div>
                 ${html}
-                ${[
-                    ...lowPriorityScriptTags,
-                    ...lowPriorityLegacyScriptTags,
-                    ...lowPriorityNonLegacyScriptTags,
-                ].join('\n')}
+                ${[...lowPriorityScriptTags].join('\n')}
             </body>
         </html>`;
 };

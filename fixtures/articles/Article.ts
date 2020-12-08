@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const Article: CAPIType = {
     contributionsServiceUrl: 'https://contributions.guardianapis.com',
     shouldHideReaderRevenue: false,
@@ -60,7 +62,7 @@ export const Article: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8ex5',
+                    value: 'https://theguardian.com/p/d8ex5',
                 },
             ],
         },
@@ -108,7 +110,7 @@ export const Article: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8ex5',
+                    value: 'https://theguardian.com/p/d8ex5',
                 },
                 {
                     name: 'edition',
@@ -160,7 +162,7 @@ export const Article: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8ex5',
+                    value: 'https://theguardian.com/p/d8ex5',
                 },
                 {
                     name: 'edition',
@@ -216,7 +218,7 @@ export const Article: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8ex5',
+                    value: 'https://theguardian.com/p/d8ex5',
                 },
             ],
         },
@@ -2701,6 +2703,127 @@ export const Article: CAPIType = {
                         '<p>Across the North Sea, Dutch cities including the Hague, Rotterdam and Leiden were predicted to face severe floods from an average one metre sea-level rise, which is forecast if emissions rise 4C–6C above pre-industrial levels.</p>',
                 },
                 {
+                    _type: 'model.dotcomrendering.pageElements.CalloutBlockElement',
+                    id: '14d1b1bc-8983-43fb-8f2e-8ca08a711944',
+                    calloutsUrl:
+                        'https://callouts.code.dev-guardianapis.com/formstack-campaign/submit',
+                    tagName: 'callout-early-coronavirus-events',
+                    activeFrom: 1588118400000,
+                    displayOnSensitive: false,
+                    formId: 3860296,
+                    title: 'Were you infected at this time?',
+                    description:
+                        '<p>If you attended one of these events and believe you may have been infected by coronavirus, we\'d like to hear from you. You can get in touch by filling in the form below, or by contacting us&nbsp;<a href="https://www.theguardian.com/info/2015/aug/12/whatsapp-sharing-stories-with-the-guardian">via WhatsApp</a>&nbsp;by&nbsp;<a href="https://api.whatsapp.com/send?phone=447867825056">clicking here&nbsp;</a>or adding the contact +44(0)7867825056. Only the Guardian can see your contributions and one of our journalists may contact you to discuss further. </p>',
+                    formFields: [
+                        {
+                            textSize: 50,
+                            name: 'which_event_did_you_attend_and_when',
+                            hideLabel: false,
+                            label: 'Which event did you attend and when?',
+                            id: '91884886',
+                            type: 'text',
+                            required: true,
+                        },
+                        {
+                            name: 'share_your_experiences_here',
+                            description: 'Please include as much detail as possible',
+                            hideLabel: false,
+                            label: 'Share your experiences here',
+                            id: '91884874',
+                            type: 'textarea',
+                            required: true,
+                        },
+                        {
+                            name:
+                                'you_can_upload_a_photo_here_if_you_think_it_will_add_to_your_story',
+                            hideLabel: false,
+                            label:
+                                'You can upload a photo here if you think it will add to your story',
+                            id: '91884877',
+                            type: 'file',
+                            required: false,
+                        },
+                        {
+                            name: 'can_we_publish_your_response',
+                            options: [
+                                {
+                                    label: 'Yes, entirely',
+                                    value: 'Yes, entirely',
+                                },
+                                {
+                                    label: 'Yes, but please keep me anonymous',
+                                    value: 'Yes, but please keep me anonymous',
+                                },
+                                {
+                                    label: 'Yes, but please contact me first',
+                                    value: 'Yes, but please contact me first',
+                                },
+                                {
+                                    label: 'No, this is information only',
+                                    value: 'No, this is information only',
+                                },
+                            ],
+                            hideLabel: false,
+                            label: 'Can we publish your response?',
+                            id: '91884878',
+                            type: 'radio',
+                            required: true,
+                        },
+                        {
+                            name: 'can_we_publish_your_response',
+                            options: [
+                                {
+                                    label: 'Yes, entirely',
+                                    value: 'Yes, entirely',
+                                },
+                                {
+                                    label: 'Yes, but please keep me anonymous',
+                                    value: 'Yes, but please keep me anonymous',
+                                },
+                                {
+                                    label: 'Yes, but please contact me first',
+                                    value: 'Yes, but please contact me first',
+                                },
+                                {
+                                    label: 'No, this is information only',
+                                    value: 'No, this is information only',
+                                },
+                            ],
+                            hideLabel: false,
+                            label: 'Can we publish your response?',
+                            id: '918848785',
+                            type: 'checkbox',
+                            required: true,
+                        },
+                        {
+                            name: 'do_you_have_anything_else_to_add',
+                            hideLabel: false,
+                            label: 'Do you have anything else to add?',
+                            id: '91884881',
+                            type: 'select',
+                            options: [
+                                {
+                                    label: 'Yes, entirely',
+                                    value: 'Yes, entirely',
+                                },
+                                {
+                                    label: 'Yes, but please keep me anonymous',
+                                    value: 'Yes, but please keep me anonymous',
+                                },
+                                {
+                                    label: 'Yes, but please contact me first',
+                                    value: 'Yes, but please contact me first',
+                                },
+                                {
+                                    label: 'No, this is information only',
+                                    value: 'No, this is information only',
+                                },
+                            ],
+                            required: false,
+                        },
+                    ],
+                },
+                {
                     _type:
                         'model.dotcomrendering.pageElements.TextBlockElement',
                     html:
@@ -3462,6 +3585,19 @@ export const Article: CAPIType = {
                         '<p>“The number of extreme events and sea level rise will still continue to increase for the next decades to a century,” Kurnik said. “Sea level rise, especially, can be problematic, because it is still increasing because of past emissions and the current concentration of greenhouse gases.”</p>',
                 },
                 {
+                    profileURL:
+                        'http://www.theguardian.com/discussion/user/id/13107777',
+                    profileName: 'imperium3',
+                    dateTime: '30 January 2017 10:56pm',
+                    avatarURL: 'https://avatar.guim.co.uk/user/13107777',
+                    _type:
+                        'model.dotcomrendering.pageElements.CommentBlockElement',
+                    body:
+                        "<p>Capaldi is an excellent Doctor, arguably the best of the reboot era. It's a shame that his tenure has coincided with some truly awful writing which rarely gave him the chance to shine.</p>",
+                    permalink:
+                        'https://discussion.theguardian.com/comment-permalink/92214999',
+                },
+                {
                     _type:
                         'model.dotcomrendering.pageElements.TextBlockElement',
                     html:
@@ -3486,6 +3622,8 @@ export const Article: CAPIType = {
             lastUpdatedDisplay: '08:41 GMT',
             firstPublished: 1581071177000,
             firstPublishedDisplay: '10:26 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: {
@@ -3497,7 +3635,7 @@ export const Article: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comenvironment/2020/feb/10/fires-floods-maps-europe-climate-catastrophe',
+                'https://amp.theguardian.com/environment/2020/feb/10/fires-floods-maps-europe-climate-catastrophe',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -3677,11 +3815,12 @@ export const Article: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

@@ -1,12 +1,13 @@
 import React from 'react';
 import { css } from 'emotion';
 
+import { Display } from '@root/src/lib/display';
 import { ArticleMeta } from './ArticleMeta';
 
 const Container = ({ children }: { children: JSX.Element | JSX.Element[] }) => (
     <div
         className={css`
-            width: 620px;
+            width: 220px;
             padding: 20px;
         `}
     >
@@ -50,7 +51,7 @@ export const ArticleStory = () => {
     return (
         <Container>
             <ArticleMeta
-                display="standard"
+                display={Display.Standard}
                 designType="Article"
                 pillar="news"
                 pageId=""
@@ -60,7 +61,8 @@ export const ArticleStory = () => {
                     twitterHandle: 'lanre_bakare',
                 }}
                 tags={tagsWithBylineImage}
-                webPublicationDateDisplay="Sun 12 Jan 2020 18.00 GMT"
+                primaryDateline="Sun 12 Jan 2020 18.00 GMT"
+                secondaryDateline="Sun 12 Jan 2020 21.00 GMT"
             />
         </Container>
     );
@@ -89,7 +91,7 @@ export const BrandingStory = () => {
                     aboutThisLink:
                         'https://www.theguardian.com/info/2016/jan/25/content-funding',
                 }}
-                display="standard"
+                display={Display.Standard}
                 designType="Article"
                 pillar="news"
                 pageId=""
@@ -99,7 +101,8 @@ export const BrandingStory = () => {
                     twitterHandle: 'lanre_bakare',
                 }}
                 tags={tagsWithBylineImage}
-                webPublicationDateDisplay="Sun 12 Jan 2020 18.00 GMT"
+                primaryDateline="Sun 12 Jan 2020 18.00 GMT"
+                secondaryDateline="Sun 12 Jan 2020 21.00 GMT"
             />
         </Container>
     );
@@ -111,7 +114,7 @@ export const FeatureStory = () => {
     return (
         <Container>
             <ArticleMeta
-                display="standard"
+                display={Display.Standard}
                 designType="Feature"
                 pillar="culture"
                 pageId=""
@@ -121,7 +124,8 @@ export const FeatureStory = () => {
                     twitterHandle: 'lanre_bakare',
                 }}
                 tags={tagsWithBylineImage}
-                webPublicationDateDisplay="Sun 12 Jan 2020 18.00 GMT"
+                primaryDateline="Sun 12 Jan 2020 18.00 GMT"
+                secondaryDateline="Sun 12 Jan 2020 21.00 GMT"
             />
         </Container>
     );
@@ -132,7 +136,7 @@ export const CommentStory = () => {
     return (
         <Container>
             <ArticleMeta
-                display="standard"
+                display={Display.Standard}
                 designType="Comment"
                 pillar="opinion"
                 pageId=""
@@ -142,7 +146,8 @@ export const CommentStory = () => {
                     twitterHandle: 'lanre_bakare',
                 }}
                 tags={tagsWithBylineImage}
-                webPublicationDateDisplay="Sun 12 Jan 2020 18.00 GMT"
+                primaryDateline="Sun 12 Jan 2020 18.00 GMT"
+                secondaryDateline="Sun 12 Jan 2020 21.00 GMT"
             />
         </Container>
     );
@@ -153,7 +158,7 @@ export const InterviewStory = () => {
     return (
         <Container>
             <ArticleMeta
-                display="standard"
+                display={Display.Standard}
                 designType="Interview"
                 pillar="lifestyle"
                 pageId=""
@@ -163,7 +168,8 @@ export const InterviewStory = () => {
                     twitterHandle: 'lanre_bakare',
                 }}
                 tags={tagsWithBylineImage}
-                webPublicationDateDisplay="Sun 12 Jan 2020 18.00 GMT"
+                primaryDateline="Sun 12 Jan 2020 18.00 GMT"
+                secondaryDateline="Sun 12 Jan 2020 21.00 GMT"
             />
         </Container>
     );
@@ -174,7 +180,7 @@ export const ImmersiveStory = () => {
     return (
         <Container>
             <ArticleMeta
-                display="immersive"
+                display={Display.Immersive}
                 designType="Immersive"
                 pillar="news"
                 pageId=""
@@ -184,7 +190,8 @@ export const ImmersiveStory = () => {
                     twitterHandle: 'lanre_bakare',
                 }}
                 tags={tagsWithBylineImage}
-                webPublicationDateDisplay="Sun 12 Jan 2020 18.00 GMT"
+                primaryDateline="Sun 12 Jan 2020 18.00 GMT"
+                secondaryDateline="Sun 12 Jan 2020 21.00 GMT"
             />
         </Container>
     );
@@ -195,7 +202,7 @@ export const TwoContributorsStory = () => {
     return (
         <Container>
             <ArticleMeta
-                display="standard"
+                display={Display.Standard}
                 designType="Feature"
                 pillar="sport"
                 pageId=""
@@ -205,7 +212,8 @@ export const TwoContributorsStory = () => {
                     twitterHandle: 'lanre_bakare',
                 }}
                 tags={tagsWithByTwoContributors}
-                webPublicationDateDisplay="Sun 12 Jan 2020 18.00 GMT"
+                primaryDateline="Sun 12 Jan 2020 18.00 GMT"
+                secondaryDateline="Sun 12 Jan 2020 21.00 GMT"
             />
         </Container>
     );

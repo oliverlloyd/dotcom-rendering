@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const PhotoEssay: CAPIType = {
     shouldHideReaderRevenue: false,
     slotMachineFlags: '',
@@ -46,7 +48,7 @@ export const PhotoEssay: CAPIType = {
                     ],
                 },
                 { name: 'se', value: ['seascape-the-state-of-our-oceans'] },
-                { name: 'sh', value: 'https://gu.com/p/cqjf5' },
+                { name: 'sh', value: 'https://theguardian.com/p/cqjf5' },
                 { name: 'co', value: ['sophiecooke'] },
                 { name: 'su', value: ['0'] },
                 { name: 'ct', value: 'article' },
@@ -93,7 +95,7 @@ export const PhotoEssay: CAPIType = {
                     ],
                 },
                 { name: 'se', value: ['seascape-the-state-of-our-oceans'] },
-                { name: 'sh', value: 'https://gu.com/p/cqjf5' },
+                { name: 'sh', value: 'https://theguardian.com/p/cqjf5' },
                 { name: 'co', value: ['sophiecooke'] },
                 { name: 'su', value: ['0'] },
                 { name: 'ct', value: 'article' },
@@ -141,7 +143,7 @@ export const PhotoEssay: CAPIType = {
                     ],
                 },
                 { name: 'se', value: ['seascape-the-state-of-our-oceans'] },
-                { name: 'sh', value: 'https://gu.com/p/cqjf5' },
+                { name: 'sh', value: 'https://theguardian.com/p/cqjf5' },
                 { name: 'co', value: ['sophiecooke'] },
                 { name: 'su', value: ['0'] },
                 { name: 'ct', value: 'article' },
@@ -189,7 +191,7 @@ export const PhotoEssay: CAPIType = {
                     ],
                 },
                 { name: 'se', value: ['seascape-the-state-of-our-oceans'] },
-                { name: 'sh', value: 'https://gu.com/p/cqjf5' },
+                { name: 'sh', value: 'https://theguardian.com/p/cqjf5' },
                 { name: 'co', value: ['sophiecooke'] },
                 { name: 'edition', value: 'int' },
                 { name: 'su', value: ['0'] },
@@ -9144,6 +9146,8 @@ export const PhotoEssay: CAPIType = {
             lastUpdatedDisplay: '13:37 GMT',
             firstPublished: 1576258694000,
             firstPublishedDisplay: '17:38 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     linkedData: [
@@ -9151,7 +9155,7 @@ export const PhotoEssay: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comenvironment/2020/jan/29/i-witnessed-a-shark-attack-its-not-what-you-imagine-photo-essay',
+                'https://amp.theguardian.com/environment/2020/jan/29/i-witnessed-a-shark-attack-its-not-what-you-imagine-photo-essay',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -9291,11 +9295,12 @@ export const PhotoEssay: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

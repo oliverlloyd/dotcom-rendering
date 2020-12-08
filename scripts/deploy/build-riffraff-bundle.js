@@ -37,7 +37,7 @@ const copyStatic = () => {
     log(' - copying static');
     return cpy(
         ['**/*'],
-        path.resolve(target, `${siteName}-static`, 'src/static', siteName),
+        path.resolve(target, `${siteName}-static`, 'static', siteName),
         {
             cwd: path.resolve(root, 'src/static'),
             parents: true,
@@ -71,6 +71,7 @@ const zipBundle = () => {
         ['--recurse-paths', 'rendering.zip', '.', '--exclude', '.git/**\\*'],
         {
             shell: true,
+            maxBuffer: 200000000, // increase if you get a maxBuffer exceeded error
         },
     ).then(() => {
         cpy(['rendering.zip'], path.resolve(target, 'rendering', 'dist'));
@@ -97,7 +98,7 @@ const createBuildConfig = () => {
 Promise.all([copyCfn(), copyStatic(), copyDist(), copyRiffRaff()])
     .then(zipBundle)
     .then(createBuildConfig)
-    .catch(err => {
+    .catch((err) => {
         warn(err.stack);
         process.exit(1);
     });

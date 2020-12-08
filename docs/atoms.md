@@ -8,19 +8,19 @@ This is a work in progress.
 
 List of atoms (source: [frontend] common/app/model/content/Atom.scala)
 
-- AudioAtom
-- ChartAtom
-- CommonsDivisionAtom
-- ExplainerAtom
-- InteractiveAtom
-- GuideAtom
-- MediaAtom
-- ProfileAtom
-- QandaAtom
-- Quiz
-- RecipeAtom
-- ReviewAtom
-- TimelineAtom
+-   AudioAtom
+-   ChartAtom
+-   CommonsDivisionAtom
+-   ExplainerAtom
+-   InteractiveAtom
+-   GuideAtom
+-   MediaAtom
+-   ProfileAtom
+-   QandaAtom
+-   Quiz
+-   RecipeAtom
+-   ReviewAtom
+-   TimelineAtom
 
 ### Atoms to Page Elements (server side)
 
@@ -28,27 +28,30 @@ The following is a mapping from atoms to the PageElement that is being used to t
 
 ```
 AudioAtom
+    -> SoundcloudBlockElement
+    -> SpotifyBlockElement
     -> AudioAtomBlockElement
 
 ChartAtom
-    -> AtomEmbedUrlBlockElement
+    -> ChartAtomBlockElement
 
 CommonsDivisionAtom
 
 ExplainerAtom
+	-> ExplainerAtomBlockElement
 
 InteractiveAtom
     -> AtomEmbedUrlBlockElement
 
 GuideAtom
-    -> ProfileBlockElement
+    -> GuideAtomBlockElement
 
 MediaAtom
     -> YoutubeBlockElement
     -> HTMLFallbackBlockElement
 
 ProfileAtom
-    -> ProfileBlockElement
+    -> ProfileAtomBlockElement
 
 QandaAtom
     -> QABlockElement
@@ -71,10 +74,24 @@ The following maps PageElements to the corresponding amp and web Components. Thi
 AudioAtomBlockElement
     -> [amp] AudioAtomBlockComponent
 
-AtomEmbedUrlBlockElement
-    -> [amp] AtomEmbedUrlBlockComponent
+InteractiveAtomBlockElement
+    -> [amp] InteractiveAtomBlockComponent
+    -> [web] InteractiveAtom (atoms-rendering)
 
-ProfileBlockElement
+ChartAtomBlockElement
+    -> [web] ChartAtom (atoms-rendering)
+
+ExplainerAtomBlockElement
+	-> [web] ExplainerAtom (atoms-rendering)
+
+GenericAtomBlockElement
+    -> [amp] InteractiveAtomBlockComponent
+    -> [web] InteractiveAtom (atoms-rendering)
+
+GuideAtomBlockElement
+    -> [amp] Expandable
+
+ProfileAtomBlockElement
     -> [amp] Expandable
 
 YoutubeBlockElement
@@ -84,144 +101,42 @@ YoutubeBlockElement
 QABlockElement
     -> [amp] Expandable
 
+SoundcloudBlockElement
+    -> [amp] SoundcloudBlockComponent
+    -> [web] SoundcloudBlockComponent
+
+SpotifyBlockElement
+    -> [web] SpotifyBlockComponent
+
 TimelineBlockElement
     -> [amp] TimelineBlockComponent
 ```
 
-## Atom Documentation
+### atoms-renderings
 
-### AudioAtom
+The [atoms-rendering](https://github.com/guardian/atoms-rendering) project is now used to include atom components in DCR.
 
-`AudioAtomBlockElement`
+### Implementing an atom
 
-	```
-	case class AudioAtomBlockElement(
-	    id: String, 
-	    kicker: String, 
-	    coverUrl: String, 
-	    trackUrl: String, 
-	    duration: Int, 
-	    contentId: String
-	) extends PageElement
-	```
+If your atom is ready to implement in DCR use either `yarn link` to use your local atoms-rendering library (for development only) or update the atoms-rendering package in [package.json](https://github.com/guardian/dotcom-rendering/blob/main/package.json#L39).
+In DCR there are 5 files that need to be edited to fully add your atom:
 
-AMP: See `AudioAtomBlockComponent` ✅
+### content.d.ts
 
-WEB: Currently not supported. Awaiting new Atom library. 🚧
+This file maps data provided by frontend to data types defined in DCR, so make sure that you define an interface for your atom which contains all of the fields required. It is a good idea to add an optional [index field](https://github.com/guardian/dotcom-rendering/blob/main/src/lib/content.d.ts#L21) (which will not be populated by frontend, but will be populated and used internally in DCR).
 
-### ChartAtom
+### index.d.ts
 
-Comes to DCR as `AtomEmbedUrlBlockElement` 
+The index file defines the CAPIType used in DCR as well as various other types and interfaces that can be used within the application. In this file add an array of your atoms to the [CAPIBrowserType type](https://github.com/guardian/dotcom-rendering/blob/main/index.d.ts#L359). You will also need to add your atom type to the [Island-Type list](https://github.com/guardian/dotcom-rendering/blob/main/index.d.ts#L666), which will be required for the root of the atom element.
 
-AMP: See `AtomEmbedUrlBlockComponent` ✅
+### window-guardian.ts
 
-WEB: Currently not supported. Should be rendered using an iframe as it is treated as interactive. 🚧
+This file generates the DCR Guardian browser config, and will populate the array of atom elements that were defined in index.d.ts. The generic [blockElementWithIndex function](https://github.com/guardian/dotcom-rendering/blob/main/src/model/window-guardian.ts#L72) will produce the array of elements given the full list of [CAPI.blocks, the model type and the name of the atom index field](https://github.com/guardian/dotcom-rendering/blob/main/src/model/window-guardian.ts#L190).
 
-### CommonsDivision
+### ArticleRenderer.tsx
 
-I question whether we should be supporting it in the first place given how very rare it is.
+This file creates the initial component using the model import from atoms-rendering. At this stage, callback functions do not need to be defined as this will happen elsewhere, but the rest of the atoms data can be populated. Don’t forget to [import your atom from atoms-rendering](https://github.com/guardian/dotcom-rendering/blob/main/src/web/lib/ArticleRenderer.tsx#L29).
 
-### ExplainerAtom
-```
-case class ExplainerAtomBlockElement(
-    id: String, 
-    title: String, 
-    body: String, 
-    displayType: String
-) extends PageElement
-```
+### App.tsx
 
-AMP: Currently not supported.
-
-WEB: Currently not supported. Awaiting new Atom library. 🚧
-
-### InteractiveAtom
-
-```
-case class AtomEmbedUrlBlockElement(
-	url: String
-) extends PageElement
-```
-
-AMP: AtomEmbedUrlBlockComponent ✅
-
-WEB: Currently not supported. Should be rendered using an iframe. 🚧
-
-### GuideAtom
-
-```
-case class ProfileBlockElement(
-	id: String, 
-	label: String, 
-	title: String, 
-	img: Option[String], 
-	html: String, 
-	credit: String
-) extends PageElement
-```
-
-AMP: Expandable (Component) ✅
-
-WEB: Currently not supported. Awaiting new Atom library. 🚧
-
-### MediaAtom
-
-The MediaAtom is sent to DCR either as `YoutubeBlockElement` or `HTMLFallbackBlockElement`.
-
-```
-case class YoutubeBlockElement(
-	id: String, 
-	assetId: String, 
-	channelId: Option[String], 
-	mediaTitle: String
-) extends PageElement
-```
-
-AMP: YoutubeBlockComponent ✅
-
-WEB: YoutubeBlockComponent ✅
-
-### ProfileAtom
-
-```
-case class ProfileBlockElement(
-	id: String, 
-	label: String, 
-	title: String, 
-	img: Option[String], 
-	html: String, 
-	credit: String
-) extends PageElement
-```
-
-AMP: Expandable (Component) ✅
-
-WEB: Currently not supported. Awaiting new Atom library. 🚧
-
-### QuandaAtom
-
-```
-case class QABlockElement(
-	id: String, 
-	title: String, 
-	img: Option[String], 
-	html: String, 
-	credit: String
-) extends PageElement
-```
-
-AMP: Expandable (Component) ✅
-
-WEB: Currently not supported. Awaiting new Atom library. 🚧
-
-### QuizAtom
-
-Undocumented for the moment 🚧 ‼️
-
-### RecipeAtom
-
-I am not sure it's ever been used. ‼️
-
-### ReviewAtom
-
-Not found in AtomWorkshop ‼️ (According to Alex W. there actually isn't one.)
+In the App file we hydrate the components, which renders them on the server and provides additional interactive elements to the component. [This is where any functionality required in the atom, such as callback handlers, need to be implemented](https://github.com/guardian/dotcom-rendering/blob/main/src/web/components/App.tsx#L430). The root of the atom in the Hydrate element is the same as the type you added in IslandTypes. [Again, don't forget to import your atom](https://github.com/guardian/dotcom-rendering/blob/main/src/web/components/App.tsx#L20).

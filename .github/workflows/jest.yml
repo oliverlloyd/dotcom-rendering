@@ -2,12 +2,20 @@ name: jest 🤔
 on: [push]
 
 jobs:
-    run:
+    jest:
+        name: Jest
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
               with:
                   node-version: '10.x'
-            - run: yarn
-            - run: CI=true yarn test
+
+            # Cache npm dependencies using https://github.com/bahmutov/npm-install
+            - uses: bahmutov/npm-install@v1
+
+            - name: Install
+              run: yarn
+
+            - name: Run Jest
+              run: CI=true yarn test

@@ -40,14 +40,41 @@ import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { parse } from '@frontend/lib/slot-machine-flags';
 import { getAgeWarning } from '@root/src/lib/age-warning';
 import { getCurrentPillar } from '@root/src/web/lib/layoutHelpers';
-import { Stuck, SendToBack } from '@root/src/web/layouts/lib/stickiness';
+import {
+    Stuck,
+    SendToBack,
+    BannerWrapper,
+} from '@root/src/web/layouts/lib/stickiness';
+import { Display } from '@root/src/lib/display';
 
 const MOSTVIEWED_STICKY_HEIGHT = 1059;
 
+const gridWide = css`
+    grid-template-areas:
+        'title      border  headline    right-column'
+        'lines      border  headline    right-column'
+        'meta       border  standfirst  right-column'
+        'meta       border  media       right-column'
+        '.          border  body        right-column'
+        '.          border  .           right-column';
+`;
+
+const showcaseGridWide = css`
+    grid-template-areas:
+        'title      border  headline    headline'
+        'lines      border  headline    headline'
+        'meta       border  standfirst  standfirst'
+        'meta       border  media       media'
+        '.          border  body        right-column'
+        '.          border  .           right-column';
+`;
+
 const StandardGrid = ({
     children,
+    display,
 }: {
     children: JSX.Element | JSX.Element[];
+    display: Display;
 }) => (
     <div
         className={css`
@@ -77,13 +104,10 @@ const StandardGrid = ({
                         1px /* Vertical grey border */
                         1fr /* Main content */
                         300px; /* Right Column */
-                    grid-template-areas:
-                        'title      border  headline    right-column'
-                        'lines      border  headline    right-column'
-                        'meta       border  standfirst  right-column'
-                        'meta       border  media       right-column'
-                        '.          border  body        right-column'
-                        '.          border  .           right-column';
+
+                    ${display === Display.Showcase
+                        ? showcaseGridWide
+                        : gridWide}
                 }
 
                 ${until.wide} {
@@ -92,13 +116,10 @@ const StandardGrid = ({
                         1px /* Vertical grey border */
                         1fr /* Main content */
                         300px; /* Right Column */
-                    grid-template-areas:
-                        'title      border  headline    right-column'
-                        'lines      border  headline    right-column'
-                        'meta       border  standfirst  right-column'
-                        'meta       border  media       right-column'
-                        '.          border  body        right-column'
-                        '.          border  .           right-column';
+
+                    ${display === Display.Showcase
+                        ? showcaseGridWide
+                        : gridWide}
                 }
 
                 ${until.leftCol} {
@@ -162,14 +183,40 @@ const minHeightWithAvatar = css`
     min-height: 259px;
 `;
 
+// If in mobile increase the margin top and margin right deficit
 const avatarPositionStyles = css`
     display: flex;
     justify-content: flex-end;
-    ${from.mobileLandscape} {
-        margin-right: -1.25rem;
-    }
-    margin-top: -36px;
+    overflow: hidden;
     margin-bottom: -29px;
+    margin-top: -50px;
+    pointer-events: none;
+
+    /*  Why target img element?
+
+        Because only in this context, where we have overflow: hidden
+        and the margin-bottom and margin-top of avatarPositionStyles
+        do we also want to apply our margin-right. These styles
+        are tightly coupled in this context, and so it does not
+        make sense to move them to the avatar component.
+
+        It's imperfect from the perspective of DCR, the alternative is to bust
+        the combined elements into a separate component (with the
+        relevant stories) and couple them that way, which might be what
+        you want to do if you find yourself adding more styles
+        to this section. For now, this works without making me 🤢.
+    */
+
+    ${from.mobile} {
+        img {
+            margin-right: -1.85rem;
+        }
+    }
+    ${from.mobileLandscape} {
+        img {
+            margin-right: -1.25rem;
+        }
+    }
 `;
 
 const pushToBottom = css`
@@ -198,6 +245,10 @@ const ageWarningMargins = css`
     }
 `;
 
+const mainMediaWrapper = css`
+    position: relative;
+`;
+
 interface Props {
     CAPI: CAPIType;
     NAV: NavType;
@@ -214,7 +265,7 @@ export const CommentLayout = ({
     pillar,
 }: Props) => {
     const {
-        config: { isPaidContent },
+        config: { isPaidContent, host },
     } = CAPI;
 
     const adTargeting: AdTargeting = buildAdTargeting(CAPI.config);
@@ -228,16 +279,16 @@ export const CommentLayout = ({
     // 2) Otherwise, ensure slot only renders if `CAPI.config.shouldHideReaderRevenue` equals false.
 
     const seriesTag = CAPI.tags.find(
-        tag => tag.type === 'Series' || tag.type === 'Blog',
+        (tag) => tag.type === 'Series' || tag.type === 'Blog',
     );
     const showOnwardsLower = seriesTag && CAPI.hasStoryPackage;
 
     const showComments = CAPI.isCommentable;
 
-    const contributorTag = CAPI.tags.find(tag => tag.type === 'Contributor');
+    const contributorTag = CAPI.tags.find((tag) => tag.type === 'Contributor');
     const avatarUrl = contributorTag && contributorTag.bylineImageUrl;
     const onlyOneContributor: boolean =
-        CAPI.tags.filter(tag => tag.type === 'Contributor').length === 1;
+        CAPI.tags.filter((tag) => tag.type === 'Contributor').length === 1;
 
     const showAvatar = avatarUrl && onlyOneContributor;
 
@@ -313,7 +364,7 @@ export const CommentLayout = ({
             </div>
 
             <Section showTopBorder={false} backgroundColour={opinion[800]}>
-                <StandardGrid>
+                <StandardGrid display={display}>
                     <GridItem area="title">
                         <ArticleTitle
                             display={display}
@@ -394,13 +445,25 @@ export const CommentLayout = ({
                         />
                     </GridItem>
                     <GridItem area="media">
-                        <div className={maxWidth}>
+                        <div
+                            className={
+                                display === Display.Showcase &&
+                                CAPI.pageType.hasShowcaseMainElement
+                                    ? mainMediaWrapper
+                                    : maxWidth
+                            }
+                        >
                             <MainMedia
                                 display={display}
                                 designType={designType}
                                 elements={CAPI.mainMediaElements}
                                 pillar={pillar}
                                 adTargeting={adTargeting}
+                                starRating={
+                                    designType === 'Review' && CAPI.starRating
+                                        ? CAPI.starRating
+                                        : undefined
+                                }
                             />
                         </div>
                     </GridItem>
@@ -415,8 +478,9 @@ export const CommentLayout = ({
                                 webTitle={CAPI.webTitle}
                                 author={CAPI.author}
                                 tags={CAPI.tags}
-                                webPublicationDateDisplay={
-                                    CAPI.webPublicationDateDisplay
+                                primaryDateline={CAPI.webPublicationDateDisplay}
+                                secondaryDateline={
+                                    CAPI.blocks[0].secondaryDateLine
                                 }
                             />
                         </div>
@@ -430,6 +494,7 @@ export const CommentLayout = ({
                                     display={display}
                                     designType={designType}
                                     adTargeting={adTargeting}
+                                    host={host}
                                 />
                                 {showBodyEndSlot && <div id="slot-body-end" />}
                                 <GuardianLines count={4} pillar={pillar} />
@@ -475,10 +540,10 @@ export const CommentLayout = ({
 
             {!isPaidContent && (
                 <>
-                    {/* Onwards (when signed IN) */}
-                    <Section sectionId="onwards-upper-whensignedin" />
+                    {/* Onwards (when signed OUT) */}
+                    <div id="onwards-upper-whensignedout" />
                     {showOnwardsLower && (
-                        <Section sectionId="onwards-lower-whensignedin" />
+                        <Section sectionId="onwards-lower-whensignedout" />
                     )}
 
                     {showComments && (
@@ -500,13 +565,10 @@ export const CommentLayout = ({
                         </Section>
                     )}
 
-                    {/* Onwards (when signed OUT) */}
-                    <Section
-                        sectionId="onwards-upper-whensignedout"
-                        showTopBorder={false}
-                    />
+                    {/* Onwards (when signed IN) */}
+                    <div id="onwards-upper-whensignedin" />
                     {showOnwardsLower && (
-                        <Section sectionId="onwards-lower-whensignedout" />
+                        <Section sectionId="onwards-lower-whensignedin" />
                     )}
 
                     <Section sectionId="most-viewed-footer" />
@@ -537,6 +599,7 @@ export const CommentLayout = ({
                 padded={false}
                 backgroundColour={brandBackground.primary}
                 borderColour={brandBorder.primary}
+                showSideBorders={false}
             >
                 <Footer
                     pageFooter={CAPI.pageFooter}
@@ -545,7 +608,7 @@ export const CommentLayout = ({
                 />
             </Section>
 
-            <div id="cmp" />
+            <BannerWrapper />
             <MobileStickyContainer />
         </>
     );

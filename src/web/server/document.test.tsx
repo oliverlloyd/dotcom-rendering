@@ -18,7 +18,7 @@ const result = document({
 test('that all the required meta SEO fields exist', () => {
     const names = ['description', 'viewport'];
 
-    names.map(name =>
+    names.map((name) =>
         expect(result).toEqual(expect.stringContaining(`<meta name="${name}"`)),
     );
 });
@@ -33,7 +33,7 @@ test('that the most important opengraph meta tags exist', () => {
         'article:author',
     ];
 
-    names.map(name =>
+    names.map((name) =>
         expect(result).toEqual(
             expect.stringContaining(`<meta property="${name}"`),
         ),
@@ -43,7 +43,7 @@ test('that the most important opengraph meta tags exist', () => {
 test('that the most important twitter meta tags exist', () => {
     const names = ['card', 'image', 'site'];
 
-    names.map(name =>
+    names.map((name) =>
         expect(result).toEqual(
             expect.stringContaining(`<meta name="twitter:${name}"`),
         ),
@@ -53,7 +53,7 @@ test('that the most important twitter meta tags exist', () => {
 test('that all the required links exist', () => {
     const names = ['amphtml'];
 
-    names.map(name =>
+    names.map((name) =>
         expect(result).toEqual(
             expect.stringContaining(`<link rel="${name}" href="`),
         ),
@@ -105,5 +105,28 @@ test('Footer ophan data-attributes exist', () => {
     expect(result).toEqual(expect.stringContaining(`data-link-name="footer"`));
     expect(result).toEqual(
         expect.stringContaining(`data-link-name="footer : primary : Opinion"`),
+    );
+});
+
+test('Sample of script tags have the correct attributes', () => {
+    expect(result).toEqual(
+        expect.stringContaining(
+            `<script defer type="module" src="/assets/react.js"></script>`,
+        ),
+    );
+    expect(result).toEqual(
+        expect.stringContaining(
+            `<script defer nomodule src=\"/assets/react.js\"></script>`,
+        ),
+    );
+    expect(result).toEqual(
+        expect.stringContaining(
+            `<script defer type="module" src="/assets/ophan.js"></script>`,
+        ),
+    );
+    expect(result).toEqual(
+        expect.stringContaining(
+            `<script defer nomodule src=\"/assets/ophan.js\"></script>`,
+        ),
     );
 });

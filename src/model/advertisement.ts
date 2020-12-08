@@ -19,68 +19,48 @@ const adSizeNameToValues = (name: string): [number, number] => {
         // standard ad sizes
         case 'billboard':
             return [970, 250];
-            break;
         case 'leaderboard':
             return [728, 90];
-            break;
         case 'mpu':
             return [300, 250];
-            break;
         case 'halfPage':
             return [300, 600];
-            break;
         case 'portrait':
             return [300, 1050];
-            break;
         case 'skyscraper':
             return [160, 600];
-            break;
         case 'mobilesticky':
             return [320, 50];
-            break;
 
         // dfp proprietary ad sizes
         case 'fluid':
             return [0, 0];
-            break;
         case 'outOfPage':
             return [1, 1];
-            break;
         case 'googleCard':
             return [300, 274];
-            break;
 
         // guardian proprietary ad sizes
         case 'video':
             return [620, 1];
-            break;
         case 'outstreamDesktop':
             return [620, 350];
-            break;
         case 'outstreamGoogleDesktop':
             return [550, 310];
-            break;
         case 'outstreamMobile':
             return [300, 197];
-            break;
         case 'merchandisingHighAdFeature':
             return [88, 89];
-            break;
         case 'merchandisingHigh':
             return [88, 87];
-            break;
         case 'merchandising':
             return [88, 88];
-            break;
         case 'inlineMerchandising':
             return [88, 85];
-            break;
         case 'fabric':
             return [88, 71];
-            break;
         case 'empty':
             return [2, 2];
-            break;
 
         // default
         default:
@@ -90,7 +70,7 @@ const adSizeNameToValues = (name: string): [number, number] => {
 
 const adSizeNamesToString = (names: string[]): string => {
     return names
-        .map(name => {
+        .map((name) => {
             const values = adSizeNameToValues(name);
             return adSizesToString(values[0], values[1]);
         })
@@ -107,8 +87,7 @@ export const namedAdSlotParameters = (name: AdSlotType): AdSlotParameters => {
             adTypes: ['mpu-banner-ad', 'rendered'],
             sizeMapping: {
                 mobile: ['1,1|2,2|300,250|300,274|300,600|fluid'],
-                // Pascal: It's not totally obvious where this sequence should come from the frontend code,
-                // but it should be correct.
+                // mark: 01303e88-ef1f-462d-9b6e-242419435cec
             },
             showLabel: true,
             refresh: false,
@@ -145,11 +124,9 @@ export const namedAdSlotParameters = (name: AdSlotType): AdSlotParameters => {
                             'outOfPage',
                             'empty',
                             'fabric',
-                            'outstreamMobile',
-                            'mpu',
                             'fluid',
+                            'leaderboard',
                         ]),
-                        '728,90', // This value comes from file mark: c66fae4e-1d29-467a-a081-caad7a90cacd
                     ].join('|'),
                 ],
                 desktop: ['1,1|2,2|728,90|940,230|900,250|970,250|88,71|fluid'], // Values from file mark: c66fae4e-1d29-467a-a081-caad7a90cacd
@@ -169,11 +146,23 @@ export const namedAdSlotParameters = (name: AdSlotType): AdSlotParameters => {
                     adSizeNamesToString([
                         'outOfPage',
                         'empty',
-                        'outstreamMobile',
                         'mpu',
                         'googleCard',
                         'fluid',
                     ]),
+                ],
+                tablet: [
+                    [
+                        adSizeNamesToString([
+                            'outOfPage',
+                            'empty',
+                            'mpu',
+                            'googleCard',
+                            'halfPage',
+                            'leaderboard',
+                            'fluid',
+                        ]),
+                    ].join('|'),
                 ],
                 phablet: [
                     adSizeNamesToString([
@@ -193,9 +182,7 @@ export const namedAdSlotParameters = (name: AdSlotType): AdSlotParameters => {
                         'empty',
                         'mpu',
                         'googleCard',
-                        'video',
-                        'outstreamDesktop',
-                        'outstreamGoogleDesktop',
+                        'halfPage',
                         'fluid',
                     ]),
                 ],

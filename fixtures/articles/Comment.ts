@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const Comment: CAPIType = {
     contributionsServiceUrl: 'https://contributions.guardianapis.com',
     shouldHideReaderRevenue: false,
@@ -28,7 +30,7 @@ export const Comment: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8n8j',
+                    value: 'https://theguardian.com/p/d8n8j',
                 },
                 {
                     name: 'url',
@@ -77,7 +79,7 @@ export const Comment: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8n8j',
+                    value: 'https://theguardian.com/p/d8n8j',
                 },
                 {
                     name: 'url',
@@ -130,7 +132,7 @@ export const Comment: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8n8j',
+                    value: 'https://theguardian.com/p/d8n8j',
                 },
                 {
                     name: 'url',
@@ -183,7 +185,7 @@ export const Comment: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8n8j',
+                    value: 'https://theguardian.com/p/d8n8j',
                 },
                 {
                     name: 'url',
@@ -2942,6 +2944,8 @@ export const Comment: CAPIType = {
             lastUpdatedDisplay: '17:42 GMT',
             firstPublished: 1581250344000,
             firstPublishedDisplay: '12:12 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: {
@@ -2954,7 +2958,7 @@ export const Comment: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comcommentisfree/2020/feb/10/austerity-level-up-newcastle-budget-cuts',
+                'https://amp.theguardian.com/commentisfree/2020/feb/10/austerity-level-up-newcastle-budget-cuts',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -3139,11 +3143,12 @@ export const Comment: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

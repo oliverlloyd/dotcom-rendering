@@ -1,88 +1,27 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css, cx } from 'emotion';
 
 import { until, from, between } from '@guardian/src-foundations/mq';
-import { brandAltBackground } from '@guardian/src-foundations/palette';
+import { headline } from '@guardian/src-foundations/typography';
+import { pillarPalette } from '@root/src/lib/pillars';
+import { brandAltBackground, neutral } from '@guardian/src-foundations/palette';
 
-import { Picture, PictureSource } from '@root/src/web/components/Picture';
+import { Img } from '@root/src/web/components/Img';
 import { Caption } from '@root/src/web/components/Caption';
 import { Hide } from '@root/src/web/components/Hide';
 import { StarRating } from '@root/src/web/components/StarRating/StarRating';
+import { Display } from '@root/src/lib/display';
 
 type Props = {
     display: Display;
     designType: DesignType;
     element: ImageBlockElement;
+    role: RoleType;
     pillar: Pillar;
     hideCaption?: boolean;
-    role: RoleType;
     isMainMedia?: boolean;
     starRating?: number;
-};
-
-const widths = [1020, 660, 480, 0];
-
-const bestFor = (
-    desiredWidth: number,
-    inlineSrcSets: SrcSetItem[],
-): SrcSetItem => {
-    const sorted = inlineSrcSets.sort((a, b) => b.width - a.width);
-
-    return sorted.reduce((best, current) => {
-        if (current.width < best.width && current.width >= desiredWidth) {
-            return current;
-        }
-
-        return best;
-    });
-};
-
-const getSrcSetsForWeighting = (
-    imageSources: ImageSource[],
-    forWeighting: RoleType,
-): SrcSetItem[] =>
-    imageSources.filter(
-        ({ weighting }) =>
-            // Use toLowerCase to handle cases where we have halfWidth comparing to halfwidth
-            weighting.toLowerCase() === forWeighting.toLowerCase(),
-    )[0].srcSet;
-
-const makeSource = (
-    hidpi: boolean,
-    minWidth: number,
-    srcSet: SrcSetItem,
-): PictureSource => {
-    return {
-        hidpi,
-        minWidth,
-        width: srcSet.width,
-        srcset: `${srcSet.src} ${hidpi ? srcSet.width * 2 : srcSet.width}w`,
-    };
-};
-
-const makeSources = (
-    imageSources: ImageSource[],
-    role: RoleType,
-): PictureSource[] => {
-    const inlineSrcSets = getSrcSetsForWeighting(imageSources, role);
-    const sources: PictureSource[] = [];
-
-    // TODO: ideally the imageSources array will come from frontend with prebaked URLs for
-    // hidpi images.
-    // Until that happens, here we're manually injecting (inadequate) <source> elements for
-    // those images, albeit without the necessary query params for hidpi images :(
-    widths.forEach(width => {
-        sources.push(makeSource(true, width, bestFor(width, inlineSrcSets)));
-        sources.push(makeSource(false, width, bestFor(width, inlineSrcSets)));
-    });
-
-    return sources;
-};
-
-const getFallback: (imageSources: ImageSource[]) => string = imageSources => {
-    const inlineSrcSets = getSrcSetsForWeighting(imageSources, 'inline');
-
-    return bestFor(300, inlineSrcSets).src;
+    title?: string;
 };
 
 const starsWrapper = css`
@@ -112,11 +51,113 @@ const starsWrapper = css`
     }
 `;
 
-const StarRatingComponent: React.FC<{ rating: number }> = ({ rating }) => (
+const PositionStarRating: React.FC<{ rating: number }> = ({ rating }) => (
     <div className={starsWrapper}>
         <StarRating rating={rating} size="large" />
     </div>
 );
+
+const basicTitlePadding = css`
+    ${until.tablet} {
+        padding-top: 4px;
+        padding-bottom: 14px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    ${from.tablet} {
+        padding-top: 4px;
+        padding-bottom: 17px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+`;
+
+const moreTitlePadding = css`
+    padding-top: 4px;
+
+    ${until.tablet} {
+        padding-bottom: 14px;
+        padding-left: 20px;
+        padding-right: 40px;
+    }
+
+    ${until.mobileLandscape} {
+        padding-left: 10px;
+    }
+
+    ${from.tablet} {
+        padding-bottom: 17px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    ${from.leftCol} {
+        padding-left: 160px;
+    }
+
+    ${from.wide} {
+        padding-left: 240px;
+    }
+`;
+
+const titleWrapper = (pillar: Pillar) => css`
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    ${until.desktop} {
+        ${headline.xxsmall({ fontWeight: 'light' })}
+    }
+    ${until.phablet} {
+        ${headline.xxxsmall({ fontWeight: 'light' })}
+    }
+    ${from.desktop} {
+        ${headline.xsmall({ fontWeight: 'light' })}
+    }
+    color: ${neutral[100]};
+    background: linear-gradient(transparent, ${neutral[0]});
+
+    :before {
+        background-color: ${pillarPalette[pillar].main};
+        display: block;
+        content: '';
+        width: 8.75rem;
+        ${until.desktop} {
+            height: 0.5rem;
+        }
+        ${from.desktop} {
+            height: 0.75rem;
+        }
+
+        margin-bottom: calc(1.25rem / 3);
+    }
+`;
+
+const ImageTitle: React.FC<{
+    title: string;
+    role: RoleType;
+    pillar: Pillar;
+}> = ({ title, role, pillar }) => {
+    switch (role) {
+        case 'inline':
+        case 'thumbnail':
+        case 'halfWidth':
+        case 'supporting':
+            return (
+                <h2 className={cx(titleWrapper(pillar), basicTitlePadding)}>
+                    {title}
+                </h2>
+            );
+        case 'showcase':
+        case 'immersive':
+            return (
+                <h2 className={cx(titleWrapper(pillar), moreTitlePadding)}>
+                    {title}
+                </h2>
+            );
+    }
+};
 
 const Row = ({ children }: { children: JSX.Element | JSX.Element[] }) => (
     <div
@@ -176,24 +217,37 @@ export const ImageComponent = ({
     role,
     isMainMedia,
     starRating,
+    title,
 }: Props) => {
-    const { imageSources } = element;
-    const sources = makeSources(imageSources, role);
     const shouldLimitWidth =
         !isMainMedia &&
         (role === 'showcase' || role === 'supporting' || role === 'immersive');
     const isNotOpinion =
         designType !== 'Comment' && designType !== 'GuardianView';
 
-    if (isMainMedia && display === 'immersive' && isNotOpinion) {
+    // We get the first 'media' height and width. This doesn't match the actual image height and width but that's ok
+    // because the image sources and CSS deal with the sizing. What the height and width gives us is a true
+    // ratio to apply to the image in the page, so the browser's pre-parser can reserve the space.
+    //
+    // The default is the 5:3 standard that The Grid suggests, at our wide breakpoint width.
+    const imageWidth =
+        (element.media &&
+            element.media.allImages[0] &&
+            element.media.allImages[0].fields.width) ||
+        '620';
+    const imageHeight =
+        (element.media &&
+            element.media.allImages[0] &&
+            element.media.allImages[0].fields.height) ||
+        '372';
+
+    if (isMainMedia && display === Display.Immersive && isNotOpinion) {
         return (
             <div
                 className={css`
                     /* These styles depend on the containing layout component wrapping the main media
                     with a div set to 100vh. This is the case for ImmersiveLayout which should
                     always be used if display === 'immersive' */
-                    position: absolute;
-                    top: 0;
                     height: 100%;
                     width: 100%;
 
@@ -202,12 +256,19 @@ export const ImageComponent = ({
                     }
                 `}
             >
-                <Picture
-                    sources={sources}
+                <Img
+                    role={role}
+                    imageSources={element.imageSources}
                     alt={element.data.alt || ''}
-                    src={getFallback(element.imageSources)}
+                    width={imageWidth}
+                    height={imageHeight}
+                    isLazy={!isMainMedia}
+                    isMainMedia={isMainMedia}
                 />
-                {starRating && <StarRatingComponent rating={starRating} />}
+                {starRating && <PositionStarRating rating={starRating} />}
+                {title && (
+                    <ImageTitle title={title} role={role} pillar={pillar} />
+                )}
             </div>
         );
     }
@@ -219,20 +280,29 @@ export const ImageComponent = ({
                     position: relative;
 
                     img {
+                        height: 100%;
                         width: 100%;
                         object-fit: cover;
                     }
                 `}
             >
-                <Picture
-                    sources={sources}
+                <Img
+                    role={role}
+                    imageSources={element.imageSources}
                     alt={element.data.alt || ''}
-                    src={getFallback(element.imageSources)}
+                    width={imageWidth}
+                    height={imageHeight}
+                    isLazy={!isMainMedia}
+                    isMainMedia={isMainMedia}
                 />
-                {starRating && <StarRatingComponent rating={starRating} />}
+                {starRating && <PositionStarRating rating={starRating} />}
+                {title && (
+                    <ImageTitle title={title} role={role} pillar={pillar} />
+                )}
             </div>
         );
     }
+
     return (
         <>
             <div
@@ -240,15 +310,20 @@ export const ImageComponent = ({
                     position: relative;
 
                     img {
+                        height: 100%;
                         width: 100%;
                         object-fit: cover;
                     }
                 `}
             >
-                <Picture
-                    sources={sources}
+                <Img
+                    role={role}
+                    imageSources={element.imageSources}
                     alt={element.data.alt || ''}
-                    src={getFallback(element.imageSources)}
+                    width={imageWidth}
+                    height={imageHeight}
+                    isLazy={!isMainMedia}
+                    isMainMedia={isMainMedia}
                 />
                 {isMainMedia && (
                     // Below tablet, main media images show an info toggle at the bottom right of
@@ -271,10 +346,12 @@ export const ImageComponent = ({
                                     }
                                 `}
                             >
-                                <CaptionToggle />
+                                {/* CaptionToggle contains the input with id #the-checkbox */}
+                                <CaptionToggle />{' '}
                                 <div id="the-caption">
                                     <Caption
                                         display={display}
+                                        designType={designType}
                                         captionText={element.data.caption || ''}
                                         pillar={pillar}
                                         credit={element.data.credit}
@@ -287,12 +364,16 @@ export const ImageComponent = ({
                         </Row>
                     </Hide>
                 )}
-                {starRating && <StarRatingComponent rating={starRating} />}
+                {starRating && <PositionStarRating rating={starRating} />}
+                {title && (
+                    <ImageTitle title={title} role={role} pillar={pillar} />
+                )}
             </div>
             {isMainMedia ? (
                 <Hide when="below" breakpoint="tablet">
                     <Caption
                         display={display}
+                        designType={designType}
                         captionText={element.data.caption || ''}
                         pillar={pillar}
                         credit={element.data.credit}
@@ -303,6 +384,7 @@ export const ImageComponent = ({
             ) : (
                 <Caption
                     display={display}
+                    designType={designType}
                     captionText={element.data.caption || ''}
                     pillar={pillar}
                     credit={element.data.credit}

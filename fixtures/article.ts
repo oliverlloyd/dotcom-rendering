@@ -1,3 +1,5 @@
+import { switches } from './switches';
+
 export const data = {
     page: {
         content: {
@@ -547,7 +549,7 @@ export const data = {
                         },
                         {
                             name: 'sh',
-                            value: 'https://gu.com/p/64ak8',
+                            value: 'https://theguardian.com/p/64ak8',
                         },
                         {
                             name: 'su',
@@ -590,7 +592,7 @@ export const data = {
                         },
                         {
                             name: 'sh',
-                            value: 'https://gu.com/p/64ak8',
+                            value: 'https://theguardian.com/p/64ak8',
                         },
                         {
                             name: 'su',
@@ -637,7 +639,7 @@ export const data = {
                         },
                         {
                             name: 'sh',
-                            value: 'https://gu.com/p/64ak8',
+                            value: 'https://theguardian.com/p/64ak8',
                         },
                         {
                             name: 'su',
@@ -688,7 +690,7 @@ export const data = {
                         },
                         {
                             name: 'sh',
-                            value: 'https://gu.com/p/64ak8',
+                            value: 'https://theguardian.com/p/64ak8',
                         },
                         {
                             name: 'su',
@@ -777,7 +779,7 @@ export const data = {
                             },
                             {
                                 name: 'sh',
-                                value: 'https://gu.com/p/64ak8',
+                                value: 'https://theguardian.com/p/64ak8',
                             },
                             {
                                 name: 'su',
@@ -823,7 +825,7 @@ export const data = {
                             },
                             {
                                 name: 'sh',
-                                value: 'https://gu.com/p/64ak8',
+                                value: 'https://theguardian.com/p/64ak8',
                             },
                             {
                                 name: 'su',
@@ -873,7 +875,7 @@ export const data = {
                             },
                             {
                                 name: 'sh',
-                                value: 'https://gu.com/p/64ak8',
+                                value: 'https://theguardian.com/p/64ak8',
                             },
                             {
                                 name: 'su',
@@ -927,7 +929,7 @@ export const data = {
                             },
                             {
                                 name: 'sh',
-                                value: 'https://gu.com/p/64ak8',
+                                value: 'https://theguardian.com/p/64ak8',
                             },
                             {
                                 name: 'su',
@@ -986,7 +988,7 @@ export const data = {
                     '@type': 'NewsArticle',
                     '@context': 'https://schema.org',
                     '@id':
-                        'https://amp.theguardian.commoney/2017/mar/10/ministers-to-criminalise-use-of-ticket-tout-harvesting-software',
+                        'https://amp.theguardian.com/money/2017/mar/10/ministers-to-criminalise-use-of-ticket-tout-harvesting-software',
                     publisher: {
                         '@type': 'Organization',
                         '@context': 'https://schema.org',
@@ -1053,99 +1055,7 @@ export const data = {
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {
-            abCommercialCmpCustomise: true,
-            prebidAppnexusUkRow: true,
-            prebidTrustx: true,
-            scAdFreeBanner: true,
-            enableSentryReporting: true,
-            lazyLoadContainers: true,
-            adFreeStrictExpiryEnforcement: false,
-            remarketing: true,
-            emailSignupLabNotes: true,
-            registerWithPhone: false,
-            lotame: true,
-            targeting: true,
-            emailInlineInFooter: true,
-            prebidPangaea: true,
-            adomik: true,
-            facebookTrackingPixel: true,
-            serviceWorkerEnabled: false,
-            iasAdTargeting: true,
-            extendedMostPopular: true,
-            prebidAnalytics: true,
-            idEmailSignInUpsell: false,
-            doubleclickYoutubeAdFree: true,
-            imrWorldwide: true,
-            membershipEngagementBannerBlockUs: false,
-            prebidAppnexusInvcode: true,
-            prebidAppnexus: true,
-            enableDiscussionSwitch: true,
-            enableConsentManagementService: true,
-            prebidXaxis: true,
-            oldTlsSupportDeprecation: true,
-            abContributionsEpicAskFourEarning: true,
-            discussionAllPageSize: true,
-            emailSignupEuRef: true,
-            prebidUserSync: true,
-            audioOnwardJourneySwitch: true,
-            breakingNews: true,
-            externalVideoEmbeds: true,
-            simpleReach: true,
-            emailInArticleOutbrain: true,
-            carrotTrafficDriver: true,
-            geoMostPopular: true,
-            abFebruaryMomentBannerThankYou: false,
-            weAreHiring: true,
-            relatedContent: true,
-            thirdPartyEmbedTracking: true,
-            commercialPageViewAnalytics: true,
-            prebidAdYouLike: true,
-            membershipEngagementBanner: true,
-            mostViewedFronts: true,
-            googleSearch: true,
-            membershipEngagementBannerBlockAu: false,
-            commercial: true,
-            plistaAu: true,
-            prebidSonobi: true,
-            membershipEngagementBannerBlockUk: false,
-            idProfileNavigation: true,
-            discussionAllowAnonymousRecommendsSwitch: false,
-            scrollDepth: true,
-            epicTestsFromGoogleDocs: true,
-            youtubeRelatedVideos: true,
-            webFonts: true,
-            abFebruaryMomentBannerCopy: true,
-            prebidImproveDigital: true,
-            abCommercialPrebidSafeframe: true,
-            ophan: true,
-            abAcquisitionsEpicAlwaysAskIfTagged: true,
-            crosswordSvgThumbnails: true,
-            weather: true,
-            hostedVideoAutoplay: true,
-            emailInArticleGtoday: true,
-            engagementBannerTestsFromGoogleDocs: false,
-            prebidS2sozone: true,
-            abAdblockAsk: true,
-            prebidPubmatic: true,
-            serverShareCounts: true,
-            autoRefresh: true,
-            enhanceTweets: true,
-            prebidIndexExchange: true,
-            prebidOpenx: true,
-            tourismAustralia: true,
-            emailInArticle: true,
-            idCookieRefresh: true,
-            sharingComments: true,
-            discussionPageSize: true,
-            smartAppBanner: true,
-            boostGaUserTimingFidelity: false,
-            historyTags: true,
-            videojs: true,
-            surveys: true,
-            abCommercialAdVerification: false,
-            inizio: true,
-        },
+        switches,
         beaconUrl: '//phar.gu-web.net',
         nav: {
             currentUrl: '/money',

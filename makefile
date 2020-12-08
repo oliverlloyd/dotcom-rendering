@@ -66,7 +66,11 @@ percy: clear clean-dist install
 
 cypress: clear clean-dist install
 	$(call log, "starting frontend DEV server for Cypress")
-	@NODE_ENV=development start-server-and-test 'node scripts/frontend/dev-server' 3030 'cypress run --spec "cypress/integration/e2e/**/*"'
+	@NODE_ENV=development start-server-and-test 'node scripts/frontend/dev-server' 3030 'cypress run --spec "cypress/integration/**/*"'
+
+ampValidation: clean-dist install
+	$(call log, "starting frontend DEV server for AMP Validation")
+	@NODE_ENV=development start-server-and-test 'node scripts/frontend/dev-server' 3030 'node scripts/test/amp-validation.js'
 
 # quality #########################################
 
@@ -93,6 +97,7 @@ stylelint: clean-dist install
 test: clean-dist install
 	$(call log, "running tests")
 	@yarn test --verbose  --runInBand
+	$(call log, "everything seems 👌")
 
 test-ci: clear clean-dist install
 	$(call log, "running tests")
@@ -103,6 +108,9 @@ bundlesize: clear clean-dist install build
 
 validate: clean-dist install tsc lint stylelint test validate-build
 	$(call log, "everything seems 👌")
+
+validate-prepush:
+	@run-p tsc lint-staged "test -- --verbose  --runInBand --onlyChanged"
 
 validate-ci: install tsc lint stylelint test-ci bundlesize
 	$(call log, "everything seems 👌")
@@ -138,7 +146,9 @@ clear: # private
 	@clear
 
 gen-schema:
+	$(call log, "Generating new schema")
 	@node scripts/json-schema/gen-schema.js
+	@git add src/model/json-schema.json
 
 perf-test:
 	@node scripts/perf/perf-test.js

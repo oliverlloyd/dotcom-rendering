@@ -9,7 +9,11 @@ type RealPillars = 'news' | 'opinion' | 'sport' | 'culture' | 'lifestyle';
 type FakePillars = 'labs';
 type Pillar = RealPillars | FakePillars;
 
-type Display = 'standard' | 'immersive' | 'showcase';
+declare const enum Display {
+    Standard,
+    Immersive,
+    Showcase,
+}
 
 // https://github.com/guardian/content-api-scala-client/blob/master/client/src/main/scala/com.gu.contentapi.client/utils/DesignType.scala
 type DesignType =
@@ -168,6 +172,8 @@ interface Block {
     title?: string;
     firstPublished?: number;
     firstPublishedDisplay?: string;
+    primaryDateLine: string;
+    secondaryDateLine: string;
 }
 
 interface Pagination {
@@ -280,39 +286,14 @@ interface CAPIType {
     slotMachineFlags?: string;
 
     pageType: PageTypeType;
+
+    matchUrl?: string;
 }
 
 type CAPIBrowserType = {
     designType: DesignType;
     pillar: Pillar;
-    config: {
-        frontendAssetsFullURL: string;
-        isDev: boolean;
-        ajaxUrl: string;
-        shortUrlId: string;
-        pageId: string;
-        isPaidContent: boolean;
-        showRelatedContent: boolean;
-        keywordIds: string;
-        ampIframeUrl: string;
-        ampPrebid: boolean;
-        permutive: boolean;
-        enableSentryReporting: boolean;
-        cmpUi: boolean;
-        enableDiscussionSwitch: boolean;
-        slotBodyEnd: boolean;
-        isSensitive: boolean;
-        videoDuration: number;
-        edition: string;
-        section: string;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        sharedAdTargeting: { [key: string]: any };
-        adUnit: string;
-        discussionApiUrl: string;
-        discussionD2Uid: string;
-        discussionApiClientHeader: string;
-        dcrSentryDsn: string;
-    };
+    config: ConfigTypeBrowser;
     richLinks: RichLinkBlockElement[];
     editionId: Edition;
     editionLongForm: string;
@@ -340,6 +321,16 @@ type CAPIBrowserType = {
     contributionsServiceUrl: string;
     isImmersive: boolean;
     isPhotoEssay: boolean;
+    matchUrl?: string;
+    callouts: CalloutBlockElement[];
+    qandaAtoms: QABlockElement[];
+    guideAtoms: GuideAtomBlockElement[];
+    profileAtoms: ProfileAtomBlockElement[];
+    timelineAtoms: TimelineBlockElement[];
+    chartAtoms: ChartAtomBlockElement[];
+    audioAtoms: AudioAtomBlockElement[];
+    youtubeBlockElement: YoutubeBlockElement[];
+    youtubeMainMediaBlockElement: YoutubeBlockElement[];
 };
 
 interface TagType {
@@ -464,6 +455,40 @@ type UserProfile = {
 };
 
 /**
+ * Football
+ */
+type TeamType = {
+    id: string;
+    name: string;
+    players: PlayerType[];
+    possession: number;
+    shotsOn: number;
+    shotsOff: number;
+    corners: number;
+    fouls: number;
+    colours: string;
+    score: number;
+    crest: string;
+    scorers: string[];
+};
+
+type PlayerType = {
+    id: string;
+    name: string;
+    position: string;
+    lastName: string;
+    substitute: boolean;
+    timeOnPitch: string;
+    shirtNumber: string;
+    events: EventType[];
+};
+
+type EventType = {
+    eventTime: string; // minutes
+    eventType: 'substitution' | 'dismissal' | 'booking';
+};
+
+/**
  * Onwards
  */
 type OnwardsType = {
@@ -472,6 +497,7 @@ type OnwardsType = {
     description?: string;
     url?: string;
     ophanComponentName: OphanComponentName;
+    pillar: Pillar;
 };
 
 type OphanComponentName =
@@ -481,6 +507,7 @@ type OphanComponentName =
     | 'related-content'
     | 'more-media-in-section'
     | 'more-galleries'
+    | 'curated-content'
     | 'default-onwards'; // We should never see this in the analytics data!
 
 interface CommercialConfigType {
@@ -493,6 +520,7 @@ interface CommercialConfigType {
     section?: string;
     edition?: string;
     series?: string;
+    toneIds?: string;
     contentType: string;
     ampIframeUrl: string;
 }
@@ -530,10 +558,49 @@ interface ConfigType extends CommercialConfigType {
     keywordIds: string;
     showRelatedContent: boolean;
     shouldHideReaderRevenue?: boolean;
+    idApiUrl: string;
     discussionApiUrl: string;
     discussionD2Uid: string;
     discussionApiClientHeader: string;
     isPhotoEssay: boolean;
+    references?: { [key: string]: string }[];
+    host?: string;
+    idUrl?: string;
+    brazeApiKey?: string;
+}
+
+interface ConfigTypeBrowser {
+    frontendAssetsFullURL: string;
+    isDev: boolean;
+    ajaxUrl: string;
+    shortUrlId: string;
+    pageId: string;
+    isPaidContent: boolean;
+    showRelatedContent: boolean;
+    keywordIds: string;
+    ampIframeUrl: string;
+    ampPrebid: boolean;
+    permutive: boolean;
+    enableSentryReporting: boolean;
+    enableDiscussionSwitch: boolean;
+    slotBodyEnd: boolean;
+    isSensitive: boolean;
+    videoDuration: number;
+    edition: string;
+    section: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    sharedAdTargeting: { [key: string]: any };
+    adUnit: string;
+    idApiUrl: string;
+    discussionApiUrl: string;
+    discussionD2Uid: string;
+    discussionApiClientHeader: string;
+    dcrSentryDsn: string;
+    remoteBanner: boolean;
+    ausMoment2020Header: boolean;
+    switches: CAPIType['config']['switches'];
+    host?: string;
+    idUrl?: string;
 }
 
 interface GADataType {
@@ -589,14 +656,26 @@ type IslandType =
     | 'most-viewed-footer'
     | 'reader-revenue-links-footer'
     | 'slot-body-end'
-    | 'cmp'
+    | 'bottom-banner'
     | 'onwards-upper-whensignedin'
     | 'onwards-upper-whensignedout'
     | 'onwards-lower-whensignedin'
     | 'onwards-lower-whensignedout'
     | 'rich-link'
     | 'links-root'
-    | 'comments';
+    | 'match-nav'
+    | 'match-stats'
+    | 'callout'
+    | 'comments'
+    | 'qanda-atom'
+    | 'guide-atom'
+    | 'profile-atom'
+    | 'timeline-atom'
+    | 'sign-in-gate'
+    | 'audio-atom'
+    | 'youtube-block'
+    | 'youtube-block-main-media'
+    | 'chart-atom';
 
 interface TrailType {
     designType: DesignType;
@@ -616,6 +695,7 @@ interface TrailType {
     shortUrl?: string;
     commentCount?: number;
     starRating?: number;
+    linkText?: string;
 }
 
 interface TrailTabType {
@@ -672,8 +752,12 @@ declare module 'minify-css-string' {
     const minifyCSSString: any;
     export default minifyCSSString;
 }
-declare module 'storybook-chromatic/isChromatic';
+declare module 'chromatic/isChromatic';
 /* eslint-enable @typescript-eslint/no-explicit-any */
+
+declare module 'dynamic-import-polyfill' {
+    export const initialize: any;
+}
 
 // ------------------------------------- //
 // AMP types                             //

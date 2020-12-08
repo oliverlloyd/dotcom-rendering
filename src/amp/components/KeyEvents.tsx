@@ -53,7 +53,7 @@ const wrapper = css`
 const eventLinkStyle = css`
     display: block;
     text-decoration: none;
-    color: ${palette.sport.dark};
+    color: ${palette.sport[300]};
     :hover {
         text-decoration: underline;
     }
@@ -71,7 +71,7 @@ export const KeyEvents: React.SFC<{
         return null;
     }
 
-    const lis = events.map(event => (
+    const lis = events.map((event) => (
         <li className={listItemStyle} key={event.id}>
             <a className={eventLinkStyle} href={blockLink(url, event.id)}>
                 <span className={timeStyle}>{event.createdOnDisplay}</span>

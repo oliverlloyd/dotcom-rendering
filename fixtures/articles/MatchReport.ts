@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const MatchReport: CAPIType = {
     contributionsServiceUrl: 'https://contributions.guardianapis.com',
     shouldHideReaderRevenue: false,
@@ -31,7 +33,7 @@ export const MatchReport: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8z6v',
+                    value: 'https://theguardian.com/p/d8z6v',
                 },
                 {
                     name: 'url',
@@ -71,7 +73,7 @@ export const MatchReport: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8z6v',
+                    value: 'https://theguardian.com/p/d8z6v',
                 },
                 {
                     name: 'url',
@@ -115,7 +117,7 @@ export const MatchReport: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8z6v',
+                    value: 'https://theguardian.com/p/d8z6v',
                 },
                 {
                     name: 'url',
@@ -159,7 +161,7 @@ export const MatchReport: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8z6v',
+                    value: 'https://theguardian.com/p/d8z6v',
                 },
                 {
                     name: 'edition',
@@ -357,6 +359,8 @@ export const MatchReport: CAPIType = {
     publication: 'The Guardian',
     trailText:
         'France moved top of the Six Nations standings as they claimed a bonus point in an otherwise unimpressive 35-22 defeat of a weak Italy on Sunday',
+    matchUrl:
+        'https://api.nextgen.guardianapps.co.uk/football/api/match-nav/2020/08/14/26300/26247.json?dcr=true&page=football%2F2020%2Faug%2F14%2Fthomas-muller-leads-rout-as-bayern-munich-demolish-barcelona-8-2',
     subMetaKeywordLinks: [
         {
             url: '/sport/france-rugby-union-team',
@@ -2572,7 +2576,7 @@ export const MatchReport: CAPIType = {
                     img:
                         'https://i.guim.co.uk/img/media/edf12930e5f8c588a694d819a19e6693443480eb/1293_741_2415_2416/2415.jpg?width=620&quality=85&auto=format&fit=max&s=05fe03496d24a51824609bb7e0927dfc',
                     _type:
-                        'model.dotcomrendering.pageElements.ProfileBlockElement',
+                        'model.dotcomrendering.pageElements.ProfileAtomBlockElement',
                     html:
                         '<p><b>1 Feb </b><a href="https://www.theguardian.com/sport/2020/feb/01/wales-italy-six-nations-match-report">Wales 42-0 Italy</a><br><b>1 Feb </b><a href="https://www.theguardian.com/sport/2020/feb/01/ireland-scotland-six-nations-match-report">Ireland 19-12 Scotland</a><br><b>2 Feb </b><a href="https://www.theguardian.com/sport/2020/feb/02/france-england-six-nations-match-report">France 24-17 England</a></p><p><b>8 Feb </b><a href="https://www.theguardian.com/sport/2020/feb/08/ireland-wales-six-nations-match-report">Ireland 24-14 Wales</a><br><b>8 Feb </b><a href="https://www.theguardian.com/sport/2020/feb/08/scotland-england-six-nations-match-report">Scotland 6-13 England</a><br><b>9 Feb </b><a href="https://www.theguardian.com/sport/2020/feb/09/france-italy-six-nations-match-report">France 35-22 Italy</a></p><p><b>22 Feb </b>Italy v Scotland (2.15pm)<br><b>22 Feb </b>Wales v France (4.45pm)<br><b>23 Feb </b>England v Ireland (3pm)</p><p><b>7 Mar </b>Ireland v Italy (2.15pm)<br><b>7 Mar </b>England v Wales (4.45pm)<br><b>8 Mar </b>Scotland v France (3pm)<br></p><p><b>14 Mar </b>Wales v Scotland (2.15pm)<br><b>14 Mar </b>Italy v England (4.45pm)<br><b>14 Mar </b>France v Ireland (8pm)</p><p>• <i>All times GMT; all matches on BBC or ITV</i></p>',
                     id: '6ecb725f-5559-4fdd-8052-f33dd66e36db',
@@ -2611,6 +2615,8 @@ export const MatchReport: CAPIType = {
             lastUpdatedDisplay: '21:00 GMT',
             firstPublished: 1581282014000,
             firstPublishedDisplay: '21:00 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: {
@@ -2622,7 +2628,7 @@ export const MatchReport: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comsport/2020/feb/09/france-italy-six-nations-match-report',
+                'https://amp.theguardian.com/sport/2020/feb/09/france-italy-six-nations-match-report',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -2787,11 +2793,12 @@ export const MatchReport: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

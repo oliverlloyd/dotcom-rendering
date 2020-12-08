@@ -6,6 +6,7 @@ export interface PermutivePayload {
     'properties.content.authors!'?: string;
     'properties.content.keywords!'?: string;
     'properties.content.publishedAt'?: string;
+    'properties.content.tone'?: string;
     'properties.user.edition'?: string;
 }
 
@@ -21,14 +22,21 @@ export const generatePermutivePayload = (
         rawConfig.author && typeof rawConfig.author === 'string'
             ? rawConfig.author
                   .split(',')
-                  .map(s => s.trim())
+                  .map((s) => s.trim())
                   .join()
             : null;
     const keywords =
         rawConfig.keywords && typeof rawConfig.keywords === 'string'
             ? rawConfig.keywords
                   .split(',')
-                  .map(s => s.trim())
+                  .map((s) => s.trim())
+                  .join()
+            : null;
+    const toneIds =
+        rawConfig.toneIds && typeof rawConfig.toneIds === 'string'
+            ? rawConfig.toneIds
+                  .split(',')
+                  .map((s) => s.trim())
                   .join()
             : null;
     const config: { [key: string]: any } = {
@@ -41,12 +49,13 @@ export const generatePermutivePayload = (
         'properties.content.authors!list[string]': authors,
         'properties.content.keywords!list[string]': keywords,
         'properties.content.publishedAt': publishedAt,
+        'properties.content.tone!list[string]': toneIds,
         'properties.user.edition': rawConfig.edition,
     };
 
     const payload: { [key: string]: any } = Object.keys(config)
         .filter(
-            key => typeof config[key] !== 'undefined' && config[key] !== null,
+            (key) => typeof config[key] !== 'undefined' && config[key] !== null,
         )
         .reduce((acc: { [key: string]: any }, key) => {
             acc[key] = config[key];

@@ -5,8 +5,12 @@ import { border, neutral, text } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
 
+const adSlotStyles = css`
+    position: relative;
+`;
 export const labelStyles = css`
-    .ad-slot__label {
+    .ad-slot__label,
+    .ad-slot__scroll {
         ${textSans.xsmall()};
         position: relative;
         height: 24px;
@@ -20,6 +24,12 @@ export const labelStyles = css`
 
     .ad-slot__close-button {
         display: none;
+    }
+
+    .ad-slot__scroll {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }
 `;
 const mobileStickyAdStyles = css`
@@ -104,7 +114,7 @@ export const makeClassNames = (
     optClassNames: string[],
 ): string => {
     const baseClassNames = ['js-ad-slot', 'ad-slot', `ad-slot--${name}`];
-    const adTypeClassNames = adTypes.map(adType => `ad-slot--${adType}`);
+    const adTypeClassNames = adTypes.map((adType) => `ad-slot--${adType}`);
     return baseClassNames.concat(adTypeClassNames, optClassNames).join(' ');
 };
 
@@ -145,7 +155,7 @@ export const AdSlotCore: React.FC<{
                 name,
                 adTypes,
                 optClassNames || [],
-            )} ${localStyles} ${labelStyles}`}
+            )} ${localStyles} ${labelStyles} ${adSlotStyles}`}
             data-link-name={`ad slot ${name}`}
             data-name={name}
             // {...getOptionalProps()}

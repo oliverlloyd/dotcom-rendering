@@ -11,12 +11,13 @@ import { textSans } from '@guardian/src-foundations/typography';
 import { from, until } from '@guardian/src-foundations/mq';
 
 import { clearFix } from '@root/src/lib/mixins';
+import { Display } from '@root/src/lib/display';
 import { Pillars, pillarWidth, firstPillarWidth } from './Pillars';
 import { BackToTop } from './BackToTop';
 
 // CSS vars
 const emailSignupSideMargins = 10;
-const footerItemContainerPadding = 19;
+const footerItemContainerPadding = 20;
 const emailSignupWidth =
     pillarWidth +
     firstPillarWidth -
@@ -50,6 +51,7 @@ const pillarWrap = css`
 
 const emailSignup = css`
     padding-top: 12px;
+    min-height: 150px;
 
     ${from.desktop} {
         margin: 0 ${emailSignupSideMargins}px;
@@ -61,10 +63,10 @@ const emailSignup = css`
 
     ${from.wide} {
         margin-right: ${pillarWidth * 2 +
-            firstPillarWidth -
-            (emailSignupWidth +
-                emailSignupSideMargins +
-                footerItemContainerPadding)}px;
+        firstPillarWidth -
+        (emailSignupWidth +
+            emailSignupSideMargins +
+            footerItemContainerPadding)}px;
     }
 `;
 
@@ -73,6 +75,7 @@ const footerLink = css`
     text-decoration: none;
     padding-bottom: 12px;
     display: block;
+    line-height: 19px;
 
     :hover {
         text-decoration: underline;
@@ -143,7 +146,10 @@ const readerRevenueLinks = css`
 
 const copyright = css`
     ${textSans.xsmall()};
-    padding: 12px;
+    padding-left: 20px;
+    padding-right: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 
     ${until.tablet} {
         margin-top: 11px;
@@ -156,9 +162,13 @@ const footerItemContainers = css`
     }
 
     width: 100%;
-    padding: 0 ${footerItemContainerPadding}px;
+    padding: 0 ${footerItemContainerPadding / 2}px;
     position: relative;
     border: ${footerBorders};
+
+    ${from.mobileLandscape} {
+        padding: 0 ${footerItemContainerPadding}px;
+    }
 `;
 
 const bttPosition = css`
@@ -172,7 +182,7 @@ const bttPosition = css`
 const FooterLinks: React.FC<{
     pageFooter: FooterType;
 }> = ({ pageFooter }) => {
-    const linkGroups = pageFooter.footerLinks.map(linkGroup => {
+    const linkGroups = pageFooter.footerLinks.map((linkGroup) => {
         const linkList = linkGroup.map((l: FooterLink, index: number) => (
             <li key={`${l.url}${index}`}>
                 <a
@@ -212,7 +222,7 @@ export const Footer: React.FC<{
     <footer className={footer} data-link-name="footer" data-component="footer">
         <div className={pillarWrap}>
             <Pillars
-                display="standard"
+                display={Display.Standard}
                 pillars={pillars}
                 pillar={pillar}
                 showLastPillarDivider={false}
@@ -240,7 +250,7 @@ export const Footer: React.FC<{
         </div>
         <div className={copyright}>
             © {year} Guardian News & Media Limited or its affiliated companies.
-            All rights reserved. (beta)
+            All rights reserved. (modern)
         </div>
     </footer>
 );

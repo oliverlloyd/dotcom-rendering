@@ -42,7 +42,12 @@ import {
     decideLineEffect,
     getCurrentPillar,
 } from '@root/src/web/lib/layoutHelpers';
-import { Stuck, SendToBack } from '@root/src/web/layouts/lib/stickiness';
+import {
+    Stuck,
+    SendToBack,
+    BannerWrapper,
+} from '@root/src/web/layouts/lib/stickiness';
+import { Display } from '@root/src/lib/display';
 
 const ShowcaseGrid = ({
     children,
@@ -241,7 +246,7 @@ export const ShowcaseLayout = ({
     pillar,
 }: Props) => {
     const {
-        config: { isPaidContent },
+        config: { isPaidContent, host },
     } = CAPI;
 
     const adTargeting: AdTargeting = buildAdTargeting(CAPI.config);
@@ -255,7 +260,7 @@ export const ShowcaseLayout = ({
     // 2) Otherwise, ensure slot only renders if `CAPI.config.shouldHideReaderRevenue` equals false.
 
     const seriesTag = CAPI.tags.find(
-        tag => tag.type === 'Series' || tag.type === 'Blog',
+        (tag) => tag.type === 'Series' || tag.type === 'Blog',
     );
     const showOnwardsLower = seriesTag && CAPI.hasStoryPackage;
 
@@ -427,8 +432,9 @@ export const ShowcaseLayout = ({
                                 webTitle={CAPI.webTitle}
                                 author={CAPI.author}
                                 tags={CAPI.tags}
-                                webPublicationDateDisplay={
-                                    CAPI.webPublicationDateDisplay
+                                primaryDateline={CAPI.webPublicationDateDisplay}
+                                secondaryDateline={
+                                    CAPI.blocks[0].secondaryDateLine
                                 }
                             />
                         </div>
@@ -442,6 +448,7 @@ export const ShowcaseLayout = ({
                                     display={display}
                                     designType={designType}
                                     adTargeting={adTargeting}
+                                    host={host}
                                 />
                                 {showBodyEndSlot && <div id="slot-body-end" />}
                                 <GuardianLines count={4} pillar={pillar} />
@@ -484,10 +491,10 @@ export const ShowcaseLayout = ({
 
             {!isPaidContent && (
                 <>
-                    {/* Onwards (when signed IN) */}
-                    <Section sectionId="onwards-upper-whensignedin" />
+                    {/* Onwards (when signed OUT) */}
+                    <div id="onwards-upper-whensignedout" />
                     {showOnwardsLower && (
-                        <Section sectionId="onwards-lower-whensignedin" />
+                        <Section sectionId="onwards-lower-whensignedout" />
                     )}
 
                     {showComments && (
@@ -509,13 +516,10 @@ export const ShowcaseLayout = ({
                         </Section>
                     )}
 
-                    {/* Onwards (when signed OUT) */}
-                    <Section
-                        sectionId="onwards-upper-whensignedout"
-                        showTopBorder={false}
-                    />
+                    {/* Onwards (when signed IN) */}
+                    <div id="onwards-upper-whensignedin" />
                     {showOnwardsLower && (
-                        <Section sectionId="onwards-lower-whensignedout" />
+                        <Section sectionId="onwards-lower-whensignedin" />
                     )}
 
                     <Section sectionId="most-viewed-footer" />
@@ -546,6 +550,7 @@ export const ShowcaseLayout = ({
                 padded={false}
                 backgroundColour={brandBackground.primary}
                 borderColour={brandBorder.primary}
+                showSideBorders={false}
             >
                 <Footer
                     pageFooter={CAPI.pageFooter}
@@ -554,7 +559,7 @@ export const ShowcaseLayout = ({
                 />
             </Section>
 
-            <div id="cmp" />
+            <BannerWrapper />
             <MobileStickyContainer />
         </>
     );

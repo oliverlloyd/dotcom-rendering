@@ -7,7 +7,7 @@ export const VideoYoutubeBlockComponent: React.FC<{
     pillar: Pillar;
 }> = ({ element, pillar }) => {
     const youtubeId = getIdFromUrl(
-        element.url,
+        element.originalUrl || element.url,
         '^[a-zA-Z0-9_-]{11}$', // Alpha numeric, underscores and hyphens, exactly 11 numbers long
         false,
         'v',
@@ -19,6 +19,7 @@ export const VideoYoutubeBlockComponent: React.FC<{
                 layout="responsive"
                 width={element.width}
                 height={element.height}
+                credentials="omit"
             />
         </Caption>
     );

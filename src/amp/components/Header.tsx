@@ -9,7 +9,7 @@ import { visuallyHidden } from '@guardian/src-foundations/accessibility';
 import { ReaderRevenueButton } from '@root/src/amp/components/ReaderRevenueButton';
 
 const headerStyles = css`
-    background-color: ${palette.brand.main};
+    background-color: ${palette.brand[400]};
 `;
 
 const row = css`
@@ -112,7 +112,7 @@ const pillarLinkStyle = (pillar: Pillar) => css`
 `;
 
 const veggieStyles = css`
-    background-color: ${palette.brandYellow.main};
+    background-color: ${palette.brandAlt[400]};
     color: ${palette.neutral[97]};
     height: 42px;
     min-width: 42px;
@@ -167,7 +167,7 @@ const navRow = css`
 const pillarLinks = (pillars: PillarType[], guardianBaseURL: string) => (
     <nav>
         <ul className={pillarListStyles}>
-            {pillars.map(p => (
+            {pillars.map((p) => (
                 <li className={pillarListItemStyle} key={p.title}>
                     <a
                         className={pillarLinkStyle(p.pillar)}
@@ -185,7 +185,7 @@ export const Header: React.FC<{
     nav: NavType;
     guardianBaseURL: string;
 }> = ({ nav, guardianBaseURL }) => (
-    <header className={`test-header ${headerStyles}`}>
+    <header className={headerStyles}>
         <div className={row}>
             <ReaderRevenueButton
                 nav={nav}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { css, cx } from 'emotion';
 
 import ArrowRightIcon from '@frontend/static/icons/arrow-right.svg';
@@ -9,8 +9,10 @@ import {
 } from '@guardian/src-foundations/palette';
 import { textSans, headline } from '@guardian/src-foundations/typography';
 import { from, until } from '@guardian/src-foundations/mq';
+import { LinkButton , buttonBrand } from '@guardian/src-button';
 
-import { getCookie } from '@root/src/web/browser/cookie';
+import { shouldHideSupportMessaging } from '@root/src/web/lib/contributions';
+import {ThemeProvider} from "@root/node_modules/emotion-theming";
 
 type Props = {
     edition: Edition;
@@ -109,22 +111,8 @@ const hiddenFromTablet = css`
 const subMessageStyles = css`
     color: ${brandText.primary};
     ${textSans.medium()};
-    margin-bottom: 5px;
+    margin: 5px 0;
 `;
-
-const decideIfRecentContributor: () => boolean = () => {
-    const cookieValue = getCookie('gu.contributions.contrib-timestamp');
-
-    if (!cookieValue) {
-        return false;
-    }
-
-    const now = new Date().getTime();
-    const lastContribution = new Date(cookieValue).getTime();
-    const diffDays = Math.ceil((now - lastContribution) / (1000 * 3600 * 24));
-
-    return diffDays <= 180;
-};
 
 export const ReaderRevenueLinks: React.FC<Props> = ({
     edition,
@@ -132,74 +120,88 @@ export const ReaderRevenueLinks: React.FC<Props> = ({
     dataLinkNamePrefix,
     inHeader,
 }) => {
-    const [isPayingMember, setIsPayingMember] = useState<boolean>(false);
-    const [isRecentContributor, setIsRecentContributor] = useState<boolean>(
-        false,
-    );
+    const showAusMomentHeader = edition === 'AU';
 
-    useEffect(() => {
-        // Is paying member?
-        setIsPayingMember(getCookie('gu_paying_member') === 'true');
-        // Is recent contributor?
-        setIsRecentContributor(decideIfRecentContributor());
-    }, []);
-
-    if (!isPayingMember && !isRecentContributor) {
-        return (
-            <div className={cx(inHeader && paddingStyles)}>
-                <div
-                    className={cx({
-                        [hiddenUntilTablet]: inHeader,
-                    })}
-                >
-                    <div className={messageStyles}>
-                        Support The&nbsp;Guardian
-                    </div>
-                    <div className={subMessageStyles}>
-                        Available for everyone, funded by readers
-                    </div>
-                    <a
-                        className={linkStyles}
-                        href={urls.contribute}
-                        data-link-name={`${dataLinkNamePrefix}contribute-cta`}
+    if (shouldHideSupportMessaging()) {
+        if (showAusMomentHeader) {
+            return (
+                <div className={cx(inHeader && paddingStyles)}>
+                    <div
+                        className={cx({
+                            [hiddenUntilTablet]: inHeader,
+                        })}
                     >
-                        Contribute <ArrowRightIcon />
-                    </a>
+                        <div className={messageStyles}>Thank you</div>
+
+                        <div className={subMessageStyles}>
+                            <ThemeProvider theme={buttonBrand}>
+                                <LinkButton
+                                    priority="secondary"
+                                    showIcon={true}
+                                    size="small"
+                                    href="https://support.theguardian.com/aus-2020-map?INTCMP=Aus_moment_2020_frontend_header"
+                                >
+                                    Hear from other supporters
+                                </LinkButton>
+                            </ThemeProvider>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+        return null;
+    }
+    return (
+        <div className={cx(inHeader && paddingStyles)}>
+            <div
+                className={cx({
+                    [hiddenUntilTablet]: inHeader,
+                })}
+            >
+                <div className={messageStyles}>Support The&nbsp;Guardian</div>
+                <div className={subMessageStyles}>
+                    <div> Available for everyone, funded by readers</div>
+                </div>
+                <a
+                    className={linkStyles}
+                    href={urls.contribute}
+                    data-link-name={`${dataLinkNamePrefix}contribute-cta`}
+                >
+                    Contribute <ArrowRightIcon />
+                </a>
+                <a
+                    className={linkStyles}
+                    href={urls.subscribe}
+                    data-link-name={`${dataLinkNamePrefix}subscribe-cta`}
+                >
+                    Subscribe <ArrowRightIcon />
+                </a>
+            </div>
+
+            <div
+                className={cx({
+                    [hiddenFromTablet]: inHeader,
+                    [hidden]: !inHeader,
+                })}
+            >
+                {edition === 'UK' ? (
                     <a
                         className={linkStyles}
                         href={urls.subscribe}
-                        data-link-name={`${dataLinkNamePrefix}subscribe-cta`}
+                        data-link-name={`${dataLinkNamePrefix}contribute-cta`}
                     >
                         Subscribe <ArrowRightIcon />
                     </a>
-                </div>
-
-                <div
-                    className={cx({
-                        [hiddenFromTablet]: inHeader,
-                        [hidden]: !inHeader,
-                    })}
-                >
-                    {edition === 'UK' ? (
-                        <a
-                            className={linkStyles}
-                            href={urls.contribute}
-                            data-link-name={`${dataLinkNamePrefix}contribute-cta`}
-                        >
-                            Contribute <ArrowRightIcon />
-                        </a>
-                    ) : (
-                        <a
-                            className={linkStyles}
-                            href={urls.support}
-                            data-link-name={`${dataLinkNamePrefix}support-cta`}
-                        >
-                            Support us <ArrowRightIcon />
-                        </a>
-                    )}
-                </div>
+                ) : (
+                    <a
+                        className={linkStyles}
+                        href={urls.contribute}
+                        data-link-name={`${dataLinkNamePrefix}support-cta`}
+                    >
+                        Contribute <ArrowRightIcon />
+                    </a>
+                )}
             </div>
-        );
-    }
-    return null;
+        </div>
+    );
 };

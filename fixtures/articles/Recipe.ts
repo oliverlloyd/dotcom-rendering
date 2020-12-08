@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const Recipe: CAPIType = {
     shouldHideReaderRevenue: false,
     slotMachineFlags: '',
@@ -29,7 +31,7 @@ export const Recipe: CAPIType = {
                     value:
                         '/lifeandstyle/2020/apr/03/folding-kneading-rolling-seven-meditative-dishes-to-cook-when-you-need-to-zone-out',
                 },
-                { name: 'sh', value: 'https://gu.com/p/dhpzc' },
+                { name: 'sh', value: 'https://theguardian.com/p/dhpzc' },
             ],
         },
         US: {
@@ -52,7 +54,7 @@ export const Recipe: CAPIType = {
                     value:
                         '/lifeandstyle/2020/apr/03/folding-kneading-rolling-seven-meditative-dishes-to-cook-when-you-need-to-zone-out',
                 },
-                { name: 'sh', value: 'https://gu.com/p/dhpzc' },
+                { name: 'sh', value: 'https://theguardian.com/p/dhpzc' },
             ],
         },
         AU: {
@@ -75,7 +77,7 @@ export const Recipe: CAPIType = {
                         '/lifeandstyle/2020/apr/03/folding-kneading-rolling-seven-meditative-dishes-to-cook-when-you-need-to-zone-out',
                 },
                 { name: 'edition', value: 'au' },
-                { name: 'sh', value: 'https://gu.com/p/dhpzc' },
+                { name: 'sh', value: 'https://theguardian.com/p/dhpzc' },
             ],
         },
         INT: {
@@ -98,7 +100,7 @@ export const Recipe: CAPIType = {
                     value:
                         '/lifeandstyle/2020/apr/03/folding-kneading-rolling-seven-meditative-dishes-to-cook-when-you-need-to-zone-out',
                 },
-                { name: 'sh', value: 'https://gu.com/p/dhpzc' },
+                { name: 'sh', value: 'https://theguardian.com/p/dhpzc' },
             ],
         },
     },
@@ -5268,6 +5270,8 @@ export const Recipe: CAPIType = {
             lastUpdatedDisplay: '13:12 BST',
             firstPublished: 1585734719000,
             firstPublishedDisplay: '10:51 BST',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     linkedData: [
@@ -5275,7 +5279,7 @@ export const Recipe: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comlifeandstyle/2020/apr/03/folding-kneading-rolling-seven-meditative-dishes-to-cook-when-you-need-to-zone-out',
+                'https://amp.theguardian.com/lifeandstyle/2020/apr/03/folding-kneading-rolling-seven-meditative-dishes-to-cook-when-you-need-to-zone-out',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -5403,11 +5407,12 @@ export const Recipe: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

@@ -1,12 +1,13 @@
 import React from 'react';
 import { css, cx } from 'emotion';
 import { border } from '@guardian/src-foundations/palette';
-import { between, until } from '@guardian/src-foundations/mq';
+import { between, from, until } from '@guardian/src-foundations/mq';
 import { Contributor } from '@root/src/web/components/Contributor';
 import { Avatar } from '@root/src/web/components/Avatar';
 
 import { getSharingUrls } from '@root/src/lib/sharing-urls';
 import { Branding } from '@root/src/web/components/Branding';
+import { Display } from '@root/src/lib/display';
 import { SharingIcons } from './ShareIcons';
 import { Dateline } from './Dateline';
 
@@ -18,19 +19,31 @@ type Props = {
     webTitle: string;
     author: AuthorType;
     tags: TagType[];
-    webPublicationDateDisplay: string;
+    primaryDateline: string;
+    secondaryDateline: string;
     branding?: Branding;
 };
 
 const meta = css`
     ${between.tablet.and.leftCol} {
-        order: 1;
+        order: 3;
     }
 
-    ${until.phablet} {
+    ${until.mobileLandscape} {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    ${from.mobileLandscape} {
         padding-left: 20px;
         padding-right: 20px;
     }
+
+    ${from.phablet} {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
     padding-top: 2px;
 `;
 
@@ -52,6 +65,13 @@ const metaExtras = css`
         padding-left: 20px;
         padding-right: 20px;
     }
+
+    ${until.mobileLandscape} {
+        margin-left: -10px;
+        margin-right: -10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 `;
 
 const metaNumbers = css`
@@ -70,35 +90,92 @@ const metaNumbers = css`
         padding-left: 20px;
         padding-right: 20px;
     }
-`;
 
-const metaContainer = css`
-    ${until.phablet} {
-        margin-left: -20px;
-        margin-right: -20px;
-    }
     ${until.mobileLandscape} {
         margin-left: -10px;
         margin-right: -10px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 `;
 
+const metaContainer = ({
+    display,
+    designType,
+}: {
+    display: Display;
+    designType: DesignType;
+}) => {
+    switch (display) {
+        case Display.Immersive:
+        case Display.Showcase:
+        case Display.Standard: {
+            switch (designType) {
+                case 'PhotoEssay':
+                    return css`
+                        ${until.phablet} {
+                            margin-left: -20px;
+                            margin-right: -20px;
+                        }
+                        ${until.mobileLandscape} {
+                            margin-left: -10px;
+                            margin-right: -10px;
+                        }
+                        ${from.leftCol} {
+                            margin-left: 20px;
+                        }
+                        ${from.wide} {
+                            margin-left: 40px;
+                        }
+                    `;
+                case 'Feature':
+                case 'Review':
+                case 'Recipe':
+                case 'Interview':
+                case 'Live':
+                case 'Media':
+                case 'Analysis':
+                case 'Article':
+                case 'SpecialReport':
+                case 'MatchReport':
+                case 'GuardianView':
+                case 'GuardianLabs':
+                case 'Quiz':
+                case 'AdvertisementFeature':
+                case 'Comment':
+                case 'Immersive':
+                default:
+                    return css`
+                        ${until.phablet} {
+                            margin-left: -20px;
+                            margin-right: -20px;
+                        }
+                        ${until.mobileLandscape} {
+                            margin-left: -10px;
+                            margin-right: -10px;
+                        }
+                    `;
+            }
+        }
+    }
+};
+
 const getBylineImageUrl = (tags: TagType[]) => {
-    const contributorTag = tags.find(tag => tag.type === 'Contributor');
+    const contributorTag = tags.find((tag) => tag.type === 'Contributor');
     return contributorTag && contributorTag.bylineImageUrl;
 };
 
 const getAuthorName = (tags: TagType[]) => {
-    const contributorTag = tags.find(tag => tag.type === 'Contributor');
+    const contributorTag = tags.find((tag) => tag.type === 'Contributor');
     return contributorTag && contributorTag.title;
 };
 
 const shouldShowAvatar = (designType: DesignType, display: Display) => {
     switch (display) {
-        case 'immersive':
+        case Display.Immersive:
             return false;
-        case 'showcase':
-        case 'standard': {
+        case Display.Showcase:
+        case Display.Standard: {
             switch (designType) {
                 case 'Feature':
                 case 'Review':
@@ -127,10 +204,10 @@ const shouldShowAvatar = (designType: DesignType, display: Display) => {
 
 const shouldShowContributor = (designType: DesignType, display: Display) => {
     switch (display) {
-        case 'immersive':
+        case Display.Immersive:
             return false;
-        case 'showcase':
-        case 'standard': {
+        case Display.Showcase:
+        case Display.Standard: {
             switch (designType) {
                 case 'Comment':
                 case 'GuardianView':
@@ -213,19 +290,20 @@ export const ArticleMeta = ({
     webTitle,
     author,
     tags,
-    webPublicationDateDisplay,
+    primaryDateline,
+    secondaryDateline,
 }: Props) => {
     const sharingUrls = getSharingUrls(pageId, webTitle);
     const bylineImageUrl = getBylineImageUrl(tags);
     const authorName = getAuthorName(tags);
 
     const onlyOneContributor: boolean =
-        tags.filter(tag => tag.type === 'Contributor').length === 1;
+        tags.filter((tag) => tag.type === 'Contributor').length === 1;
 
     const showAvatar =
         onlyOneContributor && shouldShowAvatar(designType, display);
     return (
-        <div className={metaContainer}>
+        <div className={metaContainer({ display, designType })}>
             <div className={cx(meta)}>
                 {branding && <Branding branding={branding} pillar={pillar} />}
                 <RowBelowLeftCol>
@@ -249,8 +327,8 @@ export const ArticleMeta = ({
                                 />
                             )}
                             <Dateline
-                                dateDisplay={webPublicationDateDisplay}
-                                descriptionText="Published on"
+                                primaryDateline={primaryDateline}
+                                secondaryDateline={secondaryDateline}
                             />
                         </div>
                     </>

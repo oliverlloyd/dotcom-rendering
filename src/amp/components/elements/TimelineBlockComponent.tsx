@@ -18,7 +18,7 @@ const eventStyle = css`
 `;
 
 const highlight = css`
-    background-color: ${palette.brandYellow.main};
+    background-color: ${palette.brandAlt[400]};
 `;
 
 const eventIconStyle = css`
@@ -38,7 +38,7 @@ const headingStyle = css`
 `;
 
 const getHTML = (events: TimelineEvent[], description?: string): string => {
-    const eventMarkup = events.map(e => (
+    const eventMarkup = events.map((e) => (
         <li className={eventStyle} key={e.title}>
             <time className={cx(eventIconStyle, highlight)}>{e.date}</time>
             {e.toDate && (

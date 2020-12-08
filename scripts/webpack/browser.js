@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const webpack = require('webpack');
 const AssetsManifest = require('webpack-assets-manifest');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const chalk = require('chalk');
-const { siteName } = require('../frontend/config');
 
 const friendlyErrorsWebpackPlugin = () =>
     new FriendlyErrorsWebpackPlugin({
@@ -20,7 +20,7 @@ const DEV = process.env.NODE_ENV === 'development';
 const GITHUB = process.env.CI_ENV === 'github';
 
 // We need to distinguish files compiled by @babel/preset-env with the prefix "legacy"
-const generateName = isLegacyJS => {
+const generateName = (isLegacyJS) => {
     const legacyString = isLegacyJS ? '.legacy' : '';
     const chunkhashString = PROD && !GITHUB ? '.[chunkhash]' : '';
     return `[name]${legacyString}${chunkhashString}.js`;
@@ -30,7 +30,7 @@ const generateName = isLegacyJS => {
 const manifestData = {};
 const legacyManifestData = {};
 
-const scriptPath = package =>
+const scriptPath = (package) =>
     [
         `./src/web/browser/${package}/init.ts`,
         DEV &&
@@ -44,6 +44,10 @@ module.exports = ({ isLegacyJS }) => ({
         ophan: scriptPath('ophan'),
         react: scriptPath('react'),
         lotame: scriptPath('lotame'),
+        dynamicImport: scriptPath('dynamicImport'),
+        atomIframe: scriptPath('atomIframe'),
+        embedIframe: scriptPath('embedIframe'),
+        newsletterEmbedIframe: scriptPath('newsletterEmbedIframe'),
     },
     output: {
         filename: generateName(isLegacyJS),
@@ -71,14 +75,21 @@ module.exports = ({ isLegacyJS }) => ({
     module: {
         rules: [
             {
-                test: /(\.tsx)|(\.js)|(\.ts)$/,
-                exclude: /node_modules\/(?!(@guardian\/discussion-rendering)\/).*/,
+                test: /\.[jt]sx?|mjs$/,
+                exclude: [
+                    {
+                        test: /node_modules/,
+                        exclude: [
+                            /@guardian\/(?!(automat-modules))/,
+                            /dynamic-import-polyfill/,
+                        ],
+                    },
+                ],
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
                             presets: [
-                                '@babel/preset-typescript',
                                 '@babel/preset-react',
                                 // @babel/preset-env is used for legacy browsers
                                 // @babel/preset-modules is used for modern browsers
@@ -93,8 +104,23 @@ module.exports = ({ isLegacyJS }) => ({
                                               modules: false,
                                           },
                                       ]
-                                    : '@babel/preset-modules',
+                                    : [
+                                          '@babel/preset-env',
+                                          {
+                                              bugfixes: true,
+                                              targets: {
+                                                  esmodules: true,
+                                              },
+                                          },
+                                      ],
                             ],
+                        },
+                    },
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            configFile: 'tsconfig.build.json',
+                            transpileOnly: true,
                         },
                     },
                 ],

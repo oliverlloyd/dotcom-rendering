@@ -21,6 +21,7 @@ interface FetchOptions {
             | 'application/x-www-form-urlencoded';
     };
     body?: string;
+    credentials?: 'omit' | 'include' | 'same-origin';
 }
 
 function checkForErrors(response: any) {
@@ -33,10 +34,10 @@ function checkForErrors(response: any) {
     return response;
 }
 
-const callApi = (url: string, options?: FetchOptions) => {
+export const callApi = (url: string, options?: FetchOptions) => {
     return fetch(url, options)
         .then(checkForErrors)
-        .then(response => response.json());
+        .then((response) => response.json());
 };
 
 interface ApiResponse<T> {
@@ -59,13 +60,13 @@ export const useApi = <T,>(
 
     useEffect(() => {
         callApi(url, options)
-            .then(data => {
+            .then((data) => {
                 setRequest({
                     data,
                     loading: false,
                 });
             })
-            .catch(error => {
+            .catch((error) => {
                 setRequest({
                     error,
                     loading: false,

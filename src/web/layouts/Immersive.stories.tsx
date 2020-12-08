@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { breakpoints } from '@guardian/src-foundations/mq';
+
 import { makeGuardianBrowserCAPI } from '@root/src/model/window-guardian';
 import { Article } from '@root/fixtures/articles/Article';
 import { AdvertisementFeature } from '@root/fixtures/articles/AdvertisementFeature';
@@ -17,6 +19,7 @@ import { MatchReport } from '@root/fixtures/articles/MatchReport';
 import { NAV } from '@root/fixtures/NAV';
 
 import { HydrateApp } from '@root/src/web/components/HydrateApp';
+import { embedIframe } from '@root/src/web/browser/embedIframe/embedIframe';
 import { mockRESTCalls } from '@root/src/web/lib/mockRESTCalls';
 
 import { DecideLayout } from './DecideLayout';
@@ -48,6 +51,7 @@ const HydratedLayout = ({ ServerCAPI }: { ServerCAPI: CAPIType }) => {
     useEffect(() => {
         const CAPI = makeGuardianBrowserCAPI(ServerCAPI);
         HydrateApp({ CAPI, NAV });
+        embedIframe();
     }, [ServerCAPI]);
     return <DecideLayout CAPI={ServerCAPI} NAV={NAV} />;
 };
@@ -56,7 +60,21 @@ export const ArticleStory = () => {
     const ServerCAPI = convertToImmersive(Article);
     return <HydratedLayout ServerCAPI={ServerCAPI} />;
 };
-ArticleStory.story = { name: 'Article' };
+ArticleStory.story = {
+    name: 'Article',
+    // Set the viewports in Chromatic to capture this story at each breakpoint
+    chromatic: {
+        viewports: [
+            breakpoints.mobile,
+            breakpoints.mobileMedium,
+            breakpoints.phablet,
+            breakpoints.tablet,
+            breakpoints.desktop,
+            breakpoints.leftCol,
+            breakpoints.wide,
+        ],
+    },
+};
 
 export const ReviewStory = () => {
     const ServerCAPI = convertToImmersive(Review);
@@ -92,7 +110,21 @@ export const PhotoEssayStory = () => {
     const ServerCAPI = convertToImmersive(PhotoEssay);
     return <HydratedLayout ServerCAPI={ServerCAPI} />;
 };
-PhotoEssayStory.story = { name: 'PhotoEssay' };
+PhotoEssayStory.story = {
+    name: 'PhotoEssay',
+};
+
+export const MobilePhotoEssay = () => {
+    const ServerCAPI = convertToImmersive(PhotoEssay);
+    return <HydratedLayout ServerCAPI={ServerCAPI} />;
+};
+MobilePhotoEssay.story = {
+    name: 'MobilePhotoEssay',
+    parameters: {
+        viewport: { defaultViewport: 'mobileMedium' },
+        chromatic: { viewports: [375] },
+    },
+};
 
 export const AnalysisStory = () => {
     const ServerCAPI = convertToImmersive(Analysis);

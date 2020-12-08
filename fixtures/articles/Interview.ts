@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const Interview: CAPIType = {
     contributionsServiceUrl: 'https://contributions.guardianapis.com',
     shouldHideReaderRevenue: false,
@@ -28,7 +30,7 @@ export const Interview: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d7nqb',
+                    value: 'https://theguardian.com/p/d7nqb',
                 },
                 {
                     name: 'url',
@@ -69,7 +71,7 @@ export const Interview: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d7nqb',
+                    value: 'https://theguardian.com/p/d7nqb',
                 },
                 {
                     name: 'url',
@@ -114,7 +116,7 @@ export const Interview: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d7nqb',
+                    value: 'https://theguardian.com/p/d7nqb',
                 },
                 {
                     name: 'url',
@@ -159,7 +161,7 @@ export const Interview: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d7nqb',
+                    value: 'https://theguardian.com/p/d7nqb',
                 },
                 {
                     name: 'url',
@@ -6194,6 +6196,8 @@ export const Interview: CAPIType = {
             lastUpdatedDisplay: '11:54 GMT',
             firstPublished: 1580751774000,
             firstPublishedDisplay: '17:42 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: {
@@ -6205,7 +6209,7 @@ export const Interview: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comglobal/2020/feb/09/halima-aden-model-activist-hijab-refugee-fashion-we-all-deserve-representation',
+                'https://amp.theguardian.com/global/2020/feb/09/halima-aden-model-activist-hijab-refugee-fashion-we-all-deserve-representation',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -6373,11 +6377,12 @@ export const Interview: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

@@ -49,7 +49,12 @@ const collapsedStyles = css`
 `;
 
 const fontStyle = css`
-    ${textSans.medium()};
+    ${textSans.small()};
+    font-size: 14px;
+    ${from.tablet} {
+        ${textSans.medium()};
+        font-size: 16px;
+    }
     font-weight: 500;
     color: ${neutral[7]};
     padding: 0 5px;
@@ -95,7 +100,7 @@ const showMoreStyle = css`
     color: ${text.supporting};
 
     :hover {
-        color: ${news.main};
+        color: ${news[400]};
     }
 
     ${from.desktop} {
@@ -128,7 +133,7 @@ const listItemStyles = css`
 
 // I'm not sure what the palette.neutral is for this should always receive a pillar by types.
 const leftColBorder = pillarMap(
-    pillar => css`
+    (pillar) => css`
         :after {
             border-left-color: ${pillarPalette[pillar].main};
         }
@@ -189,7 +194,7 @@ export const SubNav = ({ subNavSections, pillar, currentNavLink }: Props) => {
                         </a>
                     </li>
                 )}
-                {subNavSections.links.map(link => (
+                {subNavSections.links.map((link) => (
                     <li key={link.url}>
                         <a
                             className={cx(linkStyle, {

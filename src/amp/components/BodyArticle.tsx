@@ -14,7 +14,7 @@ import { WithAds } from '@root/src/amp/components/WithAds';
 import { findAdSlots } from '@root/src/amp/lib/find-adslots';
 import { getSharingUrls } from '@root/src/lib/sharing-urls';
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
-import { Epic } from "@root/src/amp/components/Epic";
+import { Epic } from '@root/src/amp/components/Epic';
 
 const bulletStyle = (pillar: Pillar) => css`
     .bullet {
@@ -42,7 +42,7 @@ const body = (pillar: Pillar, designType: DesignType) => {
     // Extend defaultStyles with custom styles for some designTypes
     const designTypeStyle: DesignTypesObj = {
         ...defaultStyles,
-        Comment: palette.opinion.faded,
+        Comment: palette.opinion[800],
         AdvertisementFeature: palette.neutral[86],
     };
 
@@ -100,7 +100,9 @@ export const Body: React.FC<{
         />
     );
 
-    const epic = data.shouldHideReaderRevenue ? null : <Epic webURL={data.webURL} />;
+    const epic = data.shouldHideReaderRevenue ? null : (
+        <Epic webURL={data.webURL} />
+    );
 
     return (
         <InnerContainer className={body(pillar, designType)}>

@@ -72,21 +72,19 @@
 
         <h2>Test Articles By Element (Missing)</h2>
         <ul>
-            <li>AtomEmbedMarkupBlockElement</li>
-            <li>AtomEmbedUrlBlockElement</li>
             <li>BlockquoteBlockElement</li>
+            <li>CaptionBlockElement</li>
             <li>ContentAtomBlockElement</li>
             <li>DisclaimerBlockElement</li>
-            <li>GuideBlockElement</li>
+            <li>GuideAtomBlockElement</li>
             <li>InteractiveMarkupBlockElement</li>
             <li>InteractiveUrlBlockElement</li>
-            <li>ProfileBlockElement</li>
+            <li>ProfileAtomBlockElement</li>
             <li>QABlockElement</li>
             <li>SubheadingBlockElement</li>
             <li>TimelineBlockElement</li>
             <li>VideoBlockElement</li>
             <li>VideoFacebookBlockElement</li>
-            <li>VideoVimeoBlockElement</li>
         </ul>
 
         <script>
@@ -102,13 +100,13 @@
                         '/politics/2019/jul/15/it-will-be-boris-johnson-and-it-will-certainly-be-a-disaster',
                 },
                 {
-                    name: 'Review',
-                    article: '/music/2018/aug/31/eminem-kamikaze-album-review',
-                },
-                {
                     name: 'Paid Content',
                     article:
                         '/bank-australia-clean-money/2019/feb/11/three-trillion-reasons-for-australians-to-join-the-clean-money-revolution',
+                },
+                {
+                    name: 'Review',
+                    article: '/music/2018/aug/31/eminem-kamikaze-album-review',
                 },
             ];
 
@@ -125,7 +123,7 @@
                 {
                     name: 'CommentBlockElement',
                     article:
-                        'https://theguardian.com/music/2016/apr/28/readers-recommend-playlist-songs-about-climate-change',
+                        '/music/2016/apr/28/readers-recommend-playlist-songs-about-climate-change',
                 },
                 {
                     name: 'ContentAtomBlockElement',
@@ -148,8 +146,18 @@
                         '/australia-news/2018/jun/12/shorten-wants-more-aged-care-spending-but-wont-back-royal-commission',
                 },
                 {
+                    name: 'GenericAtomBlockElement', // AudioAtom
+                    article:
+                        'football/2020/jun/13/the-forgotten-story-of-jimmy-hasty-irish-football-one-armed-wonder',
+                },
+                {
                     name: 'GuVideoBlockElement',
                     article: '/film/2013/feb/14/keanu-reeves-future-of-cinema',
+                },
+                {
+                    name: 'HighlightBlockElement',
+                    article:
+                        '/uk-news/2020/apr/22/eddies-last-farewell-a-funeral-in-the-time-of-coronavirus-photo-essay',
                 },
                 {
                     name: 'ImageBlockElement',
@@ -165,6 +173,11 @@
                     name: 'InstagramBlockElement',
                     article:
                         '/lifeandstyle/2020/apr/27/its-like-a-sexy-story-just-for-me-how-lockdown-has-triggered-a-wave-of-sexting',
+                },
+                {
+                    name: 'InteractiveAtomBlockElement',
+                    article:
+                        '/world/2020/jun/10/uk-coronavirus-lockdown-20000-lives-boris-johnson-neil-ferguson',
                 },
                 {
                     name: 'InteractiveBlockElement',
@@ -197,6 +210,11 @@
                         '/music/2020/jan/31/elon-musk-edm-artist-first-track-dont-doubt-ur-vibe',
                 },
                 {
+                    name: 'SpotifyBlockElement',
+                    article:
+                        '/music/2020/jun/15/pet-shop-boys-where-to-start-in-their-back-catalogue',
+                },
+                {
                     name: 'TableBlockElement',
                     article:
                         '/football/blog/2019/dec/09/sergej-milinkovic-savic-and-luis-alberto-are-leading-lazios-surge',
@@ -212,6 +230,11 @@
                         '/uk-news/reality-check/2015/sep/19/daily-mail-syrian-refugees-story-three-problems',
                 },
                 {
+                    name: 'VideoVimeoBlockElement',
+                    article:
+                        '/stage/2020/mar/29/ecole-des-femmes-review-moliere-theatre-odeon',
+                },
+                {
                     name: 'VideoYoutubeBlockElement',
                     article:
                         '/us-news/2017/feb/23/los-angeles-police-officer-teen-gun-video-protests',
@@ -220,6 +243,14 @@
                     name: 'VineBlockElement',
                     article:
                         '/technology/2015/sep/04/vine-why-you-always-lyin-nicholas-fraser-down-goes',
+                },
+                {
+                    name: 'YoutubeBlockElement',
+                    article: '/us-news/2020/oct/29/lordstown-ohio-trump-gm-plant-election',
+                },
+                {
+                    name: 'YoutubeBlockElement (in Main media position)',
+                    article: '/world/2020/apr/01/what-is-coronavirus-and-what-is-the-mortality-rate-covid-19',
                 },
             ];
 
@@ -245,36 +276,60 @@
                         '/sport/2020/may/19/pinatubo-has-probably-trained-on-for-the-2000-guineas-says-charlie-appleby',
                 },
                 {
+                    name: 'InteractiveAtom',
+                    article:
+                        '/world/2020/jun/10/uk-coronavirus-lockdown-20000-lives-boris-johnson-neil-ferguson',
+                },
+                {
                     name: 'ProfileAtom',
                     article:
                         '/politics/2020/jan/24/labour-leadership-unite-backs-brilliant-rebecca-long-bailey',
                 },
-
+                {
+                    name: 'Q&A Atom',
+                    article:
+                        '/world/2020/jul/16/a-single-use-face-mask-or-one-like-amber-heards-how-i-learnt-to-choose-wisely',
+                },
+                {
+                    name: 'Quiz Atom',
+                    article:
+                        '/sport/2020/oct/09/sports-quiz-of-the-week-big-deals-defeats-hits-bang-football',
+                },
+                {
+                    name: 'Quiz Atom (personality variant)',
+                    article:
+                        '/world/2016/mar/09/how-millennial-are-you-the-generation-y-quiz',
+                },
+                {
+                    name: 'TimelineAtom',
+                    article:
+                        '/sport/blog/2020/jul/09/why-chris-froome-and-team-ineos-parting-of-the-ways-cycling',
+                },
             ];
 
-            var makeTestArticle = a => `
-            <div class="test-article">
-                <span>${a.name}</span>
-                <span><a href="/Article?url=https://www.theguardian.com${a.article}">🔗</a> <a href="/Article?url=http://localhost:9000${a.article}">🔗(local FE)</a></span>
-                <span><a href="/AMPArticle?url=https://www.theguardian.com${a.article}">🔗</a> <a href="/AMPArticle?url=http://localhost:9000${a.article}">🔗(local FE)</a></span>
-                <span><a href="https://www.theguardian.com${a.article}">example</a></span>
-                <span><a href="https://amp.theguardian.com${a.article}">example</a></span>
-            </div>
-        `;
+            var makeTestArticle = (a) => `
+                <div class="test-article">
+                    <span>${a.name}</span>
+                    <span><a href="/Article?url=https://www.theguardian.com${a.article}">🔗</a> <a href="/Article?url=http://localhost:9000${a.article}">🔗(local FE)</a></span>
+                    <span><a href="/AMPArticle?url=https://www.theguardian.com${a.article}">🔗</a> <a href="/AMPArticle?url=http://localhost:9000${a.article}">🔗(local FE)</a></span>
+                    <span><a href="https://www.theguardian.com${a.article}">example</a></span>
+                    <span><a href="https://amp.theguardian.com${a.article}">example</a></span>
+                </div>
+            `;
 
-            testContentTypes.forEach(a => {
+            testContentTypes.forEach((a) => {
                 document.getElementById(
                     'test-articles-by-content',
                 ).innerHTML += makeTestArticle(a);
             });
 
-            testArticles.forEach(a => {
+            testArticles.forEach((a) => {
                 document.getElementById(
                     'test-articles-by-element',
                 ).innerHTML += makeTestArticle(a);
             });
 
-            testContentAtomTypes.forEach(a => {
+            testContentAtomTypes.forEach((a) => {
                 document.getElementById(
                     'test-articles-by-atom-type',
                 ).innerHTML += makeTestArticle(a);

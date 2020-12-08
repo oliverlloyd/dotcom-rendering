@@ -24,6 +24,7 @@ const articleAdStyles = css`
         min-width: 160px;
         min-height: 274px;
         text-align: center;
+        position: relative;
     }
     .ad-slot--mostpop {
         ${from.desktop} {
@@ -61,6 +62,7 @@ const articleAdStyles = css`
     .ad-slot--outstream {
         ${from.tablet} {
             margin-left: 0;
+            width: 100%;
 
             .ad-slot__label {
                 margin-left: 35px;

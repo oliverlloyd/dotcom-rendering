@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const Analysis: CAPIType = {
     contributionsServiceUrl: 'https://contributions.guardianapis.com',
     shouldHideReaderRevenue: false,
@@ -31,7 +33,7 @@ export const Analysis: CAPIType = {
                 },
                 { name: 'ct', value: 'article' },
                 { name: 'p', value: 'ng' },
-                { name: 'sh', value: 'https://gu.com/p/d9vgg' },
+                { name: 'sh', value: 'https://theguardian.com/p/d9vgg' },
             ],
         },
         US: {
@@ -58,7 +60,7 @@ export const Analysis: CAPIType = {
                 { name: 'ct', value: 'article' },
                 { name: 'p', value: 'ng' },
                 { name: 'edition', value: 'us' },
-                { name: 'sh', value: 'https://gu.com/p/d9vgg' },
+                { name: 'sh', value: 'https://theguardian.com/p/d9vgg' },
             ],
         },
         AU: {
@@ -84,7 +86,7 @@ export const Analysis: CAPIType = {
                 },
                 { name: 'ct', value: 'article' },
                 { name: 'p', value: 'ng' },
-                { name: 'sh', value: 'https://gu.com/p/d9vgg' },
+                { name: 'sh', value: 'https://theguardian.com/p/d9vgg' },
                 { name: 'edition', value: 'au' },
             ],
         },
@@ -112,7 +114,7 @@ export const Analysis: CAPIType = {
                 },
                 { name: 'ct', value: 'article' },
                 { name: 'p', value: 'ng' },
-                { name: 'sh', value: 'https://gu.com/p/d9vgg' },
+                { name: 'sh', value: 'https://theguardian.com/p/d9vgg' },
             ],
         },
     },
@@ -2814,6 +2816,8 @@ export const Analysis: CAPIType = {
             lastUpdatedDisplay: '13:30 GMT',
             firstPublished: 1581333562000,
             firstPublishedDisplay: '11:19 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: {
@@ -2826,7 +2830,7 @@ export const Analysis: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comworld/2020/feb/10/irish-general-election-everything-you-need-to-know',
+                'https://amp.theguardian.com/world/2020/feb/10/irish-general-election-everything-you-need-to-know',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -2952,11 +2956,12 @@ export const Analysis: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

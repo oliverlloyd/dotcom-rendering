@@ -1,7 +1,5 @@
 // add some helpful assertions
 import 'jest-dom/extend-expect';
-// this is basically: afterEach(cleanup)
-import '@testing-library/react/cleanup-after-each';
 
 import { WindowGuardianConfig } from '@root/src/model/window-guardian';
 
@@ -27,7 +25,7 @@ const windowGuardian = {
     ophan: {
         setEventEmitter: () => null,
         trackComponentAttention: () => null,
-        record: ({  }: {}) => null,
+        record: ({}: {}) => null,
         viewId: '',
         pageViewId: '',
     },
@@ -41,7 +39,52 @@ const windowGuardian = {
             },
         },
     },
+    functions: {
+        import: (url: string) => import(url),
+    },
+    automat: {
+        react: undefined,
+        preact: undefined,
+        emotion: undefined,
+        emotionCore: undefined,
+        emotionTheming: undefined,
+    },
+    readerRevenue: {
+        changeGeolocation: () => {},
+        showMeTheEpic: () => {},
+        showMeTheBanner: () => {},
+        showNextVariant: () => {},
+        showPreviousVariant: () => {},
+    },
+    gaPath: "/assets/ga.js",
 };
 
 // Stub global Guardian object
 window.guardian = windowGuardian;
+
+// Mock Local Storage
+// See: https://github.com/facebook/jest/issues/2098#issuecomment-260733457
+// eslint-disable-next-line func-names
+const localStorageMock = (function () {
+    let store: {
+        [key: string]: string;
+    } = {};
+    return {
+        getItem(key: string) {
+            return store[key] || null;
+        },
+        setItem(key: string, value: string) {
+            store[key] = value.toString();
+        },
+        removeItem(key: string) {
+            delete store[key];
+        },
+        clear() {
+            store = {};
+        },
+    };
+})();
+
+Object.defineProperty(window, 'localStorage', {
+    value: localStorageMock,
+});

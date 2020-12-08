@@ -7,16 +7,12 @@ import { Hide } from '@frontend/web/components/Hide';
 import { useComments } from '@root/src/web/lib/useComments';
 import { formatAttrString } from '@frontend/web/lib/formatAttrString';
 
-import { OnwardsTitle } from './OnwardsTitle';
+import { ContainerTitle } from '../ContainerTitle';
 import { OnwardsContainer } from './OnwardsContainer';
 import { MoreThanFive } from './MoreThanFive';
 import { ExactlyFive } from './ExactlyFive';
 import { FourOrLess } from './FourOrLess';
 import { Spotlight } from './Spotlight';
-
-type Props = {
-    onwardSections: OnwardsType[];
-};
 
 const decideLayout = (trails: TrailType[]) => {
     switch (trails.length) {
@@ -36,8 +32,8 @@ const decideLayout = (trails: TrailType[]) => {
     }
 };
 
-export const OnwardsLayout = ({ onwardSections }: Props) => {
-    const sections = useComments(onwardSections);
+export const OnwardsLayout: React.FC<OnwardsType> = (data: OnwardsType) => {
+    const sections = useComments([data]);
 
     return (
         <>
@@ -47,7 +43,7 @@ export const OnwardsLayout = ({ onwardSections }: Props) => {
                         showRightBorder={false}
                         showPartialRightBorder={true}
                     >
-                        <OnwardsTitle
+                        <ContainerTitle
                             title={section.heading}
                             description={section.description}
                             url={section.url}
@@ -58,7 +54,7 @@ export const OnwardsLayout = ({ onwardSections }: Props) => {
                         dataLinkName={formatAttrString(section.heading)}
                     >
                         <Hide when="above" breakpoint="leftCol">
-                            <OnwardsTitle
+                            <ContainerTitle
                                 title={section.heading}
                                 description={section.description}
                                 url={section.url}

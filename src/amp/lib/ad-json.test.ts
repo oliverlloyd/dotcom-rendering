@@ -54,14 +54,14 @@ const paramSet: AdTargetParam[] = [
     },
     {
         name: 'sh',
-        value: ['https://gu.com/p/akj3n'],
+        value: ['https://theguardian.com/p/akj3n'],
     },
 ];
 
 describe('ampadslots', () => {
     it('should set platform to amp', () => {
         const res = adJson(paramSet);
-        const p = res.targeting.find(param => param.name === 'p');
+        const p = res.targeting.find((param) => param.name === 'p');
         if (p === undefined) {
             return fail();
         }
@@ -72,7 +72,7 @@ describe('ampadslots', () => {
     it('should set rendering platform to dotcom-rendering', () => {
         const res = adJson(paramSet);
         const renderingPlatform = res.targeting.find(
-            param => param.name === 'rp',
+            (param) => param.name === 'rp',
         );
         if (renderingPlatform === undefined) {
             return fail();
@@ -82,7 +82,7 @@ describe('ampadslots', () => {
 
     it('should set values to a comma-separated string', () => {
         const res = adJson(paramSet);
-        const p = res.targeting.find(param => param.name === 'su');
+        const p = res.targeting.find((param) => param.name === 'su');
         if (p === undefined) {
             return fail();
         }
@@ -104,7 +104,7 @@ describe('stringify', () => {
                 k:
                     'asia-pacific,politics,business,uk/uk,eu,newzealand,world,europe-news,internationaltrade,foreignpolicy,australia-news,eu-referendum,global-economy,japan,economics,south-korea',
                 edition: 'au',
-                sh: 'https://gu.com/p/akj3n',
+                sh: 'https://theguardian.com/p/akj3n',
                 p: 'amp',
                 rp: 'dotcom-rendering',
             },

@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const AdvertisementFeature: CAPIType = {
     contributionsServiceUrl: 'https://contributions.guardianapis.com',
     shouldHideReaderRevenue: true,
@@ -34,7 +36,7 @@ export const AdvertisementFeature: CAPIType = {
             },
             adTargeting: [
                 { name: 'edition', value: 'uk' },
-                { name: 'sh', value: 'https://gu.com/p/cjf88' },
+                { name: 'sh', value: 'https://theguardian.com/p/cjf88' },
                 {
                     name: 'url',
                     value:
@@ -72,7 +74,7 @@ export const AdvertisementFeature: CAPIType = {
                     'https://www.theguardian.com/info/2016/jan/25/content-funding',
             },
             adTargeting: [
-                { name: 'sh', value: 'https://gu.com/p/cjf88' },
+                { name: 'sh', value: 'https://theguardian.com/p/cjf88' },
                 {
                     name: 'url',
                     value:
@@ -111,7 +113,7 @@ export const AdvertisementFeature: CAPIType = {
                     'https://www.theguardian.com/info/2016/jan/25/content-funding',
             },
             adTargeting: [
-                { name: 'sh', value: 'https://gu.com/p/cjf88' },
+                { name: 'sh', value: 'https://theguardian.com/p/cjf88' },
                 {
                     name: 'url',
                     value:
@@ -150,7 +152,7 @@ export const AdvertisementFeature: CAPIType = {
                     'https://www.theguardian.com/info/2016/jan/25/content-funding',
             },
             adTargeting: [
-                { name: 'sh', value: 'https://gu.com/p/cjf88' },
+                { name: 'sh', value: 'https://theguardian.com/p/cjf88' },
                 {
                     name: 'url',
                     value:
@@ -2324,6 +2326,7 @@ export const AdvertisementFeature: CAPIType = {
                     safe: false,
                     alt:
                         'Do you have a pressing question about electric cars? Submit it below for your chance to have your question answered by an EV expert...',
+                    role: 'supporting',
                     _type:
                         'model.dotcomrendering.pageElements.EmbedBlockElement',
                     html:
@@ -2379,6 +2382,8 @@ export const AdvertisementFeature: CAPIType = {
             lastUpdatedDisplay: '11:12 GMT',
             firstPublished: 1572620146000,
             firstPublishedDisplay: '14:55 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: { byline: 'Maria McCarthy' },
@@ -2388,7 +2393,7 @@ export const AdvertisementFeature: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comthe-power-of-firsts/2019/nov/11/fad-or-fixture-are-electric-cars-the-future-of-motoring',
+                'https://amp.theguardian.com/the-power-of-firsts/2019/nov/11/fad-or-fixture-are-electric-cars-the-future-of-motoring',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -2502,11 +2507,12 @@ export const AdvertisementFeature: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

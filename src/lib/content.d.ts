@@ -1,27 +1,24 @@
 // -------------------------------------
 // Elements
 // -------------------------------------
-
-interface AtomEmbedMarkupBlockElement {
-    _type: 'model.dotcomrendering.pageElements.AtomEmbedMarkupBlockElement';
+interface InteractiveAtomBlockElementBase {
+    url: string;
+    placeholderUrl?: string;
     id?: string;
     html?: string;
     css?: string;
     js?: string;
 }
 
-interface AtomEmbedUrlBlockElement {
-    _type: 'model.dotcomrendering.pageElements.AtomEmbedUrlBlockElement';
-    url: string;
-}
-
-interface AudioAtomElement {
+interface AudioAtomBlockElement {
     _type: 'model.dotcomrendering.pageElements.AudioAtomBlockElement';
     id: string;
     kicker: string;
+    title?: string;
     trackUrl: string;
     duration: number;
     coverUrl: string;
+    audioIndex?: number;
 }
 
 interface AudioBlockElement {
@@ -30,6 +27,41 @@ interface AudioBlockElement {
 
 interface BlockquoteBlockElement {
     _type: 'model.dotcomrendering.pageElements.BlockquoteBlockElement';
+    html: string;
+    quoted?: boolean;
+}
+
+interface CaptionBlockElement {
+    _type: 'model.dotcomrendering.pageElements.CaptionBlockElement';
+    display: Display;
+    designType: DesignType;
+    captionText?: string;
+    pillar: Pillar;
+    padCaption?: boolean;
+    credit?: string;
+    displayCredit?: boolean;
+    shouldLimitWidth?: boolean;
+    isOverlayed?: boolean;
+}
+
+interface CalloutBlockElement {
+    _type: 'model.dotcomrendering.pageElements.CalloutBlockElement';
+    id: string;
+    calloutsUrl: string;
+    activeFrom: number;
+    displayOnSensitive: boolean;
+    formId: number;
+    title: string;
+    description: string;
+    tagName: string;
+    formFields: CampaignFieldType[];
+    calloutIndex?: number;
+}
+
+interface ChartAtomBlockElement extends InteractiveAtomBlockElementBase {
+    _type: 'model.dotcomrendering.pageElements.ChartAtomBlockElement';
+    chartIndex?: number;
+    id: string;
     html: string;
 }
 
@@ -64,12 +96,16 @@ interface DividerBlockElement {
 
 interface DocumentBlockElement {
     _type: 'model.dotcomrendering.pageElements.DocumentBlockElement';
-    isMandatory: boolean;
+    embedUrl: string;
+    height: number;
+    width: number;
+    title?: string;
 }
 
 interface EmbedBlockElement {
     _type: 'model.dotcomrendering.pageElements.EmbedBlockElement';
     safe?: boolean;
+    role?: RoleType;
     alt?: string;
     html: string;
     isMandatory: boolean;
@@ -82,20 +118,32 @@ interface ExplainerAtomBlockElement {
     body: string;
 }
 
-interface GuideBlockElement {
-    _type: 'model.dotcomrendering.pageElements.GuideBlockElement';
+interface GenericAtomBlockElement extends InteractiveAtomBlockElementBase {
+    _type: 'model.dotcomrendering.pageElements.GenericAtomBlockElement';
+}
+
+interface GuideAtomBlockElement {
+    _type: 'model.dotcomrendering.pageElements.GuideAtomBlockElement';
     id: string;
     label: string;
     title: string;
     img?: string;
     html: string;
     credit: string;
+    guideIndex?: number;
 }
 
 interface GuVideoBlockElement {
     _type: 'model.dotcomrendering.pageElements.GuVideoBlockElement';
     assets: VideoAssets[];
     caption: string;
+    html: string;
+    source: string;
+}
+
+interface HighlightBlockElement {
+    _type: 'model.dotcomrendering.pageElements.HighlightBlockElement';
+    html: string;
 }
 
 interface ImageBlockElement {
@@ -110,6 +158,7 @@ interface ImageBlockElement {
     imageSources: ImageSource[];
     displayCredit?: boolean;
     role: RoleType;
+    title?: string;
 }
 
 interface InstagramBlockElement {
@@ -119,13 +168,39 @@ interface InstagramBlockElement {
     hasCaption: boolean;
 }
 
+interface InteractiveAtomBlockElement extends InteractiveAtomBlockElementBase {
+    _type: 'model.dotcomrendering.pageElements.InteractiveAtomBlockElement';
+    id: string;
+    js: string;
+    html?: string;
+    css?: string;
+}
+
+interface InteractiveBlockElement extends InteractiveAtomBlockElementBase {
+    _type: 'model.dotcomrendering.pageElements.InteractiveBlockElement';
+}
+
 interface MapBlockElement {
     _type: 'model.dotcomrendering.pageElements.MapBlockElement';
-    url: string;
+    embedUrl: string;
     originalUrl: string;
     source: string;
-    caption: string;
     title: string;
+    height: number;
+    width: number;
+    caption?: string;
+}
+
+interface MediaAtomBlockElement {
+    _type: 'model.dotcomrendering.pageElements.MediaAtomBlockElement';
+    id: string;
+    assets: VideoAssets[];
+    posterImage?: {
+        url: string;
+        width: number;
+    }[];
+    title?: string;
+    duration?: number;
 }
 
 interface MultiImageBlockElement {
@@ -134,14 +209,15 @@ interface MultiImageBlockElement {
     caption?: string;
 }
 
-interface ProfileBlockElement {
-    _type: 'model.dotcomrendering.pageElements.ProfileBlockElement';
+interface ProfileAtomBlockElement {
+    _type: 'model.dotcomrendering.pageElements.ProfileAtomBlockElement';
     id: string;
     label: string;
     title: string;
     img?: string;
     html: string;
     credit: string;
+    profileIndex?: number;
 }
 
 interface PullquoteBlockElement {
@@ -158,6 +234,7 @@ interface QABlockElement {
     img?: string;
     html: string;
     credit: string;
+    qandaIndex?: number;
 }
 
 interface RichLinkBlockElement {
@@ -177,6 +254,15 @@ interface SoundcloudBlockElement {
     isMandatory: boolean;
 }
 
+interface SpotifyBlockElement {
+    _type: 'model.dotcomrendering.pageElements.SpotifyBlockElement';
+    embedUrl?: string;
+    title?: string;
+    height?: number;
+    width?: number;
+    caption?: string;
+}
+
 interface SubheadingBlockElement {
     _type: 'model.dotcomrendering.pageElements.SubheadingBlockElement';
     html: string;
@@ -185,6 +271,7 @@ interface SubheadingBlockElement {
 interface TableBlockElement {
     _type: 'model.dotcomrendering.pageElements.TableBlockElement';
     isMandatory: boolean;
+    html: string;
 }
 
 interface TextBlockElement {
@@ -199,6 +286,7 @@ interface TimelineBlockElement {
     title: string;
     description?: string;
     events: TimelineEvent[];
+    timelineIndex?: number;
 }
 
 interface TweetBlockElement {
@@ -218,23 +306,31 @@ interface VideoFacebookBlockElement {
     url: string;
     height: number;
     width: number;
-    caption: string;
+    caption?: string;
+    embedUrl?: string;
 }
 
 interface VideoVimeoBlockElement {
     _type: 'model.dotcomrendering.pageElements.VideoVimeoBlockElement';
+    embedUrl?: string;
     url: string;
     height: number;
     width: number;
-    caption: string;
+    caption?: string;
+    credit?: string;
+    title?: string;
 }
 
 interface VideoYoutubeBlockElement {
     _type: 'model.dotcomrendering.pageElements.VideoYoutubeBlockElement';
+    embedUrl?: string;
     url: string;
+    originalUrl: string;
     height: number;
     width: number;
-    caption: string;
+    caption?: string;
+    credit?: string;
+    title?: string;
 }
 
 interface YoutubeBlockElement {
@@ -245,16 +341,18 @@ interface YoutubeBlockElement {
     channelId?: string;
     duration?: number;
     posterSrc?: string;
-    height?: string;
-    width?: string;
+    expired: boolean;
+    overrideImage?: string;
+    youtubeIndex?: number;
 }
 
 type CAPIElement =
-    | AtomEmbedMarkupBlockElement
-    | AtomEmbedUrlBlockElement
-    | AudioAtomElement
+    | AudioAtomBlockElement
     | AudioBlockElement
     | BlockquoteBlockElement
+    | CaptionBlockElement
+    | CalloutBlockElement
+    | ChartAtomBlockElement
     | CodeBlockElement
     | CommentBlockElement
     | ContentAtomBlockElement
@@ -263,17 +361,23 @@ type CAPIElement =
     | DocumentBlockElement
     | EmbedBlockElement
     | ExplainerAtomBlockElement
-    | GuideBlockElement
+    | GenericAtomBlockElement
+    | GuideAtomBlockElement
     | GuVideoBlockElement
+    | HighlightBlockElement
     | ImageBlockElement
     | InstagramBlockElement
+    | InteractiveAtomBlockElement
+    | InteractiveBlockElement
     | MapBlockElement
+    | MediaAtomBlockElement
     | MultiImageBlockElement
-    | ProfileBlockElement
+    | ProfileAtomBlockElement
     | PullquoteBlockElement
     | QABlockElement
     | RichLinkBlockElement
     | SoundcloudBlockElement
+    | SpotifyBlockElement
     | SubheadingBlockElement
     | TableBlockElement
     | TextBlockElement
@@ -344,4 +448,62 @@ interface TimelineEvent {
 
 interface Switches {
     [key: string]: boolean;
+}
+
+// -------------------------------------
+// Callout Campaign
+// -------------------------------------
+
+type CampaignFieldType =
+    | CampaignFieldText
+    | CampaignFieldTextArea
+    | CampaignFieldFile
+    | CampaignFieldRadio
+    | CampaignFieldCheckbox
+    | CampaignFieldSelect;
+
+interface CampaignField {
+    id: string;
+    name: string;
+    description?: string;
+    required: boolean;
+    textSize?: number;
+    hideLabel: boolean;
+    label: string;
+}
+
+interface CampaignFieldText extends CampaignField {
+    type: 'text';
+}
+
+interface CampaignFieldTextArea extends CampaignField {
+    type: 'textarea';
+}
+
+interface CampaignFieldFile extends CampaignField {
+    type: 'file';
+}
+
+interface CampaignFieldRadio extends CampaignField {
+    type: 'radio';
+    options: {
+        label: string;
+        value: string;
+    }[];
+}
+
+interface CampaignFieldCheckbox extends CampaignField {
+    type: 'checkbox';
+    options: {
+        label: string;
+        value: string;
+    }[];
+}
+
+interface CampaignFieldSelect extends CampaignField {
+    type: 'select';
+    options: {
+        label: string;
+        value: string;
+    }[];
 }

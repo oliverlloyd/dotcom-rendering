@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const Immersive: CAPIType = {
     contributionsServiceUrl: 'https://contributions.guardianapis.com',
     shouldHideReaderRevenue: false,
@@ -45,7 +47,7 @@ export const Immersive: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8epv',
+                    value: 'https://theguardian.com/p/d8epv',
                 },
                 {
                     name: 'p',
@@ -94,7 +96,7 @@ export const Immersive: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8epv',
+                    value: 'https://theguardian.com/p/d8epv',
                 },
                 {
                     name: 'p',
@@ -147,7 +149,7 @@ export const Immersive: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8epv',
+                    value: 'https://theguardian.com/p/d8epv',
                 },
                 {
                     name: 'p',
@@ -204,7 +206,7 @@ export const Immersive: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8epv',
+                    value: 'https://theguardian.com/p/d8epv',
                 },
                 {
                     name: 'p',
@@ -4579,6 +4581,8 @@ export const Immersive: CAPIType = {
             lastUpdatedDisplay: '16:55 GMT',
             firstPublished: 1581094411000,
             firstPublishedDisplay: '16:53 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: {
@@ -4591,7 +4595,7 @@ export const Immersive: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comlifeandstyle/2020/feb/10/christopher-eccleston-felt-was-going-to-die-depression-anorexia-books',
+                'https://amp.theguardian.com/lifeandstyle/2020/feb/10/christopher-eccleston-felt-was-going-to-die-depression-anorexia-books',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -4780,11 +4784,12 @@ export const Immersive: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

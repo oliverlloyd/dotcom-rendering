@@ -3,9 +3,9 @@ import { extractCritical } from 'emotion-server';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { CacheProvider } from '@emotion/core';
 import { cache } from 'emotion';
-import escape from 'lodash.escape';
 import resetCSS from /* preval */ '@root/src/lib/reset-css';
 import { getFontsCss } from '@root/src/lib/fonts-css';
+import he from 'he';
 
 interface RenderToStringResult {
     html: string;
@@ -23,14 +23,12 @@ export const document = ({
     body,
     scripts,
     metadata,
-    abTestCss,
 }: {
     linkedData: object[];
     title: string;
     body: React.ReactElement<any>;
     scripts: string[];
     metadata: Metadata;
-    abTestCss: string;
 }) => {
     const { html, css }: RenderToStringResult = extractCritical(
         // TODO: CacheProvider can be removed when we've moved over to using @emotion/core
@@ -51,7 +49,7 @@ export const document = ({
 
     <!-- SEO related meta -->
     <title>${title}</title>
-    <meta name="description" content="${escape(metadata.description)}" />
+    <meta name="description" content="${he.encode(metadata.description)}" />
 
     <link rel="canonical" href="${metadata.canonicalURL}" />
     <meta name="viewport" content="width=device-width,minimum-scale=1">
@@ -74,7 +72,6 @@ export const document = ({
     <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <script async custom-element="amp-experiment" src="https://cdn.ampproject.org/v0/amp-experiment-0.1.js"></script>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
     <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
@@ -86,7 +83,7 @@ export const document = ({
     <!-- AMP elements that are optional dependending on content -->
     ${scripts.join(' ')}
 
-    <style amp-custom>${abTestCss}${getFontsCss()}${resetCSS}${css}</style>
+    <style amp-custom>${getFontsCss()}${resetCSS}${css}</style>
     </head>
     <body>
     ${html}

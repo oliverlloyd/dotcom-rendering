@@ -1,3 +1,5 @@
+import { switches } from '../../switches';
+
 export const standardReviewCAPI: CAPIType = {
     contributionsServiceUrl: 'https://contributions.guardianapis.com',
     shouldHideReaderRevenue: false,
@@ -30,7 +32,7 @@ export const standardReviewCAPI: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d6nky',
+                    value: 'https://theguardian.com/p/d6nky',
                 },
                 {
                     name: 'url',
@@ -73,7 +75,7 @@ export const standardReviewCAPI: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d6nky',
+                    value: 'https://theguardian.com/p/d6nky',
                 },
                 {
                     name: 'url',
@@ -120,7 +122,7 @@ export const standardReviewCAPI: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d6nky',
+                    value: 'https://theguardian.com/p/d6nky',
                 },
                 {
                     name: 'url',
@@ -167,7 +169,7 @@ export const standardReviewCAPI: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d6nky',
+                    value: 'https://theguardian.com/p/d6nky',
                 },
                 {
                     name: 'url',
@@ -2173,6 +2175,8 @@ export const standardReviewCAPI: CAPIType = {
             lastUpdatedDisplay: '11:09 GMT',
             firstPublished: 1580204719000,
             firstPublishedDisplay: '09:45 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: {
@@ -2184,7 +2188,7 @@ export const standardReviewCAPI: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comstage/2020/jan/28/flights-review-project-arts-centre-dublin',
+                'https://amp.theguardian.com/stage/2020/jan/28/flights-review-project-arts-centre-dublin',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -2333,11 +2337,12 @@ export const standardReviewCAPI: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

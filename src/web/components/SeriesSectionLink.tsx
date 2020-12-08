@@ -7,6 +7,7 @@ import { from, until } from '@guardian/src-foundations/mq';
 import { space, neutral, brandAltBackground } from '@guardian/src-foundations';
 
 import { Hide } from '@frontend/web/components/Hide';
+import { Display } from '@root/src/lib/display';
 
 type Props = {
     display: Display;
@@ -45,7 +46,7 @@ const yellowBackground = css`
 `;
 
 const pillarColours = pillarMap(
-    pillar =>
+    (pillar) =>
         css`
             color: ${pillarPalette[pillar].main};
         `,
@@ -70,10 +71,14 @@ const invertedStyle = (pillar: Pillar) => css`
     color: ${neutral[100]};
     background-color: ${pillarPalette[pillar].main};
 
-    padding-left: ${space[5]}px;
-    ${from.phablet} {
+    padding-left: ${space[3]}px;
+    ${from.mobileLandscape} {
+        padding-left: ${space[5]}px;
+    }
+    ${from.tablet} {
         padding-left: ${space[3]}px;
     }
+
     padding-right: ${space[3]}px;
     padding-top: ${space[1]}px;
     padding-bottom: ${space[1]}px;
@@ -86,6 +91,10 @@ const whiteFont = css`
         ${headline.xxsmall({ fontWeight: 'bold' })};
     }
     color: ${neutral[100]};
+`;
+
+const blackText = css`
+    color: ${neutral[0]};
 `;
 
 const secondaryStyle = css`
@@ -106,7 +115,7 @@ export const SeriesSectionLink = ({
 }: Props) => {
     // If we have a tag, use it to show 2 section titles
     const tag = tags.find(
-        thisTag =>
+        (thisTag) =>
             thisTag.type === 'Blog' ||
             thisTag.type === 'Series' ||
             thisTag.title === 'The Observer',
@@ -115,7 +124,7 @@ export const SeriesSectionLink = ({
     const hasSeriesTag = tag && tag.type === 'Series';
 
     switch (display) {
-        case 'immersive': {
+        case Display.Immersive: {
             switch (designType) {
                 case 'Comment':
                 case 'GuardianView': {
@@ -210,8 +219,9 @@ export const SeriesSectionLink = ({
                 }
             }
         }
-        case 'showcase':
-        case 'standard': {
+        case Display.Showcase:
+        case Display.Standard:
+        default: {
             switch (designType) {
                 case 'Comment':
                 case 'GuardianView':
@@ -240,7 +250,9 @@ export const SeriesSectionLink = ({
                                     href={`${guardianBaseURL}/${tag.id}`}
                                     className={cx(
                                         sectionLabelLink,
-                                        pillarColours[pillar],
+                                        designType === 'MatchReport'
+                                            ? blackText
+                                            : pillarColours[pillar],
                                         primaryStyle,
                                         isSpecial && yellowBackground,
                                     )}
@@ -255,7 +267,9 @@ export const SeriesSectionLink = ({
                                         href={`${guardianBaseURL}/${sectionUrl}`}
                                         className={cx(
                                             sectionLabelLink,
-                                            pillarColours[pillar],
+                                            designType === 'MatchReport'
+                                                ? blackText
+                                                : pillarColours[pillar],
                                             secondaryStyle,
                                         )}
                                         data-component="section"
@@ -273,7 +287,9 @@ export const SeriesSectionLink = ({
                             href={`${guardianBaseURL}/${sectionUrl}`}
                             className={cx(
                                 sectionLabelLink,
-                                pillarColours[pillar],
+                                designType === 'MatchReport'
+                                    ? blackText
+                                    : pillarColours[pillar],
                                 primaryStyle,
                             )}
                             data-component="section"

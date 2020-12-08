@@ -1,10 +1,12 @@
+import { switches } from '../switches';
+
 export const Feature: CAPIType = {
     contributionsServiceUrl: 'https://contributions.guardianapis.com',
     shouldHideReaderRevenue: false,
     slotMachineFlags: '',
     isAdFreeUser: false,
     main:
-        '<figure class="element element-atom"> \n <gu-atom data-atom-id="d904f65f-f5c1-4786-8d7a-54fc2a4abe72" data-atom-type="media"> \n  <div>\n   <iframe frameborder="0" allowfullscreen="true" src="https://www.youtube-nocookie.com/embed/7z3iv-HkI7o?showinfo=0&amp;rel=0"></iframe>\n  </div>\n </gu-atom> \n</figure>',
+        '<figure class="element element-atom"> \n <gu-atom data-atom-id="6c4587d3-41ad-4f71-85d0-1b3ccc2c9314" data-atom-type="media"> \n  <div>\n   <iframe frameborder="0" allowfullscreen="true" src="https://www.youtube-nocookie.com/embed/KdPNZSIY918?showinfo=0&amp;rel=0"></iframe>\n  </div>\n </gu-atom> \n</figure>',
     subMetaSectionLinks: [
         {
             url: '/film/oscars-2020',
@@ -43,7 +45,7 @@ export const Feature: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8qaf',
+                    value: 'https://theguardian.com/p/d8qaf',
                 },
                 {
                     name: 'su',
@@ -90,7 +92,7 @@ export const Feature: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8qaf',
+                    value: 'https://theguardian.com/p/d8qaf',
                 },
                 {
                     name: 'su',
@@ -141,7 +143,7 @@ export const Feature: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8qaf',
+                    value: 'https://theguardian.com/p/d8qaf',
                 },
                 {
                     name: 'su',
@@ -192,7 +194,7 @@ export const Feature: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/d8qaf',
+                    value: 'https://theguardian.com/p/d8qaf',
                 },
                 {
                     name: 'edition',
@@ -1945,10 +1947,13 @@ export const Feature: CAPIType = {
         {
             mediaTitle:
                 'Biggest night in Hollywood: key moments from the Oscars – video ',
-            assetId: '7z3iv-HkI7o',
+            assetId: 'KdPNZSIY918',
             _type: 'model.dotcomrendering.pageElements.YoutubeBlockElement',
-            id: 'd904f65f-f5c1-4786-8d7a-54fc2a4abe72',
+            id: '6c4587d3-41ad-4f71-85d0-1b3ccc2c9314',
             channelId: 'UCIRYBXDze5krPDzAEOxFGVA',
+            expired: false,
+            overrideImage:
+                'https://i.guim.co.uk/img/media/49565a29c6586fe6b748926e0be96c5e9c90473c/0_0_4981_2989/500.jpg?quality=85&auto=format&fit=max&s=17c70ec70002ea34886fd6c2605cd81e',
         },
     ],
     webPublicationDate: '2020-02-10T06:59:35.000Z',
@@ -3195,6 +3200,8 @@ export const Feature: CAPIType = {
             lastUpdatedDisplay: '06:59 GMT',
             firstPublished: 1581309836000,
             firstPublishedDisplay: '04:43 GMT',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: {
@@ -3207,7 +3214,7 @@ export const Feature: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.comfilm/2020/feb/10/quotes-of-the-oscars-2020',
+                'https://amp.theguardian.com/film/2020/feb/10/quotes-of-the-oscars-2020',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -3385,11 +3392,12 @@ export const Feature: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {},
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

@@ -1,3 +1,5 @@
+import { switches } from '../switches';
+
 export const richLink: CAPIType = {
     shouldHideReaderRevenue: false,
     slotMachineFlags: '',
@@ -23,7 +25,7 @@ export const richLink: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/99h48',
+                    value: 'https://theguardian.com/p/99h48',
                 },
                 {
                     name: 'su',
@@ -59,7 +61,7 @@ export const richLink: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/99h48',
+                    value: 'https://theguardian.com/p/99h48',
                 },
                 {
                     name: 'su',
@@ -99,7 +101,7 @@ export const richLink: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/99h48',
+                    value: 'https://theguardian.com/p/99h48',
                 },
                 {
                     name: 'su',
@@ -139,7 +141,7 @@ export const richLink: CAPIType = {
                 },
                 {
                     name: 'sh',
-                    value: 'https://gu.com/p/99h48',
+                    value: 'https://theguardian.com/p/99h48',
                 },
                 {
                     name: 'edition',
@@ -2594,6 +2596,8 @@ export const richLink: CAPIType = {
             lastUpdatedDisplay: '14:28 BST',
             firstPublished: 1535717845000,
             firstPublishedDisplay: '13:17 BST',
+            primaryDateLine: 'Wed 19 Aug 2020 06.02 BST',
+            secondaryDateLine: 'Wed 19 Aug 2020 11.52 BST',
         },
     ],
     author: {
@@ -2605,7 +2609,7 @@ export const richLink: CAPIType = {
             '@type': 'NewsArticle',
             '@context': 'https://schema.org',
             '@id':
-                'https://amp.theguardian.commusic/2018/aug/31/eminem-kamikaze-album-review',
+                'https://amp.theguardian.com/music/2018/aug/31/eminem-kamikaze-album-review',
             publisher: {
                 '@type': 'Organization',
                 '@context': 'https://schema.org',
@@ -2763,13 +2767,12 @@ export const richLink: CAPIType = {
     config: {
         ajaxUrl: 'https://api.nextgen.guardianapps.co.uk',
         discussionApiUrl: 'https://discussion.theguardian.com/discussion-api',
+        idApiUrl: 'https://idapi.theguardian.com',
         sentryPublicApiKey: '344003a8d11c41d8800fbad8383fdc50',
         sentryHost: 'app.getsentry.com/35463',
         dcrSentryDsn:
             'https://1937ab71c8804b2b8438178dfdd6468f@sentry.io/1377847',
-        switches: {
-            cmpUi: true,
-        },
+        switches,
         shortUrlId: '/p/4k83z',
         abTests: {},
         dfpAccountId: '',

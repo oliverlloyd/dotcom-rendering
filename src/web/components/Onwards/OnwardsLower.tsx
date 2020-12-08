@@ -2,17 +2,19 @@ import React from 'react';
 
 import { joinUrl } from '@root/src/web/lib/joinUrl';
 import { OnwardsData } from './OnwardsData';
+import { OnwardsLayout } from './OnwardsLayout';
 
 type Props = {
     ajaxUrl: string;
     hasStoryPackage: boolean;
     tags: TagType[];
+    pillar: Pillar;
 };
 
-export const OnwardsLower = ({ ajaxUrl, hasStoryPackage, tags }: Props) => {
+export const OnwardsLower = ({ ajaxUrl, hasStoryPackage, tags, pillar }: Props) => {
     // In this context, Blog tags are treated the same as Series tags
     const seriesTag = tags.find(
-        tag => tag.type === 'Series' || tag.type === 'Blog',
+        (tag) => tag.type === 'Series' || tag.type === 'Blog',
     );
 
     let url;
@@ -37,6 +39,8 @@ export const OnwardsLower = ({ ajaxUrl, hasStoryPackage, tags }: Props) => {
             url={url}
             limit={4}
             ophanComponentName={ophanComponentName}
+            Container={OnwardsLayout}
+            pillar={pillar}
         />
     );
 };

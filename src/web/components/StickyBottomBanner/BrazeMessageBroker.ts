@@ -3,6 +3,8 @@ import {
 	onConsentChange,
 } from '@guardian/consent-management-platform';
 
+import { createNanoEvents, Emitter } from 'nanoevents';
+
 export const hasRequiredConsents = (): Promise<boolean> =>
 	new Promise((resolve, reject) => {
 		onConsentChange((state) => {
@@ -25,8 +27,15 @@ const SDK_OPTIONS = {
 class BrazeMessageBroker {
 	initialized: boolean;
 
+	emitter: Emitter;
+
 	constructor() {
 		this.initialized = false;
+		this.emitter = createNanoEvents();
+	}
+
+	private emit(slotName: string, extras: any) {
+		this.emitter.emit(slotName, extras);
 	}
 
 	async initialize(asyncBrazeUuid: Promise<string>): Promise<void> {
@@ -44,8 +53,6 @@ class BrazeMessageBroker {
 
 			if (!(brazeUuid && hasGivenConsent)) return;
 
-			console.log('foo');
-
 			const { default: appboy } = await import(
 				/* webpackChunkName: "braze-web-sdk-core" */ '@braze/web-sdk-core'
 			);
@@ -59,7 +66,6 @@ class BrazeMessageBroker {
 					this.emit(extras.slotName, extras);
 				}
 			};
-
 			appboy.subscribeToInAppMessage(callback);
 		}
 	}

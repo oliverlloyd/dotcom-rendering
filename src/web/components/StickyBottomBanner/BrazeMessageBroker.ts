@@ -38,6 +38,10 @@ class BrazeMessageBroker {
 		this.emitter.emit(slotName, extras);
 	}
 
+	on(slotName: string, callback: () => any) {
+		return this.emitter.on(slotName, callback);
+	}
+
 	async initialize(asyncBrazeUuid: Promise<string>): Promise<void> {
 		if (!this.initialized) {
 			const apiKey = window.guardian.config.page.brazeApiKey;

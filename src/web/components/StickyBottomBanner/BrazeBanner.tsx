@@ -19,6 +19,7 @@ import {
 	clearHasCurrentBrazeUser,
 } from '@root/src/web/lib/hasCurrentBrazeUser';
 import { CanShowResult } from './bannerPicker';
+import { BrazeMessageBroker, Appboy } from './BrazeMessageBroker';
 
 type Meta = {
 	dataFromBraze: {
@@ -97,6 +98,8 @@ const getMessageFromBraze = async (
 	appboyTiming.start();
 
 	appboy.initialize(apiKey, SDK_OPTIONS);
+
+	const brazeMessageBroker = new BrazeMessageBroker(appboy);
 
 	const canShowPromise: Promise<CanShowResult> = new Promise((resolve) => {
 		let subscriptionId: string | undefined;

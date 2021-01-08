@@ -25,56 +25,58 @@ const SDK_OPTIONS = {
 };
 
 class BrazeMessageBroker {
-	initialized: boolean;
-
 	emitter: Emitter;
 
-	constructor() {
-		this.initialized = false;
+	constructor(appboy) {
+		this.appboy = appboy;
 		this.emitter = createNanoEvents();
+
+		const callback = (message: any) => {
+			const { extras } = message;
+
+			if (extras && extras.slotName) {
+				this.emit(extras.slotName, extras);
+			}
+		};
+
+		appboy.subscribeToInAppMessage(callback);
 	}
 
 	private emit(slotName: string, extras: any) {
 		this.emitter.emit(slotName, extras);
 	}
 
-	on(slotName: string, callback: () => any) {
+	public on(slotName: string, callback: () => any) {
 		return this.emitter.on(slotName, callback);
-	}
-
-	async initialize(asyncBrazeUuid: Promise<string>): Promise<void> {
-		if (!this.initialized) {
-			const apiKey = window.guardian.config.page.brazeApiKey;
-
-			if (!apiKey) return;
-
-			const [brazeUuid, hasGivenConsent] = await Promise.all([
-				asyncBrazeUuid,
-				hasRequiredConsents(),
-			]);
-
-			this.initialized = true;
-
-			if (!(brazeUuid && hasGivenConsent)) return;
-
-			const { default: appboy } = await import(
-				/* webpackChunkName: "braze-web-sdk-core" */ '@braze/web-sdk-core'
-			);
-
-			appboy.initialize(apiKey, SDK_OPTIONS);
-
-			const callback = (message: any) => {
-				const { extras } = message;
-
-				if (extras && extras.slotName) {
-					this.emit(extras.slotName, extras);
-				}
-			};
-			appboy.subscribeToInAppMessage(callback);
-		}
 	}
 }
 
 const brazeMessageBroker = new BrazeMessageBroker();
 
-export { brazeMessageBroker };
+// e.g.
+// getInitialisedAppboy(
+//     window.guardian.config.page.brazeApiKey,
+//     getBrazeUuid(idApiUrl),
+//     hasRequiredConsents()
+// )
+
+const getInitialisedAppboy = async (
+	apiKey: string,
+	asyncBrazeUuid: Promise<string>,
+	ayncHasGivenConsent: Promise<boolean>,
+): appboy => {
+	const [brazeUuid, hasGivenConsent] = await Promise.all([
+		asyncBrazeUuid,
+		ayncHasGivenConsent,
+	]);
+
+	if (!(brazeUuid && hasGivenConsent)) return;
+
+	const { default: appboy } = await import(
+		/* webpackChunkName: "braze-web-sdk-core" */ '@braze/web-sdk-core'
+	);
+
+	return appboy.initialize(apiKey, SDK_OPTIONS);
+};
+
+export { brazeMessageBroker, getInitialisedAppboy };

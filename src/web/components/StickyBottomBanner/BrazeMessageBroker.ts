@@ -10,7 +10,7 @@ interface Appboy {
 
 interface Message {
 	extras?: Extras;
-	triggerId?: string;
+	triggerId?: string; // This keeps Typescript happy, because Message could be an InAppMessage or a ControlMessage
 }
 
 class BrazeMessageBroker {
@@ -37,7 +37,7 @@ class BrazeMessageBroker {
 		this.emitter.emit(slotName, extras);
 	}
 
-	public on(slotName: string, callback: () => any) {
+	public on(slotName: string, callback: (message: Message) => any) {
 		return this.emitter.on(slotName, callback);
 	}
 }

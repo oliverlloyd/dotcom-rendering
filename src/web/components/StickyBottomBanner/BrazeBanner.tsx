@@ -19,7 +19,7 @@ import {
 	clearHasCurrentBrazeUser,
 } from '@root/src/web/lib/hasCurrentBrazeUser';
 import { CanShowResult } from './bannerPicker';
-import { BrazeMessageBroker, Appboy } from './BrazeMessageBroker';
+import { BrazeMessageBroker } from './BrazeMessageBroker';
 
 type Meta = {
 	dataFromBraze: {
@@ -102,7 +102,7 @@ const getMessageFromBraze = async (
 	const brazeMessageBroker = new BrazeMessageBroker(appboy);
 
 	const canShowPromise: Promise<CanShowResult> = new Promise((resolve) => {
-		let subscriptionId: string | undefined;
+		// let subscriptionId: string | undefined;
 
 		const callback = (message: any) => {
 			const { extras } = message;
@@ -137,19 +137,14 @@ const getMessageFromBraze = async (
 				resolve({ result: false });
 			}
 
-			// Unsubscribe
-			if (subscriptionId) {
-				appboy.removeSubscription(subscriptionId);
-			}
+			appboy.changeUser(brazeUuid);
+			appboy.openSession();
+			setHasCurrentBrazeUser();
 		};
 
 		// Keep hold of the subscription ID so that we can unsubscribe in the
 		// callback, ensuring that the callback is only invoked once per page
-		subscriptionId = appboy.subscribeToInAppMessage(callback);
-
-		setHasCurrentBrazeUser();
-		appboy.changeUser(brazeUuid);
-		appboy.openSession();
+		brazeMessageBroker.on('banner', callback);
 	});
 
 	canShowPromise

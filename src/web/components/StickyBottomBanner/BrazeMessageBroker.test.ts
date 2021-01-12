@@ -10,10 +10,10 @@ describe('BrazeMessageBroker', () => {
 		const endOfArticleSpy = jest.fn();
 		broker.on('endOfArticle', bannerSpy);
 
-		const appboyPayload = {
+		const message = {
 			extras: { slotName: 'banner', title: 'Example' },
 		};
-		appboy.emit(appboyPayload);
+		appboy.emit(message);
 
 		expect(bannerSpy).toHaveBeenCalledTimes(1);
 		expect(endOfArticleSpy).not.toHaveBeenCalled();
@@ -27,10 +27,10 @@ describe('BrazeMessageBroker', () => {
 		const anotherBannerSpy = jest.fn();
 		broker.on('banner', anotherBannerSpy);
 
-		const appboyPayload = {
+		const message = {
 			extras: { slotName: 'banner', title: 'Example' },
 		};
-		appboy.emit(appboyPayload);
+		appboy.emit(message);
 
 		expect(bannerSpy).toHaveBeenCalledTimes(1);
 		expect(anotherBannerSpy).toHaveBeenCalledTimes(1);
@@ -42,10 +42,11 @@ describe('BrazeMessageBroker', () => {
 		const endOfArticleSpy = jest.fn();
 		broker.on('endOfArticle', endOfArticleSpy);
 
-		const extras = { slotName: 'endOfArticle', title: 'Example' };
-		const appboyPayload = { extras };
-		appboy.emit(appboyPayload);
+		const message = {
+			extras: { slotName: 'endOfArticle', title: 'Example' },
+		};
+		appboy.emit(message);
 
-		expect(endOfArticleSpy).toHaveBeenCalledWith(extras);
+		expect(endOfArticleSpy).toHaveBeenCalledWith(message);
 	});
 });

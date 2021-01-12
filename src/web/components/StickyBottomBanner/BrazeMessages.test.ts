@@ -12,23 +12,25 @@ describe('BrazeMessages', () => {
 				'endOfArticle',
 			);
 
-			const bannerExtras = { slotName: 'banner', title: 'Example' };
-			const bannerPayload = { extras: bannerExtras };
-			appboy.emit(bannerPayload);
-
-			const endOfArticleExtras = {
-				slotName: 'endOfArticle',
-				title: 'Example',
+			const bannerMessage = {
+				extras: { slotName: 'banner', title: 'Example' },
 			};
-			const endOfArticlePayload = { extras: endOfArticleExtras };
-			appboy.emit(endOfArticlePayload);
+			appboy.emit(bannerMessage);
+
+			const endOfArticleMessage = {
+				extras: {
+					slotName: 'endOfArticle',
+					title: 'Example',
+				},
+			};
+			appboy.emit(endOfArticleMessage);
 
 			const data = await Promise.all([
 				bannerPromise,
 				endOfArticlePromise,
 			]);
-			expect(data[0]).toEqual(bannerExtras);
-			expect(data[1]).toEqual(endOfArticleExtras);
+			expect(data[0]).toEqual(bannerMessage);
+			expect(data[1]).toEqual(endOfArticleMessage);
 		});
 
 		it('supports multiple calls to the same slot, returning separate promises', async () => {
@@ -38,16 +40,17 @@ describe('BrazeMessages', () => {
 			const bannerPromise = brazeMessages.getMessagesFor('banner');
 			const anotherBannerPromise = brazeMessages.getMessagesFor('banner');
 
-			const extras = { slotName: 'banner', title: 'Example' };
-			const appboyPayload = { extras };
-			appboy.emit(appboyPayload);
+			const message = {
+				extras: { slotName: 'banner', title: 'Example' },
+			};
+			appboy.emit(message);
 
 			const data = await Promise.all([
 				bannerPromise,
 				anotherBannerPromise,
 			]);
-			expect(data[0]).toEqual(extras);
-			expect(data[1]).toEqual(extras);
+			expect(data[0]).toEqual(message);
+			expect(data[1]).toEqual(message);
 		});
 	});
 });

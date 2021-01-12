@@ -1,4 +1,4 @@
-import { Appboy, BrazeMessageBroker, Extras } from './BrazeMessageBroker';
+import { Appboy, BrazeMessageBroker, Message } from './BrazeMessageBroker';
 
 class BrazeMessages {
 	broker: BrazeMessageBroker;
@@ -7,7 +7,7 @@ class BrazeMessages {
 		this.broker = new BrazeMessageBroker(appboy);
 	}
 
-	getMessagesFor(slotName: string): Promise<Extras> {
+	getMessagesFor(slotName: string): Promise<Message> {
 		return new Promise((resolve) => {
 			this.broker.on(slotName, (data) => resolve(data));
 		});

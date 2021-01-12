@@ -26,18 +26,18 @@ class BrazeMessageBroker {
 			const { extras } = message;
 
 			if (extras && extras.slotName) {
-				this.emit(extras.slotName, extras);
+				this.emit(extras.slotName, message);
 			}
 		};
 
 		appboy.subscribeToInAppMessage(callback);
 	}
 
-	private emit(slotName: string, extras: Extras) {
+	private emit(slotName: string, extras: Message) {
 		this.emitter.emit(slotName, extras);
 	}
 
-	public on(slotName: string, callback: (message: Extras) => any) {
+	public on(slotName: string, callback: (message: Message) => any) {
 		return this.emitter.on(slotName, callback);
 	}
 }

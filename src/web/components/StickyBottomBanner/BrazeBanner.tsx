@@ -20,6 +20,8 @@ import {
 } from '@root/src/web/lib/hasCurrentBrazeUser';
 import { CanShowResult } from './bannerPicker';
 import { BrazeMessageBroker } from './BrazeMessageBroker';
+import { BrazeMessages } from './BrazeMessages';
+
 import { getInitialisedAppboy } from './initialiseAppboy';
 
 type Meta = {
@@ -96,14 +98,12 @@ const getMessageFromBraze = async (
 	const appboyTiming = initPerf('braze-appboy');
 	appboyTiming.start();
 
-	const brazeMessageBroker = new BrazeMessageBroker(appboy);
+	const brazeMessages = new BrazeMessages(appboy);
 
 	const canShowPromise: Promise<CanShowResult> = new Promise((resolve) => {
 		// let subscriptionId: string | undefined;
 
-		const callback = (message: any) => {
-			const { extras } = message;
-
+		brazeMessages.getMessagesFor('banner').then((extras) => {
 			const logButtonClickWithBraze = (internalButtonId: number) => {
 				const thisButton = new appboy.InAppMessageButton(
 					`Button: ID ${internalButtonId}`,
@@ -114,12 +114,12 @@ const getMessageFromBraze = async (
 					undefined,
 					internalButtonId,
 				);
-				appboy.logInAppMessageButtonClick(thisButton, message);
+				appboy.logInAppMessageButtonClick(thisButton, extras);
 			};
 
 			const logImpressionWithBraze = () => {
 				// Log the impression with Braze
-				appboy.logInAppMessageImpression(message);
+				appboy.logInAppMessageImpression(extras);
 			};
 
 			if (extras) {
@@ -133,15 +133,11 @@ const getMessageFromBraze = async (
 			} else {
 				resolve({ result: false });
 			}
+		});
 
-			appboy.changeUser(brazeUuid);
-			appboy.openSession();
-			setHasCurrentBrazeUser();
-		};
-
-		// Keep hold of the subscription ID so that we can unsubscribe in the
-		// callback, ensuring that the callback is only invoked once per page
-		brazeMessageBroker.on('banner', callback);
+		appboy.changeUser(brazeUuid);
+		appboy.openSession();
+		setHasCurrentBrazeUser();
 	});
 
 	canShowPromise

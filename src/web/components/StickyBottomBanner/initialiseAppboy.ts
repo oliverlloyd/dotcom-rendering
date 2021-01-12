@@ -3,9 +3,7 @@ import {
 	onConsentChange,
 } from '@guardian/consent-management-platform';
 
-import { Appboy } from './BrazeMessageBroker';
-
-export const hasRequiredConsents = (): Promise<boolean> =>
+const hasRequiredConsents = (): Promise<boolean> =>
 	new Promise((resolve, reject) => {
 		onConsentChange((state) => {
 			try {
@@ -24,18 +22,7 @@ const SDK_OPTIONS = {
 	minimumIntervalBetweenTriggerActionsInSeconds: 0,
 };
 
-const getInitialisedAppboy = async (
-	apiKey: string,
-	asyncBrazeUuid: Promise<string>,
-	ayncHasGivenConsent: Promise<boolean>,
-): Promise<Appboy | undefined> => {
-	const [brazeUuid, hasGivenConsent] = await Promise.all([
-		asyncBrazeUuid,
-		ayncHasGivenConsent,
-	]);
-
-	if (!(brazeUuid && hasGivenConsent)) return;
-
+const getInitialisedAppboy = async (apiKey: string): Promise<typeof appboy> => {
 	const { default: appboy } = await import(
 		/* webpackChunkName: "braze-web-sdk-core" */ '@braze/web-sdk-core'
 	);
@@ -45,4 +32,4 @@ const getInitialisedAppboy = async (
 	return appboy;
 };
 
-export { getInitialisedAppboy };
+export { getInitialisedAppboy, hasRequiredConsents };

@@ -20,6 +20,7 @@ import {
 } from '@root/src/web/lib/hasCurrentBrazeUser';
 import { CanShowResult } from './bannerPicker';
 import { BrazeMessageBroker } from './BrazeMessageBroker';
+import { getInitialisedAppboy } from './initialiseAppboy';
 
 type Meta = {
 	dataFromBraze: {
@@ -84,9 +85,7 @@ const getMessageFromBraze = async (
 	const sdkLoadTiming = initPerf('braze-sdk-load');
 	sdkLoadTiming.start();
 
-	const { default: appboy } = await import(
-		/* webpackChunkName: "braze-web-sdk-core" */ '@braze/web-sdk-core'
-	);
+	const appboy = await getInitialisedAppboy(apiKey);
 
 	const sdkLoadTimeTaken = sdkLoadTiming.end();
 	record({
@@ -96,8 +95,6 @@ const getMessageFromBraze = async (
 
 	const appboyTiming = initPerf('braze-appboy');
 	appboyTiming.start();
-
-	appboy.initialize(apiKey, SDK_OPTIONS);
 
 	const brazeMessageBroker = new BrazeMessageBroker(appboy);
 

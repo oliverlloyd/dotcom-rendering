@@ -51,4 +51,4 @@ class BrazeMessageBroker {
 //     hasRequiredConsents()
 // )
 
-export { BrazeMessageBroker, Appboy, Message };
+export { BrazeMessageBroker, Appboy, Message, Callback };

@@ -1,22 +1,5 @@
-import { createNanoEvents, Emitter } from 'nanoevents';
-import { BrazeMessageBroker, Message, Callback } from './BrazeMessageBroker';
-
-class FakeAppBoy {
-	emitter: Emitter;
-
-	constructor() {
-		this.emitter = createNanoEvents();
-	}
-
-	subscribeToInAppMessage(fn: Callback) {
-		this.emitter.on('inAppMessage', fn);
-		return 'FAKE_SUBSCRIPTION_ID';
-	}
-
-	emit(payload: Message) {
-		this.emitter.emit('inAppMessage', payload);
-	}
-}
+import { BrazeMessageBroker } from './BrazeMessageBroker';
+import { FakeAppBoy } from './FakeAppBoy';
 
 describe('BrazeMessageBroker', () => {
 	it('notifies subscriptions for a given slot', () => {

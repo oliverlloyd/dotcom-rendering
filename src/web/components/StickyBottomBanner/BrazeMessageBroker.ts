@@ -37,7 +37,7 @@ class BrazeMessageBroker {
 		this.emitter.emit(slotName, extras);
 	}
 
-	public on(slotName: string, callback: (message: Message) => any) {
+	public on(slotName: string, callback: (message: Extras) => any) {
 		return this.emitter.on(slotName, callback);
 	}
 }
@@ -51,4 +51,4 @@ class BrazeMessageBroker {
 //     hasRequiredConsents()
 // )
 
-export { BrazeMessageBroker, Appboy, Message, Callback };
+export { BrazeMessageBroker, Appboy, Message, Callback, Extras };

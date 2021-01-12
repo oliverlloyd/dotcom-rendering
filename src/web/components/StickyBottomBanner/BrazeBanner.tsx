@@ -19,7 +19,6 @@ import {
 	clearHasCurrentBrazeUser,
 } from '@root/src/web/lib/hasCurrentBrazeUser';
 import { CanShowResult } from './bannerPicker';
-import { BrazeMessageBroker } from './BrazeMessageBroker';
 import { BrazeMessages } from './BrazeMessages';
 
 import { getInitialisedAppboy } from './initialiseAppboy';
@@ -100,10 +99,16 @@ const getMessageFromBraze = async (
 
 	const brazeMessages = new BrazeMessages(appboy);
 
-	const canShowPromise: Promise<CanShowResult> = new Promise((resolve) => {
-		// let subscriptionId: string | undefined;
+	// let subscriptionId: string | undefined;
 
-		brazeMessages.getMessagesFor('banner').then((extras) => {
+	const messages = brazeMessages.getMessagesFor('banner');
+
+	appboy.changeUser(brazeUuid);
+	appboy.openSession();
+	setHasCurrentBrazeUser();
+
+	return messages
+		.then((message) => {
 			const logButtonClickWithBraze = (internalButtonId: number) => {
 				const thisButton = new appboy.InAppMessageButton(
 					`Button: ID ${internalButtonId}`,
@@ -114,48 +119,40 @@ const getMessageFromBraze = async (
 					undefined,
 					internalButtonId,
 				);
-				appboy.logInAppMessageButtonClick(thisButton, extras);
+				// TODO fix the typing of message
+				appboy.logInAppMessageButtonClick(thisButton, message as any);
 			};
 
 			const logImpressionWithBraze = () => {
 				// Log the impression with Braze
-				appboy.logInAppMessageImpression(extras);
+				appboy.logInAppMessageImpression(message);
 			};
 
-			if (extras) {
-				const meta = {
-					dataFromBraze: extras,
-					logImpressionWithBraze,
-					logButtonClickWithBraze,
-				};
+			const meta = {
+				dataFromBraze: message.extras,
+				logImpressionWithBraze,
+				logButtonClickWithBraze,
+			};
 
-				resolve({ result: true, meta });
-			} else {
-				resolve({ result: false });
-			}
-		});
-
-		appboy.changeUser(brazeUuid);
-		appboy.openSession();
-		setHasCurrentBrazeUser();
-	});
-
-	canShowPromise
-		.then(() => {
+			return { result: true, meta };
+		})
+		.then((outcome) => {
 			const appboyTimeTaken = appboyTiming.end();
 
 			record({
 				component: 'braze-appboy-timing',
 				value: appboyTimeTaken,
 			});
+
+			return outcome;
 		})
 		.catch(() => {
 			appboyTiming.clear();
 			// eslint-disable-next-line no-console
 			console.log('Appboy Timing failed.');
-		});
 
-	return canShowPromise;
+			return { result: false };
+		});
 };
 
 const FORCE_BRAZE_ALLOWLIST = [

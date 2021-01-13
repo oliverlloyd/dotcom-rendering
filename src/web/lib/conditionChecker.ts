@@ -19,7 +19,7 @@ const runPreChecks = async (
 	return preChecks.reduce<Promise<PreCheckResult>>(
 		async (acc, cur): Promise<PreCheckResult> => {
 			const syncAcc = await acc;
-			if (syncAcc.isSuccessful === false) {
+			if (!syncAcc.isSuccessful) {
 				return acc;
 			}
 

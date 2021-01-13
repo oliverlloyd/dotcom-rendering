@@ -16,25 +16,36 @@ type PreCheckResult = SuccessResult | FailureResult;
 const runPreChecks = async (
 	preChecks: Array<PreCheck>,
 ): Promise<PreCheckResult> => {
-	return preChecks.reduce(async (acc: Promise<PreCheckResult>, cur) => {
-		const [syncAcc, result] = await Promise.all([acc, cur.condition]);
+	return preChecks.reduce<Promise<PreCheckResult>>(
+		async (acc, cur): Promise<PreCheckResult> => {
+			const syncAcc = await acc;
+			if (syncAcc.isSuccessful === false) {
+				return acc;
+			}
 
-		if (result) {
+			const result = await cur.condition;
+
+			if (result) {
+				return {
+					isSuccessful: true,
+					data: {
+						[cur.name]: result,
+						...syncAcc.data,
+					},
+				};
+			}
+
 			return {
-				isSuccessful: true,
-				data: {
-					[cur.name]: result,
-					...syncAcc.data,
-				},
+				isSuccessful: false,
+				failureReason: cur.name,
+				data: syncAcc.data,
 			};
-		}
-
-		return Promise.resolve({
-			isSuccessful: false,
-			failureReason: cur.name,
-			data: syncAcc.data,
-		});
-	}, Promise.resolve({ isSuccessful: true, data: {} } as SuccessResult));
+		},
+		Promise.resolve({
+			isSuccessful: true,
+			data: {},
+		}),
+	);
 };
 
 export { runPreChecks };

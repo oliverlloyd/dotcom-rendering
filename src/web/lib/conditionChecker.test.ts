@@ -10,13 +10,12 @@ describe('runPreChecks', () => {
 		const got = await runPreChecks(checks);
 
 		expect(got).toEqual({
-			first: true,
-			second: true,
+			isSuccessful: true,
+			data: { first: true, second: true },
 		});
 	});
 
-	it('returns a rejected promise if any of the underlying checks fail', () => {
-		expect.assertions(1);
+	it('returns a rejected promise if any of the underlying checks fail', async () => {
 		const checks = [
 			{
 				name: 'passedCheckFirst',
@@ -32,8 +31,12 @@ describe('runPreChecks', () => {
 			},
 		];
 
-		return runPreChecks(checks).catch((e) => {
-			expect(e).toEqual(new Error('Failed check: failedCheck'));
+		const got = await runPreChecks(checks);
+
+		expect(got).toEqual({
+			isSuccessful: false,
+			failureReason: 'failedCheck',
+			data: { passedCheckFirst: true },
 		});
 	});
 });

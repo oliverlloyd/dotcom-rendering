@@ -18,6 +18,7 @@ import {
 	setHasCurrentBrazeUser,
 	clearHasCurrentBrazeUser,
 } from '@root/src/web/lib/hasCurrentBrazeUser';
+import { checkConditions } from '@root/src/web/lib/conditionChecker';
 import { CanShowResult } from './bannerPicker';
 
 type Meta = {
@@ -49,25 +50,6 @@ export const hasRequiredConsents = (): Promise<boolean> =>
 			}
 		});
 	});
-
-type PreCheckArgs = {
-	shouldHideSupportMessaging?: boolean;
-	pageConfig: { [key: string]: any };
-};
-
-export const canShowPreChecks = ({
-	shouldHideSupportMessaging,
-	pageConfig,
-}: PreCheckArgs) => {
-	// Currently all active web canvases in Braze target existing supporters,
-	// subscribers or otherwise those with a Guardian product. We can use the
-	// value of `shouldHideSupportMessaging` to identify these users, limiting
-	// the number of requests we need to initialise Braze on the page:
-	const userIsGuSupporter = shouldHideSupportMessaging;
-
-	return Boolean(userIsGuSupporter && !pageConfig.isPaidContent);
-};
-
 const SDK_OPTIONS = {
 	enableLogging: false,
 	noCookies: true,
@@ -207,10 +189,10 @@ const getBrazeMetaFromQueryString = (): Meta | null => {
 };
 
 const maybeWipeUserData = async (
-	apiKey: string,
-	brazeUuid: null | string,
+	apiKey?: string,
+	brazeUuid?: null | string,
 ): Promise<void> => {
-	if (!brazeUuid && hasCurrentBrazeUser()) {
+	if (apiKey && !brazeUuid && hasCurrentBrazeUser()) {
 		const { default: appboy } = await import(
 			/* webpackChunkName: "braze-web-sdk-core" */ '@braze/web-sdk-core'
 		);
@@ -252,35 +234,57 @@ export const canShow = async (
 		};
 	}
 
-	const { brazeSwitch } = window.guardian.config.switches;
-	const apiKey = window.guardian.config.page.brazeApiKey;
-	const isBrazeConfigured = brazeSwitch && apiKey;
-	if (!isBrazeConfigured) {
+	const conditions = [
+		{
+			name: 'brazeSwitch',
+			condition: Promise.resolve(
+				window.guardian.config.switches.brazeSwitch,
+			),
+		},
+		{
+			name: 'apiKey',
+			condition: Promise.resolve(window.guardian.config.page.brazeApiKey),
+		},
+		{
+			name: 'brazeUuid',
+			condition: asyncBrazeUuid,
+		},
+		{
+			name: 'consent',
+			condition: hasRequiredConsents(),
+		},
+		{
+			name: 'userIsGuSupporter',
+			// Currently all active web canvases in Braze target existing supporters,
+			// subscribers or otherwise those with a Guardian product. We can use the
+			// value of `shouldHideSupportMessaging` to identify these users, limiting
+			// the number of requests we need to initialise Braze on the page:
+			condition: Promise.resolve(shouldHideSupportMessaging),
+		},
+		{
+			name: 'isNotPaidContent',
+			condition: Promise.resolve(
+				!window.guardian.config.page.isPaidContent,
+			),
+		},
+	];
+	const conditionsResult = await checkConditions(conditions);
+
+	if (!conditionsResult.isSuccessful) {
+		const { failureData, failureField, data } = conditionsResult;
+		console.log(
+			`Not attempting to show Braze messages. Condition ${failureField} failed with ${failureData}.`,
+		);
+
+		await maybeWipeUserData(data.apiKey, data.brazeUuid);
+
 		return { result: false };
 	}
 
-	const [brazeUuid, hasGivenConsent] = await Promise.all([
-		asyncBrazeUuid,
-		hasRequiredConsents(),
-	]);
-
-	await maybeWipeUserData(apiKey as string, brazeUuid);
-
-	if (!(brazeUuid && hasGivenConsent)) {
-		return { result: false };
-	}
-
-	if (
-		!canShowPreChecks({
-			shouldHideSupportMessaging,
-			pageConfig: window.guardian.config.page,
-		})
-	) {
-		return { result: false };
-	}
+	const { data } = conditionsResult;
 
 	try {
-		const result = await getMessageFromBraze(apiKey as string, brazeUuid);
+		const result = await getMessageFromBraze(data.apiKey, data.brazeUuid);
 
 		const timeTaken = bannerTiming.end();
 		record({

@@ -1,4 +1,4 @@
-import { checkConditions } from './conditionChecker';
+import { checkDependencies } from './dependencyChecker';
 
 afterEach(() => {
 	// Wait for any unsettled promises to complete at the end of each test. Once
@@ -9,14 +9,14 @@ afterEach(() => {
 	return flushPromises;
 });
 
-describe('checkConditions', () => {
+describe('checkDependencies', () => {
 	it('resolves with a promise containing check values when all checks are successful', async () => {
 		const checks = [
-			{ name: 'first', condition: Promise.resolve(true) },
-			{ name: 'second', condition: Promise.resolve(true) },
+			{ name: 'first', dependency: Promise.resolve(true) },
+			{ name: 'second', dependency: Promise.resolve(true) },
 		];
 
-		const got = await checkConditions(checks);
+		const got = await checkDependencies(checks);
 
 		expect(got).toEqual({
 			isSuccessful: true,
@@ -28,19 +28,19 @@ describe('checkConditions', () => {
 		const checks = [
 			{
 				name: 'passedCheckFirst',
-				condition: Promise.resolve(true),
+				dependency: Promise.resolve(true),
 			},
 			{
 				name: 'failedCheck',
-				condition: Promise.resolve(false),
+				dependency: Promise.resolve(false),
 			},
 			{
 				name: 'passedCheckSecond',
-				condition: Promise.resolve(true),
+				dependency: Promise.resolve(true),
 			},
 		];
 
-		const got = await checkConditions(checks);
+		const got = await checkDependencies(checks);
 
 		expect(got).toEqual({
 			isSuccessful: false,
@@ -54,15 +54,15 @@ describe('checkConditions', () => {
 		const checks = [
 			{
 				name: 'passedCheckFirst',
-				condition: Promise.resolve(true),
+				dependency: Promise.resolve(true),
 			},
 			{
 				name: 'errorCheck',
-				condition: Promise.reject(new Error('Something went wrong')),
+				dependency: Promise.reject(new Error('Something went wrong')),
 			},
 		];
 
-		const got = await checkConditions(checks);
+		const got = await checkDependencies(checks);
 
 		expect(got).toEqual({
 			isSuccessful: false,

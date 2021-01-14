@@ -3,6 +3,7 @@ import {
 	onConsentChange,
 } from '@guardian/consent-management-platform';
 import { getCookie } from '@root/src/web/browser/cookie';
+import { PreCheck } from '@root/src/web/lib/conditionChecker';
 
 const SDK_OPTIONS = {
 	enableLogging: false,
@@ -54,5 +55,15 @@ const incompletePreChecks: Array<PreCheck> = [
 		),
 	},
 ];
+
+const getFullChecks = (asyncBrazeUuid: Promise<string>): Array<PreCheck> => {
+	return [
+		...incompletePreChecks,
+		{
+			name: 'brazeUuidIsPresent',
+			condition: asyncBrazeUuid,
+		},
+	];
+};
 
 export { getInitialisedAppboy, hasRequiredConsents };

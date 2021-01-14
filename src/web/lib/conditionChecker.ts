@@ -58,4 +58,4 @@ const runPreChecks = async (
 	);
 };
 
-export { runPreChecks };
+export { runPreChecks, PreCheck };

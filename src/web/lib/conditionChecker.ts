@@ -23,7 +23,12 @@ const runPreChecks = async (
 				return acc;
 			}
 
-			const result = await cur.condition;
+			let result;
+			try {
+				result = await cur.condition;
+			} catch {
+				result = null;
+			}
 
 			if (result) {
 				return {

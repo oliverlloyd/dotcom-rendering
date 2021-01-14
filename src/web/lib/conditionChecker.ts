@@ -5,12 +5,17 @@ type PreCheck = {
 
 type PreCheckPromise = Promise<any>;
 
-type SuccessResult = { isSuccessful: true; data: { [key: string]: any } };
+type SuccessResult = {
+	isSuccessful: true;
+	data: { [key: string]: any };
+};
+
 type FailureResult = {
 	isSuccessful: false;
 	failureReason: string;
 	data: { [key: string]: any };
 };
+
 type PreCheckResult = SuccessResult | FailureResult;
 
 const runPreChecks = async (

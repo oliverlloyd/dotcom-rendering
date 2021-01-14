@@ -1,4 +1,4 @@
-import { runPreChecks } from './conditionChecker';
+import { checkConditions } from './conditionChecker';
 
 afterEach(() => {
 	// Wait for any unsettled promises to complete at the end of each test. Once
@@ -9,14 +9,14 @@ afterEach(() => {
 	return flushPromises;
 });
 
-describe('runPreChecks', () => {
+describe('checkConditions', () => {
 	it('resolves with a promise containing check values when all checks are successful', async () => {
 		const checks = [
 			{ name: 'first', condition: Promise.resolve(true) },
 			{ name: 'second', condition: Promise.resolve(true) },
 		];
 
-		const got = await runPreChecks(checks);
+		const got = await checkConditions(checks);
 
 		expect(got).toEqual({
 			isSuccessful: true,
@@ -40,7 +40,7 @@ describe('runPreChecks', () => {
 			},
 		];
 
-		const got = await runPreChecks(checks);
+		const got = await checkConditions(checks);
 
 		expect(got).toEqual({
 			isSuccessful: false,
@@ -62,7 +62,7 @@ describe('runPreChecks', () => {
 			},
 		];
 
-		const got = await runPreChecks(checks);
+		const got = await checkConditions(checks);
 
 		expect(got).toEqual({
 			isSuccessful: false,

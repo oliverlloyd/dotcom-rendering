@@ -1,9 +1,9 @@
-type PreCheck = {
+type ConditionConfig = {
 	name: string;
-	condition: PreCheckPromise;
+	condition: Condition;
 };
 
-type PreCheckPromise = Promise<any>;
+type Condition = Promise<any>;
 
 type SuccessResult = {
 	isSuccessful: true;
@@ -12,17 +12,18 @@ type SuccessResult = {
 
 type FailureResult = {
 	isSuccessful: false;
-	failureReason: string;
+	failureField: string;
+	failureData: any;
 	data: { [key: string]: any };
 };
 
-type PreCheckResult = SuccessResult | FailureResult;
+type ConditionResult = SuccessResult | FailureResult;
 
-const runPreChecks = async (
-	preChecks: Array<PreCheck>,
-): Promise<PreCheckResult> => {
-	return preChecks.reduce<Promise<PreCheckResult>>(
-		async (acc, cur): Promise<PreCheckResult> => {
+const checkConditions = async (
+	preChecks: Array<ConditionConfig>,
+): Promise<ConditionResult> => {
+	return preChecks.reduce<Promise<ConditionResult>>(
+		async (acc, cur): Promise<ConditionResult> => {
 			const syncAcc = await acc;
 			if (!syncAcc.isSuccessful) {
 				return acc;
@@ -31,24 +32,30 @@ const runPreChecks = async (
 			let result;
 			try {
 				result = await cur.condition;
-			} catch {
-				result = null;
+			} catch (e) {
+				return {
+					isSuccessful: false,
+					failureField: cur.name,
+					failureData: e && e.message ? e.message : e,
+					data: syncAcc.data,
+				};
 			}
 
-			if (result) {
+			if (!result) {
 				return {
-					isSuccessful: true,
-					data: {
-						[cur.name]: result,
-						...syncAcc.data,
-					},
+					isSuccessful: false,
+					failureField: cur.name,
+					failureData: result,
+					data: syncAcc.data,
 				};
 			}
 
 			return {
-				isSuccessful: false,
-				failureReason: cur.name,
-				data: syncAcc.data,
+				isSuccessful: true,
+				data: {
+					[cur.name]: result,
+					...syncAcc.data,
+				},
 			};
 		},
 		Promise.resolve({
@@ -58,4 +65,4 @@ const runPreChecks = async (
 	);
 };
 
-export { runPreChecks, PreCheck };
+export { checkConditions };

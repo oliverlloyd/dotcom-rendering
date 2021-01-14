@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import * as emotion from 'emotion';
 import * as emotionCore from '@emotion/core';
 import * as emotionTheming from 'emotion-theming';
-import {
-	getConsentFor,
-	onConsentChange,
-} from '@guardian/consent-management-platform';
 import { getZIndex } from '@root/src/web/lib/getZIndex';
 import { Props as BrazeBannerProps } from '@guardian/braze-components';
 import {
@@ -18,7 +14,7 @@ import {
 	setHasCurrentBrazeUser,
 	clearHasCurrentBrazeUser,
 } from '@root/src/web/lib/hasCurrentBrazeUser';
-import { checkConditions } from '@root/src/web/lib/conditionChecker';
+import { checkBrazeDependencies } from './BrazeBannerLib/checkBrazeDependencies';
 import { CanShowResult } from './bannerPicker';
 
 type Meta = {
@@ -40,16 +36,6 @@ const containerStyles = emotion.css`
     ${getZIndex('banner')}
 `;
 
-export const hasRequiredConsents = (): Promise<boolean> =>
-	new Promise((resolve, reject) => {
-		onConsentChange((state) => {
-			try {
-				resolve(getConsentFor('braze', state));
-			} catch (e) {
-				reject(e);
-			}
-		});
-	});
 const SDK_OPTIONS = {
 	enableLogging: false,
 	noCookies: true,
@@ -234,46 +220,15 @@ export const canShow = async (
 		};
 	}
 
-	const conditions = [
-		{
-			name: 'brazeSwitch',
-			condition: Promise.resolve(
-				window.guardian.config.switches.brazeSwitch,
-			),
-		},
-		{
-			name: 'apiKey',
-			condition: Promise.resolve(window.guardian.config.page.brazeApiKey),
-		},
-		{
-			name: 'brazeUuid',
-			condition: asyncBrazeUuid,
-		},
-		{
-			name: 'consent',
-			condition: hasRequiredConsents(),
-		},
-		{
-			name: 'userIsGuSupporter',
-			// Currently all active web canvases in Braze target existing supporters,
-			// subscribers or otherwise those with a Guardian product. We can use the
-			// value of `shouldHideSupportMessaging` to identify these users, limiting
-			// the number of requests we need to initialise Braze on the page:
-			condition: Promise.resolve(shouldHideSupportMessaging),
-		},
-		{
-			name: 'isNotPaidContent',
-			condition: Promise.resolve(
-				!window.guardian.config.page.isPaidContent,
-			),
-		},
-	];
-	const conditionsResult = await checkConditions(conditions);
+	const dependenciesResult = await checkBrazeDependencies(
+		asyncBrazeUuid,
+		shouldHideSupportMessaging,
+	);
 
-	if (!conditionsResult.isSuccessful) {
-		const { failureData, failureField, data } = conditionsResult;
+	if (!dependenciesResult.isSuccessful) {
+		const { failureData, failureField, data } = dependenciesResult;
 		console.log(
-			`Not attempting to show Braze messages. Condition ${failureField} failed with ${failureData}.`,
+			`Not attempting to show Braze messages. Dependency ${failureField} failed with ${failureData}.`,
 		);
 
 		await maybeWipeUserData(data.apiKey, data.brazeUuid);
@@ -281,7 +236,7 @@ export const canShow = async (
 		return { result: false };
 	}
 
-	const { data } = conditionsResult;
+	const { data } = dependenciesResult;
 
 	try {
 		const result = await getMessageFromBraze(data.apiKey, data.brazeUuid);

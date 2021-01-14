@@ -1,4 +1,4 @@
-import { hasRequiredConsents } from './BrazeBanner';
+import { hasRequiredConsents } from './checkBrazeDependencies';
 
 const brazeVendorId = '5ed8c49c4b8ce4571c7ad801';
 

@@ -39,4 +39,25 @@ describe('runPreChecks', () => {
 			data: { passedCheckFirst: true },
 		});
 	});
+
+	it('returns a rejected promise if any of the underlying checks errors', async () => {
+		const checks = [
+			{
+				name: 'passedCheckFirst',
+				condition: Promise.resolve(true),
+			},
+			{
+				name: 'errorCheck',
+				condition: Promise.reject(),
+			},
+		];
+
+		const got = await runPreChecks(checks);
+
+		expect(got).toEqual({
+			isSuccessful: false,
+			failureReason: 'errorCheck',
+			data: { passedCheckFirst: true },
+		});
+	});
 });

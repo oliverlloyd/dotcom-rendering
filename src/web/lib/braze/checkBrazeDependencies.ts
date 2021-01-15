@@ -1,24 +1,10 @@
 import {
-	getConsentFor,
-	onConsentChange,
-} from '@guardian/consent-management-platform';
-
-import {
 	checkDependencies,
 	DependencyConfig,
 	DependencyResult,
 } from '@root/src/web/lib/dependencyChecker';
 
-export const hasRequiredConsents = (): Promise<boolean> =>
-	new Promise((resolve, reject) => {
-		onConsentChange((state) => {
-			try {
-				resolve(getConsentFor('braze', state));
-			} catch (e) {
-				reject(e);
-			}
-		});
-	});
+import { hasRequiredConsents } from './hasRequiredConsents';
 
 const getCompleteDependencies = async (
 	asyncBrazeUuid: Promise<null | string>,

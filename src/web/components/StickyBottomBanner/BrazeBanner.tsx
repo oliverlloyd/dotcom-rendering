@@ -14,8 +14,7 @@ import {
 	setHasCurrentBrazeUser,
 	clearHasCurrentBrazeUser,
 } from '@root/src/web/lib/hasCurrentBrazeUser';
-import { log } from '@guardian/libs';
-import { checkBrazeDependencies } from './BrazeBannerLib/checkBrazeDependencies';
+import { checkBrazeDependencies } from '@root/src/web/lib/braze/checkBrazeDependencies';
 import { CanShowResult } from './bannerPicker';
 
 type Meta = {

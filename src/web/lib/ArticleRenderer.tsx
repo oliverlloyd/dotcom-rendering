@@ -45,7 +45,7 @@ import {
 	PersonalityQuizAtom,
 	KnowledgeQuizAtom,
 } from '@guardian/atoms-rendering';
-import { Display } from '@guardian/types/Format';
+import { Display } from '@guardian/types';
 import { withSignInGateSlot } from '@root/src/web/lib/withSignInGateSlot';
 import { toTypesPillar } from '@root/src/lib/format';
 

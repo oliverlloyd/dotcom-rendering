@@ -41,7 +41,7 @@ import {
 	decideLineEffect,
 	getCurrentPillar,
 } from '@root/src/web/lib/layoutHelpers';
-import { Display } from '@guardian/types/Format';
+import { Display } from '@guardian/types';
 import { BannerWrapper } from '@root/src/web/layouts/lib/stickiness';
 
 const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (

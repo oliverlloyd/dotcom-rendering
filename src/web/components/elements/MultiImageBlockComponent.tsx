@@ -7,7 +7,7 @@ import { from, until } from '@guardian/src-foundations/mq';
 import { ImageComponent } from '@root/src/web/components/elements/ImageComponent';
 import { Caption } from '@frontend/web/components/Caption';
 import { GridItem } from '@root/src/web/components/GridItem';
-import { Display } from '@guardian/types/Format';
+import { Display } from '@guardian/types';
 
 type Props = {
 	designType: DesignType;

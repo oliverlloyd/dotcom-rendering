@@ -10,7 +10,7 @@ import { unwrapHtml } from '@root/src/model/unwrapHtml';
 import { RewrappedComponent } from '@root/src/web/components/elements/RewrappedComponent';
 
 import { DropCap } from '@frontend/web/components/DropCap';
-import { Display } from '@guardian/types/Format';
+import { Display } from '@guardian/types';
 
 type Props = {
 	html: string;

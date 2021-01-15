@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { Display } from '@guardian/types/Format';
+import { Display } from '@guardian/types';
 import { ArticleTitle } from './ArticleTitle';
 
 const Container = ({ children }: { children: React.ReactNode }) => (

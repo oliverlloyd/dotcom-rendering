@@ -11,7 +11,7 @@ import { record } from '@root/src/web/browser/ophan/ophan';
 import { toTypesPillar } from '@root/src/lib/format';
 
 import { Caption } from '@root/src/web/components/Caption';
-import { Display } from '@guardian/types/Format';
+import { Display } from '@guardian/types';
 
 type Props = {
 	id: string;

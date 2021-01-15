@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Display } from '@guardian/types/Format';
+import { Display } from '@guardian/types';
 import { Section } from './Section';
 
 import { Standfirst } from './Standfirst';

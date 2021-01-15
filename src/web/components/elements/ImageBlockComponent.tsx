@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageComponent } from '@root/src/web/components/elements/ImageComponent';
 
-import { Display } from '@guardian/types/Format';
+import { Display } from '@guardian/types';
 
 type Props = {
 	display: Display;

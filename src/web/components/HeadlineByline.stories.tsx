@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from 'emotion';
-import { Display } from '@guardian/types/Format';
+import { Display } from '@guardian/types';
 import { HeadlineByline } from './HeadlineByline';
 
 export default {

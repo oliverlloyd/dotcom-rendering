@@ -3,12 +3,13 @@ import {
 	DependencyConfig,
 	DependencyResult,
 } from '@root/src/web/lib/dependencyChecker';
-
+import { getBrazeUuid } from '@root/src/web/lib/getBrazeUuid';
 import { hasRequiredConsents } from './hasRequiredConsents';
+import { hideSupportMessaging } from './hideSupportMessaging';
 
 const getCompleteDependencies = async (
-	asyncBrazeUuid: Promise<null | string>,
-	shouldHideSupportMessaging: undefined | boolean,
+	isSignedIn: boolean,
+	idApiUrl: string,
 ): Promise<Array<DependencyConfig>> => {
 	return [
 		{
@@ -35,7 +36,9 @@ const getCompleteDependencies = async (
 		},
 		{
 			name: 'brazeUuid',
-			dependency: asyncBrazeUuid,
+			dependency: isSignedIn
+				? getBrazeUuid(idApiUrl)
+				: Promise.resolve(null),
 		},
 		{
 			name: 'userIsGuSupporter',
@@ -43,20 +46,17 @@ const getCompleteDependencies = async (
 			// subscribers or otherwise those with a Guardian product. We can use the
 			// value of `shouldHideSupportMessaging` to identify these users, limiting
 			// the number of requests we need to initialise Braze on the page:
-			dependency: Promise.resolve(shouldHideSupportMessaging),
+			dependency: Promise.resolve(hideSupportMessaging()),
 		},
 	];
 };
 
 const checkBrazeDependencies = async (
-	asyncBrazeUuid: Promise<null | string>,
-	shouldHideSupportMessaging: undefined | boolean,
+	isSignedIn: boolean,
+	idApiUrl: string,
 ): Promise<DependencyResult> => {
 	return checkDependencies(
-		await getCompleteDependencies(
-			asyncBrazeUuid,
-			shouldHideSupportMessaging,
-		),
+		await getCompleteDependencies(isSignedIn, idApiUrl),
 	);
 };
 

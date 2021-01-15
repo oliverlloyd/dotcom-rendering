@@ -206,8 +206,8 @@ const maybeWipeUserData = async (
 // OR
 // - The force-braze-message query string arg is passed
 export const canShow = async (
-	asyncBrazeUuid: Promise<null | string>,
-	shouldHideSupportMessaging: undefined | boolean,
+	isSignedIn: boolean,
+	idApiUrl: string,
 ): Promise<CanShowResult> => {
 	const bannerTiming = initPerf('braze-banner');
 	bannerTiming.start();
@@ -221,8 +221,8 @@ export const canShow = async (
 	}
 
 	const dependenciesResult = await checkBrazeDependencies(
-		asyncBrazeUuid,
-		shouldHideSupportMessaging,
+		isSignedIn,
+		idApiUrl,
 	);
 
 	if (!dependenciesResult.isSuccessful) {

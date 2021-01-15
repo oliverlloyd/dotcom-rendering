@@ -20,9 +20,9 @@ type FailureResult = {
 type DependencyResult = SuccessResult | FailureResult;
 
 const checkDependencies = async (
-	preChecks: Array<DependencyConfig>,
+	dependencies: Array<DependencyConfig>,
 ): Promise<DependencyResult> => {
-	return preChecks.reduce<Promise<DependencyResult>>(
+	return dependencies.reduce<Promise<DependencyResult>>(
 		async (acc, cur): Promise<DependencyResult> => {
 			const syncAcc = await acc;
 			if (!syncAcc.isSuccessful) {

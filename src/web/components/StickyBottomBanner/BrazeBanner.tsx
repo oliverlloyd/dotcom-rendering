@@ -14,6 +14,7 @@ import {
 	setHasCurrentBrazeUser,
 	clearHasCurrentBrazeUser,
 } from '@root/src/web/lib/hasCurrentBrazeUser';
+import { log } from '@guardian/libs';
 import { checkBrazeDependencies } from './BrazeBannerLib/checkBrazeDependencies';
 import { CanShowResult } from './bannerPicker';
 
@@ -227,7 +228,8 @@ export const canShow = async (
 
 	if (!dependenciesResult.isSuccessful) {
 		const { failureData, failureField, data } = dependenciesResult;
-		console.log(
+		log(
+			'tx',
 			`Not attempting to show Braze messages. Dependency ${failureField} failed with ${failureData}.`,
 		);
 

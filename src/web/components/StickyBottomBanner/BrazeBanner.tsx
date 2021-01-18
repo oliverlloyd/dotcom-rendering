@@ -227,10 +227,11 @@ export const canShow = async (
 
 	if (!dependenciesResult.isSuccessful) {
 		const { failureData, failureField, data } = dependenciesResult;
-		log(
-			'tx',
-			`Not attempting to show Braze messages. Dependency ${failureField} failed with ${failureData}.`,
-		);
+		if (SDK_OPTIONS.enableLogging) {
+			console.log(
+				`Not attempting to show Braze messages. Dependency ${failureField} failed with ${failureData}.`,
+			);
+		}
 
 		await maybeWipeUserData(data.apiKey, data.brazeUuid);
 

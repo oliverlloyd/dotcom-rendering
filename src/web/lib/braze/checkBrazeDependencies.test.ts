@@ -1,14 +1,5 @@
 import { checkBrazeDependencies } from './checkBrazeDependencies';
 
-afterEach(() => {
-	// Wait for any unsettled promises to complete at the end of each test. Once
-	// we encounter a failure in our list of checks we don't need to wait on
-	// subsequent operations to complete which is why there might be unsettled
-	// promises.
-	const flushPromises = new Promise(setImmediate);
-	return flushPromises;
-});
-
 let mockBrazeUuid: string | null;
 jest.mock('@root/src/web/lib/getBrazeUuid', () => ({
 	getBrazeUuid: () => {
@@ -30,20 +21,27 @@ jest.mock('./hideSupportMessaging', () => ({
 	},
 }));
 
-let windowSpy: jest.SpyInstance<any>;
-
-beforeEach(() => {
-	windowSpy = jest.spyOn(window, 'window', 'get');
-});
-
-afterEach(() => {
-	windowSpy.mockRestore();
-});
-
-const setWindow = (windowData: { [key: string]: any }) =>
-	windowSpy.mockImplementation(() => windowData);
-
 describe('checkBrazeDependecies', () => {
+	let windowSpy: jest.SpyInstance<any>;
+
+	beforeEach(() => {
+		windowSpy = jest.spyOn(window, 'window', 'get');
+	});
+
+	afterEach(() => {
+		windowSpy.mockRestore();
+
+		// Wait for any unsettled promises to complete at the end of each test. Once
+		// we encounter a failure in our list of checks we don't need to wait on
+		// subsequent operations to complete which is why there might be unsettled
+		// promises.
+		const flushPromises = new Promise(setImmediate);
+		return flushPromises;
+	});
+
+	const setWindow = (windowData: { [key: string]: any }) =>
+		windowSpy.mockImplementation(() => windowData);
+
 	it('succeeds if all dependencies are fulfilled', async () => {
 		setWindow({
 			guardian: {

@@ -1,63 +1,96 @@
-import {
-	checkDependencies,
-	DependencyConfig,
-	DependencyResult,
-} from '@root/src/web/lib/dependencyChecker';
 import { getBrazeUuid } from '@root/src/web/lib/getBrazeUuid';
 import { hasRequiredConsents } from './hasRequiredConsents';
 import { hideSupportMessaging } from './hideSupportMessaging';
 
-const getCompleteDependencies = async (
-	isSignedIn: boolean,
-	idApiUrl: string,
-): Promise<Array<DependencyConfig>> => {
-	return [
-		{
-			name: 'brazeSwitch',
-			dependency: Promise.resolve(
-				window.guardian.config.switches.brazeSwitch,
-			),
-		},
-		{
-			name: 'apiKey',
-			dependency: Promise.resolve(
-				window.guardian.config.page.brazeApiKey,
-			),
-		},
-		{
-			name: 'consent',
-			dependency: hasRequiredConsents(),
-		},
-		{
-			name: 'isNotPaidContent',
-			dependency: Promise.resolve(
-				!window.guardian.config.page.isPaidContent,
-			),
-		},
-		{
-			name: 'brazeUuid',
-			dependency: isSignedIn
-				? getBrazeUuid(idApiUrl)
-				: Promise.resolve(null),
-		},
-		{
-			name: 'userIsGuSupporter',
-			// Currently all active web canvases in Braze target existing supporters,
-			// subscribers or otherwise those with a Guardian product. We can use the
-			// value of `shouldHideSupportMessaging` to identify these users, limiting
-			// the number of requests we need to initialise Braze on the page:
-			dependency: Promise.resolve(hideSupportMessaging()),
-		},
-	];
+type SuccessResult = {
+	isSuccessful: true;
+	data: ResultData;
 };
+
+type FailureResult = {
+	isSuccessful: false;
+	failureField: string;
+	failureData: any;
+	data: ResultData;
+};
+
+type DependencyResult = SuccessResult | FailureResult;
+
+type ResultData = { [key: string]: any };
+
+const buildFailureResponse = (name: string, value: any, data: ResultData) => ({
+	isSuccessful: false,
+	failureField: name,
+	failureData: value,
+	data,
+});
 
 const checkBrazeDependencies = async (
 	isSignedIn: boolean,
 	idApiUrl: string,
 ): Promise<DependencyResult> => {
-	return checkDependencies(
-		await getCompleteDependencies(isSignedIn, idApiUrl),
-	);
+	const data: ResultData = {};
+
+	{
+		const name = 'brazeSwitch';
+		const value = window.guardian.config.switches.brazeSwitch;
+		if (!value) {
+			return buildFailureResponse(name, value, data);
+		}
+		data[name] = value;
+	}
+
+	{
+		const name = 'apiKey';
+		const value = window.guardian.config.page.brazeApiKey;
+		if (!value) {
+			return buildFailureResponse(name, value, data);
+		}
+		data[name] = value;
+	}
+
+	{
+		const name = 'consent';
+		const value = await hasRequiredConsents();
+		if (!value) {
+			return buildFailureResponse(name, value, data);
+		}
+		data[name] = value;
+	}
+
+	{
+		const name = 'isNotPaidContent';
+		const value = !window.guardian.config.page.isPaidContent;
+		if (!value) {
+			return buildFailureResponse(name, value, data);
+		}
+		data[name] = value;
+	}
+
+	{
+		const name = 'brazeUuid';
+		const value = await (isSignedIn
+			? getBrazeUuid(idApiUrl)
+			: Promise.resolve(null));
+		if (!value) {
+			return buildFailureResponse(name, value, data);
+		}
+		data[name] = value;
+	}
+
+	{
+		const name = 'userIsGuSupporter';
+		const value = hideSupportMessaging();
+		if (!value) {
+			return buildFailureResponse(name, value, data);
+		}
+		data[name] = value;
+	}
+
+	return {
+		isSuccessful: true,
+		data,
+	};
 };
 
 export { checkBrazeDependencies };

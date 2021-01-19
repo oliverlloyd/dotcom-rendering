@@ -70,14 +70,6 @@ export const canShowPreChecks = ({
 	return Boolean(userIsGuSupporter && !pageConfig.isPaidContent);
 };
 
-const SDK_OPTIONS = {
-	enableLogging: false,
-	noCookies: true,
-	baseUrl: 'https://sdk.fra-01.braze.eu/api/v3',
-	sessionTimeoutInSeconds: 1,
-	minimumIntervalBetweenTriggerActionsInSeconds: 0,
-};
-
 const getMessageFromBraze = async (
 	apiKey: string,
 	brazeUuid: string,
@@ -99,7 +91,7 @@ const getMessageFromBraze = async (
 	const brazeMessages = new BrazeMessages(appboy);
 	// let subscriptionId: string | undefined;
 
-	const messages = brazeMessages.getMessagesFor('banner');
+	const messages = brazeMessages.getMessagesForBanner();
 
 	appboy.changeUser(brazeUuid);
 	appboy.openSession();
@@ -193,11 +185,7 @@ const maybeWipeUserData = async (
 	brazeUuid: null | string,
 ): Promise<void> => {
 	if (!brazeUuid && hasCurrentBrazeUser()) {
-		const { default: appboy } = await import(
-			/* webpackChunkName: "braze-web-sdk-core" */ '@braze/web-sdk-core'
-		);
-
-		appboy.initialize(apiKey, SDK_OPTIONS);
+		const appboy = await getInitialisedAppboy(apiKey);
 
 		try {
 			appboy.wipeData();

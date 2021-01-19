@@ -10,65 +10,73 @@ afterEach(() => {
 });
 
 describe('checkDependencies', () => {
-	it('resolves with a promise containing check values when all checks are successful', async () => {
-		const checks = [
-			{ name: 'first', dependency: Promise.resolve(true) },
-			{ name: 'second', dependency: Promise.resolve(true) },
-		];
+	describe('when all checks are successful', () => {
+		it('returns a promise which resolves with success status and data from checks', async () => {
+			const checks = [
+				{ name: 'first', dependency: Promise.resolve(true) },
+				{ name: 'second', dependency: Promise.resolve(true) },
+			];
 
-		const got = await checkDependencies(checks);
+			const got = await checkDependencies(checks);
 
-		expect(got).toEqual({
-			isSuccessful: true,
-			data: { first: true, second: true },
+			expect(got).toEqual({
+				isSuccessful: true,
+				data: { first: true, second: true },
+			});
 		});
 	});
 
-	it('returns a rejected promise if any of the underlying checks fail', async () => {
-		const checks = [
-			{
-				name: 'passedCheckFirst',
-				dependency: Promise.resolve(true),
-			},
-			{
-				name: 'failedCheck',
-				dependency: Promise.resolve(false),
-			},
-			{
-				name: 'passedCheckSecond',
-				dependency: Promise.resolve(true),
-			},
-		];
+	describe('when a check fails', () => {
+		it('returns a promise which resolves with failure status and data from checks so far', async () => {
+			const checks = [
+				{
+					name: 'passedCheckFirst',
+					dependency: Promise.resolve(true),
+				},
+				{
+					name: 'failedCheck',
+					dependency: Promise.resolve(false),
+				},
+				{
+					name: 'passedCheckSecond',
+					dependency: Promise.resolve(true),
+				},
+			];
 
-		const got = await checkDependencies(checks);
+			const got = await checkDependencies(checks);
 
-		expect(got).toEqual({
-			isSuccessful: false,
-			failureField: 'failedCheck',
-			failureData: false,
-			data: { passedCheckFirst: true },
+			expect(got).toEqual({
+				isSuccessful: false,
+				failureField: 'failedCheck',
+				failureData: false,
+				data: { passedCheckFirst: true },
+			});
 		});
 	});
 
-	it('returns a rejected promise if any of the underlying checks errors', async () => {
-		const checks = [
-			{
-				name: 'passedCheckFirst',
-				dependency: Promise.resolve(true),
-			},
-			{
-				name: 'errorCheck',
-				dependency: Promise.reject(new Error('Something went wrong')),
-			},
-		];
+	describe('when a check errors', () => {
+		it('returns a promise which resolves with failure status and data from checks so far', async () => {
+			const checks = [
+				{
+					name: 'passedCheckFirst',
+					dependency: Promise.resolve(true),
+				},
+				{
+					name: 'errorCheck',
+					dependency: Promise.reject(
+						new Error('Something went wrong'),
+					),
+				},
+			];
 
-		const got = await checkDependencies(checks);
+			const got = await checkDependencies(checks);
 
-		expect(got).toEqual({
-			isSuccessful: false,
-			failureField: 'errorCheck',
-			failureData: 'Something went wrong',
-			data: { passedCheckFirst: true },
+			expect(got).toEqual({
+				isSuccessful: false,
+				failureField: 'errorCheck',
+				failureData: 'Something went wrong',
+				data: { passedCheckFirst: true },
+			});
 		});
 	});
 });

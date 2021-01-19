@@ -228,6 +228,7 @@ export const canShow = async (
 	if (!dependenciesResult.isSuccessful) {
 		const { failureData, failureField, data } = dependenciesResult;
 		if (SDK_OPTIONS.enableLogging) {
+			// eslint-disable-next-line no-console
 			console.log(
 				`Not attempting to show Braze messages. Dependency ${failureField} failed with ${failureData}.`,
 			);

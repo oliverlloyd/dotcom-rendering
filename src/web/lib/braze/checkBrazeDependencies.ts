@@ -16,7 +16,7 @@ type FailureResult = {
 
 type DependencyResult = SuccessResult | FailureResult;
 
-type ResultData = { [key: string]: any };
+type ResultData = { [key: string]: string | boolean };
 
 const buildFailureResponse = (name: string, value: any, data: ResultData) => ({
 	isSuccessful: false,

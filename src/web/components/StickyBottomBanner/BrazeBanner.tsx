@@ -234,7 +234,10 @@ export const canShow = async (
 			);
 		}
 
-		await maybeWipeUserData(data.apiKey, data.brazeUuid);
+		await maybeWipeUserData(
+			data.apiKey as string | undefined,
+			data.brazeUuid as string | null | undefined,
+		);
 
 		return { result: false };
 	}
@@ -242,7 +245,10 @@ export const canShow = async (
 	const { data } = dependenciesResult;
 
 	try {
-		const result = await getMessageFromBraze(data.apiKey, data.brazeUuid);
+		const result = await getMessageFromBraze(
+			data.apiKey as string,
+			data.brazeUuid as string,
+		);
 
 		const timeTaken = bannerTiming.end();
 		record({

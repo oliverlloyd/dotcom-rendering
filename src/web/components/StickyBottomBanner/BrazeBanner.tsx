@@ -18,9 +18,9 @@ import {
 	setHasCurrentBrazeUser,
 	clearHasCurrentBrazeUser,
 } from '@root/src/web/lib/hasCurrentBrazeUser';
-import { CanShowResult } from './bannerPicker';
 import { BrazeMessages } from '@root/src/web/lib/braze/BrazeMessages';
 import { getInitialisedAppboy } from '@root/src/web/lib/braze/initialiseAppboy';
+import { CanShowResult } from './bannerPicker';
 
 type Meta = {
 	dataFromBraze: {
@@ -89,7 +89,6 @@ const getMessageFromBraze = async (
 	appboyTiming.start();
 
 	const brazeMessages = new BrazeMessages(appboy);
-	// let subscriptionId: string | undefined;
 
 	const messages = brazeMessages.getMessagesForBanner();
 

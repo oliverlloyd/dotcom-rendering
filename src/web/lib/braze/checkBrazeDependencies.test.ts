@@ -7,10 +7,10 @@ jest.mock('@root/src/web/lib/getBrazeUuid', () => ({
 	},
 }));
 
-let mockHasRequiredConsents: boolean;
+let mockConsentsPromise: Promise<boolean>;
 jest.mock('./hasRequiredConsents', () => ({
 	hasRequiredConsents: () => {
-		return Promise.resolve(mockHasRequiredConsents);
+		return mockConsentsPromise;
 	},
 }));
 
@@ -57,7 +57,7 @@ describe('checkBrazeDependecies', () => {
 			},
 		});
 		mockBrazeUuid = 'fake-uuid';
-		mockHasRequiredConsents = true;
+		mockConsentsPromise = Promise.resolve(true);
 		mockHideSupportMessaging = true;
 
 		const isSignedIn = true;
@@ -90,7 +90,7 @@ describe('checkBrazeDependecies', () => {
 			},
 		});
 		mockBrazeUuid = 'fake-uuid';
-		mockHasRequiredConsents = true;
+		mockConsentsPromise = Promise.resolve(true);
 		mockHideSupportMessaging = true;
 
 		const isSignedIn = true;
@@ -121,7 +121,7 @@ describe('checkBrazeDependecies', () => {
 			},
 		});
 		mockBrazeUuid = 'fake-uuid';
-		mockHasRequiredConsents = true;
+		mockConsentsPromise = Promise.resolve(true);
 		mockHideSupportMessaging = true;
 
 		const isSignedIn = true;
@@ -154,7 +154,7 @@ describe('checkBrazeDependecies', () => {
 			},
 		});
 		mockBrazeUuid = null;
-		mockHasRequiredConsents = true;
+		mockConsentsPromise = Promise.resolve(true);
 		mockHideSupportMessaging = true;
 
 		const isSignedIn = true;
@@ -188,7 +188,7 @@ describe('checkBrazeDependecies', () => {
 			},
 		});
 		mockBrazeUuid = 'fake-uuid';
-		mockHasRequiredConsents = false;
+		mockConsentsPromise = Promise.resolve(false);
 		mockHideSupportMessaging = true;
 
 		const isSignedIn = true;
@@ -223,7 +223,7 @@ describe('checkBrazeDependecies', () => {
 			},
 		});
 		mockBrazeUuid = 'fake-uuid';
-		mockHasRequiredConsents = true;
+		mockConsentsPromise = Promise.resolve(true);
 		mockHideSupportMessaging = false;
 
 		const isSignedIn = true;
@@ -259,7 +259,7 @@ describe('checkBrazeDependecies', () => {
 			},
 		});
 		mockBrazeUuid = 'fake-uuid';
-		mockHasRequiredConsents = true;
+		mockConsentsPromise = Promise.resolve(true);
 		mockHideSupportMessaging = true;
 
 		const isSignedIn = true;
@@ -278,6 +278,41 @@ describe('checkBrazeDependecies', () => {
 		if (!got.isSuccessful) {
 			expect(got.failureField).toEqual('isNotPaidContent');
 			expect(got.failureData).toEqual(false);
+		}
+	});
+
+	it('fails if any underlying async operation fails', async () => {
+		setWindow({
+			guardian: {
+				config: {
+					switches: {
+						brazeSwitch: true,
+					},
+					page: {
+						brazeApiKey: 'fake-api-key',
+						isPaidContent: false,
+					},
+				},
+			},
+		});
+		mockBrazeUuid = 'fake-uuid';
+		mockConsentsPromise = Promise.reject(new Error('something went wrong'));
+		mockHideSupportMessaging = true;
+
+		const isSignedIn = true;
+		const idApiUrl = 'https://idapi.example.com';
+		const got = await checkBrazeDependencies(isSignedIn, idApiUrl);
+
+		expect(got.isSuccessful).toEqual(false);
+		expect(got.data).toEqual({
+			brazeSwitch: true,
+			brazeUuid: 'fake-uuid',
+			apiKey: 'fake-api-key',
+		});
+		// Condition to keep TypeScript happy
+		if (!got.isSuccessful) {
+			expect(got.failureField).toEqual('consent');
+			expect(got.failureData).toEqual('something went wrong');
 		}
 	});
 });

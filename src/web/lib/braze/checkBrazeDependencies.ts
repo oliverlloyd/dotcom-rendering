@@ -50,24 +50,6 @@ const checkBrazeDependencies = async (
 	}
 
 	{
-		const name = 'consent';
-		const value = await hasRequiredConsents();
-		if (!value) {
-			return buildFailureResponse(name, value, data);
-		}
-		data[name] = value;
-	}
-
-	{
-		const name = 'isNotPaidContent';
-		const value = !window.guardian.config.page.isPaidContent;
-		if (!value) {
-			return buildFailureResponse(name, value, data);
-		}
-		data[name] = value;
-	}
-
-	{
 		const name = 'brazeUuid';
 		const value = await (isSignedIn
 			? getBrazeUuid(idApiUrl)
@@ -79,8 +61,26 @@ const checkBrazeDependencies = async (
 	}
 
 	{
+		const name = 'consent';
+		const value = await hasRequiredConsents();
+		if (!value) {
+			return buildFailureResponse(name, value, data);
+		}
+		data[name] = value;
+	}
+
+	{
 		const name = 'userIsGuSupporter';
 		const value = hideSupportMessaging();
+		if (!value) {
+			return buildFailureResponse(name, value, data);
+		}
+		data[name] = value;
+	}
+
+	{
+		const name = 'isNotPaidContent';
+		const value = !window.guardian.config.page.isPaidContent;
 		if (!value) {
 			return buildFailureResponse(name, value, data);
 		}

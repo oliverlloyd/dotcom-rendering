@@ -69,6 +69,9 @@ const checkBrazeDependencies = async (
 
 	const data: ResultData = {};
 
+	// I think we could possibly clean this up a bit when we can use
+	// Promise.allSettled reliably (it's not available in our current Node
+	// version and polyfill.io doesn't have a polyfill yet).
 	for (const { name, value } of dependencies) {
 		try {
 			// eslint-disable-next-line no-await-in-loop
@@ -92,47 +95,6 @@ const checkBrazeDependencies = async (
 		isSuccessful: true,
 		data,
 	};
-
-	// return Promise.allSettled(dependencies.map((d) => d.value)).then(
-	// 	(results) => {
-	// 		const data: ResultData = {};
-	// 		let failure: { failureField: string; failureData: any } | undefined;
-
-	// 		results.forEach((result, idx) => {
-	// 			if (failure) return;
-
-	// 			const { name } = dependencies[idx];
-
-	// 			if (result.status === 'fulfilled' && result.value) {
-	// 				data[name] = result.value;
-	// 			} else if (result.status === 'fulfilled') {
-	// 				failure = {
-	// 					failureField: name,
-	// 					failureData: result.value,
-	// 				};
-	// 			} else {
-	// 				failure = {
-	// 					failureField: name,
-	// 					failureData: result.reason,
-	// 				};
-	// 			}
-	// 		});
-
-	// 		if (failure) {
-	// 			return {
-	// 				isSuccessful: false,
-	// 				data,
-	// 				failureField: failure.failureField,
-	// 				failureData: failure.failureData,
-	// 			};
-	// 		}
-
-	// 		return {
-	// 			isSuccessful: true,
-	// 			data,
-	// 		};
-	// 	},
-	// );
 };
 
 export { checkBrazeDependencies };

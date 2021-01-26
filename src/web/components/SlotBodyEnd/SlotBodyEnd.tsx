@@ -13,6 +13,8 @@ import {
 	canShow as canShowReaderRevenueEpic,
 } from './ReaderRevenueEpic';
 
+import { BrazeEpic, canShow as canShowBrazeEpic } from './BrazeEpic';
+
 type Props = {
 	isSignedIn?: boolean;
 	countryCode?: string;
@@ -59,6 +61,17 @@ const buildReaderRevenueEpicConfig = ({
 	};
 };
 
+const buildBrazeEpicConfig = (contributionsServiceUrl: string): Banner => {
+	return {
+		id: 'reader-revenue-banner',
+		canShow: () => canShowBrazeEpic(),
+		/* eslint-disable-next-line react/jsx-props-no-spreading */
+		show: (meta: any) => () => (
+			<BrazeEpic contributionsServiceUrl={contributionsServiceUrl} />
+		),
+		timeoutMillis: null, // TODO: do we want a timeout?
+	};
+};
 export const SlotBodyEnd = ({
 	isSignedIn,
 	countryCode,
@@ -85,7 +98,8 @@ export const SlotBodyEnd = ({
 			tags,
 			contributionsServiceUrl,
 		});
-		const epicConfig: BannerConfig = [readerRevenueEpic];
+		const brazeEpic = buildBrazeEpicConfig(contributionsServiceUrl);
+		const epicConfig: BannerConfig = [brazeEpic, readerRevenueEpic];
 
 		pickBanner(epicConfig).then((PickedEpic: () => MaybeFC) =>
 			setSelectedEpic(PickedEpic),

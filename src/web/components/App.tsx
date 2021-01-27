@@ -15,17 +15,8 @@ import { StickyBottomBanner } from '@root/src/web/components/StickyBottomBanner/
 import { SignInGateSelector } from '@root/src/web/components/SignInGate/SignInGateSelector';
 
 import { incrementWeeklyArticleCount } from '@guardian/automat-client';
-import {
-	QandaAtom,
-	GuideAtom,
-	ProfileAtom,
-	TimelineAtom,
-	ChartAtom,
-	PersonalityQuizAtom,
-	KnowledgeQuizAtom,
-} from '@guardian/atoms-rendering';
 
-import { AudioAtomWrapper } from '@frontend/web/components/AudioAtomWrapper';
+// import { AudioAtomWrapper } from '@frontend/web/components/AudioAtomWrapper';
 
 import { Portal } from '@frontend/web/components/Portal';
 import { HydrateOnce } from '@frontend/web/components/HydrateOnce';
@@ -337,6 +328,51 @@ export const App = ({ CAPI, NAV }: Props) => {
 		},
 	);
 
+	const AudioAtomWrapper = loadable(
+		() => {
+			if (CAPI.audioAtoms.length > 0) {
+				return import('@frontend/web/components/AudioAtomWrapper');
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.AudioAtomWrapper,
+		},
+	);
+
+	// const TimelineAtom = loadable(
+	// 	() => {
+	// 		if (CAPI.timelineAtoms.length > 0) {
+	// 			return import('@guardian/atoms-rendering');
+	// 		}
+	// 		return Promise.reject();
+	// 	},
+	// 	{
+	// 		resolveComponent: (module) => module.TimelineAtom,
+	// 	},
+	// );
+
+	// const QandaAtom = loadable(
+	// 	() => {
+	// 		if (CAPI.qandaAtoms.length > 0) {
+	// 			return import('@guardian/atoms-rendering');
+	// 		}
+	// 		return Promise.reject();
+	// 	},
+	// 	{
+	// 		resolveComponent: (module) => module.QandaAtom,
+	// 	},
+	// );
+
+	// import {
+
+	//     GuideAtom,
+	//     ProfileAtom,
+	//     ChartAtom,
+	//     PersonalityQuizAtom,
+	//     KnowledgeQuizAtom,
+	// } from '@guardian/atoms-rendering';
+
 	return (
 		// Do you need to HydrateOnce or do you want a Portal?
 		//
@@ -432,7 +468,7 @@ export const App = ({ CAPI, NAV }: Props) => {
 					/>
 				</HydrateOnce>
 			))}
-			{CAPI.quizAtoms.map((quizAtoms, index) => (
+			{/* {CAPI.quizAtoms.map((quizAtoms, index) => (
 				<HydrateOnce
 					key={index}
 					root="quiz-atom"
@@ -454,7 +490,7 @@ export const App = ({ CAPI, NAV }: Props) => {
 						)}
 					</>
 				</HydrateOnce>
-			))}
+			))} */}
 			{NAV.subNavSections && (
 				<HydrateOnce root="sub-nav-root">
 					<>
@@ -490,26 +526,33 @@ export const App = ({ CAPI, NAV }: Props) => {
 					<CalloutBlockComponent callout={callout} pillar={pillar} />
 				</HydrateOnce>
 			))}
-			{CAPI.chartAtoms.map((chart) => (
+			{
+				/* {CAPI.chartAtoms.map((chart) => (
 				<HydrateOnce root="chart-atom" index={chart.chartIndex}>
 					<ChartAtom id={chart.id} html={chart.html} />
 				</HydrateOnce>
 			))}
-			{CAPI.audioAtoms.map((audioAtom) => (
-				<HydrateOnce root="audio-atom" index={audioAtom.audioIndex}>
-					<AudioAtomWrapper
-						id={audioAtom.id}
-						trackUrl={audioAtom.trackUrl}
-						kicker={audioAtom.kicker}
-						title={audioAtom.title}
-						pillar={pillar}
-						contentIsNotSensitive={!CAPI.config.isSensitive}
-						aCastisEnabled={CAPI.config.switches.acast}
-						readerCanBeShownAds={!CAPI.isAdFreeUser}
-					/>
-				</HydrateOnce>
-			))}
-			{CAPI.qandaAtoms.map((qandaAtom) => (
+			{ */ CAPI.audioAtoms.map(
+					(audioAtom) => (
+						<HydrateOnce
+							root="audio-atom"
+							index={audioAtom.audioIndex}
+						>
+							<AudioAtomWrapper
+								id={audioAtom.id}
+								trackUrl={audioAtom.trackUrl}
+								kicker={audioAtom.kicker}
+								title={audioAtom.title}
+								pillar={pillar}
+								contentIsNotSensitive={!CAPI.config.isSensitive}
+								aCastisEnabled={CAPI.config.switches.acast}
+								readerCanBeShownAds={!CAPI.isAdFreeUser}
+							/>
+						</HydrateOnce>
+					),
+				)
+			}
+			{/* CAPI.qandaAtoms.map((qandaAtom) => (
 				<HydrateOnce root="qanda-atom" index={qandaAtom.qandaIndex}>
 					<QandaAtom
 						id={qandaAtom.id}
@@ -536,7 +579,7 @@ export const App = ({ CAPI, NAV }: Props) => {
 					/>
 				</HydrateOnce>
 			))}
-			{CAPI.guideAtoms.map((guideAtom) => (
+			{/* CAPI.guideAtoms.map((guideAtom) => (
 				<HydrateOnce root="guide-atom" index={guideAtom.guideIndex}>
 					<GuideAtom
 						id={guideAtom.id}
@@ -592,7 +635,7 @@ export const App = ({ CAPI, NAV }: Props) => {
 						)}
 					/>
 				</HydrateOnce>
-			))}
+			))}}
 			{CAPI.timelineAtoms.map((timelineAtom) => (
 				<HydrateOnce
 					root="timeline-atom"
@@ -621,7 +664,7 @@ export const App = ({ CAPI, NAV }: Props) => {
 						)}
 					/>
 				</HydrateOnce>
-			))}
+                        )) */}
 			<Portal root="most-viewed-right">
 				<Lazy margin={100}>
 					<Suspense fallback={<></>}>

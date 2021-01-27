@@ -726,8 +726,13 @@ interface RichLinkBlockLoadable extends ComponentNameChunkMap {
     addWhen: RichLinkBlockElement['_type'];
 }
 
+interface AudioAtomBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'AudioAtomWrapper';
+    addWhen: AudioAtomBlockElement['_type'];
+}
+
 // There are docs on loadable in ./docs/loadable-components.md
-type LoadableComponents = [EditionDropdownLoadable, YoutubeBlockLoadable, RichLinkBlockLoadable]
+type LoadableComponents = [EditionDropdownLoadable, YoutubeBlockLoadable, RichLinkBlockLoadable, AudioAtomBlockLoadable ]
 
 interface BaseTrailType {
 

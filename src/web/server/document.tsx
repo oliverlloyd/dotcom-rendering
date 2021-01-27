@@ -79,6 +79,10 @@ export const document = ({ data }: Props) => {
 			chunkName: 'elements-RichLinkComponent',
 			addWhen: 'model.dotcomrendering.pageElements.RichLinkBlockElement',
 		},
+		{
+			chunkName: 'AudioAtomWrapper',
+			addWhen: 'model.dotcomrendering.pageElements.AudioAtomBlockElement',
+		},
 	];
 	// We want to only insert script tags for the elements or main media elements on this page view
 	// so we need to check what elements we have and use the mapping to the the chunk name
@@ -110,8 +114,8 @@ export const document = ({ data }: Props) => {
 			// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 			// @ts-ignore
 			.getPreAssets() // PreAssets is *undocumented* and not in TS types. It returns the webpack asset for each script.
-			.map((script: { chunk: string }) => ({
-				src: `${script.chunk}.js`,
+			.map((script: { url: string }) => ({
+				src: `${script.url}`,
 				module: true,
 			})),
 	);

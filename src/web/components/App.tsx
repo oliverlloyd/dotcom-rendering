@@ -644,6 +644,7 @@ export const App = ({ CAPI, NAV }: Props) => {
 					isSensitive={CAPI.config.isSensitive}
 					tags={CAPI.tags}
 					contributionsServiceUrl={CAPI.contributionsServiceUrl}
+					idApiUrl={CAPI.config.idApiUrl}
 				/>
 			</Portal>
 			<Portal

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import * as emotion from 'emotion';
 import * as emotionCore from '@emotion/core';
 import * as emotionTheming from 'emotion-theming';
+import { checkBrazeDependencies } from '@root/src/web/lib/braze/checkBrazeDependencies';
+import { getInitialisedAppboy } from '@root/src/web/lib/braze/initialiseAppboy';
+import { BrazeMessages } from '@root/src/web/lib/braze/BrazeMessages';
 import { CanShowResult } from '../StickyBottomBanner/bannerPicker';
 
 const { css } = emotion;
@@ -12,8 +15,64 @@ const wrapperMargins = css`
 
 const EPIC_COMPONENT_PATH = '/epic.js';
 
-export const canShow = (): Promise<CanShowResult> =>
-	Promise.resolve({ result: true });
+type Meta = {
+	dataFromBraze: {
+		[key: string]: string;
+	};
+	logImpressionWithBraze: () => void;
+	// logButtonClickWithBraze: (id: number) => void;
+};
+
+type Props = {
+	meta: Meta;
+	contributionsServiceUrl: string;
+};
+
+export const canShow = async (
+	isSignedIn: boolean,
+	idApiUrl: string,
+): Promise<CanShowResult> => {
+	console.log({ idApiUrl });
+	const dependenciesResult = await checkBrazeDependencies(
+		isSignedIn,
+		idApiUrl,
+	);
+
+	if (!dependenciesResult.isSuccessful) {
+		console.log(
+			`Not attempting to show Braze messages. Dependency ${dependenciesResult.failureField} failed with ${dependenciesResult.failureData}.`,
+		);
+		return { result: false };
+	}
+
+	const appboy = await getInitialisedAppboy(
+		dependenciesResult.data.apiKey as string,
+	);
+
+	const brazeMessages = new BrazeMessages(appboy);
+	const messagePromise = brazeMessages.getMessagesForEndOfArticle();
+
+	appboy.changeUser(dependenciesResult.data.brazeUuid as string);
+	appboy.openSession();
+
+	return messagePromise
+		.then((message) => {
+			console.log('epic message extras', message.extras());
+			return {
+				result: true,
+				meta: {
+					dataFromBraze: message.extras(),
+					logImpressionWithBraze: () => {
+						message.logImpression();
+					},
+				},
+			};
+		})
+		.catch((e) => {
+			console.log('Failed to get epic messages', e);
+			return { result: false };
+		});
+};
 
 const buildProps = () => {
 	const variant = {
@@ -58,11 +117,7 @@ const buildProps = () => {
 	return { variant, tracking, numArticles: 0 };
 };
 
-type Props = {
-	contributionsServiceUrl: string;
-};
-
-export const BrazeEpic = ({ contributionsServiceUrl }: Props) => {
+export const BrazeEpic = ({ contributionsServiceUrl, meta }: Props) => {
 	const [Epic, setEpic] = useState<React.FC>();
 
 	useEffect(() => {
@@ -78,15 +133,19 @@ export const BrazeEpic = ({ contributionsServiceUrl }: Props) => {
 			.guardianPolyfilledImport(componentUrl)
 			.then((epicModule) => {
 				setEpic(() => epicModule.ContributionsEpic); // useState requires functions to be wrapped
+				// log the impression
+				console.log('Logging epic impression');
+				meta.logImpressionWithBraze();
 			})
 			// eslint-disable-next-line no-console
 			.catch((error) => console.log(`epic - error is: ${error}`));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	if (Epic) {
+	if (Epic && meta.dataFromBraze.header) {
 		// This will come from Braze via the meta from canShow
 		const props: any = buildProps();
+		props.variant.heading = meta.dataFromBraze.header;
 
 		return (
 			<div className={wrapperMargins}>

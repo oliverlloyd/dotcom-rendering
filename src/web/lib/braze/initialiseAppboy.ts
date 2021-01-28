@@ -6,14 +6,23 @@ const SDK_OPTIONS = {
 	minimumIntervalBetweenTriggerActionsInSeconds: 0,
 };
 
-const getInitialisedAppboy = async (apiKey: string): Promise<typeof appboy> => {
-	const { default: appboy } = await import(
+let memoizedAppboyPromise: Promise<any>;
+
+const getInitialisedAppboy = async (apiKey: string): Promise<any> => {
+	if (memoizedAppboyPromise) {
+		console.log('appboy is memoized');
+		return memoizedAppboyPromise;
+	}
+	console.log('appboy is not memoized');
+
+	memoizedAppboyPromise = import(
 		/* webpackChunkName: "braze-web-sdk-core" */ '@braze/web-sdk-core'
-	);
+	).then(({ default: appboy }) => {
+		appboy.initialize(apiKey, SDK_OPTIONS);
+		return appboy;
+	});
 
-	appboy.initialize(apiKey, SDK_OPTIONS);
-
-	return appboy;
+	return memoizedAppboyPromise;
 };
 
 export { getInitialisedAppboy };

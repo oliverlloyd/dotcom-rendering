@@ -1,12 +1,15 @@
-type Callback = (message: Message) => void;
+import { BrazeMessage } from './BrazeMessage';
+
+type Callback = (message: InternalMessage) => void;
 
 type Extras = Record<string, string>;
 
 interface Appboy {
 	subscribeToInAppMessage: (callback: Callback) => string;
+	logInAppMessageImpression: (message: InternalMessage) => void;
 }
 
-interface Message {
+interface InternalMessage {
 	extras?: Extras;
 	triggerId?: string; // This keeps Typescript happy, because Message could be an InAppMessage or a ControlMessage
 }
@@ -19,9 +22,9 @@ class BrazeMessages {
 		this.appboy = appboy;
 	}
 
-	private getMessagesForSlot(targetSlotName: string): Promise<Message> {
+	private getMessagesForSlot(targetSlotName: string): Promise<BrazeMessage> {
 		return new Promise((resolve) => {
-			const callback = (message: Message) => {
+			const callback = (message: InternalMessage) => {
 				const { extras } = message;
 
 				if (
@@ -29,7 +32,7 @@ class BrazeMessages {
 					extras.slotName &&
 					extras.slotName === targetSlotName
 				) {
-					resolve(message);
+					resolve(new BrazeMessage(this.appboy, message));
 				}
 			};
 
@@ -37,13 +40,13 @@ class BrazeMessages {
 		});
 	}
 
-	getMessagesForBanner(): Promise<Message> {
+	getMessagesForBanner(): Promise<BrazeMessage> {
 		return this.getMessagesForSlot('Banner');
 	}
 
-	getMessagesForEndOfArticle(): Promise<Message> {
+	getMessagesForEndOfArticle(): Promise<BrazeMessage> {
 		return this.getMessagesForSlot('EndOfArticle');
 	}
 }
 
-export { BrazeMessages, Message, Callback };
+export { BrazeMessages, Callback, Appboy, InternalMessage, Extras };

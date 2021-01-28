@@ -26,6 +26,7 @@ type Props = {
 	isSensitive: boolean;
 	tags: TagType[];
 	contributionsServiceUrl: string;
+	idApiUrl: string;
 };
 
 const buildReaderRevenueEpicConfig = ({
@@ -39,7 +40,7 @@ const buildReaderRevenueEpicConfig = ({
 	isSensitive,
 	tags,
 	contributionsServiceUrl,
-}: Props): Banner => {
+}: any): Banner => {
 	return {
 		id: 'reader-revenue-banner',
 		canShow: () =>
@@ -61,13 +62,20 @@ const buildReaderRevenueEpicConfig = ({
 	};
 };
 
-const buildBrazeEpicConfig = (contributionsServiceUrl: string): Banner => {
+const buildBrazeEpicConfig = (
+	isSignedIn: boolean,
+	idApiUrl: string,
+	contributionsServiceUrl: string,
+): Banner => {
 	return {
 		id: 'reader-revenue-banner',
-		canShow: () => canShowBrazeEpic(),
+		canShow: () => canShowBrazeEpic(isSignedIn, idApiUrl),
 		/* eslint-disable-next-line react/jsx-props-no-spreading */
 		show: (meta: any) => () => (
-			<BrazeEpic contributionsServiceUrl={contributionsServiceUrl} />
+			<BrazeEpic
+				meta={meta}
+				contributionsServiceUrl={contributionsServiceUrl}
+			/>
 		),
 		timeoutMillis: null, // TODO: do we want a timeout?
 	};
@@ -83,6 +91,7 @@ export const SlotBodyEnd = ({
 	isSensitive,
 	tags,
 	contributionsServiceUrl,
+	idApiUrl,
 }: Props) => {
 	const [SelectedEpic, setSelectedEpic] = useState<React.FC | null>(null);
 	useOnce(() => {
@@ -98,7 +107,11 @@ export const SlotBodyEnd = ({
 			tags,
 			contributionsServiceUrl,
 		});
-		const brazeEpic = buildBrazeEpicConfig(contributionsServiceUrl);
+		const brazeEpic = buildBrazeEpicConfig(
+			isSignedIn as boolean,
+			idApiUrl,
+			contributionsServiceUrl,
+		);
 		const epicConfig: BannerConfig = [brazeEpic, readerRevenueEpic];
 
 		pickBanner(epicConfig).then((PickedEpic: () => MaybeFC) =>

@@ -83,6 +83,9 @@ const getMessageFromBraze = async (
 				// Log the impression with Braze
 				appboy.logInAppMessageImpression(message);
 			};
+
+			console.log('banner message extras', message.extras);
+
 			const meta = {
 				dataFromBraze: message.extras,
 				logImpressionWithBraze,
@@ -196,10 +199,11 @@ export const canShow = async (
 
 	if (!dependenciesResult.isSuccessful) {
 		const { failureData, failureField, data } = dependenciesResult;
+
 		// eslint-disable-next-line no-console
-		console.log(
-			`Not attempting to show Braze messages. Dependency ${failureField} failed with ${failureData}.`,
-		);
+		// console.log(
+		// 	`Not attempting to show Braze messages. Dependency ${failureField} failed with ${failureData}.`,
+		// );
 
 		await maybeWipeUserData(
 			data.apiKey as string | undefined,

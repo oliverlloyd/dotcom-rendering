@@ -50,10 +50,11 @@ export const canShow = async (
 	);
 
 	const brazeMessages = new BrazeMessages(appboy);
-	const messagePromise = brazeMessages.getMessagesForEndOfArticle();
 
 	appboy.changeUser(dependenciesResult.data.brazeUuid as string);
 	appboy.openSession();
+
+	const messagePromise = brazeMessages.getMessagesForEndOfArticle();
 
 	return messagePromise
 		.then((message) => {

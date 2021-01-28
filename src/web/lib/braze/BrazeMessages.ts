@@ -20,6 +20,12 @@ class BrazeMessages {
 
 	constructor(appboy: Appboy) {
 		this.appboy = appboy;
+
+		this.appboy.subscribeToContentCardsUpdates((cc) => {
+			console.log('Content cards were updated: ', cc);
+		});
+
+		this.appboy.requestContentCardsRefresh();
 	}
 
 	private getMessagesForSlot(targetSlotName: string): Promise<BrazeMessage> {
@@ -45,6 +51,12 @@ class BrazeMessages {
 	}
 
 	getMessagesForEndOfArticle(): Promise<BrazeMessage> {
+		const contentCards = this.appboy.getCachedContentCards();
+		console.log('Content cards:', contentcards);
+		const card = contentCards.cards[0];
+		if (card) {
+			this.appboy.logCardImpressions([card], true);
+		}
 		return this.getMessagesForSlot('EndOfArticle');
 	}
 }

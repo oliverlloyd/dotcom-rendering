@@ -52,8 +52,11 @@ module.exports = {
         'react/prop-types': [0],
         'react/jsx-boolean-value': [2, 'always'],
         'import/prefer-default-export': 'off',
-        // TODO: remove
+
+        // TODO: remove, but large task(!)
         '@typescript-eslint/explicit-module-boundary-types': 'off',
+
+        // TODO: remove
         '@typescript-eslint/no-unsafe-member-access': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/no-unsafe-assignment': 'off',

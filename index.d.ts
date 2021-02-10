@@ -798,10 +798,6 @@ type AdSlotType =
 declare module 'emotion-server' {
 	export const extractCritical: any;
 }
-declare module 'dompurify' {
-	const createDOMPurify: any;
-	export default createDOMPurify;
-}
 declare module 'compose-function' {
 	const compose: any;
 	export default compose;

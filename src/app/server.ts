@@ -1,5 +1,5 @@
 import * as path from 'path';
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import fetch from 'node-fetch';
 
 import compression from 'compression';
@@ -142,7 +142,7 @@ if (process.env.NODE_ENV === 'production') {
 
 	// express requires all 4 args here:
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	app.use((err: any, req: any, res: any, next: any) => {
+	app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 		res.status(500).send(`<pre>${err.stack}</pre>`);
 	});
 

@@ -30,6 +30,7 @@ export const document = ({
 	scripts: string[];
 	metadata: Metadata;
 }) => {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 	const { html, css }: RenderToStringResult = extractCritical(
 		// TODO: CacheProvider can be removed when we've moved over to using @emotion/core
 		renderToStaticMarkup(

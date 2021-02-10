@@ -24,7 +24,7 @@ interface FetchOptions {
 	credentials?: 'omit' | 'include' | 'same-origin';
 }
 
-function checkForErrors(response: any) {
+function checkForErrors(response: Response): Response {
 	if (!response.ok) {
 		throw Error(
 			response.statusText ||

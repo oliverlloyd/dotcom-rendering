@@ -1,5 +1,6 @@
 const notEmpty = (value: string | null): value is string => value !== null;
 const unique = (value: string | null, index: number, self: any) =>
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 	self.indexOf(value) === index;
 
 export const extractScripts: (

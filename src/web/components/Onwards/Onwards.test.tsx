@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React from 'react';
 import { render } from '@testing-library/react';
 import { linkAndDescription } from '@root/fixtures/onwards.mocks';

@@ -66,6 +66,7 @@ const getMessageFromBraze = async (
 	appboy.changeUser(brazeUuid);
 	appboy.openSession();
 	setHasCurrentBrazeUser();
+	brazeMessages.refreshMessages();
 
 	return messages
 		.then((message) => {
@@ -84,10 +85,10 @@ const getMessageFromBraze = async (
 
 			const logImpressionWithBraze = () => {
 				// Log the impression with Braze
-				appboy.logInAppMessageImpression(message);
+				message.logImpression();
 			};
 			const meta = {
-				dataFromBraze: message.extras,
+				dataFromBraze: message.extras(),
 				logImpressionWithBraze,
 				logButtonClickWithBraze,
 			};

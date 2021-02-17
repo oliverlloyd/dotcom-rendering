@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import {
 	text,
@@ -78,20 +78,20 @@ const richLinkContainer = css`
 `;
 
 const neutralBackground = css`
-	background-color: ${neutral[97]};
+	background-color: ${neutral[ 97 ]};
 	a {
 		color: inherit;
 	}
 	:hover {
-		background-color: ${neutral[93]};
+		background-color: ${neutral[ 93 ]};
 	}
 `;
 
 const richLinkPillarColour: (format: Format) => ColourType = (format) => {
 	if (format) {
-		return pillarPalette[format.theme].main;
+		return pillarPalette[ format.theme ].main;
 	}
-	return pillarPalette[Pillar.News][400];
+	return pillarPalette[ Pillar.News ][ 400 ];
 };
 
 const pillarBackground: (format: Format) => ColourType = (format) => {
@@ -127,7 +127,7 @@ const richLinkElements = css`
 
 const richLinkHeader = css`
 	padding-bottom: 10px;
-	color: ${neutral[0]};
+	color: ${neutral[ 0 ]};
 `;
 
 const richLinkTitle = css`
@@ -218,7 +218,7 @@ const readMoreText: (contentType: string) => string = (contentType) => {
 
 const getMainContributor: (tags: TagType[]) => string = (tags) => {
 	const contributorTags = tags.filter((t) => t.type === 'Contributor');
-	return contributorTags.length > 0 ? contributorTags[0].title : '';
+	return contributorTags.length > 0 ? contributorTags[ 0 ].title : '';
 };
 
 const imageStyles = css`
@@ -276,7 +276,7 @@ export const RichLink = ({
 	const linkText =
 		cardStyle === 'letters' ? `${headlineText} | Letters ` : headlineText;
 
-	const imageCardStyles = ['news', 'letters', 'media', 'feature'];
+	const imageCardStyles = [ 'news', 'letters', 'media', 'feature' ];
 	const showImage = thumbnailUrl && imageCardStyles.includes(cardStyle);
 	const isPaidContent = tags
 		? tags.filter((t) => t.id === 'tone/advertisement-features').length > 0
@@ -312,7 +312,7 @@ export const RichLink = ({
 										<Hide when="above" breakpoint="wide">
 											<QuoteIcon
 												colour={
-													pillarPalette[format.theme]
+													pillarPalette[ format.theme ]
 														.main
 												}
 												size="small"
@@ -321,7 +321,7 @@ export const RichLink = ({
 										<Hide when="below" breakpoint="wide">
 											<QuoteIcon
 												colour={
-													pillarPalette[format.theme]
+													pillarPalette[ format.theme ]
 														.main
 												}
 												size="medium"

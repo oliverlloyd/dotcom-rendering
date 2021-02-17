@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import * as emotion from 'emotion';
+import * as emotion from '@emotion/css';
 import * as emotionCore from '@emotion/core';
 import * as emotionTheming from 'emotion-theming';
 import { useHasBeenSeen } from '@root/src/web/lib/useHasBeenSeen';
@@ -28,13 +28,13 @@ const checkForErrors = (response: Response) => {
 	if (!response.ok) {
 		throw Error(
 			response.statusText ||
-				`SlotBanner | An api call returned HTTP status ${response.status}`,
+			`SlotBanner | An api call returned HTTP status ${response.status}`,
 		);
 	}
 	return response;
 };
 
-type HasBeenSeen = [boolean, (el: HTMLDivElement) => void];
+type HasBeenSeen = [ boolean, (el: HTMLDivElement) => void ];
 
 type BaseProps = {
 	isSignedIn: boolean;
@@ -178,9 +178,9 @@ type Props = {
 };
 
 export const ReaderRevenueBanner = ({ meta, module }: Props) => {
-	const [Banner, setBanner] = useState<React.FC>();
+	const [ Banner, setBanner ] = useState<React.FC>();
 
-	const [hasBeenSeen, setNode] = useHasBeenSeen({
+	const [ hasBeenSeen, setNode ] = useHasBeenSeen({
 		threshold: 0,
 		debounce: true,
 	}) as HasBeenSeen;
@@ -200,8 +200,8 @@ export const ReaderRevenueBanner = ({ meta, module }: Props) => {
 
 		window
 			.guardianPolyfilledImport(module.url)
-			.then((bannerModule: { [key: string]: JSX.Element }) => {
-				setBanner(() => bannerModule[module.name]); // useState requires functions to be wrapped
+			.then((bannerModule: { [ key: string ]: JSX.Element }) => {
+				setBanner(() => bannerModule[ module.name ]); // useState requires functions to be wrapped
 				sendOphanComponentEvent('INSERT', meta);
 			})
 			.catch((error) =>
@@ -226,7 +226,7 @@ export const ReaderRevenueBanner = ({ meta, module }: Props) => {
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [hasBeenSeen]);
+	}, [ hasBeenSeen ]);
 
 	if (Banner) {
 		return (

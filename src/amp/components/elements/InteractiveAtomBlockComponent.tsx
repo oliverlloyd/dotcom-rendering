@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { ShowMoreButton } from '@root/src/amp/components/ShowMoreButton';
 
 const styles = (height: number) => css`
@@ -52,9 +52,9 @@ const getHeight = (html?: string): number => {
 		const getHeightFromComment = heightRegex.exec(html);
 		if (
 			getHeightFromComment &&
-			typeof Number(getHeightFromComment[1]) === 'number'
+			typeof Number(getHeightFromComment[ 1 ]) === 'number'
 		) {
-			return Number(getHeightFromComment[1]); // Returns [ '<!-- MobileHeight: 100 -->', '100', index: 4, input: 'test<!-- MobileHeight: 100 -->', groups: undefined ]
+			return Number(getHeightFromComment[ 1 ]); // Returns [ '<!-- MobileHeight: 100 -->', '100', index: 4, input: 'test<!-- MobileHeight: 100 -->', groups: undefined ]
 		}
 	}
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { visuallyHidden } from '@guardian/src-foundations/accessibility';
 import { Pillars } from '@root/src/web/components/Pillars';
@@ -59,8 +59,8 @@ const PositionRoundel = ({ children }: { children: React.ReactNode }) => (
 const PositionButton = ({ children }: { children: React.ReactNode }) => (
 	<div
 		className={css`
-			margin-top: ${space[1]}px;
-			margin-left: ${space[2]}px;
+			margin-top: ${space[ 1 ]}px;
+			margin-left: ${space[ 2 ]}px;
 		`}
 	>
 		{children}

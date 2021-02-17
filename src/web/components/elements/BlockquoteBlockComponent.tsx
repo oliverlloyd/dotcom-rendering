@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { body } from '@guardian/src-foundations/typography';
 import { unwrapHtml } from '@root/src/model/unwrapHtml';
@@ -41,7 +41,7 @@ const simpleBlockquoteStyles = css`
 
 const quotedBlockquoteStyles = css`
 	${baseBlockquoteStyles}
-	color: ${neutral[46]};
+	color: ${neutral[ 46 ]};
 `;
 
 export const BlockquoteBlockComponent: React.FC<Props> = ({
@@ -73,7 +73,7 @@ export const BlockquoteBlockComponent: React.FC<Props> = ({
 	if (quoted) {
 		return (
 			<BlockquoteRow>
-				<QuoteIcon colour={pillarPalette[pillar].main} size="medium" />
+				<QuoteIcon colour={pillarPalette[ pillar ].main} size="medium" />
 				<RewrappedComponent
 					isUnwrapped={isUnwrapped}
 					html={unwrappedHtml}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { textSans } from '@guardian/src-foundations/typography';
 import { neutral } from '@guardian/src-foundations/palette';
@@ -19,8 +19,8 @@ const wrapperStyles = css`
 `;
 
 const calloutDetailsStyles = css`
-	border-top: 1px ${neutral[86]} solid;
-	border-bottom: 1px ${neutral[86]} solid;
+	border-top: 1px ${neutral[ 86 ]} solid;
+	border-bottom: 1px ${neutral[ 86 ]} solid;
 	position: relative;
 	padding-bottom: 10px;
 
@@ -31,7 +31,7 @@ const calloutDetailsStyles = css`
 `;
 
 const backgroundColorStyle = css`
-	background-color: ${neutral[97]};
+	background-color: ${neutral[ 97 ]};
 `;
 
 const speechBubbleWrapperStyles = css`
@@ -77,8 +77,8 @@ const summeryContentWrapper = css`
 
 const speechBubbleStyles = (pillar: Theme) => css`
 	${textSans.medium({ fontWeight: 'bold' })}
-	color: ${neutral[100]};
-	background-color: ${pillarPalette[pillar][400]};
+	color: ${neutral[ 100 ]};
+	background-color: ${pillarPalette[ pillar ][ 400 ]};
 	min-width: 88px;
 	padding-bottom: 6px;
 	padding-left: 10px;
@@ -89,7 +89,7 @@ const speechBubbleStyles = (pillar: Theme) => css`
 		height: 22px;
 		border-bottom-right-radius: 18px;
 		position: absolute;
-		background-color: ${pillarPalette[pillar][400]};
+		background-color: ${pillarPalette[ pillar ][ 400 ]};
 	}
 `;
 
@@ -99,7 +99,7 @@ const headingTextHeaderStyles = css`
 
 const headingTextStyles = css`
 	a {
-		color: ${palette.brand[500]};
+		color: ${palette.brand[ 500 ]};
 		text-decoration: none;
 		:hover {
 			text-decoration: underline;
@@ -124,7 +124,7 @@ const buttonWrapperStyles = css`
 // after it was opened
 let hasFormBeenOpened = true;
 
-type FormDataType = { [key in string]: any };
+type FormDataType = { [ key in string ]: any };
 
 export const CalloutBlockComponent = ({
 	callout,
@@ -137,9 +137,9 @@ export const CalloutBlockComponent = ({
 	let firstFieldElementRef: HTMLElement | null = null;
 	let lastElementRef: HTMLButtonElement | null = null;
 
-	const [isExpanded, setIsExpanded] = useState(false);
-	const [error, setError] = useState('');
-	const [submissionSuccess, setSubmissionSuccess] = useState(false);
+	const [ isExpanded, setIsExpanded ] = useState(false);
+	const [ error, setError ] = useState('');
+	const [ submissionSuccess, setSubmissionSuccess ] = useState(false);
 
 	const { title, description, formFields } = callout;
 
@@ -155,7 +155,7 @@ export const CalloutBlockComponent = ({
 		const formDataWithFieldPrefix = Object.keys(formData).reduce(
 			(acc, cur) => ({
 				...acc,
-				[`field_${cur}`]: formData[cur],
+				[ `field_${cur}` ]: formData[ cur ],
 			}),
 			{},
 		);
@@ -242,7 +242,7 @@ export const CalloutBlockComponent = ({
 		};
 		document.addEventListener('keydown', keyListener);
 		return () => document.removeEventListener('keydown', keyListener);
-	}, [isExpanded]);
+	}, [ isExpanded ]);
 
 	// on open form, focus on firstFieldElementRef
 	useEffect(() => {
@@ -250,7 +250,7 @@ export const CalloutBlockComponent = ({
 			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 			firstFieldElementRef && firstFieldElementRef.focus();
 		}
-	}, [isExpanded, firstFieldElementRef]);
+	}, [ isExpanded, firstFieldElementRef ]);
 
 	// on close form, focus on expandFormButtonRef
 	useEffect(() => {
@@ -258,7 +258,7 @@ export const CalloutBlockComponent = ({
 			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 			expandFormButtonRef && expandFormButtonRef.focus();
 		}
-	}, [isExpanded, expandFormButtonRef]);
+	}, [ isExpanded, expandFormButtonRef ]);
 
 	// Normally forms are in Modals, but here they are embeded into the page
 	// we therefore need to only focus on expandFormButtonRef if the form has been closed
@@ -267,7 +267,7 @@ export const CalloutBlockComponent = ({
 		if (isExpanded) {
 			hasFormBeenOpened = false;
 		}
-	}, [isExpanded]);
+	}, [ isExpanded ]);
 
 	// be able to close the form using the escape key for accessibility
 	useEffect(() => {
@@ -281,7 +281,7 @@ export const CalloutBlockComponent = ({
 			document.addEventListener('keydown', keyListener);
 		}
 		return () => document.removeEventListener('keydown', keyListener);
-	}, [isExpanded, setIsExpanded]);
+	}, [ isExpanded, setIsExpanded ]);
 
 	if (submissionSuccess) {
 		return (
@@ -314,7 +314,7 @@ export const CalloutBlockComponent = ({
 		<figure data-print-layout="hide" className={wrapperStyles}>
 			<details
 				className={cx(calloutDetailsStyles, {
-					[backgroundColorStyle]: isExpanded,
+					[ backgroundColorStyle ]: isExpanded,
 				})}
 				aria-hidden={true}
 				open={isExpanded}

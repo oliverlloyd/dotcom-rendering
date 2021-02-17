@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { until, from, between } from '@guardian/src-foundations/mq';
 import { headline } from '@guardian/src-foundations/typography';
@@ -114,11 +114,11 @@ const titleWrapper = (pillar: Theme) => css`
 	${from.desktop} {
 		${headline.xsmall({ fontWeight: 'light' })}
 	}
-	color: ${neutral[100]};
-	background: linear-gradient(transparent, ${neutral[0]});
+	color: ${neutral[ 100 ]};
+	background: linear-gradient(transparent, ${neutral[ 0 ]});
 
 	:before {
-		background-color: ${pillarPalette[pillar].main};
+		background-color: ${pillarPalette[ pillar ].main};
 		display: block;
 		content: '';
 		width: 8.75rem;
@@ -231,13 +231,13 @@ export const ImageComponent = ({
 	// The default is the 5:3 standard that The Grid suggests, at our wide breakpoint width.
 	const imageWidth =
 		(element.media &&
-			element.media.allImages[0] &&
-			element.media.allImages[0].fields.width) ||
+			element.media.allImages[ 0 ] &&
+			element.media.allImages[ 0 ].fields.width) ||
 		'620';
 	const imageHeight =
 		(element.media &&
-			element.media.allImages[0] &&
-			element.media.allImages[0].fields.height) ||
+			element.media.allImages[ 0 ] &&
+			element.media.allImages[ 0 ].fields.height) ||
 		'372';
 
 	if (isMainMedia && format.display === Display.Immersive && isNotOpinion) {
@@ -391,15 +391,15 @@ export const ImageComponent = ({
 					/>
 				</Hide>
 			) : (
-				<Caption
-					captionText={element.data.caption || ''}
-					format={format}
-					palette={palette}
-					credit={element.data.credit}
-					displayCredit={element.displayCredit}
-					shouldLimitWidth={shouldLimitWidth}
-				/>
-			)}
+					<Caption
+						captionText={element.data.caption || ''}
+						format={format}
+						palette={palette}
+						credit={element.data.credit}
+						displayCredit={element.displayCredit}
+						shouldLimitWidth={shouldLimitWidth}
+					/>
+				)}
 		</>
 	);
 };

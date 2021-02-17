@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import * as emotion from 'emotion';
+import * as emotion from '@emotion/css';
 import * as emotionCore from '@emotion/core';
 import * as emotionTheming from 'emotion-theming';
 import {
@@ -27,7 +27,7 @@ import { useHasBeenSeen } from '../../lib/useHasBeenSeen';
 
 const { css } = emotion;
 
-type HasBeenSeen = [boolean, (el: HTMLDivElement) => void];
+type HasBeenSeen = [ boolean, (el: HTMLDivElement) => void ];
 
 type PreEpicConfig = {
 	meta: TestMeta;
@@ -54,7 +54,7 @@ const checkForErrors = (response: Response) => {
 	if (!response.ok) {
 		throw Error(
 			response.statusText ||
-				`ReaderRevenueEpic | An api call returned HTTP status ${response.status}`,
+			`ReaderRevenueEpic | An api call returned HTTP status ${response.status}`,
 		);
 	}
 	return response;
@@ -193,8 +193,8 @@ export const canShow = ({
 };
 
 export const ReaderRevenueEpic = ({ meta, module }: EpicConfig) => {
-	const [Epic, setEpic] = useState<React.FC<EpicProps>>();
-	const [hasBeenSeen, setNode] = useHasBeenSeen({
+	const [ Epic, setEpic ] = useState<React.FC<EpicProps>>();
+	const [ hasBeenSeen, setNode ] = useHasBeenSeen({
 		rootMargin: '-18px',
 		threshold: 0,
 		debounce: true,
@@ -233,7 +233,7 @@ export const ReaderRevenueEpic = ({ meta, module }: EpicConfig) => {
 
 			sendOphanComponentEvent('VIEW', meta);
 		}
-	}, [hasBeenSeen, meta]);
+	}, [ hasBeenSeen, meta ]);
 	if (Epic) {
 		return (
 			<div ref={setNode} className={wrapperMargins}>

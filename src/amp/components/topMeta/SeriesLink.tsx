@@ -1,10 +1,10 @@
 import React from 'react';
 import { headline } from '@guardian/src-foundations/typography';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { pillarPalette } from '@root/src/lib/pillars';
 
 const seriesStyle = (pillar: Theme) => css`
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 	${headline.xxxsmall()};
 	font-weight: 900;
 	text-decoration: none;
@@ -28,31 +28,31 @@ export const SeriesLink: React.SFC<{
 	sectionUrl,
 	pillar,
 }) => {
-	const tag = tags.find((t) => t.type === 'Blog' || t.type === 'Series');
+		const tag = tags.find((t) => t.type === 'Blog' || t.type === 'Series');
 
-	if (!tag && !fallbackToSection) {
+		if (!tag && !fallbackToSection) {
+			return null;
+		}
+
+		if (!tag && sectionLabel && sectionUrl) {
+			return (
+				<a
+					className={seriesStyle(pillar)}
+					href={`https://www.theguardian.com/${sectionUrl}`}
+					data-link-name="article section"
+				>
+					{sectionLabel}
+				</a>
+			);
+		}
+
+		if (tag) {
+			return (
+				<a href={`${baseURL}/${tag.id}`} className={seriesStyle(pillar)}>
+					{tag.title}
+				</a>
+			);
+		}
+
 		return null;
-	}
-
-	if (!tag && sectionLabel && sectionUrl) {
-		return (
-			<a
-				className={seriesStyle(pillar)}
-				href={`https://www.theguardian.com/${sectionUrl}`}
-				data-link-name="article section"
-			>
-				{sectionLabel}
-			</a>
-		);
-	}
-
-	if (tag) {
-		return (
-			<a href={`${baseURL}/${tag.id}`} className={seriesStyle(pillar)}>
-				{tag.title}
-			</a>
-		);
-	}
-
-	return null;
-};
+	};

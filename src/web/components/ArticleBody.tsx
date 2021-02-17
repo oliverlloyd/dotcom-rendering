@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { headline } from '@guardian/src-foundations/typography';
 import { between } from '@guardian/src-foundations/mq';
@@ -13,7 +13,7 @@ type Props = {
 	blocks: Block[];
 	adTargeting: AdTargeting;
 	host?: string;
-	abTests: CAPIType['config']['abTests'];
+	abTests: CAPIType[ 'config' ][ 'abTests' ];
 };
 
 const bodyStyle = (display: Display) => css`
@@ -23,8 +23,8 @@ const bodyStyle = (display: Display) => css`
 
 	h2 {
 		${display === Display.Immersive
-			? headline.medium({ fontWeight: 'light' })
-			: headline.xxsmall({ fontWeight: 'bold' })};
+		? headline.medium({ fontWeight: 'light' })
+		: headline.xxsmall({ fontWeight: 'bold' })};
 	}
 
 	strong {
@@ -63,7 +63,7 @@ export const ArticleBody = ({
 			<ArticleRenderer
 				format={format}
 				palette={palette}
-				elements={blocks[0] ? blocks[0].elements : []}
+				elements={blocks[ 0 ] ? blocks[ 0 ].elements : []}
 				adTargeting={adTargeting}
 				host={host}
 				abTests={abTests}

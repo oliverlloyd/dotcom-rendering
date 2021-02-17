@@ -2,7 +2,7 @@ import React from 'react';
 
 import { text } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { pillarPalette } from '@root/src/lib/pillars';
 import TriangleIcon from '@frontend/static/icons/triangle.svg';
 
@@ -35,14 +35,14 @@ export const Caption: React.FC<{
 	displayCredit = true,
 	children,
 }) => {
-	const iconStyle = css`
-		fill: ${pillarPalette[pillar].main};
+		const iconStyle = css`
+		fill: ${pillarPalette[ pillar ].main};
 		padding-right: 3px;
 	`;
 
-	const captionLink = css`
+		const captionLink = css`
 		a {
-			color: ${pillarPalette[pillar].main};
+			color: ${pillarPalette[ pillar ].main};
 			text-decoration: none;
 		}
 		a:hover {
@@ -53,35 +53,35 @@ export const Caption: React.FC<{
 		}
 	`;
 
-	const getCaptionHtml = () => {
+		const getCaptionHtml = () => {
+			return (
+				<span
+					className={captionLink}
+					dangerouslySetInnerHTML={{
+						__html: captionText || '',
+					}}
+					key="caption"
+				/>
+			);
+		};
+
 		return (
-			<span
-				className={captionLink}
-				dangerouslySetInnerHTML={{
-					__html: captionText || '',
-				}}
-				key="caption"
-			/>
+			<figure className={figureStyle}>
+				{children}
+				{captionText && (
+					<>
+						<figcaption
+							className={cx(captionStyle, {
+								[ captionPadding ]: padCaption,
+							})}
+						>
+							<span className={iconStyle}>
+								<TriangleIcon />
+							</span>
+							{getCaptionHtml()} {displayCredit && credit}
+						</figcaption>
+					</>
+				)}
+			</figure>
 		);
 	};
-
-	return (
-		<figure className={figureStyle}>
-			{children}
-			{captionText && (
-				<>
-					<figcaption
-						className={cx(captionStyle, {
-							[captionPadding]: padCaption,
-						})}
-					>
-						<span className={iconStyle}>
-							<TriangleIcon />
-						</span>
-						{getCaptionHtml()} {displayCredit && credit}
-					</figcaption>
-				</>
-			)}
-		</figure>
-	);
-};

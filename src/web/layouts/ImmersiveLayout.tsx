@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import {
 	neutral,
@@ -257,9 +257,9 @@ export const ImmersiveLayout = ({
 
 	const showComments = CAPI.isCommentable;
 
-	const mainMedia = CAPI.mainMediaElements[0] as ImageBlockElement;
+	const mainMedia = CAPI.mainMediaElements[ 0 ] as ImageBlockElement;
 	const captionText = decideCaption(mainMedia);
-	const { branding } = CAPI.commercialProperties[CAPI.editionId];
+	const { branding } = CAPI.commercialProperties[ CAPI.editionId ];
 
 	const HEADLINE_OFFSET = mainMedia ? 120 : 0;
 
@@ -406,8 +406,8 @@ export const ImmersiveLayout = ({
 						{format.design === Design.PhotoEssay ? (
 							<></>
 						) : (
-							<Border />
-						)}
+								<Border />
+							)}
 					</GridItem>
 					<GridItem area="title">
 						<>
@@ -474,19 +474,19 @@ export const ImmersiveLayout = ({
 						{format.design === Design.PhotoEssay ? (
 							<></>
 						) : (
-							<div className={maxWidth}>
-								<div className={stretchLines}>
-									<GuardianLines
-										pillar={format.theme}
-										effect={decideLineEffect(
-											Design.Article,
-											format.theme,
-										)}
-										count={decideLineCount(Design.Article)}
-									/>
+								<div className={maxWidth}>
+									<div className={stretchLines}>
+										<GuardianLines
+											pillar={format.theme}
+											effect={decideLineEffect(
+												Design.Article,
+												format.theme,
+											)}
+											count={decideLineCount(Design.Article)}
+										/>
+									</div>
 								</div>
-							</div>
-						)}
+							)}
 					</GridItem>
 					<GridItem area="meta">
 						<div className={maxWidth}>
@@ -500,7 +500,7 @@ export const ImmersiveLayout = ({
 								tags={CAPI.tags}
 								primaryDateline={CAPI.webPublicationDateDisplay}
 								secondaryDateline={
-									CAPI.blocks[0].secondaryDateLine
+									CAPI.blocks[ 0 ].secondaryDateLine
 								}
 							/>
 						</div>
@@ -562,7 +562,7 @@ export const ImmersiveLayout = ({
 									{mainMedia && (
 										<div
 											className={css`
-												margin-top: ${space[4]}px;
+												margin-top: ${space[ 4 ]}px;
 											`}
 										>
 											<AdSlot
@@ -582,7 +582,7 @@ export const ImmersiveLayout = ({
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
-				backgroundColour={neutral[93]}
+				backgroundColour={neutral[ 93 ]}
 			>
 				<AdSlot
 					position="merchandising-high"
@@ -633,7 +633,7 @@ export const ImmersiveLayout = ({
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
-				backgroundColour={neutral[93]}
+				backgroundColour={neutral[ 93 ]}
 			>
 				<AdSlot position="merchandising" display={format.display} />
 			</Section>

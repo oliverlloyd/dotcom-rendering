@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { space } from '@guardian/src-foundations';
 import { from, until } from '@guardian/src-foundations/mq';
@@ -35,9 +35,9 @@ const SideBySideGrid = ({ children }: { children: React.ReactNode }) => (
 			${ieFallback}
 			@supports (display: grid) {
 				margin-left: 0;
-				margin-right: ${space[3]}px;
+				margin-right: ${space[ 3 ]}px;
 				display: grid;
-				grid-gap: ${space[3]}px;
+				grid-gap: ${space[ 3 ]}px;
 				grid-template-columns:
 					50% /* Left column */
 					50%; /* Right column */
@@ -55,9 +55,9 @@ const OneAboveTwoGrid = ({ children }: { children: React.ReactNode }) => (
 			${ieFallback}
 			@supports (display: grid) {
 				margin-left: 0;
-				margin-right: ${space[3]}px;
+				margin-right: ${space[ 3 ]}px;
 				display: grid;
-				grid-gap: ${space[3]}px;
+				grid-gap: ${space[ 3 ]}px;
 				grid-template-columns:
 					50% /* Left column */
 					50%; /* Right column */
@@ -77,9 +77,9 @@ const GridOfFour = ({ children }: { children: React.ReactNode }) => (
 			${ieFallback}
 			@supports (display: grid) {
 				margin-left: 0;
-				margin-right: ${space[3]}px;
+				margin-right: ${space[ 3 ]}px;
 				display: grid;
-				grid-gap: ${space[3]}px;
+				grid-gap: ${space[ 3 ]}px;
 				grid-template-columns:
 					50% /* Left column */
 					50%; /* Right column */
@@ -117,9 +117,9 @@ export const MultiImageBlockComponent = ({
 					<ImageComponent
 						palette={palette}
 						format={format}
-						element={images[0]}
+						element={images[ 0 ]}
 						hideCaption={true}
-						role={images[0].role}
+						role={images[ 0 ].role}
 					/>
 					{caption && (
 						<Caption
@@ -148,19 +148,19 @@ export const MultiImageBlockComponent = ({
 						<GridItem area="first">
 							<ImageComponent
 								palette={palette}
-								element={images[0]}
+								element={images[ 0 ]}
 								format={format}
 								hideCaption={true}
-								role={images[0].role}
+								role={images[ 0 ].role}
 							/>
 						</GridItem>
 						<GridItem area="second">
 							<ImageComponent
 								palette={palette}
-								element={images[1]}
+								element={images[ 1 ]}
 								format={format}
 								hideCaption={true}
-								role={images[1].role}
+								role={images[ 1 ].role}
 							/>
 						</GridItem>
 					</SideBySideGrid>
@@ -191,28 +191,28 @@ export const MultiImageBlockComponent = ({
 						<GridItem area="first">
 							<ImageComponent
 								palette={palette}
-								element={images[0]}
+								element={images[ 0 ]}
 								format={format}
 								hideCaption={true}
-								role={images[0].role}
+								role={images[ 0 ].role}
 							/>
 						</GridItem>
 						<GridItem area="second">
 							<ImageComponent
 								palette={palette}
-								element={images[1]}
+								element={images[ 1 ]}
 								format={format}
 								hideCaption={true}
-								role={images[1].role}
+								role={images[ 1 ].role}
 							/>
 						</GridItem>
 						<GridItem area="third">
 							<ImageComponent
 								palette={palette}
-								element={images[2]}
+								element={images[ 2 ]}
 								format={format}
 								hideCaption={true}
-								role={images[2].role}
+								role={images[ 2 ].role}
 							/>
 						</GridItem>
 					</OneAboveTwoGrid>
@@ -242,37 +242,37 @@ export const MultiImageBlockComponent = ({
 						<GridItem area="first">
 							<ImageComponent
 								palette={palette}
-								element={images[0]}
+								element={images[ 0 ]}
 								format={format}
 								hideCaption={true}
-								role={images[0].role}
+								role={images[ 0 ].role}
 							/>
 						</GridItem>
 						<GridItem area="second">
 							<ImageComponent
 								palette={palette}
-								element={images[1]}
+								element={images[ 1 ]}
 								format={format}
 								hideCaption={true}
-								role={images[1].role}
+								role={images[ 1 ].role}
 							/>
 						</GridItem>
 						<GridItem area="third">
 							<ImageComponent
 								palette={palette}
-								element={images[2]}
+								element={images[ 2 ]}
 								format={format}
 								hideCaption={true}
-								role={images[2].role}
+								role={images[ 2 ].role}
 							/>
 						</GridItem>
 						<GridItem area="forth">
 							<ImageComponent
 								palette={palette}
-								element={images[3]}
+								element={images[ 3 ]}
 								format={format}
 								hideCaption={true}
-								role={images[3].role}
+								role={images[ 3 ].role}
 							/>
 						</GridItem>
 					</GridOfFour>

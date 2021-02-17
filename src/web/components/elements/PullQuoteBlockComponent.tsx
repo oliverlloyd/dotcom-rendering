@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { Design } from '@guardian/types';
 import { headline } from '@guardian/src-foundations/typography';
@@ -159,7 +159,7 @@ export const PullQuoteBlockComponent: React.FC<{
 						`,
 					)}
 				>
-					<QuoteIcon colour={pillarPalette[pillar].main} />
+					<QuoteIcon colour={pillarPalette[ pillar ].main} />
 					<blockquote
 						className={css`
 							display: inline;
@@ -181,7 +181,7 @@ export const PullQuoteBlockComponent: React.FC<{
 						decidePosition(role, design),
 						decideFont(role),
 						css`
-							color: ${pillarPalette[pillar].main};
+							color: ${pillarPalette[ pillar ].main};
 							line-height: 25px;
 							position: relative;
 							padding-left: 10px;
@@ -193,7 +193,7 @@ export const PullQuoteBlockComponent: React.FC<{
 					)}
 				>
 					<QuoteIcon
-						colour={pillarPalette[pillar].main}
+						colour={pillarPalette[ pillar ].main}
 						size="large"
 					/>
 					<blockquote
@@ -222,13 +222,13 @@ export const PullQuoteBlockComponent: React.FC<{
 							${headline.xxsmall({ fontWeight: 'bold' })};
 							line-height: 25px;
 							position: relative;
-							background-color: ${neutral[97]};
+							background-color: ${neutral[ 97 ]};
 							padding-left: 10px;
 							padding-right: 10px;
 							padding-top: 6px;
 							padding-bottom: 12px;
 							margin-bottom: 1.75rem;
-							color: ${pillarPalette[pillar].dark};
+							color: ${pillarPalette[ pillar ].dark};
 
 							:after {
 								content: '';
@@ -236,12 +236,12 @@ export const PullQuoteBlockComponent: React.FC<{
 								height: 25px;
 								bottom: -25px;
 								position: absolute;
-								background-color: ${neutral[97]};
+								background-color: ${neutral[ 97 ]};
 							}
 						`,
 					)}
 				>
-					<QuoteIcon colour={pillarPalette[pillar].main} />
+					<QuoteIcon colour={pillarPalette[ pillar ].main} />
 					<blockquote
 						className={css`
 							display: inline;

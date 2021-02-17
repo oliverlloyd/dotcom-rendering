@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import ArrowRightIcon from '@frontend/static/icons/arrow-right.svg';
 import {
@@ -39,7 +39,7 @@ const headerStyles = css`
 `;
 
 const messageStyles = (isThankYouMessage: boolean) => css`
-	color: ${brandAlt[400]};
+	color: ${brandAlt[ 400 ]};
 	${headline.xxsmall({ fontWeight: 'bold' })};
 	padding-top: 3px;
 	margin-bottom: 3px;
@@ -50,16 +50,16 @@ const messageStyles = (isThankYouMessage: boolean) => css`
 
 	${from.leftCol} {
 		${isThankYouMessage
-			? headline.small({ fontWeight: 'bold' })
-			: headline.medium({ fontWeight: 'bold' })}
+		? headline.small({ fontWeight: 'bold' })
+		: headline.medium({ fontWeight: 'bold' })}
 	}
 `;
 
 const linkStyles = css`
-	background: ${brandAlt[400]};
+	background: ${brandAlt[ 400 ]};
 	border-radius: 16px;
 	box-sizing: border-box;
-	color: ${neutral[7]};
+	color: ${neutral[ 7 ]};
 	float: left;
 	${textSans.small()};
 	font-weight: 700;
@@ -128,7 +128,7 @@ export const ReaderRevenueLinks: React.FC<Props> = ({
 			<div className={cx(inHeader && headerStyles)}>
 				<div
 					className={cx({
-						[hiddenUntilTablet]: inHeader,
+						[ hiddenUntilTablet ]: inHeader,
 					})}
 				>
 					<div className={messageStyles(true)}> Thank you </div>
@@ -143,7 +143,7 @@ export const ReaderRevenueLinks: React.FC<Props> = ({
 		<div className={cx(inHeader && headerStyles)}>
 			<div
 				className={cx({
-					[hiddenUntilTablet]: inHeader,
+					[ hiddenUntilTablet ]: inHeader,
 				})}
 			>
 				<div className={messageStyles(false)}>
@@ -170,8 +170,8 @@ export const ReaderRevenueLinks: React.FC<Props> = ({
 
 			<div
 				className={cx({
-					[hiddenFromTablet]: inHeader,
-					[hidden]: !inHeader,
+					[ hiddenFromTablet ]: inHeader,
+					[ hidden ]: !inHeader,
 				})}
 			>
 				{edition === 'UK' ? (
@@ -183,14 +183,14 @@ export const ReaderRevenueLinks: React.FC<Props> = ({
 						Subscribe <ArrowRightIcon />
 					</a>
 				) : (
-					<a
-						className={linkStyles}
-						href={urls.contribute}
-						data-link-name={`${dataLinkNamePrefix}support-cta`}
-					>
-						Contribute <ArrowRightIcon />
-					</a>
-				)}
+						<a
+							className={linkStyles}
+							href={urls.contribute}
+							data-link-name={`${dataLinkNamePrefix}support-cta`}
+						>
+							Contribute <ArrowRightIcon />
+						</a>
+					)}
 			</div>
 		</div>
 	);

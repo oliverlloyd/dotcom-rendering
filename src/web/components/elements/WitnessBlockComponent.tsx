@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { neutral, space } from '@guardian/src-foundations';
 import { headline, body } from '@guardian/src-foundations/typography';
@@ -15,60 +15,60 @@ type WrapperProps = {
 // Wrapper Styles
 const wrapperStyles = css`
 	border-width: 1px;
-	border-color: ${neutral[86]};
+	border-color: ${neutral[ 86 ]};
 	border-style: solid;
 `;
 
 const mainContentWrapperStyles = css`
-	padding-left: ${space[2]}px;
-	padding-right: ${space[2]}px;
-	padding-top: ${space[3]}px;
-	padding-bottom: ${space[4]}px;
+	padding-left: ${space[ 2 ]}px;
+	padding-right: ${space[ 2 ]}px;
+	padding-top: ${space[ 3 ]}px;
+	padding-bottom: ${space[ 4 ]}px;
 `;
 
 const witnessIconWrapperStyles = css`
 	${body.small()}
-	padding-left: ${space[2]}px;
-	padding-right: ${space[2]}px;
-	padding-bottom: ${space[2]}px;
+	padding-left: ${space[ 2 ]}px;
+	padding-right: ${space[ 2 ]}px;
+	padding-bottom: ${space[ 2 ]}px;
 `;
 
 const witnessIconStyles = (pillar: Theme) => css`
-	padding-left: ${space[1]}px;
+	padding-left: ${space[ 1 ]}px;
 
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 	${body.small({ fontWeight: 'bold' })}
 `;
 
 const witnessDetailsWrapperStyles = css`
 	border-width: 1px;
-	border-color: ${neutral[86]};
+	border-color: ${neutral[ 86 ]};
 	border-style: solid;
 
-	background-color: ${neutral[97]};
+	background-color: ${neutral[ 97 ]};
 `;
 
 // Non Wrapper Styles
 const captionStyles = css`
-	margin-top: ${space[3]}px;
+	margin-top: ${space[ 3 ]}px;
 `;
 
 const titleStyles = (pillar: Theme) => css`
-	margin-bottom: ${space[2]}px;
-	color: ${pillarPalette[pillar].main};
+	margin-bottom: ${space[ 2 ]}px;
+	color: ${pillarPalette[ pillar ].main};
 	${headline.xxxsmall()}
 `;
 
 const witnessDetailsSpacingStyles = css`
-	padding-left: ${space[2]}px;
-	padding-right: ${space[2]}px;
-	padding-top: ${space[3]}px;
-	padding-bottom: ${space[3]}px;
+	padding-left: ${space[ 2 ]}px;
+	padding-right: ${space[ 2 ]}px;
+	padding-top: ${space[ 3 ]}px;
+	padding-bottom: ${space[ 3 ]}px;
 `;
 
 const authorNameStyles = (pillar: Theme) => css`
 	padding-left: 5px;
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 	${body.small({ fontWeight: 'bold' })}
 `;
 
@@ -88,7 +88,7 @@ export const WitnessWrapper = ({
 						guardian
 						<span
 							className={css`
-								color: ${neutral[46]};
+								color: ${neutral[ 46 ]};
 							`}
 						>
 							witness
@@ -151,7 +151,7 @@ export const WitnessImageBlockComponent = ({
 	const bestImgSource =
 		assets.find(
 			(asset) => asset.typeData.name === 'mediumoriginalaspectdouble',
-		) || assets[0];
+		) || assets[ 0 ];
 	return (
 		<WitnessWrapper
 			authorName={authorName}

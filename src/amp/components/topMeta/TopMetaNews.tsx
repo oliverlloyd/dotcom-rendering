@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { palette } from '@guardian/src-foundations';
 import { headline } from '@guardian/src-foundations/typography';
 import { pillarPalette } from '@root/src/lib/pillars';
@@ -20,17 +20,17 @@ const headerStyle = css`
 	font-weight: 500;
 	padding-bottom: 24px;
 	padding-top: 3px;
-	color: ${palette.neutral[7]};
+	color: ${palette.neutral[ 7 ]};
 `;
 const bylineStyle = (pillar: Theme) => css`
 	${headline.xxxsmall()};
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 	padding-bottom: 8px;
 	font-style: italic;
 
 	a {
 		font-weight: 700;
-		color: ${pillarPalette[pillar].main};
+		color: ${pillarPalette[ pillar ].main};
 		text-decoration: none;
 		font-style: normal;
 	}

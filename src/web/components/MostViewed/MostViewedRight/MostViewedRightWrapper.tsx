@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, RefObject } from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { MostViewedRight } from './MostViewedRight';
 
@@ -18,7 +18,7 @@ const flexGrow = css`
 // Wrapping MostViewedRight so we can determine whether or not there's enough vertical space in the container to render it.
 export const MostViewedRightWrapper = ({ pillar, limitItems }: Props) => {
 	const bodyRef = useRef<HTMLDivElement>(null);
-	const [heightIsAvailable, setHeightIsAvailable] = useState<boolean>(false);
+	const [ heightIsAvailable, setHeightIsAvailable ] = useState<boolean>(false);
 
 	useEffect(() => {
 		const checkHeight = (ref: RefObject<HTMLDivElement>) => {
@@ -40,7 +40,7 @@ export const MostViewedRightWrapper = ({ pillar, limitItems }: Props) => {
 		setTimeout(() => {
 			checkHeight(bodyRef);
 		});
-	}, [heightIsAvailable]);
+	}, [ heightIsAvailable ]);
 
 	return (
 		<div ref={bodyRef} className={flexGrow}>

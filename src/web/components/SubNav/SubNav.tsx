@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { text, news, neutral } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
@@ -55,7 +55,7 @@ const fontStyle = css`
 		font-size: 16px;
 	}
 	font-weight: 500;
-	color: ${neutral[7]};
+	color: ${neutral[ 7 ]};
 	padding: 0 5px;
 	height: 36px;
 	/* Design System: Line height is being used here for centering layout, we need the primitives */
@@ -99,7 +99,7 @@ const showMoreStyle = css`
 	color: ${text.supporting};
 
 	:hover {
-		color: ${news[400]};
+		color: ${news[ 400 ]};
 	}
 
 	${from.desktop} {
@@ -120,7 +120,7 @@ const listItemStyles = (palette: Palette) => css`
 		height: 0;
 		border-top: 6px solid transparent;
 		border-bottom: 6px solid transparent;
-		border-left: 10px solid ${neutral[7]};
+		border-left: 10px solid ${neutral[ 7 ]};
 		margin-top: 12px;
 		margin-left: 2px;
 		border-left-color: ${palette.border.subNav};
@@ -135,15 +135,15 @@ const trimLeadingSlash = (url: string): string =>
 	url.substr(0, 1) === '/' ? url.slice(1) : url;
 
 export const SubNav = ({ subNavSections, palette, currentNavLink }: Props) => {
-	const [showMore, setShowMore] = useState(false);
-	const [isExpanded, setIsExpanded] = useState(false);
+	const [ showMore, setShowMore ] = useState(false);
+	const [ isExpanded, setIsExpanded ] = useState(false);
 	const ulRef = useRef<HTMLUListElement>(null);
 
 	useEffect(() => {
 		const ulEl = ulRef.current;
 		if (ulEl) {
 			const lis = ulEl.querySelectorAll('li');
-			const lastLi = lis[lis.length - 1];
+			const lastLi = lis[ lis.length - 1 ];
 
 			const ulTop = ulEl.getBoundingClientRect().top;
 			const liTop = lastLi.getBoundingClientRect().top;
@@ -161,7 +161,7 @@ export const SubNav = ({ subNavSections, palette, currentNavLink }: Props) => {
 		<div
 			data-print-layout="hide"
 			className={cx(
-				{ [wrapperCollapsed]: collapseWrapper },
+				{ [ wrapperCollapsed ]: collapseWrapper },
 				spaceBetween,
 			)}
 			data-cy="sub-nav"
@@ -170,8 +170,8 @@ export const SubNav = ({ subNavSections, palette, currentNavLink }: Props) => {
 			<ul
 				ref={ulRef}
 				className={cx({
-					[collapsedStyles]: !expandSubNav,
-					[expandedStyles]: expandSubNav,
+					[ collapsedStyles ]: !expandSubNav,
+					[ expandedStyles ]: expandSubNav,
 				})}
 			>
 				{subNavSections.parent && (
@@ -191,7 +191,7 @@ export const SubNav = ({ subNavSections, palette, currentNavLink }: Props) => {
 					<li key={link.url}>
 						<a
 							className={cx(linkStyle, {
-								[selected]: link.title === currentNavLink,
+								[ selected ]: link.title === currentNavLink,
 							})}
 							href={link.url}
 							data-link-name={`nav2 : subnav : ${trimLeadingSlash(

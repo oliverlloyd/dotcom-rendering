@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { pillarPalette, neutralBorder } from '@root/src/lib/pillars';
 import { text } from '@guardian/src-foundations/palette';
@@ -28,7 +28,7 @@ const linkStyle = (pillar: Theme) => css`
 	padding-left: 5px;
 	padding-right: 6px;
 	text-decoration: none;
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 	${textSans.small()};
 	:after {
 		content: '/';
@@ -37,7 +37,7 @@ const linkStyle = (pillar: Theme) => css`
 		pointer-events: none;
 		top: 0;
 		right: -3px;
-		color: ${palette.neutral[86]};
+		color: ${palette.neutral[ 86 ]};
 	}
 `;
 
@@ -63,7 +63,7 @@ const sectionLinkStyle = (pillar: Theme) => css`
 	padding-left: 5px;
 	padding-right: 6px;
 	text-decoration: none;
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 	${body.medium()};
 	:after {
 		content: '/';
@@ -72,7 +72,7 @@ const sectionLinkStyle = (pillar: Theme) => css`
 		pointer-events: none;
 		top: 0;
 		right: -3px;
-		color: ${palette.neutral[86]};
+		color: ${palette.neutral[ 86 ]};
 	}
 `;
 
@@ -97,7 +97,7 @@ const siteLinkStyle = css`
 	${textSans.small()};
 	font-weight: bold;
 	text-decoration: none;
-	color: ${palette.neutral[7]};
+	color: ${palette.neutral[ 7 ]};
 	text-align: right;
 `;
 
@@ -115,7 +115,7 @@ export const SubMeta: React.FC<{
 	sections: SimpleLinkType[];
 	keywords: SimpleLinkType[];
 	sharingURLs: {
-		[K in SharePlatform]?: {
+		[ K in SharePlatform ]?: {
 			url: string;
 			userMessage: string;
 		};
@@ -132,66 +132,66 @@ export const SubMeta: React.FC<{
 	isCommentable,
 	guardianBaseURL,
 }) => {
-	const sectionListItems = sections.map((link) => (
-		<li className={itemStyle} key={link.url}>
-			<a
-				className={sectionLinkStyle(pillar)}
-				href={`${guardianBaseURL}${link.url}`}
-			>
-				{link.title}
-			</a>
-		</li>
-	));
+		const sectionListItems = sections.map((link) => (
+			<li className={itemStyle} key={link.url}>
+				<a
+					className={sectionLinkStyle(pillar)}
+					href={`${guardianBaseURL}${link.url}`}
+				>
+					{link.title}
+				</a>
+			</li>
+		));
 
-	const keywordListItems = keywords.map((link) => (
-		<li className={itemStyle} key={link.url}>
-			<a
-				className={linkStyle(pillar)}
-				href={`${guardianBaseURL}${link.url}`}
-			>
-				{link.title}
-			</a>
-		</li>
-	));
+		const keywordListItems = keywords.map((link) => (
+			<li className={itemStyle} key={link.url}>
+				<a
+					className={linkStyle(pillar)}
+					href={`${guardianBaseURL}${link.url}`}
+				>
+					{link.title}
+				</a>
+			</li>
+		));
 
-	return (
-		<>
-			<div className={guardianLines(pillar)}>
-				<span className={labelStyle}>Topics</span>
-				<ul className={sectionListStyle}>{sectionListItems}</ul>
-				<ul className={keywordListStyle(pillar)}>{keywordListItems}</ul>
-			</div>
-			<ShareIcons
-				className={shareIcons}
-				sharingUrls={sharingURLs}
-				pillar={pillar}
-				displayIcons={[
-					'facebook',
-					'twitter',
-					'email',
-					'linkedIn',
-					'pinterest',
-					'whatsApp',
-					'messenger',
-				]}
-			/>
-			{/* TODO link to actual (non-AMP) site here. Also handle comment count behaviour. */}
-			<div className={cx(guardianLines(pillar), siteLinks)}>
-				{isCommentable && (
+		return (
+			<>
+				<div className={guardianLines(pillar)}>
+					<span className={labelStyle}>Topics</span>
+					<ul className={sectionListStyle}>{sectionListItems}</ul>
+					<ul className={keywordListStyle(pillar)}>{keywordListItems}</ul>
+				</div>
+				<ShareIcons
+					className={shareIcons}
+					sharingUrls={sharingURLs}
+					pillar={pillar}
+					displayIcons={[
+						'facebook',
+						'twitter',
+						'email',
+						'linkedIn',
+						'pinterest',
+						'whatsApp',
+						'messenger',
+					]}
+				/>
+				{/* TODO link to actual (non-AMP) site here. Also handle comment count behaviour. */}
+				<div className={cx(guardianLines(pillar), siteLinks)}>
+					{isCommentable && (
+						<a
+							className={siteLinkStyle}
+							href={`${guardianBaseURL}/${pageID}#comments`}
+						>
+							<CommentIcon className={commentIcon} /> View comments
+						</a>
+					)}
 					<a
 						className={siteLinkStyle}
-						href={`${guardianBaseURL}/${pageID}#comments`}
+						href={`${guardianBaseURL}/${pageID}`}
 					>
-						<CommentIcon className={commentIcon} /> View comments
-					</a>
-				)}
-				<a
-					className={siteLinkStyle}
-					href={`${guardianBaseURL}/${pageID}`}
-				>
-					View on theguardian.com
+						View on theguardian.com
 				</a>
-			</div>
-		</>
-	);
-};
+				</div>
+			</>
+		);
+	};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import fetchMock from 'fetch-mock';
 
 import { Pillar, Design, Display } from '@guardian/types';
@@ -61,7 +61,7 @@ export const Both = () => {
 							design: Design.Article,
 							display: Display.Standard,
 						})}
-						setIsExpanded={() => {}}
+						setIsExpanded={() => { }}
 					/>
 				</div>
 			</Counts>
@@ -106,7 +106,7 @@ export const ShareOnly = () => {
 							design: Design.Article,
 							display: Display.Standard,
 						})}
-						setIsExpanded={() => {}}
+						setIsExpanded={() => { }}
 					/>
 				</div>
 			</Counts>
@@ -151,7 +151,7 @@ export const CommentOnly = () => {
 							design: Design.Article,
 							display: Display.Standard,
 						})}
-						setIsExpanded={() => {}}
+						setIsExpanded={() => { }}
 					/>
 				</div>
 			</Counts>
@@ -196,7 +196,7 @@ export const ZeroComments = () => {
 							design: Design.Article,
 							display: Display.Standard,
 						})}
-						setIsExpanded={() => {}}
+						setIsExpanded={() => { }}
 					/>
 				</div>
 			</Counts>
@@ -241,7 +241,7 @@ export const BigNumbers = () => {
 							design: Design.Article,
 							display: Display.Standard,
 						})}
-						setIsExpanded={() => {}}
+						setIsExpanded={() => { }}
 					/>
 				</div>
 			</Counts>

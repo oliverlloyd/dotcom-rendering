@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { Section } from '@root/src/web/components/Section';
 import { LeftColumn } from '@root/src/web/components/LeftColumn';
@@ -48,12 +48,12 @@ const Container = ({
 	`;
 
 	const margins = css`
-		margin-top: ${space[2]}px;
+		margin-top: ${space[ 2 ]}px;
 		/*
            Keep spacing at the bottom of the container consistent at 36px, regardless of
            breakpoint, based on chat with Harry Fisher
         */
-		margin-bottom: ${space[9]}px;
+		margin-bottom: ${space[ 9 ]}px;
 	`;
 
 	const rightMargin = css`

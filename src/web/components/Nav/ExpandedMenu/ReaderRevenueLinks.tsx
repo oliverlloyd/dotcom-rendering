@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { from } from '@guardian/src-foundations/mq';
 import { brandText, brandAlt } from '@guardian/src-foundations/palette';
@@ -38,7 +38,7 @@ const columnLinkTitle = css`
 
 	:hover,
 	:focus {
-		color: ${brandAlt[400]};
+		color: ${brandAlt[ 400 ]};
 		text-decoration: underline;
 	}
 
@@ -81,7 +81,7 @@ export const ReaderRevenueLinks: React.FC<{
 				<li
 					key={link.title.toLowerCase()}
 					className={cx(mainMenuLinkStyle, {
-						[hideDesktop]: !!link.mobileOnly,
+						[ hideDesktop ]: !!link.mobileOnly,
 					})}
 					role="none"
 				>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { palette } from '@guardian/src-foundations';
 import { text } from '@guardian/src-foundations/palette';
@@ -12,13 +12,13 @@ const richLinkContainer = css`
 	padding: 4px;
 	padding-bottom: 18px;
 	margin: 4px 10px 12px 0;
-	background-color: ${palette.neutral[93]};
-	border-top: 1px solid ${palette.neutral[86]};
+	background-color: ${palette.neutral[ 93 ]};
+	border-top: 1px solid ${palette.neutral[ 86 ]};
 	margin-right: 20px;
 `;
 
 const pillarColour = (pillar: Theme) => css`
-	color: ${pillarPalette[pillar].dark};
+	color: ${pillarPalette[ pillar ].dark};
 `;
 
 const richLink = css`

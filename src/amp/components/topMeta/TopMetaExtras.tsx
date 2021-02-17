@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import ClockIcon from '@frontend/static/icons/clock.svg';
 import { ShareIcons } from '@root/src/amp/components/ShareIcons';
 import { neutral, text } from '@guardian/src-foundations/palette';
@@ -10,14 +10,14 @@ import TwitterIcon from '@frontend/static/icons/twitter.svg';
 const pillarColours = pillarMap(
 	(pillar) =>
 		css`
-			color: ${pillarPalette[pillar].main};
+			color: ${pillarPalette[ pillar ].main};
 		`,
 );
 
 const pillarFill = pillarMap(
 	(pillar) =>
 		css`
-			fill: ${pillarPalette[pillar].main};
+			fill: ${pillarPalette[ pillar ].main};
 		`,
 );
 
@@ -42,7 +42,7 @@ const borders = (pillar: Theme) => css`
 `;
 
 type SharingURLs = {
-	[K in SharePlatform]?: {
+	[ K in SharePlatform ]?: {
 		url: string;
 		userMessage: string;
 	};
@@ -58,7 +58,7 @@ const metaStyle = css`
 `;
 
 const twitterIcon = css`
-	fill: ${neutral[46]};
+	fill: ${neutral[ 46 ]};
 	height: 12px;
 	margin-bottom: -2px;
 	width: 12px;
@@ -80,8 +80,8 @@ const AgeWarning: React.FC<{
 		<div
 			className={cx(
 				ageWarningCss,
-				pillarColours[pillar],
-				pillarFill[pillar],
+				pillarColours[ pillar ],
+				pillarFill[ pillar ],
 			)}
 		>
 			<ClockIcon /> {warning}
@@ -116,17 +116,17 @@ export const TopMetaExtras: React.FC<{
 	ageWarning,
 	twitterHandle,
 }) => (
-	<div className={metaExtras}>
-		<TwitterHandle handle={twitterHandle} />
-		<WebPublicationDate date={webPublicationDate} />
+		<div className={metaExtras}>
+			<TwitterHandle handle={twitterHandle} />
+			<WebPublicationDate date={webPublicationDate} />
 
-		<div className={borders(pillar)}>
-			<ShareIcons
-				sharingUrls={sharingUrls}
-				pillar={pillar}
-				displayIcons={['facebook', 'twitter', 'email']}
-			/>
-			<AgeWarning warning={ageWarning} pillar={pillar} />
+			<div className={borders(pillar)}>
+				<ShareIcons
+					sharingUrls={sharingUrls}
+					pillar={pillar}
+					displayIcons={[ 'facebook', 'twitter', 'email' ]}
+				/>
+				<AgeWarning warning={ageWarning} pillar={pillar} />
+			</div>
 		</div>
-	</div>
-);
+	);

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Design, Display, Pillar, Special } from '@guardian/types';
 
@@ -23,7 +23,7 @@ export const SpecialReportStory = () => {
 		>
 			<CommentCount
 				isCommentable={true}
-				setIsExpanded={() => {}}
+				setIsExpanded={() => { }}
 				commentCount={306}
 				palette={decidePalette({
 					theme: Special.SpecialReport,
@@ -47,7 +47,7 @@ export const NewsStory = () => {
 		>
 			<CommentCount
 				isCommentable={true}
-				setIsExpanded={() => {}}
+				setIsExpanded={() => { }}
 				commentCount={36}
 				palette={decidePalette({
 					theme: Pillar.News,
@@ -71,7 +71,7 @@ export const LargeNumber = () => {
 		>
 			<CommentCount
 				isCommentable={true}
-				setIsExpanded={() => {}}
+				setIsExpanded={() => { }}
 				commentCount={10836}
 				palette={decidePalette({
 					theme: Pillar.Opinion,

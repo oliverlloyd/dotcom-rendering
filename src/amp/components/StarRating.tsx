@@ -1,10 +1,10 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import Star from '@frontend/static/icons/star.svg';
 import { palette } from '@guardian/src-foundations';
 
 const ratingsWrapper = css`
-	background-color: ${palette.brandAlt[400]};
+	background-color: ${palette.brandAlt[ 400 ]};
 	display: inline-block;
 `;
 
@@ -26,7 +26,7 @@ const smallSize = css`
 
 const emptyStar = css`
 	fill: transparent;
-	stroke: ${palette.neutral[7]};
+	stroke: ${palette.neutral[ 7 ]};
 `;
 
 export const StarRating: React.FC<{

@@ -1,12 +1,12 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { palette } from '@guardian/src-foundations';
 import { headline, textSans } from '@guardian/src-foundations/typography';
 import { createAuthenticationEventParams } from '@root/src/lib/identity-component-event';
 
 const sidebarStyles = css`
 	width: 80vh;
-	background-color: ${palette.brand[400]};
+	background-color: ${palette.brand[ 400 ]};
 
 	[aria-expanded='true'] {
 		i {
@@ -30,7 +30,7 @@ const toggle = css`
 		position: absolute;
 
 		:before {
-			border: 2px solid ${palette.neutral[100]};
+			border: 2px solid ${palette.neutral[ 100 ]};
 			border-top: 0;
 			border-left: 0;
 			content: '';
@@ -38,7 +38,7 @@ const toggle = css`
 			height: 8px;
 			transform: rotate(45deg);
 			width: 8px;
-			color: ${palette.neutral[100]};
+			color: ${palette.neutral[ 100 ]};
 		}
 	}
 `;
@@ -55,7 +55,7 @@ const pillarLink = css`
 	text-align: left;
 	width: 100%;
 	font-weight: 700;
-	color: ${palette.neutral[100]};
+	color: ${palette.neutral[ 100 ]};
 	${toggle};
 `;
 
@@ -63,7 +63,7 @@ const link = css`
 	background-color: transparent;
 	border: 0;
 	box-sizing: border-box;
-	color: ${palette.neutral[100]};
+	color: ${palette.neutral[ 100 ]};
 	text-decoration: none;
 	display: block;
 	${textSans.large({ lineHeight: 'tight' })};
@@ -76,7 +76,7 @@ const link = css`
 `;
 
 const subLinks = css`
-	background-color: ${palette.brand[300]};
+	background-color: ${palette.brand[ 300 ]};
 	padding-bottom: 12px;
 
 	a {
@@ -93,7 +93,7 @@ const otherLinks = css`
 const membershipLinks = css`
 	a {
 		font-weight: 700;
-		color: ${palette.brandAlt[400]};
+		color: ${palette.brandAlt[ 400 ]};
 	}
 `;
 
@@ -160,8 +160,8 @@ const template = `
 
 <li>
     <a href="https://profile.theguardian.com/signin?INTCMP=DOTCOM_NEWHEADER_SIGNIN&ABCMP=ab-sign-in&${createAuthenticationEventParams(
-		'amp_sidebar_signin',
-	)}"
+	'amp_sidebar_signin',
+)}"
         data-link-name="amp : nav : sign in">
         Sign in / Register
     </a>

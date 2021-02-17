@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Lines } from '@guardian/src-ed-lines';
 import { remSpace } from '@guardian/src-foundations';
@@ -13,7 +13,7 @@ const linesCssOverwrite = (pillar: Theme) => css`
 			${neutralBorder(pillar)},
 			${neutralBorder(pillar)} 1px,
 			transparent 1px,
-			transparent ${remSpace[1]}
+			transparent ${remSpace[ 1 ]}
 		);
 	}
 `;

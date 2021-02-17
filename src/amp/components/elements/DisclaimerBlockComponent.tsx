@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { pillarPalette } from '@root/src/lib/pillars';
 import { textSans } from '@guardian/src-foundations/typography';
 
@@ -7,7 +7,7 @@ const style = (pillar: Theme) => css`
 	${textSans.small()};
 
 	a {
-		color: ${pillarPalette[pillar].dark};
+		color: ${pillarPalette[ pillar ].dark};
 	}
 `;
 

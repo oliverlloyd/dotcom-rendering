@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { Design } from '@guardian/types';
 import { headline } from '@guardian/src-foundations/typography';
@@ -46,7 +46,7 @@ const colourStyles = (design: Design, pillar: Theme) => {
 	switch (design) {
 		default:
 			return css`
-				color: ${pillarPalette[pillar].main};
+				color: ${pillarPalette[ pillar ].main};
 			`;
 	}
 };

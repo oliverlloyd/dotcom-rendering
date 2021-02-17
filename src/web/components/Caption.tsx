@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { from, until } from '@guardian/src-foundations/mq';
 import { textSans } from '@guardian/src-foundations/typography';
@@ -86,7 +86,7 @@ const captionPadding = css`
 
 const bigLeftMargin = css`
 	width: inherit;
-	margin-left: ${space[9]}px;
+	margin-left: ${space[ 9 ]}px;
 	${until.wide} {
 		margin-left: 20px;
 		margin-right: 20px;
@@ -145,12 +145,12 @@ export const Caption = ({
 							${textSans.xsmall({ lineHeight: 'tight' })};
 							color: ${palette.text.caption};
 							width: 100%;
-							margin-top: ${space[3]}px;
+							margin-top: ${space[ 3 ]}px;
 							li:not(:first-child) {
-								margin-top: ${space[3]}px;
+								margin-top: ${space[ 3 ]}px;
 							}
 							li {
-								padding-top: ${space[2]}px;
+								padding-top: ${space[ 2 ]}px;
 								border-top: 1px solid ${palette.text.caption};
 							}
 						`,
@@ -182,7 +182,7 @@ export const Caption = ({
 						!isOverlayed && bottomMargin,
 						isOverlayed && overlayedStyles,
 						{
-							[captionPadding]: padCaption,
+							[ captionPadding ]: padCaption,
 						},
 					)}
 				>
@@ -190,7 +190,7 @@ export const Caption = ({
 						className={cx(
 							iconStyle(palette),
 							format.display === Display.Immersive &&
-								hideIconBelowLeftCol,
+							hideIconBelowLeftCol,
 						)}
 					>
 						<TriangleIcon />

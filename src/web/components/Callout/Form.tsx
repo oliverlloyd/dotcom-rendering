@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Link } from '@guardian/src-link';
 import { Button } from '@guardian/src-button';
@@ -38,7 +38,7 @@ const formFieldWrapperStyles = css`
 	flex-direction: column;
 `;
 
-type FormDataType = { [key in string]: any };
+type FormDataType = { [ key in string ]: any };
 
 type FormFieldProp = {
 	formField: CampaignFieldType;
@@ -116,8 +116,8 @@ type FormProps = {
 };
 
 export const Form = ({ onSubmit, formFields, error }: FormProps) => {
-	const [twitterHandle, setTwitterHandle] = useState('');
-	const [formData, setFormData] = useState<{ [key in string]: any }>({});
+	const [ twitterHandle, setTwitterHandle ] = useState('');
+	const [ formData, setFormData ] = useState<{ [ key in string ]: any }>({});
 
 	return (
 		<form

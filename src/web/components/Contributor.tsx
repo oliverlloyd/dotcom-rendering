@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Design } from '@guardian/types';
 import { neutral } from '@guardian/src-foundations/palette';
@@ -21,7 +21,7 @@ const twitterHandleStyles = (palette: Palette) => css`
 		height: 10px;
 		max-width: 12px;
 		margin-right: 0px;
-		fill: ${neutral[46]};
+		fill: ${neutral[ 46 ]};
 	}
 
 	a {

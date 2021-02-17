@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { until, from, Breakpoint } from '@guardian/src-foundations/mq';
 
 type Props = {
@@ -12,13 +12,13 @@ export const Hide = ({ children, when, breakpoint }: Props) => {
 	let whenToHide;
 	if (when === 'below') {
 		whenToHide = css`
-			${until[breakpoint]} {
+			${until[ breakpoint ]} {
 				display: none;
 			}
 		`;
 	} else {
 		whenToHide = css`
-			${from[breakpoint]} {
+			${from[ breakpoint ]} {
 				display: none;
 			}
 		`;

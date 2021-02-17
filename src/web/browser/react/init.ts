@@ -1,5 +1,5 @@
 import '../webpackPublicPath';
-import { hydrate as hydrateCSS } from 'emotion';
+import { hydrate as hydrateCSS } from '@emotion/css';
 
 import { startup } from '@root/src/web/browser/startup';
 

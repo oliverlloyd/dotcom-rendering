@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Design } from '@guardian/types';
 import { Lines } from '@guardian/src-ed-lines';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import {
 	brandAlt,
@@ -49,8 +49,8 @@ const StretchBackground = ({ children }: { children: React.ReactNode }) => (
 			flex-direction: column;
 			justify-content: space-between;
 			position: relative;
-			padding: ${space[2]}px;
-			background-color: ${brandAlt[400]};
+			padding: ${space[ 2 ]}px;
+			background-color: ${brandAlt[ 400 ]};
 			margin-bottom: 10px;
 			${until.tablet} {
 				margin: 0 -10px 10px;
@@ -63,7 +63,7 @@ const StretchBackground = ({ children }: { children: React.ReactNode }) => (
 				bottom: 0;
 				width: 100vw;
 				left: -100vw;
-				background-color: ${brandAlt[400]};
+				background-color: ${brandAlt[ 400 ]};
 				z-index: -1;
 			}
 		`}
@@ -97,8 +97,8 @@ const TeamName = ({ name }: { name: string }) => (
 const Scorers = ({ scorers }: { scorers: string[] }) => (
 	<ul
 		className={css`
-			margin-top: ${space[1]}px;
-			margin-bottom: ${space[3]}px;
+			margin-top: ${space[ 1 ]}px;
+			margin-bottom: ${space[ 3 ]}px;
 		`}
 	>
 		{scorers.map((player) => (
@@ -175,7 +175,7 @@ const TeamNav = ({
 				<Crest crest={crest} />
 				<div
 					className={css`
-						margin-left: -${space[2]}px;
+						margin-left: -${space[ 2 ]}px;
 					`}
 				>
 					<Score score={score} />
@@ -189,8 +189,8 @@ const Comments = ({ comments }: { comments: string }) => (
 	<div
 		className={css`
 			${textSans.small()}
-			margin-top: ${space[2]}px;
-			padding-top: ${space[1]}px;
+			margin-top: ${space[ 2 ]}px;
+			padding-top: ${space[ 1 ]}px;
 			font-style: italic;
 			/* stylelint-disable-next-line color-no-hex */
 			border-top: 1px solid #d0bb04;
@@ -205,8 +205,8 @@ const YellowBorder = () => (
 		className={css`
 			/* stylelint-disable-next-line color-no-hex */
 			border-left: 1px solid #d0bb04;
-			margin-left: ${space[1]}px;
-			width: ${space[2]}px;
+			margin-left: ${space[ 1 ]}px;
+			width: ${space[ 2 ]}px;
 		`}
 	/>
 );
@@ -218,8 +218,8 @@ const GreyBorder = () => (
 		className={css`
 			/* stylelint-disable-next-line color-no-hex */
 			border-left: ${thinGreySolid};
-			margin-left: ${space[1]}px;
-			width: ${space[2]}px;
+			margin-left: ${space[ 1 ]}px;
+			width: ${space[ 2 ]}px;
 		`}
 	/>
 );
@@ -236,16 +236,16 @@ const tab = css`
 	border-top: 3px solid ${border.secondary};
 
 	:nth-child(1) {
-		border-top: 3px solid ${palette.sport[300]};
+		border-top: 3px solid ${palette.sport[ 300 ]};
 	}
 `;
 
 const tabLink = css`
-	color: ${palette.sport[300]};
+	color: ${palette.sport[ 300 ]};
 	display: block;
 	text-decoration: none;
 	&:hover {
-		background-color: ${palette.neutral[93]};
+		background-color: ${palette.neutral[ 93 ]};
 	}
 `;
 

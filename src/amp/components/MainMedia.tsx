@@ -1,6 +1,6 @@
 import React from 'react';
 import { bestFitImage, heightEstimate } from '@root/src/amp/lib/image-fit';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { palette } from '@guardian/src-foundations';
 import { textSans } from '@guardian/src-foundations/typography';
 import { visuallyHidden } from '@guardian/src-foundations/accessibility';
@@ -23,7 +23,7 @@ const captionStyle = css`
 	right: 0;
 	bottom: 0;
 	background: rgba(18, 18, 18, 0.8);
-	color: ${palette.neutral[100]};
+	color: ${palette.neutral[ 100 ]};
 	display: none;
 	padding: 6px 40px 12px 10px;
 	max-width: 100%;
@@ -59,7 +59,7 @@ const labelStyle = css`
 		left: 0;
 		margin: auto;
 		position: absolute;
-		fill: ${palette.neutral[100]};
+		fill: ${palette.neutral[ 100 ]};
 	}
 `;
 
@@ -70,7 +70,7 @@ const mainImage = (element: ImageBlockElement) => {
 		containerWidth,
 	);
 	const height: number = heightEstimate(
-		element.media.allImages[0],
+		element.media.allImages[ 0 ],
 		image.width,
 	);
 
@@ -91,30 +91,30 @@ const mainImage = (element: ImageBlockElement) => {
 			/>
 			{(element.data.caption ||
 				(element.data.credit && element.displayCredit)) && (
-				<>
-					<input
-						aria-checked={false}
-						type="checkbox"
-						id="show-caption"
-						className={inputStyle}
-					/>
-					{/* eslint-disable jsx-a11y/label-has-associated-control */}
-					<label className={labelStyle} htmlFor="show-caption">
-						<span
-							className={css`
+					<>
+						<input
+							aria-checked={false}
+							type="checkbox"
+							id="show-caption"
+							className={inputStyle}
+						/>
+						{/* eslint-disable jsx-a11y/label-has-associated-control */}
+						<label className={labelStyle} htmlFor="show-caption">
+							<span
+								className={css`
 								${visuallyHidden}
 							`}
-						>
-							Show caption
+							>
+								Show caption
 						</span>
-						<InfoIcon />
-					</label>
-					<figcaption className={captionStyle}>
-						{element.data.caption}{' '}
-						{element.displayCredit && element.data.credit}
-					</figcaption>
-				</>
-			)}
+							<InfoIcon />
+						</label>
+						<figcaption className={captionStyle}>
+							{element.data.caption}{' '}
+							{element.displayCredit && element.data.credit}
+						</figcaption>
+					</>
+				)}
 		</figure>
 	);
 };

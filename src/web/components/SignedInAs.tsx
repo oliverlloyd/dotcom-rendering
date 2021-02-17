@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { text, border, neutral, news } from '@guardian/src-foundations/palette';
 import { headline, textSans } from '@guardian/src-foundations/typography';
@@ -17,8 +17,8 @@ type Props = {
 };
 
 const containerStyles = css`
-	padding-top: ${space[1]}px;
-	padding-bottom: ${space[1]}px;
+	padding-top: ${space[ 1 ]}px;
+	padding-bottom: ${space[ 1 ]}px;
 `;
 
 const imageStyles = css`
@@ -32,13 +32,13 @@ const imageStyles = css`
 `;
 
 const imageWrapper = css`
-	padding-bottom: ${space[1]}px;
-	padding-right: ${space[2]}px;
+	padding-bottom: ${space[ 1 ]}px;
+	padding-right: ${space[ 2 ]}px;
 `;
 
 const headingStyles = css`
 	${headline.xxsmall({ fontWeight: 'bold' })};
-	padding-bottom: ${space[1]}px;
+	padding-bottom: ${space[ 1 ]}px;
 `;
 
 const textStyles = css`
@@ -47,13 +47,13 @@ const textStyles = css`
 		${textSans.xsmall()}
 	}
 	color: ${text.supporting};
-	padding-bottom: ${space[1]}px;
+	padding-bottom: ${space[ 1 ]}px;
 `;
 
 const headlineStyles = css`
 	${headline.xxxsmall()}
 	color: ${text.supporting};
-	padding-bottom: ${space[1]}px;
+	padding-bottom: ${space[ 1 ]}px;
 `;
 
 const usernameStyles = css`
@@ -62,12 +62,12 @@ const usernameStyles = css`
 `;
 
 const linkStyles = (pillar: Theme) => css`
-	color: ${pillarPalette[pillar].dark};
+	color: ${pillarPalette[ pillar ].dark};
 	text-decoration: none;
 	border-bottom: 1px solid ${border.secondary};
 	transition: border-color 0.15s ease-out;
 	:hover {
-		border-color: ${news[300]};
+		border-color: ${news[ 300 ]};
 	}
 `;
 
@@ -97,7 +97,7 @@ export const SignedInAs = ({
 				comments{' '}
 				<span
 					className={css`
-						color: ${neutral[60]};
+						color: ${neutral[ 60 ]};
 					`}
 				>
 					({commentCount})

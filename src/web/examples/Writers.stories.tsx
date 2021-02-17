@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { ContainerLayout } from '@frontend/web/components/ContainerLayout';
 import { Section } from '@frontend/web/components/Section';
@@ -33,7 +33,7 @@ const Grey = ({
 }) => (
 	<div
 		className={css`
-			background-color: ${neutral[93]};
+			background-color: ${neutral[ 93 ]};
 			width: 100%;
 			height: ${heightInPixels}px;
 			margin: ${padded && '10px'};
@@ -46,7 +46,7 @@ const Author = (): JSX.Element => (
 		className={css`
 			padding-top: 0.25rem;
 			padding-bottom: 0.75rem;
-			border-top: 0.0625rem solid ${neutral[93]};
+			border-top: 0.0625rem solid ${neutral[ 93 ]};
 			${headline.xxxsmall({ fontWeight: 'bold' })}
 		`}
 	>

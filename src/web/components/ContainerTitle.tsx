@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { text } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
@@ -18,8 +18,8 @@ const linkStyles = css`
 const headerStyles = (fontColour?: string) => css`
 	${headline.xsmall({ fontWeight: 'bold' })};
 	color: ${fontColour || text.primary};
-	padding-bottom: ${space[2]}px;
-	padding-top: ${space[1]}px;
+	padding-bottom: ${space[ 2 ]}px;
+	padding-top: ${space[ 1 ]}px;
 	margin-left: 0;
 
 	${from.tablet} {
@@ -36,7 +36,7 @@ const descriptionStyles = (fontColour?: string) => css`
 	color: ${fontColour || text.supporting};
 	p {
 		/* Handle paragraphs in the description */
-		margin-bottom: ${space[3]}px;
+		margin-bottom: ${space[ 3 ]}px;
 	}
 	a {
 		color: ${text.primary};
@@ -47,7 +47,7 @@ const descriptionStyles = (fontColour?: string) => css`
 	}
 
 	${until.leftCol} {
-		margin-bottom: ${space[4]}px;
+		margin-bottom: ${space[ 4 ]}px;
 	}
 `;
 
@@ -70,8 +70,8 @@ export const ContainerTitle = ({
 					<h2 className={headerStyles(fontColour)}>{title}</h2>
 				</a>
 			) : (
-				<h2 className={headerStyles(fontColour)}>{title}</h2>
-			)}
+					<h2 className={headerStyles(fontColour)}>{title}</h2>
+				)}
 			{description && (
 				<p
 					className={descriptionStyles(fontColour)}

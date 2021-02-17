@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import TwitterIconPadded from '@frontend/static/icons/twitter-padded.svg';
 import FacebookIcon from '@frontend/static/icons/facebook.svg';
 import EmailIcon from '@frontend/static/icons/email.svg';
@@ -13,7 +13,7 @@ import { pillarMap, pillarPalette, neutralBorder } from '@root/src/lib/pillars';
 const pillarFill = pillarMap(
 	(pillar) =>
 		css`
-			fill: ${pillarPalette[pillar].main};
+			fill: ${pillarPalette[ pillar ].main};
 		`,
 );
 
@@ -50,8 +50,8 @@ const shareIcon = (pillar: Theme) => css`
 	}
 
 	:hover {
-		background-color: ${pillarPalette[pillar].main};
-		border-color: ${pillarPalette[pillar].main};
+		background-color: ${pillarPalette[ pillar ].main};
+		border-color: ${pillarPalette[ pillar ].main};
 		fill: white;
 	}
 `;
@@ -66,7 +66,7 @@ interface ShareListItemType {
 
 export const ShareIcons: React.FC<{
 	sharingUrls: {
-		[K in SharePlatform]?: {
+		[ K in SharePlatform ]?: {
 			url: string;
 			userMessage: string;
 		};
@@ -75,7 +75,7 @@ export const ShareIcons: React.FC<{
 	pillar: Theme;
 	className?: string;
 }> = ({ sharingUrls, displayIcons, pillar, className }) => {
-	const icons: { [K in SharePlatform]?: React.ComponentType } = {
+	const icons: { [ K in SharePlatform ]?: React.ComponentType } = {
 		facebook: FacebookIcon,
 		twitter: TwitterIconPadded,
 		email: EmailIcon,
@@ -85,11 +85,11 @@ export const ShareIcons: React.FC<{
 		messenger: MessengerIcon,
 	};
 
-	const mobileOnlyIcons: SharePlatform[] = ['whatsApp', 'messenger'];
+	const mobileOnlyIcons: SharePlatform[] = [ 'whatsApp', 'messenger' ];
 
 	const shareList = displayIcons.reduce((list: ShareListItemType[], id) => {
-		const icon = icons[id];
-		const sharingUrl = sharingUrls[id];
+		const icon = icons[ id ];
+		const sharingUrl = sharingUrls[ id ];
 
 		if (icon && sharingUrl) {
 			const listItem: ShareListItemType = {
@@ -122,7 +122,7 @@ export const ShareIcons: React.FC<{
 							<span
 								className={cx(
 									shareIcon(pillar),
-									pillarFill[pillar],
+									pillarFill[ pillar ],
 								)}
 							>
 								<Icon />

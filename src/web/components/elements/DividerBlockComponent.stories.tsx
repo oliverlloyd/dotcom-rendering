@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { DividerBlockComponent } from '@frontend/web/components/elements/DividerBlockComponent';
 import { Design, Display, Pillar } from '@guardian/types';

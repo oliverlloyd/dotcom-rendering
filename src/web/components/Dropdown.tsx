@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import {
 	text,
@@ -69,7 +69,7 @@ const linkStyles = css`
 	padding: 10px 18px 15px 30px;
 
 	:hover {
-		background-color: ${neutral[93]};
+		background-color: ${neutral[ 93 ]};
 		text-decoration: none;
 	}
 
@@ -93,7 +93,7 @@ const linkActive = css`
 
 	:after {
 		content: '';
-		border: 2px solid ${news[400]};
+		border: 2px solid ${news[ 400 ]};
 		border-top: 0px;
 		border-right: 0px;
 		position: absolute;
@@ -126,7 +126,7 @@ const buttonStyles = css`
 	text-decoration: none;
 
 	:hover {
-		color: ${brandAlt[400]};
+		color: ${brandAlt[ 400 ]};
 
 		:after {
 			transform: translateY(0) rotate(45deg);
@@ -158,8 +158,8 @@ const buttonExpanded = css`
 `;
 
 export const Dropdown = ({ id, label, links, dataLinkName }: Props) => {
-	const [isExpanded, setIsExpanded] = useState(false);
-	const [noJS, setNoJS] = useState(true);
+	const [ isExpanded, setIsExpanded ] = useState(false);
+	const [ noJS, setNoJS ] = useState(true);
 
 	useEffect(() => {
 		// If hook runs we know client-side JS is enabled
@@ -177,7 +177,7 @@ export const Dropdown = ({ id, label, links, dataLinkName }: Props) => {
 
 		// Remove listener on unmount
 		return () => document.removeEventListener('keydown', dismissOnEsc);
-	}, [isExpanded]);
+	}, [ isExpanded ]);
 
 	useEffect(() => {
 		const dismissOnClick = (event: MouseEvent) => {
@@ -191,7 +191,7 @@ export const Dropdown = ({ id, label, links, dataLinkName }: Props) => {
 
 		// Remove listener on unmount
 		return () => document.removeEventListener('click', dismissOnClick);
-	}, [isExpanded]);
+	}, [ isExpanded ]);
 
 	const handleToggle = () => setIsExpanded(!isExpanded);
 
@@ -234,9 +234,9 @@ export const Dropdown = ({ id, label, links, dataLinkName }: Props) => {
 								<a
 									href={l.url}
 									className={cx({
-										[linkStyles]: true,
-										[linkActive]: !!l.isActive,
-										[linkFirst]: index === 0,
+										[ linkStyles ]: true,
+										[ linkActive ]: !!l.isActive,
+										[ linkFirst ]: index === 0,
 									})}
 									data-link-name={l.dataLinkName}
 								>
@@ -247,44 +247,44 @@ export const Dropdown = ({ id, label, links, dataLinkName }: Props) => {
 					</ul>
 				</div>
 			) : (
-				<>
-					<button
-						onClick={handleToggle}
-						className={cx(
-							buttonStyles,
-							isExpanded && buttonExpanded,
-						)}
-						aria-expanded={isExpanded ? 'true' : 'false'}
-						data-link-name={dataLinkName}
-						data-cy="dropdown-button"
-					>
-						{label}
-					</button>
-					<ul
-						className={cx({
-							[ulStyles]: true,
-							[ulExpanded]: isExpanded,
-						})}
-						data-cy="dropdown-options"
-					>
-						{links.map((l, index) => (
-							<li key={l.title}>
-								<a
-									href={l.url}
-									className={cx({
-										[linkStyles]: true,
-										[linkActive]: !!l.isActive,
-										[linkFirst]: index === 0,
-									})}
-									data-link-name={l.dataLinkName}
-								>
-									{l.title}
-								</a>
-							</li>
-						))}
-					</ul>
-				</>
-			)}
+					<>
+						<button
+							onClick={handleToggle}
+							className={cx(
+								buttonStyles,
+								isExpanded && buttonExpanded,
+							)}
+							aria-expanded={isExpanded ? 'true' : 'false'}
+							data-link-name={dataLinkName}
+							data-cy="dropdown-button"
+						>
+							{label}
+						</button>
+						<ul
+							className={cx({
+								[ ulStyles ]: true,
+								[ ulExpanded ]: isExpanded,
+							})}
+							data-cy="dropdown-options"
+						>
+							{links.map((l, index) => (
+								<li key={l.title}>
+									<a
+										href={l.url}
+										className={cx({
+											[ linkStyles ]: true,
+											[ linkActive ]: !!l.isActive,
+											[ linkFirst ]: index === 0,
+										})}
+										data-link-name={l.dataLinkName}
+									>
+										{l.title}
+									</a>
+								</li>
+							))}
+						</ul>
+					</>
+				)}
 		</>
 	);
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import {
 	neutral,
@@ -172,8 +172,8 @@ const layoutGrid = (hasPreFurniture?: boolean) =>
 					300px; /* Right Column */
 
 				${hasPreFurniture
-					? gridTemplateWidePreFurnished
-					: gridTemplateWide}
+			? gridTemplateWidePreFurnished
+			: gridTemplateWide}
 			}
 
 			${until.wide} {
@@ -184,8 +184,8 @@ const layoutGrid = (hasPreFurniture?: boolean) =>
 					300px; /* Right Column */
 
 				${hasPreFurniture
-					? gridTemplateWidePreFurnished
-					: gridTemplateWide}
+			? gridTemplateWidePreFurnished
+			: gridTemplateWide}
 			}
 
 			${until.leftCol} {
@@ -193,15 +193,15 @@ const layoutGrid = (hasPreFurniture?: boolean) =>
 					1fr /* Main content */
 					300px; /* Right Column */
 				${hasPreFurniture
-					? gridTemplateLeftColPreFurnished
-					: gridTemplateLeftCol}
+			? gridTemplateLeftColPreFurnished
+			: gridTemplateLeftCol}
 			}
 
 			${until.desktop} {
 				grid-template-columns: 1fr; /* Main content */
 				${hasPreFurniture
-					? gridTemplateDesktopPreFurnished
-					: gridTemplateDesktop}
+			? gridTemplateDesktopPreFurnished
+			: gridTemplateDesktop}
 			}
 
 			${until.tablet} {
@@ -209,8 +209,8 @@ const layoutGrid = (hasPreFurniture?: boolean) =>
 
 				grid-template-columns: 1fr; /* Main content */
 				${hasPreFurniture
-					? gridTemplateTabletPreFurnished
-					: gridTemplateTablet}
+			? gridTemplateTabletPreFurnished
+			: gridTemplateTablet}
 			}
 		}
 	`;
@@ -323,7 +323,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 
 	const age = getAgeWarning(CAPI.tags, CAPI.webPublicationDate);
 
-	const { branding } = CAPI.commercialProperties[CAPI.editionId];
+	const { branding } = CAPI.commercialProperties[ CAPI.editionId ];
 	return (
 		<>
 			<div data-print-layout="hide">
@@ -461,8 +461,8 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 								/>
 							</div>
 						) : (
-							<></>
-						)}
+								<></>
+							)}
 					</GridItem>
 					<GridItem area="standfirst">
 						<ArticleStandfirst
@@ -507,9 +507,9 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 								webTitle={CAPI.webTitle}
 								author={CAPI.author}
 								tags={CAPI.tags}
-								primaryDateline={CAPI.blocks[0].primaryDateLine}
+								primaryDateline={CAPI.blocks[ 0 ].primaryDateLine}
 								secondaryDateline={
-									CAPI.blocks[0].secondaryDateLine
+									CAPI.blocks[ 0 ].secondaryDateLine
 								}
 							/>
 						</div>
@@ -577,8 +577,8 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 								{!isPaidContent ? (
 									<MostViewedRightIsland />
 								) : (
-									<></>
-								)}
+										<></>
+									)}
 							</RightColumn>
 						</div>
 					</GridItem>
@@ -590,7 +590,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
-				backgroundColour={neutral[93]}
+				backgroundColour={neutral[ 93 ]}
 			>
 				<AdSlot
 					data-print-layout="hide"
@@ -658,7 +658,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
-				backgroundColour={neutral[93]}
+				backgroundColour={neutral[ 93 ]}
 			>
 				<AdSlot position="merchandising" display={format.display} />
 			</Section>

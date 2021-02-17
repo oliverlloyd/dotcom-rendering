@@ -1,7 +1,7 @@
 import React from 'react';
 import { textSans } from '@guardian/src-foundations/typography';
 
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { neutral } from '@guardian/src-foundations';
 import { pillarPalette } from '@root/src/lib/pillars';
 import { until } from '@guardian/src-foundations/mq';
@@ -12,7 +12,7 @@ const brandingStyle = css`
 
 const brandingLabelStyle = css`
 	${textSans.xsmall({ fontWeight: 'bold' })};
-	color: ${neutral[46]};
+	color: ${neutral[ 46 ]};
 `;
 
 const brandingLogoStyle = css`
@@ -28,7 +28,7 @@ const brandingLogoStyle = css`
 `;
 
 const brandingAboutLink = (pillar: Theme) => css`
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 	${textSans.xsmall()}
 	display: block;
 	text-decoration: none;

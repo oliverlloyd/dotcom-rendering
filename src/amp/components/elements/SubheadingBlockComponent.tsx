@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { palette } from '@guardian/src-foundations';
 import { headline, textSans } from '@guardian/src-foundations/typography';
 import { pillarPalette } from '@root/src/lib/pillars';
@@ -15,11 +15,11 @@ const style = (pillar: Theme) => css`
 		font-weight: 700;
 	}
 	a {
-		color: ${pillarPalette[pillar].dark};
+		color: ${pillarPalette[ pillar ].dark};
 		text-decoration: none;
-		border-bottom: 1px solid ${palette.neutral[86]};
+		border-bottom: 1px solid ${palette.neutral[ 86 ]};
 		:hover {
-			border-bottom: 1px solid ${pillarPalette[pillar].dark};
+			border-bottom: 1px solid ${pillarPalette[ pillar ].dark};
 		}
 	}
 `;
@@ -47,7 +47,7 @@ export const SubheadingBlockComponent: React.FC<{
 	<span
 		className={composeLabsCSS(
 			pillar,
-			cx(style(pillar), { [immersiveBodyStyle]: isImmersive }),
+			cx(style(pillar), { [ immersiveBodyStyle ]: isImmersive }),
 			subHeadingStyleLabs,
 		)}
 		dangerouslySetInnerHTML={{

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import {
 	MoustacheSection,
@@ -11,8 +11,8 @@ import { headline, body, textSans } from '@guardian/src-foundations/typography';
 import { brandAlt, neutral, opinion } from '@guardian/src-foundations/palette';
 
 const epicStyle = css`
-	border-top: 0.0625rem solid ${brandAlt[400]};
-	background-color: ${neutral[97]};
+	border-top: 0.0625rem solid ${brandAlt[ 400 ]};
+	background-color: ${neutral[ 97 ]};
 	clear: left;
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
@@ -43,7 +43,7 @@ const epicParagraphStyle = css`
 	vertical-align: 0%;
 	line-height: 1.5;
 	&::selection {
-		background-color: ${brandAlt[400]};
+		background-color: ${brandAlt[ 400 ]};
 	}
 	&:last-of-type {
 		display: inline;
@@ -51,10 +51,10 @@ const epicParagraphStyle = css`
 `;
 const highlightedTextStyle = css`
 	font-size: 1.1rem;
-	background-color: ${brandAlt[400]};
+	background-color: ${brandAlt[ 400 ]};
 	padding: 0.125rem;
 	margin-left: 5px;
-	color: ${neutral[7]};
+	color: ${neutral[ 7 ]};
 	${headline.xxxsmall({ fontWeight: 'bold' })};
 	text-rendering: optimizeLegibility;
 	font-kerning: normal;
@@ -65,8 +65,8 @@ const highlightedTextStyle = css`
 	display: inline;
 `;
 const supportButtonStyle = css`
-	background-color: ${brandAlt[400]};
-	color: ${neutral[7]};
+	background-color: ${brandAlt[ 400 ]};
+	color: ${neutral[ 7 ]};
 	display: inline-block;
 	${textSans.medium()};
 	text-rendering: optimizeLegibility;
@@ -90,7 +90,7 @@ const supportButtonStyle = css`
 	transition: background-color 0.3s;
 	text-align: centre;
 	&:hover {
-		background-color: ${opinion[600]};
+		background-color: ${opinion[ 600 ]};
 	}
 `;
 const arrowStyle = css`
@@ -99,7 +99,7 @@ const arrowStyle = css`
 	width: 1.3125rem;
 	height: auto;
 	display: inline;
-	color: ${neutral[7]};
+	color: ${neutral[ 7 ]};
 	vertical-align: sub;
 `;
 const acceptedPaymentMethodsWrapperStyle = css`
@@ -135,7 +135,7 @@ const tickerProgressStyle = css`
 	margin: 0;
 	padding: 0;
 	left: 0;
-	background-color: ${brandAlt[400]};
+	background-color: ${brandAlt[ 400 ]};
 	height: 100%;
 	width: 100%;
 	transform-origin: left;
@@ -146,7 +146,7 @@ const tickerBackgroundStyle = css`
 	margin: 5px 0;
 	height: 10px;
 	width: 100%;
-	background-color: ${neutral[86]};
+	background-color: ${neutral[ 86 ]};
 	border: none;
 `;
 const topLeftStyle = css`
@@ -161,7 +161,7 @@ const labelStyle = css`
 const goalExceededMarkerStyle = css`
 	width: 1px;
 	height: 100%;
-	border-left: 2px solid ${neutral[7]};
+	border-left: 2px solid ${neutral[ 7 ]};
 	position: absolute;
 	top: 0;
 	z-index: 2;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { InnerContainer } from '@root/src/amp/components/InnerContainer';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { ArticleModel } from '@root/src/amp/types/ArticleModel';
 import { TopMetaLiveblog } from '@root/src/amp/components/topMeta/TopMetaLiveblog';
 import { SubMeta } from '@root/src/amp/components/SubMeta';
@@ -16,7 +16,7 @@ import { getSharingUrls } from '@root/src/lib/sharing-urls';
 // article is
 
 const bodyStyle = css`
-	background-color: ${palette.neutral[97]};
+	background-color: ${palette.neutral[ 97 ]};
 
 	h2 {
 		${headline.xxsmall()};
@@ -47,8 +47,8 @@ const updateButtonStyle = css`
 		height: 36px;
 		padding: 0 12px;
 
-		background-color: ${palette.news[400]};
-		color: ${palette.neutral[100]};
+		background-color: ${palette.news[ 400 ]};
+		color: ${palette.neutral[ 100 ]};
 		font-weight: bold;
 		${textSans.xsmall()};
 

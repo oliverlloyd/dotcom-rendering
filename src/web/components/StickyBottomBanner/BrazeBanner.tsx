@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import * as emotion from 'emotion';
+import * as emotion from '@emotion/css';
 import * as emotionCore from '@emotion/core';
 import * as emotionTheming from 'emotion-theming';
 import { getZIndex } from '@root/src/web/lib/getZIndex';
@@ -24,7 +24,7 @@ import { CanShowResult } from '@root/src/web/lib/messagePicker';
 
 type Meta = {
 	dataFromBraze: {
-		[key: string]: string;
+		[ key: string ]: string;
 	};
 	logImpressionWithBraze: () => void;
 	logButtonClickWithBraze: (id: number) => void;
@@ -136,8 +136,8 @@ const getBrazeMetaFromQueryString = (): Meta | null => {
 
 				return {
 					dataFromBraze,
-					logImpressionWithBraze: () => {},
-					logButtonClickWithBraze: () => {},
+					logImpressionWithBraze: () => { },
+					logButtonClickWithBraze: () => { },
 				};
 			} catch (e) {
 				const error = e as Error;
@@ -276,7 +276,7 @@ const BrazeBannerWithSatisfiedDependencies = ({
 };
 
 export const BrazeBanner = ({ meta }: Props) => {
-	const [BrazeComponent, setBrazeComponent] = useState<
+	const [ BrazeComponent, setBrazeComponent ] = useState<
 		React.FC<BrazeBannerProps>
 	>();
 
@@ -306,7 +306,7 @@ export const BrazeBanner = ({ meta }: Props) => {
 					),
 				);
 		}
-	}, [meta]);
+	}, [ meta ]);
 
 	if (BrazeComponent && meta) {
 		return (

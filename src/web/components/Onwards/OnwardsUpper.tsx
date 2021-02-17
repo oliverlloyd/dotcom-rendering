@@ -4,7 +4,7 @@ import { Pillar } from '@guardian/types';
 import { useAB } from '@guardian/ab-react';
 
 import { joinUrl } from '@root/src/lib/joinUrl';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { Section } from '@root/src/web/components/Section';
 
 import { OnwardsData } from './OnwardsData';
@@ -68,7 +68,7 @@ const firstPopularTag = (
 
 	// For paid content we just return the first tag, otherwise we
 	// filter for the first tag in the whitelist
-	return isPaidContent ? pageTags[0] : firstTagInWhitelist;
+	return isPaidContent ? pageTags[ 0 ] : firstTagInWhitelist;
 };
 
 const onwardsWrapper = css`
@@ -230,7 +230,7 @@ export const OnwardsUpper = ({
 
 	if (hasStoryPackage) {
 		// Always fetch the story package if it exists
-		url = joinUrl([ajaxUrl, 'story-package', `${pageId}.json?dcr=true`]);
+		url = joinUrl([ ajaxUrl, 'story-package', `${pageId}.json?dcr=true` ]);
 		ophanComponentName = 'more-on-this-story';
 	} else if (isAdFreeUser && isPaidContent) {
 		// Don't show any related content (other than story packages) for
@@ -243,7 +243,7 @@ export const OnwardsUpper = ({
 		//              type: "Series",
 		//          }
 		//
-		url = joinUrl([ajaxUrl, 'series', `${seriesTag.id}.json?dcr`]);
+		url = joinUrl([ ajaxUrl, 'series', `${seriesTag.id}.json?dcr` ]);
 		ophanComponentName = 'series';
 	} else if (dontShowRelatedContent) {
 		// Then don't show related content
@@ -273,13 +273,13 @@ export const OnwardsUpper = ({
 			popularInTagUrl += `&${queryParams.join('&')}`;
 		}
 
-		url = joinUrl([ajaxUrl, popularInTagUrl]);
+		url = joinUrl([ ajaxUrl, popularInTagUrl ]);
 		ophanComponentName = 'related-content';
 	} else {
 		// Default to generic related endpoint
 		const relatedUrl = `/related/${pageId}.json?dcr=true`;
 
-		url = joinUrl([ajaxUrl, relatedUrl]);
+		url = joinUrl([ ajaxUrl, relatedUrl ]);
 		ophanComponentName = 'related-stories';
 	}
 

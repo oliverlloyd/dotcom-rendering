@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { from, until } from '@guardian/src-foundations/mq';
 import { space } from '@guardian/src-foundations';
@@ -17,7 +17,7 @@ const fullCardImageStyles = css`
 	position: absolute;
 	bottom: 0;
 	align-content: flex-end;
-	margin-left: ${space[1]}px;
+	margin-left: ${space[ 1 ]}px;
 	margin-bottom: 0px;
 	max-height: fit-content;
 	margin-top: -21px;

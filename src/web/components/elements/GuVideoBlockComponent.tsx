@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { unescapeData } from '@root/src/lib/escapeData';
 import { Caption } from '@root/src/web/components/Caption';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Design, Pillar } from '@guardian/types';
 import { headline } from '@guardian/src-foundations/typography';
@@ -16,32 +16,32 @@ type Props = {
 const outerStyles = (format: Format) => {
 	const baseStyles = css`
 		${headline.large({
-			fontWeight: 'light',
-		})}
+		fontWeight: 'light',
+	})}
 		float: left;
 		text-transform: uppercase;
 		box-sizing: border-box;
-		margin-right: ${space[1]}px;
+		margin-right: ${space[ 1 ]}px;
 	`;
 
 	/*
-        The reason pillar type 'opinion' is forced to opinion[400] is that
-        opinion.dark is much darker so it is forced to keep with similar colour
-        tones used on the site(that's my understanding anyway!)
-    */
+		The reason pillar type 'opinion' is forced to opinion[400] is that
+		opinion.dark is much darker so it is forced to keep with similar colour
+		tones used on the site(that's my understanding anyway!)
+	*/
 	switch (format.design) {
 		case Design.GuardianView:
 		case Design.Comment:
 			return css`
 				${baseStyles};
 				color: ${format.theme === Pillar.Opinion
-					? opinion[400]
-					: pillarPalette[format.theme].dark};
+					? opinion[ 400 ]
+					: pillarPalette[ format.theme ].dark};
 			`;
 		default:
 			return css`
 				${baseStyles};
-				color: ${pillarPalette[format.theme].dark};
+				color: ${pillarPalette[ format.theme ].dark};
 			`;
 	}
 };
@@ -53,7 +53,7 @@ const innerStyles = (format: Format) => {
 		line-height: 99px;
 		vertical-align: text-top;
 		pointer-events: none;
-		margin-right: ${space[1]}px;
+		margin-right: ${space[ 1 ]}px;
 	`;
 
 	switch (format.design) {

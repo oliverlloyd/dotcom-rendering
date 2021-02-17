@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 const fullWidthStyles = css`
 	width: 100%;

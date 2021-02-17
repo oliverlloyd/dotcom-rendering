@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Design, Special } from '@guardian/types';
 
@@ -30,18 +30,18 @@ const bulletStyle = (pillar: Theme) => css`
 		height: 12px;
 		width: 12px;
 		margin-right: 2px;
-		background-color: ${pillarPalette[pillar].main};
+		background-color: ${pillarPalette[ pillar ].main};
 		margin-left: 0px;
 	}
 `;
 
 const decideBackground = (design: Design, pillar: Theme): string => {
-	if (pillar === Special.Labs) return palette.neutral[86];
+	if (pillar === Special.Labs) return palette.neutral[ 86 ];
 	switch (design) {
 		case Design.Comment:
-			return palette.opinion[800];
+			return palette.opinion[ 800 ];
 		default:
-			return palette.neutral[100];
+			return palette.neutral[ 100 ];
 	}
 };
 
@@ -68,7 +68,7 @@ export const Body: React.FC<{
 	data: ArticleModel;
 	config: ConfigType;
 }> = ({ pillar, design, data, config }) => {
-	const capiElements = data.blocks[0] ? data.blocks[0].elements : [];
+	const capiElements = data.blocks[ 0 ] ? data.blocks[ 0 ].elements : [];
 	const adTargeting = buildAdTargeting(config);
 	const elementsWithoutAds = Elements(
 		capiElements,
@@ -92,13 +92,13 @@ export const Body: React.FC<{
 	const elements = data.shouldHideAds ? (
 		<>{elementsWithoutAds}</>
 	) : (
-		<WithAds
-			items={elementsWithoutAds}
-			adSlots={slotIndexes}
-			adClassName={adStyle}
-			adInfo={adInfo}
-		/>
-	);
+			<WithAds
+				items={elementsWithoutAds}
+				adSlots={slotIndexes}
+				adClassName={adStyle}
+				adInfo={adInfo}
+			/>
+		);
 
 	const epic = data.shouldHideReaderRevenue ? null : (
 		<Epic webURL={data.webURL} />

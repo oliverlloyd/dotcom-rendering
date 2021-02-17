@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { useHasBeenSeen } from '@root/src/web/lib/useHasBeenSeen';
 
@@ -16,7 +16,7 @@ const flexGrowStyles = css`
 `;
 
 export const Lazy = ({ children, margin }: Props) => {
-	const [hasBeenSeen, setRef] = useHasBeenSeen({
+	const [ hasBeenSeen, setRef ] = useHasBeenSeen({
 		rootMargin: `${margin}px`,
 	});
 

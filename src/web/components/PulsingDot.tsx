@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { keyframes } from '@emotion/core';
 
 import { storage } from '@guardian/libs';

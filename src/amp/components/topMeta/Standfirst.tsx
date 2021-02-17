@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { palette } from '@guardian/src-foundations';
 import { headline, textSans } from '@guardian/src-foundations/typography';
 import { neutralBorder } from '@root/src/lib/pillars';
@@ -12,7 +12,7 @@ import {
 const standfirstCss = (pillar: Theme) => css`
 	${headline.xxxsmall()};
 	font-weight: 100;
-	color: ${palette.neutral[7]};
+	color: ${palette.neutral[ 7 ]};
 	margin-bottom: 12px;
 
 	p {

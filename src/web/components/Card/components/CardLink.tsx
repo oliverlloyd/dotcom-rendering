@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Design, Format, Special } from '@guardian/types';
 import { neutral } from '@guardian/src-foundations/palette';
@@ -33,7 +33,7 @@ const linkStyles = (format: Format, palette: Palette) => {
 			width: 100%;
 			height: 100%;
 			left: 0;
-			background-color: ${neutral[7]};
+			background-color: ${neutral[ 7 ]};
 			opacity: 0.1;
 		}
 	`;
@@ -72,7 +72,7 @@ const linkStyles = (format: Format, palette: Palette) => {
 			return css`
 				${baseLinkStyles};
 				:hover {
-					background-color: ${neutral[93]};
+					background-color: ${neutral[ 93 ]};
 				}
 			`;
 	}

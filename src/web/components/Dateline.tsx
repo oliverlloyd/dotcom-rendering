@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { text } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
@@ -56,22 +56,22 @@ export const Dateline: React.FC<{
 	return (
 		<div className={dateline}>
 			{secondaryDateline &&
-			!secondaryDateline.includes(primaryDateline) ? (
-				<div className={cx(toggleClass, dateline)}>
-					<label className={labelStyles} htmlFor="dateToggle">
-						{primaryDateline}
-					</label>
+				!secondaryDateline.includes(primaryDateline) ? (
+					<div className={cx(toggleClass, dateline)}>
+						<label className={labelStyles} htmlFor="dateToggle">
+							{primaryDateline}
+						</label>
 
-					<input
-						className={toggleClass}
-						type="checkbox"
-						id="dateToggle"
-					/>
-					<p className={pStyle}>{secondaryDateline}</p>
-				</div>
-			) : (
-				primaryDateline
-			)}
+						<input
+							className={toggleClass}
+							type="checkbox"
+							id="dateToggle"
+						/>
+						<p className={pStyle}>{secondaryDateline}</p>
+					</div>
+				) : (
+					primaryDateline
+				)}
 		</div>
 	);
 };

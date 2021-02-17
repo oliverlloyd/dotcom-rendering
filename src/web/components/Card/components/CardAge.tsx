@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { Design, Display } from '@guardian/types';
 import { neutral } from '@guardian/src-foundations/palette';
@@ -41,22 +41,22 @@ const ageStyles = (format: Format, palette: Palette) => {
 
 		> time {
 			${textSans.xsmall({
-				fontWeight: format.design === Design.Media ? `bold` : `regular`,
-			})};
+		fontWeight: format.design === Design.Media ? `bold` : `regular`,
+	})};
 		}
 	`;
 };
 
 const fullCardImageTextStyles = css`
-	color: ${neutral[100]};
+	color: ${neutral[ 100 ]};
 	background-color: rgba(0, 0, 0, 0.75);
-	box-shadow: -${space[1]}px 0 0 rgba(0, 0, 0, 0.75);
+	box-shadow: -${space[ 1 ]}px 0 0 rgba(0, 0, 0, 0.75);
 	/* Box decoration is required to push the box shadow out on Firefox */
 	box-decoration-break: clone;
 	line-height: 1;
 	white-space: pre-wrap;
-	padding-left: ${space[1]}px;
-	padding-right: ${space[1]}px;
+	padding-left: ${space[ 1 ]}px;
+	padding-right: ${space[ 1 ]}px;
 `;
 
 export const CardAge = ({
@@ -81,7 +81,7 @@ export const CardAge = ({
 			<span
 				className={cx(
 					format.display === Display.Immersive &&
-						fullCardImageTextStyles,
+					fullCardImageTextStyles,
 				)}
 			>
 				{showClock && <ClockIcon />}

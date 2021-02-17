@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { Design } from '@guardian/types';
 import { from } from '@guardian/src-foundations/mq';

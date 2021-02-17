@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { Caption } from '@root/src/web/components/Caption';
 
 const responsiveAspectRatio = (height: number, width: number) => css`

@@ -1,7 +1,7 @@
 // We don't want to build our own theme from the GU palette so disable this rule
 // stylelint-disable color-no-hex
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import Prism from 'prismjs';
 
 import { space } from '@guardian/src-foundations';
@@ -32,7 +32,7 @@ const codeStyles = css`
 	tab-size: 4;
 	hyphens: none;
 
-	padding: ${space[3]}px;
+	padding: ${space[ 3 ]}px;
 	overflow: auto;
 
 	background: #f5f2f0;
@@ -121,7 +121,7 @@ export const CodeBlockComponent = ({
 }: Props) => {
 	const highlighted = Prism.highlight(
 		code,
-		Prism.languages[language],
+		Prism.languages[ language ],
 		language,
 	);
 

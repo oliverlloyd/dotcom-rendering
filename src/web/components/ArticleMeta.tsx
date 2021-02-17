@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { border } from '@guardian/src-foundations/palette';
 import { between, from, until } from '@guardian/src-foundations/mq';
 import { Contributor } from '@root/src/web/components/Contributor';
@@ -280,7 +280,7 @@ export const ArticleMeta = ({
 							pageId={pageId}
 							webTitle={webTitle}
 							palette={palette}
-							displayIcons={['facebook', 'twitter', 'email']}
+							displayIcons={[ 'facebook', 'twitter', 'email' ]}
 						/>
 					</div>
 					<div className={metaNumbers}>

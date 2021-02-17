@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import {
 	neutral,
@@ -103,8 +103,8 @@ const StandardGrid = ({
 						300px; /* Right Column */
 
 					${display === Display.Showcase
-						? showcaseGridWide
-						: gridWide}
+				? showcaseGridWide
+				: gridWide}
 				}
 
 				${until.wide} {
@@ -115,8 +115,8 @@ const StandardGrid = ({
 						300px; /* Right Column */
 
 					${display === Display.Showcase
-						? showcaseGridWide
-						: gridWide}
+				? showcaseGridWide
+				: gridWide}
 				}
 
 				${until.leftCol} {
@@ -289,7 +289,7 @@ export const CommentLayout = ({
 
 	const age = getAgeWarning(CAPI.tags, CAPI.webPublicationDate);
 
-	const { branding } = CAPI.commercialProperties[CAPI.editionId];
+	const { branding } = CAPI.commercialProperties[ CAPI.editionId ];
 
 	return (
 		<>
@@ -454,7 +454,7 @@ export const CommentLayout = ({
 						<div
 							className={
 								format.display === Display.Showcase &&
-								CAPI.pageType.hasShowcaseMainElement
+									CAPI.pageType.hasShowcaseMainElement
 									? mainMediaWrapper
 									: maxWidth
 							}
@@ -466,7 +466,7 @@ export const CommentLayout = ({
 								adTargeting={adTargeting}
 								starRating={
 									format.design === Design.Review &&
-									CAPI.starRating
+										CAPI.starRating
 										? CAPI.starRating
 										: undefined
 								}
@@ -486,7 +486,7 @@ export const CommentLayout = ({
 								tags={CAPI.tags}
 								primaryDateline={CAPI.webPublicationDateDisplay}
 								secondaryDateline={
-									CAPI.blocks[0].secondaryDateLine
+									CAPI.blocks[ 0 ].secondaryDateLine
 								}
 							/>
 						</div>
@@ -551,8 +551,8 @@ export const CommentLayout = ({
 								{!isPaidContent ? (
 									<MostViewedRightIsland />
 								) : (
-									<></>
-								)}
+										<></>
+									)}
 							</RightColumn>
 						</div>
 					</GridItem>
@@ -563,7 +563,7 @@ export const CommentLayout = ({
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
-				backgroundColour={neutral[93]}
+				backgroundColour={neutral[ 93 ]}
 			>
 				<AdSlot
 					position="merchandising-high"
@@ -614,7 +614,7 @@ export const CommentLayout = ({
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
-				backgroundColour={neutral[93]}
+				backgroundColour={neutral[ 93 ]}
 			>
 				<AdSlot position="merchandising" display={format.display} />
 			</Section>

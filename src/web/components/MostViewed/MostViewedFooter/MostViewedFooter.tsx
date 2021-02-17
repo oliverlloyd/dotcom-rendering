@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { text } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
@@ -28,7 +28,7 @@ const stackBelow = (breakpoint: Breakpoint) => css`
 	display: flex;
 	flex-direction: column;
 
-	${from[breakpoint]} {
+	${from[ breakpoint ]} {
 		flex-direction: row;
 	}
 `;
@@ -138,8 +138,8 @@ export const MostViewedFooter = ({
 					{inDeeplyReadTestVariant ? (
 						<h2 className={headingStyles}>Across The Guardian</h2>
 					) : (
-						<h2 className={headingStyles}>Most popular</h2>
-					)}
+							<h2 className={headingStyles}>Most popular</h2>
+						)}
 				</section>
 				<section className={stackBelow('desktop')}>
 					<Lazy margin={300}>

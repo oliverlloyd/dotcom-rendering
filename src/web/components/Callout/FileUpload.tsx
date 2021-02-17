@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { textSans } from '@guardian/src-foundations/typography';
 import { text } from '@guardian/src-foundations/palette';
@@ -14,29 +14,29 @@ const fileUploadInputStyles = css`
 `;
 
 const errorMessagesStyles = css`
-	padding-top: ${space[2]}px;
+	padding-top: ${space[ 2 ]}px;
 	color: ${text.error};
 	${textSans.small({ fontWeight: 'bold' })};
 `;
 
 type Props = {
 	formField: CampaignFieldFile;
-	formData: { [key in string]: any };
-	setFormData: React.Dispatch<React.SetStateAction<{ [x: string]: any }>>;
+	formData: { [ key in string ]: any };
+	setFormData: React.Dispatch<React.SetStateAction<{ [ x: string ]: any }>>;
 };
 
 export const FileUpload = ({ formField, formData, setFormData }: Props) => {
-	const [error, setError] = useState('');
+	const [ error, setError ] = useState('');
 	const onSelectFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (event.target.files && event.target.files[0]) {
+		if (event.target.files && event.target.files[ 0 ]) {
 			setError('');
 			try {
 				const stringifiedFile = await stringifyFileBase64(
-					event.target.files[0],
+					event.target.files[ 0 ],
 				);
 				setFormData({
 					...formData,
-					[formField.id]: stringifiedFile,
+					[ formField.id ]: stringifiedFile,
 				});
 			} catch (e) {
 				setError(

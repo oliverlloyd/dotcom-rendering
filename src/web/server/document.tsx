@@ -1,7 +1,7 @@
 import React from 'react';
-import { extractCritical } from 'emotion-server';
+import { extractCritical } from '@emotion/server';
 import { renderToString } from 'react-dom/server';
-import { cache } from 'emotion';
+import { cache } from '@emotion/css';
 import { CacheProvider } from '@emotion/core';
 
 import { escapeData } from '@root/src/lib/escapeData';
@@ -59,7 +59,7 @@ export const document = ({ data }: Props): string => {
 	// There are docs on loadable in ./docs/loadable-components.md
 	const loadableExtractor = new ChunkExtractor({
 		stats: loadableManifestJson,
-		entrypoints: ['react'],
+		entrypoints: [ 'react' ],
 	});
 
 	// The lodable-components docs want us to use extractor.collectChunks() but
@@ -83,8 +83,8 @@ export const document = ({ data }: Props): string => {
 	];
 	// We want to only insert script tags for the elements or main media elements on this page view
 	// so we need to check what elements we have and use the mapping to the the chunk name
-	const CAPIElements: CAPIElement[] = CAPI.blocks[0]
-		? CAPI.blocks[0].elements
+	const CAPIElements: CAPIElement[] = CAPI.blocks[ 0 ]
+		? CAPI.blocks[ 0 ].elements
 		: [];
 	const { mainMediaElements } = CAPI;
 	// Filter the chunks defined above by whether
@@ -92,7 +92,7 @@ export const document = ({ data }: Props): string => {
 	// any elements in the body or main media element
 	// arrays for the page request.
 	const chunksForPage = allChunks.filter((chunk) =>
-		[...CAPIElements, ...mainMediaElements].some(
+		[ ...CAPIElements, ...mainMediaElements ].some(
 			(block) =>
 				chunk.addWhen === 'always' || block._type === chunk.addWhen,
 		),
@@ -208,10 +208,10 @@ export const document = ({ data }: Props): string => {
 	const gaChunk = getScriptArrayFromChunkName('ga');
 	const modernScript = gaChunk.filter(
 		(script) => script && script.legacy === false,
-	)[0];
+	)[ 0 ];
 	const legacyScript = gaChunk.filter(
 		(script) => script && script.legacy === true,
-	)[0];
+	)[ 0 ];
 	const gaPath = {
 		modern: modernScript.src,
 		legacy: legacyScript.src,
@@ -231,7 +231,7 @@ export const document = ({ data }: Props): string => {
 	const { twitterData } = CAPI;
 	const keywords =
 		typeof CAPI.config.keywords === 'undefined' ||
-		CAPI.config.keywords === 'Network Front'
+			CAPI.config.keywords === 'Network Front'
 			? ''
 			: CAPI.config.keywords;
 

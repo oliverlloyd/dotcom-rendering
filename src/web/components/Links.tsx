@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import SearchIcon from '@frontend/static/icons/search.svg';
 
@@ -38,7 +38,7 @@ const linkStyles = css`
 
 	:hover,
 	:focus {
-		color: ${brandAlt[400]};
+		color: ${brandAlt[ 400 ]};
 	}
 
 	svg {
@@ -63,7 +63,7 @@ const linkTablet = ({ showAtTablet }: { showAtTablet: boolean }) => css`
 `;
 
 const seperatorStyles = css`
-	border-left: 1px solid ${brand[600]};
+	border-left: 1px solid ${brand[ 600 ]};
 	float: left;
 	height: 24px;
 	margin: 0 -2px 0 10px;
@@ -75,7 +75,7 @@ const seperatorStyles = css`
 `;
 
 const seperatorHideStyles = css`
-	border-left: 1px solid ${brand[600]};
+	border-left: 1px solid ${brand[ 600 ]};
 	float: left;
 	height: 24px;
 	margin: 0 -2px 0 10px;
@@ -133,8 +133,8 @@ export const Links = ({
 	idUrl: idUrlFromConfig,
 	mmaUrl: mmaUrlFromConfig,
 }: Props) => {
-	const [showGiftingLink, setShowGiftingLink] = useState<boolean>();
-	const [userIsDefined, setUserIsDefined] = useState<boolean>();
+	const [ showGiftingLink, setShowGiftingLink ] = useState<boolean>();
+	const [ userIsDefined, setUserIsDefined ] = useState<boolean>();
 
 	// show gifting if support messaging isn't shown
 	useEffect(() => {
@@ -145,7 +145,7 @@ export const Links = ({
 	// from the server rendered version. This forces a full validation
 	useOnce(() => {
 		setUserIsDefined(!!userId);
-	}, [userId]);
+	}, [ userId ]);
 
 	// Fall back on prod URLs just in case these aren't set for any reason
 	const idUrl = idUrlFromConfig || 'https://profile.theguardian.com';
@@ -228,16 +228,16 @@ export const Links = ({
 					/>
 				</div>
 			) : (
-				<a
-					className={linkStyles}
-					href={`${idUrl}/signin?INTCMP=DOTCOM_NEWHEADER_SIGNIN&ABCMP=ab-sign-in&${createAuthenticationEventParams(
-						'guardian_signin_header',
-					)}`}
-					data-link-name="nav2 : topbar : signin"
-				>
-					<ProfileIcon /> Sign in
-				</a>
-			)}
+					<a
+						className={linkStyles}
+						href={`${idUrl}/signin?INTCMP=DOTCOM_NEWHEADER_SIGNIN&ABCMP=ab-sign-in&${createAuthenticationEventParams(
+							'guardian_signin_header',
+						)}`}
+						data-link-name="nav2 : topbar : signin"
+					>
+						<ProfileIcon /> Sign in
+					</a>
+				)}
 
 			<Search
 				className={cx(linkTablet({ showAtTablet: false }), linkStyles)}

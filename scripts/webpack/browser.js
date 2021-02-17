@@ -29,7 +29,7 @@ const scriptPath = (package) =>
 	[
 		`./src/web/browser/${package}/init.ts`,
 		DEV &&
-			'webpack-hot-middleware/client?name=browser&overlayWarnings=true',
+		'webpack-hot-middleware/client?name=browser&overlayWarnings=true',
 	].filter(Boolean);
 
 module.exports = ({ isLegacyJS }) => ({
@@ -64,7 +64,7 @@ module.exports = ({ isLegacyJS }) => ({
 			{
 				test: /\.[jt]sx?|mjs$/,
 				exclude: {
-					and: [/node_modules/],
+					and: [ /node_modules/ ],
 					not: [
 						// Include all @guardian modules, except automat-modules
 						/@guardian\/(?!(automat-modules))/,
@@ -79,30 +79,37 @@ module.exports = ({ isLegacyJS }) => ({
 						loader: 'babel-loader',
 						options: {
 							presets: [
-								'@babel/preset-react',
+								[
+									'@babel/preset-react',
+									{
+										runtime: 'automatic',
+										importSource: '@emotion/react',
+									}
+								],
 								// @babel/preset-env is used for legacy browsers
 								// @babel/preset-modules is used for modern browsers
 								// this allows us to reduce bundle sizes
 								isLegacyJS
 									? [
-											'@babel/preset-env',
-											{
-												targets: {
-													ie: '11',
-												},
-												modules: false,
+										'@babel/preset-env',
+										{
+											targets: {
+												ie: '11',
 											},
-									  ]
+											modules: false,
+										},
+									]
 									: [
-											'@babel/preset-env',
-											{
-												bugfixes: true,
-												targets: {
-													esmodules: true,
-												},
+										'@babel/preset-env',
+										{
+											bugfixes: true,
+											targets: {
+												esmodules: true,
 											},
-									  ],
+										},
+									],
 							],
+							plugins: [ '@emotion' ],
 						},
 					},
 					{
@@ -116,11 +123,11 @@ module.exports = ({ isLegacyJS }) => ({
 			},
 			{
 				test: /\.css$/,
-				use: ['to-string-loader', 'css-loader'],
+				use: [ 'to-string-loader', 'css-loader' ],
 			},
 			{
 				test: /\.svg$/,
-				use: ['desvg-loader/react', 'svg-loader'],
+				use: [ 'desvg-loader/react', 'svg-loader' ],
 			},
 		],
 	},

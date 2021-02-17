@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { neutral, text } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
@@ -39,7 +39,7 @@ const iconContainerStyles = css`
 `;
 
 const iconStyles = css`
-	fill: ${neutral[46]};
+	fill: ${neutral[ 46 ]};
 `;
 
 const longStyles = css`
@@ -59,7 +59,7 @@ const shortStyles = css`
 `;
 
 export const ShareCount = ({ ajaxUrl, pageId }: Props) => {
-	const shareUrl = joinUrl([ajaxUrl, 'sharecount', `${pageId}.json`]);
+	const shareUrl = joinUrl([ ajaxUrl, 'sharecount', `${pageId}.json` ]);
 	const { data: shareData, error: shareError } = useApi<ShareCountType>(
 		shareUrl,
 	);

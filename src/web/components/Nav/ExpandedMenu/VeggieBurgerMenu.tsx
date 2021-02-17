@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { visuallyHidden } from '@guardian/src-foundations/accessibility';
 import { from } from '@guardian/src-foundations/mq';
@@ -70,8 +70,8 @@ const veggieBurgerIconStyles = () => {
 };
 
 const veggieBurgerStyles = (display: Display) => css`
-	background-color: ${brandAlt[400]};
-	color: ${neutral[7]};
+	background-color: ${brandAlt[ 400 ]};
+	color: ${neutral[ 7 ]};
 	cursor: pointer;
 	height: 42px;
 	min-width: 42px;

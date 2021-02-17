@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { palette } from '@guardian/src-foundations';
 import { textSans } from '@guardian/src-foundations/typography';
@@ -16,7 +16,7 @@ const headerStyle = css`
 	margin: 0 -10px;
 	padding: 0 10px;
 	height: 58px;
-	background-color: ${pillarPalette[Special.Labs].bright};
+	background-color: ${pillarPalette[ Special.Labs ].bright};
 
 	${from.mobileLandscape} {
 		padding: 0 20px;
@@ -24,7 +24,7 @@ const headerStyle = css`
 `;
 
 const focusColor = css`
-	outline-color: ${palette.brandAlt[400]};
+	outline-color: ${palette.brandAlt[ 400 ]};
 `;
 
 const metaStyle = css`
@@ -46,8 +46,8 @@ const aboutButtonStyle = css`
 	margin-left: 10px;
 	padding: 10px;
 	border: 0;
-	border-left: solid 1px ${pillarPalette[Special.Labs].faded};
-	border-right: solid 1px ${pillarPalette[Special.Labs].faded};
+	border-left: solid 1px ${pillarPalette[ Special.Labs ].faded};
+	border-right: solid 1px ${pillarPalette[ Special.Labs ].faded};
 	background: transparent;
 	color: inherit;
 	cursor: pointer;
@@ -73,8 +73,8 @@ const popUpStyle = css`
 	transform: translate(-15%, 30%);
 	width: 266px;
 	padding: 16px;
-	background-color: ${palette.neutral[7]};
-	color: ${palette.neutral[100]};
+	background-color: ${palette.neutral[ 7 ]};
+	color: ${palette.neutral[ 100 ]};
 	font-weight: normal;
 	border-radius: 4px;
 	z-index: 100;
@@ -86,7 +86,7 @@ const logoStyle = css`
 
 const aStyle = css`
 	display: inline-block;
-	color: ${pillarPalette[Special.Labs].bright};
+	color: ${pillarPalette[ Special.Labs ].bright};
 	text-decoration: none;
 	margin-top: 10px;
 	&:hover {
@@ -95,7 +95,7 @@ const aStyle = css`
 `;
 
 const iconStyle = css`
-	fill: ${pillarPalette[Special.Labs].bright};
+	fill: ${pillarPalette[ Special.Labs ].bright};
 	margin: 0 0;
 	padding-right: 3px;
 	vertical-align: middle;

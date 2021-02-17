@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { palette } from '@guardian/src-foundations';
 import { textSans } from '@guardian/src-foundations/typography';
 
@@ -10,7 +10,7 @@ const wrapper = css`
 	padding-top: 12px;
 	${textSans.medium()};
 	padding-left: 20px;
-	border-left: 8px solid ${palette.neutral[86]};
+	border-left: 8px solid ${palette.neutral[ 86 ]};
 	clear: left;
 `;
 
@@ -21,8 +21,8 @@ const avatar = css`
 `;
 
 const metaLink = css`
-	border-bottom: 1px solid ${palette.neutral[86]};
-	color: ${palette.news[400]};
+	border-bottom: 1px solid ${palette.neutral[ 86 ]};
+	color: ${palette.news[ 400 ]};
 	text-decoration: none;
 	${textSans.xsmall()};
 `;

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Display, Design, Pillar } from '@guardian/types';
 import { decidePalette } from '@root/src/web/lib/decidePalette';
@@ -46,11 +46,11 @@ const Container = ({ children }: { children: React.ReactNode }) => (
 
 /**
  type Props = {
-    display: Display;
-    design: Design;
-    element: ImageBlockElement;
-    pillar: Theme;
-    hideCaption?: boolean;
+	display: Display;
+	design: Design;
+	element: ImageBlockElement;
+	pillar: Theme;
+	hideCaption?: boolean;
 };
  */
 
@@ -232,7 +232,7 @@ InlineTitle.story = {
 	name: 'with title and role inline',
 	parameters: {
 		viewport: { defaultViewport: 'desktop' },
-		chromatic: { viewports: [1300] },
+		chromatic: { viewports: [ 1300 ] },
 	},
 };
 
@@ -263,7 +263,7 @@ InlineTitleMobile.story = {
 	name: 'with title and role inline on mobile',
 	parameters: {
 		viewport: { defaultViewport: 'mobileMedium' },
-		chromatic: { viewports: [375] },
+		chromatic: { viewports: [ 375 ] },
 	},
 };
 
@@ -321,7 +321,7 @@ ShowcaseTitle.story = {
 	name: 'with title and role showcase',
 	parameters: {
 		viewport: { defaultViewport: 'desktop' },
-		chromatic: { viewports: [980] },
+		chromatic: { viewports: [ 980 ] },
 	},
 };
 
@@ -386,7 +386,7 @@ HalfWidth.story = {
 	name: 'with role halfWidth on desktop',
 	parameters: {
 		viewport: { defaultViewport: 'desktop' },
-		chromatic: { viewports: [980] },
+		chromatic: { viewports: [ 980 ] },
 	},
 };
 
@@ -451,7 +451,7 @@ HalfWidthMobile.story = {
 	name: 'with role halfWidth on mobile',
 	parameters: {
 		viewport: { defaultViewport: 'mobileMedium' },
-		chromatic: { viewports: [375] },
+		chromatic: { viewports: [ 375 ] },
 	},
 };
 

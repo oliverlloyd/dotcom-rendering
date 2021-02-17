@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { BlockquoteBlockComponent } from '@root/src/web/components/elements/BlockquoteBlockComponent';
 import { CalloutBlockComponent } from '@root/src/web/components/elements/CalloutBlockComponent';
@@ -64,7 +64,7 @@ export const ArticleRenderer: React.FC<{
 	elements: CAPIElement[];
 	adTargeting?: AdTargeting;
 	host?: string;
-	abTests: CAPIType['config']['abTests'];
+	abTests: CAPIType[ 'config' ][ 'abTests' ];
 }> = ({ format, palette, elements, adTargeting, host, abTests }) => {
 	// const cleanedElements = elements.map(element =>
 	//     'html' in element ? { ...element, html: clean(element.html) } : element,
@@ -258,9 +258,9 @@ export const ArticleRenderer: React.FC<{
 								image={element.img}
 								credit={element.credit}
 								pillar={format.theme}
-								likeHandler={() => {}}
-								dislikeHandler={() => {}}
-								expandCallback={() => {}}
+								likeHandler={() => { }}
+								dislikeHandler={() => { }}
+								expandCallback={() => { }}
 							/>
 						</Figure>
 					);
@@ -374,9 +374,9 @@ export const ArticleRenderer: React.FC<{
 								image={element.img}
 								credit={element.credit}
 								pillar={format.theme}
-								likeHandler={() => {}}
-								dislikeHandler={() => {}}
-								expandCallback={() => {}}
+								likeHandler={() => { }}
+								dislikeHandler={() => { }}
+								expandCallback={() => { }}
 							/>
 						</Figure>
 					);
@@ -401,9 +401,9 @@ export const ArticleRenderer: React.FC<{
 								image={element.img}
 								credit={element.credit}
 								pillar={format.theme}
-								likeHandler={() => {}}
-								dislikeHandler={() => {}}
-								expandCallback={() => {}}
+								likeHandler={() => { }}
+								dislikeHandler={() => { }}
+								expandCallback={() => { }}
 							/>
 						</Figure>
 					);
@@ -573,9 +573,9 @@ export const ArticleRenderer: React.FC<{
 								title={element.title}
 								pillar={format.theme}
 								events={element.events}
-								likeHandler={() => {}}
-								dislikeHandler={() => {}}
-								expandCallback={() => {}}
+								likeHandler={() => { }}
+								dislikeHandler={() => { }}
+								expandCallback={() => { }}
 							/>
 						</Figure>
 					);
@@ -585,7 +585,7 @@ export const ArticleRenderer: React.FC<{
 							assets={element.assets}
 							poster={
 								element.posterImage &&
-								element.posterImage[0].url
+								element.posterImage[ 0 ].url
 							}
 						/>
 					);

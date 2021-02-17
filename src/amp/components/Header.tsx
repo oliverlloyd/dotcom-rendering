@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import Logo from '@frontend/static/logos/the-guardian.svg';
 import { pillarPalette } from '@root/src/lib/pillars';
 import { palette } from '@guardian/src-foundations';
@@ -9,7 +9,7 @@ import { visuallyHidden } from '@guardian/src-foundations/accessibility';
 import { ReaderRevenueButton } from '@root/src/amp/components/ReaderRevenueButton';
 
 const headerStyles = css`
-	background-color: ${palette.brand[400]};
+	background-color: ${palette.brand[ 400 ]};
 `;
 
 const row = css`
@@ -27,7 +27,7 @@ const logoStyles = css`
 	margin-bottom: 35px;
 
 	path {
-		fill: ${palette.neutral[100]};
+		fill: ${palette.neutral[ 100 ]};
 	}
 
 	${until.mobileMedium} {
@@ -72,7 +72,7 @@ const pillarLinkStyle = (pillar: Theme) => css`
 	${headline.xxxsmall()};
 	height: 36px;
 	padding: 9px 4px;
-	color: ${palette.neutral[100]};
+	color: ${palette.neutral[ 100 ]};
 	position: relative;
 	overflow: hidden;
 
@@ -106,14 +106,14 @@ const pillarLinkStyle = (pillar: Theme) => css`
 		left: 0;
 		right: 0;
 		position: absolute;
-		border-top: 4px solid ${pillarPalette[pillar].bright};
+		border-top: 4px solid ${pillarPalette[ pillar ].bright};
 		transition: transform 0.3s ease-in-out;
 	}
 `;
 
 const veggieStyles = css`
-	background-color: ${palette.brandAlt[400]};
-	color: ${palette.neutral[97]};
+	background-color: ${palette.brandAlt[ 400 ]};
+	color: ${palette.neutral[ 97 ]};
 	height: 42px;
 	min-width: 42px;
 	border: 0;
@@ -137,7 +137,7 @@ const lineStyles = css`
 	height: 2px;
 	position: absolute;
 	width: 20px;
-	background-color: ${palette.neutral[7]};
+	background-color: ${palette.neutral[ 7 ]};
 `;
 
 const pattyStyles = css`

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { until } from '@guardian/src-foundations/mq';
 
@@ -159,23 +159,23 @@ export const MainMedia: React.FC<{
 	starRating,
 	host,
 }) => (
-	<div
-		className={cx(
-			mainMedia,
-			format.display === Display.Immersive ? immersiveWrapper : noGutters,
-		)}
-	>
-		{elements.map((element, i) =>
-			renderElement(
-				element,
-				format,
-				palette,
-				i,
-				hideCaption,
-				adTargeting,
-				starRating,
-				host,
-			),
-		)}
-	</div>
-);
+		<div
+			className={cx(
+				mainMedia,
+				format.display === Display.Immersive ? immersiveWrapper : noGutters,
+			)}
+		>
+			{elements.map((element, i) =>
+				renderElement(
+					element,
+					format,
+					palette,
+					i,
+					hideCaption,
+					adTargeting,
+					starRating,
+					host,
+				),
+			)}
+		</div>
+	);

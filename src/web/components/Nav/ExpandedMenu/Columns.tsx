@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { brand, brandText, brandAlt } from '@guardian/src-foundations/palette';
 import { headline, textSans } from '@guardian/src-foundations/typography';
@@ -18,8 +18,8 @@ const ColumnsStyle = css`
 		position: relative;
 		margin: 0 auto;
 		display: flex;
-		border-left: 1px solid ${brand[600]};
-		border-right: 1px solid ${brand[600]};
+		border-left: 1px solid ${brand[ 600 ]};
+		border-right: 1px solid ${brand[ 600 ]};
 	}
 	${from.leftCol} {
 		max-width: 1140px;
@@ -91,7 +91,7 @@ const brandExtensionLink = css`
 	}
 	:hover,
 	:focus {
-		color: ${brandAlt[400]};
+		color: ${brandAlt[ 400 ]};
 	}
 	> * {
 		pointer-events: none;

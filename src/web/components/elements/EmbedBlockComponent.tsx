@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { unescapeData } from '@root/src/lib/escapeData';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { textSans } from '@guardian/src-foundations/typography';
 import { text } from '@guardian/src-foundations/palette';
 

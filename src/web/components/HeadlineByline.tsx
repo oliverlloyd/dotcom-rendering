@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { brandAltBackground } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
 import { space } from '@guardian/src-foundations';
@@ -17,9 +17,9 @@ const wrapperStyles = css`
 
 const yellowBoxStyles = css`
 	${headline.xxsmall({
-		fontWeight: 'regular',
-		lineHeight: 'loose',
-	})}
+	fontWeight: 'regular',
+	lineHeight: 'loose',
+})}
 	font-style: italic;
 	background-color: ${brandAltBackground.primary};
 	box-shadow: 4px 0 0 ${brandAltBackground.primary},
@@ -38,11 +38,11 @@ const yellowBoxStyles = css`
 
 const opinionStyles = (pillar: Theme) => css`
 	${headline.medium({
-		fontWeight: 'light',
-	})}
+	fontWeight: 'light',
+})}
 	line-height: 38px;
 	font-style: italic;
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 
 	a {
 		color: inherit;
@@ -59,19 +59,19 @@ const whiteText = css`
 
 const immersiveStyles = css`
 	${headline.xsmall({
-		fontWeight: 'light',
-	})}
-	margin-bottom: ${space[6]}px;
+	fontWeight: 'light',
+})}
+	margin-bottom: ${space[ 6 ]}px;
 `;
 
 const immersiveLinkStyles = (pillar: Theme) => css`
 	a {
-		color: ${pillarPalette[pillar].main};
-		border-bottom: 1px solid ${pillarPalette[pillar].main};
+		color: ${pillarPalette[ pillar ].main};
+		border-bottom: 1px solid ${pillarPalette[ pillar ].main};
 		text-decoration: none;
 		:hover {
-			border-bottom: 1px solid ${pillarPalette[pillar].dark};
-			color: ${pillarPalette[pillar].dark};
+			border-bottom: 1px solid ${pillarPalette[ pillar ].dark};
+			color: ${pillarPalette[ pillar ].dark};
 			text-decoration: none;
 		}
 	}
@@ -138,12 +138,11 @@ export const HeadlineByline = ({
 				case Design.Comment:
 					return (
 						<div
-							className={`${opinionStyles(pillar)} ${
-								tags.filter((tag) => tag.type === 'Contributor')
+							className={`${opinionStyles(pillar)} ${tags.filter((tag) => tag.type === 'Contributor')
 									.length === 1
 									? authorBylineWithImage
 									: ''
-							}`}
+								}`}
 						>
 							<BylineLink byline={byline} tags={tags} />
 						</div>

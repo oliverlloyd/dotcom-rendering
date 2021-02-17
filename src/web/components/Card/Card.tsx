@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { Design } from '@guardian/types';
 import { brandAltBackground } from '@guardian/src-foundations/palette';
@@ -155,8 +155,8 @@ export const Card = ({
 		// We only specifiy an explicit width for the image when
 		// we're positioning left or right, not top. Top positioned
 		// images flow naturally
-		imageCoverage = coverages.image[imageSize];
-		contentCoverage = coverages.content[imageSize];
+		imageCoverage = coverages.image[ imageSize ];
+		contentCoverage = coverages.content[ imageSize ];
 	}
 
 	const showCommentCount = commentCount || commentCount === 0;
@@ -280,24 +280,24 @@ export const Card = ({
 									isFullCardImage={isFullCardImage}
 									mediaMeta={
 										format.design === Design.Media &&
-										mediaType ? (
-											<MediaMeta
-												palette={palette}
-												mediaType={mediaType}
-												mediaDuration={mediaDuration}
-											/>
-										) : undefined
+											mediaType ? (
+												<MediaMeta
+													palette={palette}
+													mediaType={mediaType}
+													mediaDuration={mediaDuration}
+												/>
+											) : undefined
 									}
 									commentCount={
 										showCommentCount &&
-										longCount &&
-										shortCount ? (
-											<CardCommentCount
-												palette={palette}
-												long={longCount}
-												short={shortCount}
-											/>
-										) : undefined
+											longCount &&
+											shortCount ? (
+												<CardCommentCount
+													palette={palette}
+													long={longCount}
+													short={shortCount}
+												/>
+											) : undefined
 									}
 								/>
 							</div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Design } from '@guardian/types';
 import { border, neutral, text } from '@guardian/src-foundations/palette';
@@ -33,7 +33,7 @@ const gridItem = (position: number) => css`
 
 	&:hover,
 	:focus {
-		background: ${neutral[97]};
+		background: ${neutral[ 97 ]};
 	}
 `;
 
@@ -87,14 +87,14 @@ export const MostViewedFooterItem = ({ trail, position }: Props) => (
 						showQuotes={trail.format.design === Design.Comment}
 					/>
 				) : (
-					<LinkHeadline
-						headlineText={trail.headline}
-						format={trail.format}
-						palette={trail.palette}
-						size="small"
-						showQuotes={trail.format.design === Design.Comment}
-					/>
-				)}
+						<LinkHeadline
+							headlineText={trail.headline}
+							format={trail.format}
+							palette={trail.palette}
+							size="small"
+							showQuotes={trail.format.design === Design.Comment}
+						/>
+					)}
 			</div>
 			{trail.ageWarning && (
 				<div className={ageWarningStyles}>

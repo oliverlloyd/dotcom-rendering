@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { AdSlot } from '@root/src/web/components/AdSlot';
 import { Hide } from '@root/src/web/components/Hide';
 import { Display } from '@guardian/types';
@@ -30,8 +30,8 @@ export const HeaderAdSlot: React.FC<{
 		<Hide when="below" breakpoint="tablet">
 			<div
 				className={cx({
-					[headerAdWrapper]: true,
-					[headerAdWrapperHidden]: isAdFreeUser || shouldHideAds,
+					[ headerAdWrapper ]: true,
+					[ headerAdWrapperHidden ]: isAdFreeUser || shouldHideAds,
 				})}
 			>
 				<AdSlot position="top-above-nav" display={display} />

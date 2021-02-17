@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import Star from '@frontend/static/icons/star.svg';
 import { neutral } from '@guardian/src-foundations/palette';
 
@@ -15,7 +15,7 @@ type SizeType = 'large' | 'medium' | 'small';
 
 const emptyStar = css`
 	fill: transparent;
-	stroke: ${neutral[7]};
+	stroke: ${neutral[ 7 ]};
 `;
 
 const determineSize = (size: SizeType) => {

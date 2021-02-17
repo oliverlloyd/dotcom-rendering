@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { brand, brandText, brandAlt } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
@@ -15,7 +15,7 @@ export const hideDesktop = css`
 
 const pillarColumnLinks = css`
 	${until.tablet} {
-		background: ${brand[300]};
+		background: ${brand[ 300 ]};
 	}
 `;
 
@@ -27,7 +27,7 @@ const columnStyle = css`
 	position: relative;
 
 	:after {
-		background-color: ${brand[600]};
+		background-color: ${brand[ 600 ]};
 		top: 0;
 		content: '';
 		display: block;
@@ -74,7 +74,7 @@ const pillarDivider = css`
 			top: 0;
 			bottom: 0;
 			width: 1px;
-			background-color: ${brand[600]};
+			background-color: ${brand[ 600 ]};
 			z-index: 1;
 		}
 	}
@@ -135,7 +135,7 @@ const columnLinkTitle = css`
 
 	:hover,
 	:focus {
-		color: ${brandAlt[400]};
+		color: ${brandAlt[ 400 ]};
 		text-decoration: underline;
 	}
 
@@ -177,7 +177,7 @@ export const MoreColumn: React.FC<{
 		>
 			<ul
 				className={cx(columnLinks, {
-					[pillarColumnLinks]: !!moreColumn.pillar,
+					[ pillarColumnLinks ]: !!moreColumn.pillar,
 				})}
 				role="menu"
 				id={subNavId}
@@ -186,7 +186,7 @@ export const MoreColumn: React.FC<{
 					<li
 						key={link.title.toLowerCase()}
 						className={cx(mainMenuLinkStyle, {
-							[hideDesktop]: !!link.mobileOnly,
+							[ hideDesktop ]: !!link.mobileOnly,
 						})}
 						role="none"
 					>

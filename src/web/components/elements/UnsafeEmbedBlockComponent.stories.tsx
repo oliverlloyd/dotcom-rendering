@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { embedIframe } from '@root/src/web/browser/embedIframe/embedIframe';
 

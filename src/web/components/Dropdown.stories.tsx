@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { brandBackground } from '@guardian/src-foundations/palette';
 
@@ -61,12 +61,12 @@ const links = [
 
 const linksWithNoneActive = [
 	{
-		...links[0],
+		...links[ 0 ],
 		isActive: false,
 	},
-	{ ...links[1] },
-	{ ...links[2] },
-	{ ...links[3] },
+	{ ...links[ 1 ] },
+	{ ...links[ 2 ] },
+	{ ...links[ 3 ] },
 ];
 
 export default {

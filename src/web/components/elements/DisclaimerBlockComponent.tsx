@@ -1,13 +1,13 @@
 import React from 'react';
 import { body } from '@guardian/src-foundations/typography';
 import { pillarPalette } from '@root/src/lib/pillars';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 const style = (pillar: Theme) => css`
 	${body.small()};
 
 	a {
-		color: ${pillarPalette[pillar].dark};
+		color: ${pillarPalette[ pillar ].dark};
 	}
 
 	sup {

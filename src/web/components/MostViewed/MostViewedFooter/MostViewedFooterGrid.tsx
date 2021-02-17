@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { neutral, border } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
 import { from, until } from '@guardian/src-foundations/mq';
@@ -45,19 +45,19 @@ const firstTab = css`
 
 const selectedListTabStyles = (pillar: Theme) => css`
 	/* TODO: Using a pseudo selector here could be faster? */
-	box-shadow: inset 0px 4px 0px 0px ${pillarPalette[pillar].dark};
+	box-shadow: inset 0px 4px 0px 0px ${pillarPalette[ pillar ].dark};
 	transition: box-shadow 0.3s ease-in-out;
 `;
 
 // Used for the deeply read test
 const selectedDeeplyListTabStyles = css`
-	box-shadow: inset 0px 4px 0px 0px ${neutral[46]};
+	box-shadow: inset 0px 4px 0px 0px ${neutral[ 46 ]};
 	transition: box-shadow 0.3s ease-in-out;
 `;
 
 const unselectedStyles = css`
 	&:hover {
-		box-shadow: inset 0px 4px 0px 0px ${neutral[86]};
+		box-shadow: inset 0px 4px 0px 0px ${neutral[ 86 ]};
 		transition: box-shadow 0.3s ease-in-out;
 	}
 `;
@@ -129,7 +129,7 @@ const TabHeading = ({ heading }: { heading: string }) => {
 };
 
 export const MostViewedFooterGrid = ({ data, sectionName, pillar }: Props) => {
-	const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
+	const [ selectedTabIndex, setSelectedTabIndex ] = useState<number>(0);
 	const ABTestAPI = useAB();
 	const inDeeplyReadTestVariant = ABTestAPI.isUserInVariant(
 		'DeeplyReadTest',
@@ -184,7 +184,7 @@ export const MostViewedFooterGrid = ({ data, sectionName, pillar }: Props) => {
 			{data.map((tab: TrailTabType, i: number) => (
 				<ol
 					className={cx(gridContainer, {
-						[hideList]: i !== selectedTabIndex,
+						[ hideList ]: i !== selectedTabIndex,
 					})}
 					id={`tabs-popular-${i}`}
 					data-cy={`tab-body-${i}`}

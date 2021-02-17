@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { headline, textSans } from '@guardian/src-foundations/typography';
 import { text } from '@guardian/src-foundations/palette';
@@ -149,9 +149,8 @@ export const Donut = ({
 			].join(' '),
 			label: section.label,
 			value: section.value,
-			transform: `translate(${Math.cos(a) * r + center.x}, ${
-				Math.sin(a) * r + center.y
-			})`,
+			transform: `translate(${Math.cos(a) * r + center.x}, ${Math.sin(a) * r + center.y
+				})`,
 			color: section.color,
 		});
 

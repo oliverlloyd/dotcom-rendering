@@ -2,7 +2,7 @@ const { siteName } = require('../frontend/config');
 
 module.exports = () => ({
 	entry: {
-		[`${siteName}.server`]: './src/app/server.ts',
+		[ `${siteName}.server` ]: './src/app/server.ts',
 	},
 	output: {
 		filename: `[name].js`,
@@ -18,7 +18,7 @@ module.exports = () => ({
 	externals: [
 		'@loadable/component',
 		require('webpack-node-externals')({
-			allowlist: [/^@guardian/],
+			allowlist: [ /^@guardian/ ],
 		}),
 		({ request }, callback) => {
 			return request.endsWith('loadable-manifest-browser.json')
@@ -36,8 +36,8 @@ module.exports = () => ({
 			{
 				test: /(\.tsx|\.js|\.ts)$/,
 				exclude: {
-					and: [/node_modules/],
-					not: [/@guardian/, /dynamic-import-polyfill/],
+					and: [ /node_modules/ ],
+					not: [ /@guardian/, /dynamic-import-polyfill/ ],
 				},
 				use: [
 					{
@@ -45,7 +45,13 @@ module.exports = () => ({
 						options: {
 							presets: [
 								// TODO: remove @babel/preset-react once we stop using JSX in server folder
-								'@babel/preset-react',
+								[
+									'@babel/preset-react',
+									{
+										runtime: 'automatic',
+										importSource: '@emotion/react',
+									}
+								],
 								[
 									'@babel/preset-env',
 									{
@@ -55,6 +61,7 @@ module.exports = () => ({
 									},
 								],
 							],
+							plugins: [ '@emotion' ]
 						},
 					},
 					{
@@ -69,7 +76,7 @@ module.exports = () => ({
 			// TODO: find a way to remove
 			{
 				test: /\.svg$/,
-				use: ['desvg-loader/react', 'svg-loader'],
+				use: [ 'desvg-loader/react', 'svg-loader' ],
 			},
 		],
 	},

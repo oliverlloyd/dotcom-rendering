@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { from } from '@guardian/src-foundations/mq';
 import { visuallyHidden } from '@guardian/src-foundations/accessibility';
@@ -71,7 +71,7 @@ const openExpandedMenuStyles = (display: Display) => css`
 	}
 	:hover,
 	:focus {
-		color: ${brandAlt[400]};
+		color: ${brandAlt[ 400 ]};
 	}
 `;
 

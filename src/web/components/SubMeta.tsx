@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { space } from '@guardian/src-foundations';
 import { border } from '@guardian/src-foundations/palette';
@@ -22,9 +22,9 @@ const badgeWrapper = css`
 `;
 
 const bottomPadding = css`
-	padding-bottom: ${space[9]}px;
+	padding-bottom: ${space[ 9 ]}px;
 	${until.desktop} {
-		padding-bottom: ${space[5]}px;
+		padding-bottom: ${space[ 5 ]}px;
 	}
 `;
 
@@ -135,8 +135,8 @@ export const SubMeta = ({
 											listItemStyles(palette),
 											sectionStyles,
 											i ===
-												subMetaSectionLinks.length -
-													1 && hideSlash,
+											subMetaSectionLinks.length -
+											1 && hideSlash,
 										)}
 										key={link.url}
 									>
@@ -158,8 +158,8 @@ export const SubMeta = ({
 											listItemStyles(palette),
 											keywordStyles,
 											i ===
-												subMetaKeywordLinks.length -
-													1 && hideSlash,
+											subMetaKeywordLinks.length -
+											1 && hideSlash,
 										)}
 										key={link.url}
 									>

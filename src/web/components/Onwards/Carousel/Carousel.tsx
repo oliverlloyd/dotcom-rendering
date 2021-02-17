@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import libDebounce from 'lodash/debounce';
 
 import { headline } from '@guardian/src-foundations/typography';
@@ -118,33 +118,33 @@ const carouselStyle = (isFullCardImage?: boolean) => css`
 `;
 
 const dotsStyle = css`
-	margin-bottom: ${space[2]}px;
+	margin-bottom: ${space[ 2 ]}px;
 `;
 
 const dotStyle = css`
 	cursor: pointer;
 	display: inline-block;
-	height: ${space[3]}px;
-	width: ${space[3]}px;
-	background-color: ${palette.neutral[93]};
+	height: ${space[ 3 ]}px;
+	width: ${space[ 3 ]}px;
+	background-color: ${palette.neutral[ 93 ]};
 	border-radius: 100%;
 	border: 0 none;
 	padding: 0;
-	margin-right: ${space[1]}px;
+	margin-right: ${space[ 1 ]}px;
 
 	&:hover,
 	&:focus {
-		background-color: ${palette.neutral[86]};
+		background-color: ${palette.neutral[ 86 ]};
 		outline: none;
 	}
 `;
 
 const dotActiveStyle = (pillar: Theme) => css`
-	background-color: ${pillarPalette[pillar][400]};
+	background-color: ${pillarPalette[ pillar ][ 400 ]};
 
 	&:hover,
 	&:focus {
-		background-color: ${pillarPalette[pillar].main};
+		background-color: ${pillarPalette[ pillar ].main};
 	}
 `;
 
@@ -154,7 +154,7 @@ const adjustNumberOfDotsStyle = (
 	isFullCardImage?: boolean,
 ) => {
 	/* This is a bit of a hack for the test, while we think of better UX here.
-    The dots can't line up on Desktop because we don't show 1 story per swipe */
+	The dots can't line up on Desktop because we don't show 1 story per swipe */
 	if (isFullCardImage) {
 		return css`
 			${from.desktop} {
@@ -212,14 +212,14 @@ const buttonStyle = css`
 	cursor: pointer;
 	margin-top: 10px;
 	padding: 0;
-	background-color: ${palette.neutral[0]};
+	background-color: ${palette.neutral[ 0 ]};
 
 	&:active,
 	&:hover {
 		outline: none;
-		background-color: ${palette.brandAlt[400]};
+		background-color: ${palette.brandAlt[ 400 ]};
 		svg {
-			fill: ${palette.neutral[7]};
+			fill: ${palette.neutral[ 7 ]};
 		}
 	}
 
@@ -228,21 +228,21 @@ const buttonStyle = css`
 	}
 
 	svg {
-		fill: ${palette.neutral[100]};
+		fill: ${palette.neutral[ 100 ]};
 		height: 34px;
 	}
 `;
 
 const prevButtonStyle = (index: number) => css`
-	background-color: ${index !== 0 ? palette.neutral[0] : palette.neutral[60]};
+	background-color: ${index !== 0 ? palette.neutral[ 0 ] : palette.neutral[ 60 ]};
 `;
 
 const nextButtonStyle = (index: number, totalStories: number) => css`
 	padding-left: 5px; /* Fix centering of SVG*/
 	margin-left: 10px;
 	background-color: ${!isLastCardShowing(index, totalStories)
-		? palette.neutral[0]
-		: palette.neutral[60]};
+		? palette.neutral[ 0 ]
+		: palette.neutral[ 60 ]};
 `;
 
 const headerRowStyles = css`
@@ -262,13 +262,13 @@ const headerStyles = css`
 	${headline.xsmall({ fontWeight: 'bold' })};
 	color: ${palette.text.primary};
 	${headline.xsmall({ fontWeight: 'bold' })};
-	padding-bottom: ${space[2]}px;
-	padding-top: ${space[1]}px;
+	padding-bottom: ${space[ 2 ]}px;
+	padding-top: ${space[ 1 ]}px;
 	margin-left: 0;
 `;
 
 const titleStyle = (pillar: Theme) => css`
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 `;
 
 const Title = ({
@@ -388,9 +388,8 @@ const HeaderAndNav: React.FC<HeaderAndNavProps> = ({
 							isFullCardImage,
 						),
 					)}
-					data-link-name={`${
-						isFullCardImage ? 'carousel-large' : 'carousel-small'
-					}-nav-dot-${i}`}
+					data-link-name={`${isFullCardImage ? 'carousel-large' : 'carousel-small'
+						}-nav-dot-${i}`}
 				/>
 			))}
 		</div>
@@ -406,8 +405,8 @@ export const Carousel: React.FC<OnwardsType> = ({
 }: OnwardsType) => {
 	const carouselRef = useRef<HTMLUListElement>(null);
 
-	const [index, setIndex] = useState(0);
-	const [maxIndex, setMaxIndex] = useState(0);
+	const [ index, setIndex ] = useState(0);
+	const [ maxIndex, setMaxIndex ] = useState(0);
 
 	const variantComponentName = isFullCardImage
 		? 'carousel-large'
@@ -433,7 +432,7 @@ export const Carousel: React.FC<OnwardsType> = ({
 			.filter(notPresentation)
 			.map((el) => el.offsetLeft);
 
-		const scrolled = (current.scrollLeft || 0) + offsets[0];
+		const scrolled = (current.scrollLeft || 0) + offsets[ 0 ];
 		const active = offsets.findIndex((el) => el >= scrolled);
 
 		return Math.max(0, active);
@@ -451,7 +450,7 @@ export const Carousel: React.FC<OnwardsType> = ({
 			.filter(notPresentation)
 			.map((el) => el.offsetLeft);
 
-		current.scrollTo({ left: offsets[newIndex] });
+		current.scrollTo({ left: offsets[ newIndex ] });
 
 		getSetIndex();
 	};
@@ -464,7 +463,7 @@ export const Carousel: React.FC<OnwardsType> = ({
 			.filter(notPresentation)
 			.map((el) => el.offsetLeft);
 
-		const scrolled = (current.scrollLeft || 0) + offsets[0];
+		const scrolled = (current.scrollLeft || 0) + offsets[ 0 ];
 
 		const nextOffset = offsets
 			.reverse()
@@ -486,7 +485,7 @@ export const Carousel: React.FC<OnwardsType> = ({
 			.filter(notPresentation)
 			.map((el) => el.offsetLeft);
 
-		const scrolled = (current.scrollLeft || 0) + offsets[0];
+		const scrolled = (current.scrollLeft || 0) + offsets[ 0 ];
 		const nextOffset = offsets.find((offset) => offset > scrolled);
 
 		if (nextOffset) {
@@ -510,7 +509,7 @@ export const Carousel: React.FC<OnwardsType> = ({
 	// No idea if this is the best approach but it prevents issues with libDebounce
 	// using old data to determine the max index. Instead we say update maxIndex
 	// when index changes and compare it against the prior maxIndex only.
-	useEffect(() => setMaxIndex((m) => Math.max(index, m)), [index]);
+	useEffect(() => setMaxIndex((m) => Math.max(index, m)), [ index ]);
 
 	if (isFullCardImage) trails = convertToImmersive(trails);
 

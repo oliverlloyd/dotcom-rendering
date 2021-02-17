@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { textSans } from '@guardian/src-foundations/typography';
 import { Display, Design, Pillar } from '@guardian/types';
 
@@ -32,7 +32,7 @@ const paragraphStyle = css`
 	margin-bottom: 8px;
 `;
 
-const abTests: CAPIType['config']['abTests'] = {
+const abTests: CAPIType[ 'config' ][ 'abTests' ] = {
 	clickToViewVariant: 'variant',
 };
 
@@ -69,7 +69,7 @@ const RoleStory = ({
 						isTracking={true}
 						source="A Thirdparty Provider"
 						sourceDomain="thirdparty.com"
-						onAccept={() => {}}
+						onAccept={() => { }}
 						abTests={abTests}
 					>
 						{children}

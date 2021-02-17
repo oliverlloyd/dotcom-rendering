@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { neutral, border, text } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
@@ -59,11 +59,11 @@ type Props = {
 };
 
 export const MostViewedRightItem = ({ trail, mostViewedItemIndex }: Props) => {
-	const [hoverRef, isHovered] = useHover<HTMLAnchorElement>();
+	const [ hoverRef, isHovered ] = useHover<HTMLAnchorElement>();
 
 	const linkProps = {
 		to: trail.url,
-		visitedColour: neutral[46],
+		visitedColour: neutral[ 46 ],
 		preventFocus: true,
 	};
 
@@ -99,18 +99,18 @@ export const MostViewedRightItem = ({ trail, mostViewedItemIndex }: Props) => {
 								}
 							/>
 						) : (
-							<LinkHeadline
-								headlineText={trail.headline}
-								format={trail.format}
-								palette={trail.palette}
-								size="small"
-								showUnderline={isHovered}
-								link={linkProps}
-								byline={
-									trail.showByline ? trail.byline : undefined
-								}
-							/>
-						)}
+								<LinkHeadline
+									headlineText={trail.headline}
+									format={trail.format}
+									palette={trail.palette}
+									size="small"
+									showUnderline={isHovered}
+									link={linkProps}
+									byline={
+										trail.showByline ? trail.byline : undefined
+									}
+								/>
+							)}
 						<div className={marginTopStyles}>
 							{trail.ageWarning && (
 								<AgeWarning

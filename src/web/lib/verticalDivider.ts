@@ -1,4 +1,4 @@
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { from } from '@guardian/src-foundations/mq';
 import { border } from '@guardian/src-foundations/palette';

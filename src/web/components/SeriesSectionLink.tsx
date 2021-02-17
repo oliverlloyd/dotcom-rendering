@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { headline } from '@guardian/src-foundations/typography';
 import { from, until } from '@guardian/src-foundations/mq';
@@ -45,7 +45,7 @@ const primaryStyle = css`
 		${headline.xxsmall({ fontWeight: 'bold' })};
 	}
 	${until.leftCol} {
-		margin-right: ${space[2]}px;
+		margin-right: ${space[ 2 ]}px;
 	}
 `;
 
@@ -64,15 +64,15 @@ const invertedStyle = css`
 		line-height: 28px;
 	}
 
-	padding-right: ${space[1]}px;
-	padding-top: ${space[1]}px;
-	padding-bottom: ${space[3]}px;
-	padding-left: ${space[3]}px;
+	padding-right: ${space[ 1 ]}px;
+	padding-top: ${space[ 1 ]}px;
+	padding-bottom: ${space[ 3 ]}px;
+	padding-left: ${space[ 3 ]}px;
 	${from.mobileLandscape} {
-		padding-left: ${space[5]}px;
+		padding-left: ${space[ 5 ]}px;
 	}
 	${from.tablet} {
-		padding-left: ${space[1]}px;
+		padding-left: ${space[ 1 ]}px;
 	}
 `;
 
@@ -130,10 +130,10 @@ export const SeriesSectionLink = ({
 												.background.seriesTitle};
 											box-shadow: -6px 0 0 0
 													${palette.background
-														.seriesTitle},
+												.seriesTitle},
 												6px 0 0 0
 													${palette.background
-														.seriesTitle};
+												.seriesTitle};
 										`,
 									)}
 									data-component="series"
@@ -156,10 +156,10 @@ export const SeriesSectionLink = ({
 													.background.sectionTitle};
 												box-shadow: -6px 0 0 0
 														${palette.background
-															.seriesTitle},
+													.seriesTitle},
 													6px 0 0 0
 														${palette.background
-															.seriesTitle};
+													.seriesTitle};
 											`,
 										)}
 										data-component="section"
@@ -186,10 +186,10 @@ export const SeriesSectionLink = ({
 											.sectionTitle};
 										box-shadow: -6px 0 0 0
 												${palette.background
-													.seriesTitle},
+											.seriesTitle},
 											6px 0 0 0
 												${palette.background
-													.seriesTitle};
+											.seriesTitle};
 									`,
 								)}
 								data-component="section"
@@ -214,10 +214,10 @@ export const SeriesSectionLink = ({
 											.seriesTitle};
 										box-shadow: -6px 0 0 0
 												${palette.background
-													.seriesTitle},
+											.seriesTitle},
 											6px 0 0 0
 												${palette.background
-													.seriesTitle};
+											.seriesTitle};
 									`,
 									invertedStyle,
 								)}

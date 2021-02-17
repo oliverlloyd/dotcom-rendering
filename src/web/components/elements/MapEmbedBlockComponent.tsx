@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { MaintainAspectRatio } from '@frontend/web/components/MaintainAspectRatio';
 import { Caption } from '@root/src/web/components/Caption';

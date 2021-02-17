@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { headline } from '@guardian/src-foundations/typography';
 
@@ -115,18 +115,18 @@ export const LinkHeadline = ({
 				)}
 			</>
 		) : (
-			// We don't have a link so simply use a span here
-			<>
-				<span>{headlineText}</span>
-				{byline && (
-					<Byline
-						text={byline}
-						design={format.design}
-						pillar={format.theme}
-						size={size}
-					/>
-				)}
-			</>
-		)}
+				// We don't have a link so simply use a span here
+				<>
+					<span>{headlineText}</span>
+					{byline && (
+						<Byline
+							text={byline}
+							design={format.design}
+							pillar={format.theme}
+							size={size}
+						/>
+					)}
+				</>
+			)}
 	</h4>
 );

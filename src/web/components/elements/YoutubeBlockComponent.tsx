@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { space } from '@guardian/src-foundations';
 import { neutral } from '@guardian/src-foundations/palette';
@@ -44,8 +44,8 @@ const expiredOverlayStyles = (overrideImage: string) => css`
 	background-position: 49% 49%;
 	background-repeat: no-repeat;
 	padding-bottom: 56%;
-	color: ${neutral[100]};
-	background-color: ${neutral[20]};
+	color: ${neutral[ 100 ]};
+	background-color: ${neutral[ 20 ]};
 `;
 
 const expiredTextWrapperStyles = css`
@@ -53,20 +53,20 @@ const expiredTextWrapperStyles = css`
 	flex-direction: row;
 	align-items: center;
 
-	padding-top: ${space[4]}px;
-	padding-bottom: ${space[4]}px;
-	padding-left: ${space[1]}px;
-	padding-right: ${space[12]}px;
-	color: ${neutral[100]};
-	background-color: ${neutral[20]};
+	padding-top: ${space[ 4 ]}px;
+	padding-bottom: ${space[ 4 ]}px;
+	padding-left: ${space[ 1 ]}px;
+	padding-right: ${space[ 12 ]}px;
+	color: ${neutral[ 100 ]};
+	background-color: ${neutral[ 20 ]};
 `;
 
 const expiredSVGWrapperStyles = css`
-	padding-right: ${space[1]}px;
+	padding-right: ${space[ 1 ]}px;
 	svg {
-		width: ${space[12]}px;
-		height: ${space[12]}px;
-		fill: ${neutral[100]};
+		width: ${space[ 12 ]}px;
+		height: ${space[ 12 ]}px;
+		fill: ${neutral[ 100 ]};
 	}
 `;
 
@@ -113,8 +113,8 @@ export const YoutubeBlockComponent = ({
 						<p
 							className={css`
 								${body.medium({
-									lineHeight: 'tight',
-								})}
+								lineHeight: 'tight',
+							})}
 							`}
 						>
 							This video has been removed. This could be because
@@ -160,27 +160,27 @@ export const YoutubeBlockComponent = ({
 				overrideImage={
 					overrideImage
 						? [
-								{
-									srcSet: [
-										{
-											src: overrideImage,
-											width: 500, // we do not have width for overlayImage so set a random number
-										},
-									],
-								},
-						  ]
+							{
+								srcSet: [
+									{
+										src: overrideImage,
+										width: 500, // we do not have width for overlayImage so set a random number
+									},
+								],
+							},
+						]
 						: undefined
 				}
 				posterImage={
 					posterImage
 						? [
-								{
-									srcSet: posterImage.map((img) => ({
-										src: img.url,
-										width: img.width,
-									})),
-								},
-						  ]
+							{
+								srcSet: posterImage.map((img) => ({
+									src: img.url,
+									width: img.width,
+								})),
+							},
+						]
 						: undefined
 				}
 				role={role}
@@ -190,7 +190,7 @@ export const YoutubeBlockComponent = ({
 				width={width}
 				title={mediaTitle}
 				duration={duration}
-				eventEmitters={[ophanTracking, gaTracking]}
+				eventEmitters={[ ophanTracking, gaTracking ]}
 				pillar={format.theme}
 				origin={process.env.NODE_ENV === 'development' ? '' : origin}
 			/>

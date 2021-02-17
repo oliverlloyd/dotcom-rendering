@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Design, Display, Pillar } from '@guardian/types';
 import { body } from '@guardian/src-foundations/typography';

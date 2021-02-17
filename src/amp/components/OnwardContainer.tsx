@@ -14,14 +14,14 @@ import Camera from '@frontend/static/icons/camera.svg';
 import VolumeHigh from '@frontend/static/icons/volume-high.svg';
 import Quote from '@frontend/static/icons/quote.svg';
 import Clock from '@frontend/static/icons/clock.svg';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { ShowMoreButton } from '@root/src/amp/components/ShowMoreButton';
 
 const inner = css`
 	padding-top: 3px;
 	overflow: hidden;
 	position: relative;
-	border-top: 1px solid ${palette.neutral[86]};
+	border-top: 1px solid ${palette.neutral[ 86 ]};
 	margin-top: 24px;
 `;
 const header = css`
@@ -32,8 +32,8 @@ const header = css`
 	text-transform: capitalize;
 `;
 const item = css`
-	background-color: ${palette.neutral[93]};
-	border-top: 1px solid ${palette.neutral[93]};
+	background-color: ${palette.neutral[ 93 ]};
+	border-top: 1px solid ${palette.neutral[ 93 ]};
 	padding-left: 126px;
 	position: relative;
 	height: 75px;
@@ -75,7 +75,7 @@ const description = css`
 `;
 const iconCSS = css`
 	svg {
-		fill: ${palette.neutral[7]};
+		fill: ${palette.neutral[ 7 ]};
 		padding-right: 2px;
 		height: 13px;
 		width: 16px;
@@ -83,19 +83,19 @@ const iconCSS = css`
 `;
 const quoteIconCSS = css`
 	svg {
-		fill: ${palette.neutral[60]};
+		fill: ${palette.neutral[ 60 ]};
 		padding-right: 2px;
 		height: 13px;
 		width: 16px;
 	}
 `;
 const ageWarning = css`
-	color: ${palette.neutral[20]};
-	fill: ${palette.neutral[20]};
+	color: ${palette.neutral[ 20 ]};
+	fill: ${palette.neutral[ 20 ]};
 	${textSans.xsmall()};
 `;
 const showMore = css`
-	background-color: ${palette.neutral[100]};
+	background-color: ${palette.neutral[ 100 ]};
 	&[overflow] {
 		position: absolute;
 		bottom: 0;

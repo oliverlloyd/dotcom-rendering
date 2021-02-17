@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Display, Design, Pillar } from '@guardian/types';
 import { decidePalette } from '@root/src/web/lib/decidePalette';
@@ -16,17 +16,17 @@ export default {
 };
 
 /*
-    type Props = {
-        display: Display;
-        design: Design;
-        captionText?: string;
-        pillar: Theme;
-        padCaption?: boolean;
-        credit?: string;
-        displayCredit?: boolean;
-        shouldLimitWidth?: boolean;
-        isOverlayed?: boolean;
-    };
+	type Props = {
+		display: Display;
+		design: Design;
+		captionText?: string;
+		pillar: Theme;
+		padCaption?: boolean;
+		credit?: string;
+		displayCredit?: boolean;
+		shouldLimitWidth?: boolean;
+		isOverlayed?: boolean;
+	};
  */
 
 const Container = ({ children }: { children: React.ReactNode }) => (

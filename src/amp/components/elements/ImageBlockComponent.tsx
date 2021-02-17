@@ -2,7 +2,7 @@ import React from 'react';
 
 import { text } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { pillarPalette } from '@root/src/lib/pillars';
 import { bestFitImage, heightEstimate } from '@root/src/amp/lib/image-fit';
 import TriangleIcon from '@frontend/static/icons/triangle.svg';
@@ -28,17 +28,17 @@ export const ImageBlockComponent: React.FC<{
 		containerWidth,
 	);
 	const height: number = heightEstimate(
-		element.media.allImages[0],
+		element.media.allImages[ 0 ],
 		image.width,
 	);
 	const iconStyle = css`
-		fill: ${pillarPalette[pillar].main};
+		fill: ${pillarPalette[ pillar ].main};
 		padding-right: 3px;
 	`;
 
 	const captionLink = css`
 		a {
-			color: ${pillarPalette[pillar].main};
+			color: ${pillarPalette[ pillar ].main};
 			text-decoration: none;
 		}
 		a:hover {
@@ -65,24 +65,24 @@ export const ImageBlockComponent: React.FC<{
 			/>
 			{(element.data.caption ||
 				(element.data.credit && element.displayCredit)) && (
-				<figcaption className={captionStyle}>
-					<span className={iconStyle}>
-						<TriangleIcon />
-					</span>
-					{/*
+					<figcaption className={captionStyle}>
+						<span className={iconStyle}>
+							<TriangleIcon />
+						</span>
+						{/*
                         TODO - Move caption handling to use https://github.com/guardian/dotcom-rendering/blob/master/packages/guui/components/Caption/Caption.tsx
                         Update: 16th October (Pascal): guui has been decommissioned.
                     */}
-					<span
-						className={captionLink}
-						dangerouslySetInnerHTML={{
-							__html: element.data.caption || '',
-						}}
-						key="caption"
-					/>{' '}
-					{element.displayCredit && element.data.credit}
-				</figcaption>
-			)}
+						<span
+							className={captionLink}
+							dangerouslySetInnerHTML={{
+								__html: element.data.caption || '',
+							}}
+							key="caption"
+						/>{' '}
+						{element.displayCredit && element.data.credit}
+					</figcaption>
+				)}
 		</figure>
 	);
 };

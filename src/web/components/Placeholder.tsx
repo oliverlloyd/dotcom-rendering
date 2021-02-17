@@ -1,10 +1,10 @@
 import React from 'react';
-import { css, keyframes } from 'emotion';
+import { css, keyframes } from '@emotion/css';
 
 import { space } from '@guardian/src-foundations';
 import { neutral } from '@guardian/src-foundations/palette';
 
-const BACKGROUND_COLOUR = neutral[93];
+const BACKGROUND_COLOUR = neutral[ 93 ];
 
 type Props = {
 	height: number;
@@ -29,7 +29,7 @@ const shimmerStyles = css`
 	background: linear-gradient(
 		to right,
 		${BACKGROUND_COLOUR} 4%,
-		${neutral[86]} 25%,
+		${neutral[ 86 ]} 25%,
 		${BACKGROUND_COLOUR} 36%
 	);
 	background-size: 1500px 100%;
@@ -54,8 +54,8 @@ export const Placeholder = ({
 			className={css`
 				height: ${height}px;
 				width: ${width ? `${width}px` : '100%'};
-				margin-bottom: ${spaceBelow && space[spaceBelow]}px;
-				margin-left: ${spaceLeft && space[spaceLeft]}px;
+				margin-bottom: ${spaceBelow && space[ spaceBelow ]}px;
+				margin-left: ${spaceLeft && space[ spaceLeft ]}px;
 				background-color: ${BACKGROUND_COLOUR};
 
 				${shouldShimmer && shimmerStyles}

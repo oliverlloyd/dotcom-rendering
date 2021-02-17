@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { neutral } from '@guardian/src-foundations/palette';
 import { palette } from '@guardian/src-foundations';
@@ -9,17 +9,17 @@ import { blockLink } from '@root/src/amp/lib/block-link';
 
 const headingStyle = css`
 	${headline.xxsmall()};
-	background-color: ${palette.neutral[100]};
+	background-color: ${palette.neutral[ 100 ]};
 	padding: 0.375rem 0.625rem;
 	font-weight: bold;
 	span {
-		background-color: ${neutral[46]};
+		background-color: ${neutral[ 46 ]};
 		float: right;
 		position: relative;
 	}
 
 	svg {
-		fill: ${palette.neutral[100]};
+		fill: ${palette.neutral[ 100 ]};
 		color: black;
 		display: block;
 	}
@@ -31,7 +31,7 @@ const listItemStyle = css`
 	width: 100%;
 	overflow: hidden;
 	min-height: 2.5rem;
-	border-bottom: 0.0625rem solid ${palette.neutral[86]};
+	border-bottom: 0.0625rem solid ${palette.neutral[ 86 ]};
 	padding: 0.125rem 0 0.375rem;
 `;
 
@@ -53,7 +53,7 @@ const wrapper = css`
 const eventLinkStyle = css`
 	display: block;
 	text-decoration: none;
-	color: ${palette.sport[300]};
+	color: ${palette.sport[ 300 ]};
 	:hover {
 		text-decoration: underline;
 	}

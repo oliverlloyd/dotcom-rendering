@@ -6,7 +6,7 @@ import { Body as BodyLiveblog } from '@root/src/amp/components/BodyLiveblog';
 import { Header } from '@root/src/amp/components/Header';
 import { Onward } from '@root/src/amp/components/Onward';
 import { AdConsent } from '@root/src/amp/components/AdConsent';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { Sidebar } from '@root/src/amp/components/Sidebar';
 import { Analytics, AnalyticsModel } from '@root/src/amp/components/Analytics';
 import { filterForTagsOfType } from '@root/src/amp/lib/tag-utils';
@@ -19,7 +19,7 @@ import { decideDesign } from '@root/src/web/lib/decideDesign';
 import { decideTheme } from '@root/src/web/lib/decideTheme';
 
 const backgroundColour = css`
-	background-color: ${palette.neutral[97]};
+	background-color: ${palette.neutral[ 97 ]};
 `;
 
 const Body: React.SFC<{

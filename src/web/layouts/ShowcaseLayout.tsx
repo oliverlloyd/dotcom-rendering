@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import {
 	neutral,
@@ -245,7 +245,7 @@ export const ShowcaseLayout = ({
 
 	const age = getAgeWarning(CAPI.tags, CAPI.webPublicationDate);
 
-	const { branding } = CAPI.commercialProperties[CAPI.editionId];
+	const { branding } = CAPI.commercialProperties[ CAPI.editionId ];
 
 	return (
 		<>
@@ -377,7 +377,7 @@ export const ShowcaseLayout = ({
 								adTargeting={adTargeting}
 								starRating={
 									format.design === Design.Review &&
-									CAPI.starRating
+										CAPI.starRating
 										? CAPI.starRating
 										: undefined
 								}
@@ -419,7 +419,7 @@ export const ShowcaseLayout = ({
 								tags={CAPI.tags}
 								primaryDateline={CAPI.webPublicationDateDisplay}
 								secondaryDateline={
-									CAPI.blocks[0].secondaryDateLine
+									CAPI.blocks[ 0 ].secondaryDateLine
 								}
 							/>
 						</div>
@@ -484,8 +484,8 @@ export const ShowcaseLayout = ({
 								{!isPaidContent ? (
 									<MostViewedRightIsland />
 								) : (
-									<></>
-								)}
+										<></>
+									)}
 							</RightColumn>
 						</div>
 					</GridItem>
@@ -496,7 +496,7 @@ export const ShowcaseLayout = ({
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
-				backgroundColour={neutral[93]}
+				backgroundColour={neutral[ 93 ]}
 			>
 				<AdSlot
 					position="merchandising-high"
@@ -547,7 +547,7 @@ export const ShowcaseLayout = ({
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
-				backgroundColour={neutral[93]}
+				backgroundColour={neutral[ 93 ]}
 			>
 				<AdSlot position="merchandising" display={format.display} />
 			</Section>

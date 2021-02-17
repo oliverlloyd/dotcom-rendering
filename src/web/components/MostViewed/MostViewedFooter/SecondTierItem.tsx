@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { border, neutral, text } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
@@ -33,7 +33,7 @@ const itemStyles = (showRightBorder?: boolean) => css`
 
 	&:hover,
 	:focus {
-		background: ${neutral[97]};
+		background: ${neutral[ 97 ]};
 	}
 `;
 
@@ -118,14 +118,14 @@ export const SecondTierItem = ({
 								byline={showByline ? byline : undefined}
 							/>
 						) : (
-							<LinkHeadline
-								headlineText={headlineText}
-								format={format}
-								palette={palette}
-								size="small"
-								byline={showByline ? byline : undefined}
-							/>
-						)}
+								<LinkHeadline
+									headlineText={headlineText}
+									format={format}
+									palette={palette}
+									size="small"
+									byline={showByline ? byline : undefined}
+								/>
+							)}
 						{ageWarning && (
 							<div className={ageWarningStyles}>
 								<AgeWarning age={ageWarning} size="small" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { border } from '@guardian/src-foundations/palette';
 import { from, Breakpoint } from '@guardian/src-foundations/mq';
@@ -22,7 +22,7 @@ const stackBelow = (breakpoint: Breakpoint) => css`
 	display: flex;
 	flex-direction: column;
 
-	${from[breakpoint]} {
+	${from[ breakpoint ]} {
 		flex-direction: row;
 	}
 `;
@@ -37,17 +37,16 @@ const secondTierStyles = css`
 `;
 
 function buildSectionUrl(ajaxUrl: string, sectionName?: string) {
-	const sectionsWithoutPopular = ['info', 'global'];
+	const sectionsWithoutPopular = [ 'info', 'global' ];
 	const hasSection =
 		sectionName && !sectionsWithoutPopular.includes(sectionName);
-	const endpoint: string = `/most-read${
-		hasSection ? `/${sectionName}` : ''
-	}.json`;
-	return joinUrl([ajaxUrl, `${endpoint}?dcr=true`]);
+	const endpoint: string = `/most-read${hasSection ? `/${sectionName}` : ''
+		}.json`;
+	return joinUrl([ ajaxUrl, `${endpoint}?dcr=true` ]);
 }
 
 function buildDeeplyReadUrl(ajaxUrl: string) {
-	return joinUrl([ajaxUrl, 'most-read-deeply-read.json']);
+	return joinUrl([ ajaxUrl, 'most-read-deeply-read.json' ]);
 }
 
 function transformTabs(tabs: CAPITrailTabType[]): TrailTabType[] {

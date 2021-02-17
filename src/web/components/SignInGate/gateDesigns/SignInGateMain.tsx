@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx } from 'emotion';
+import { cx } from '@emotion/css';
 
 import { LinkButton } from '@guardian/src-button';
 import { Link } from '@guardian/src-link';
@@ -88,7 +88,7 @@ export const SignInGateMain = ({
 				</LinkButton>
 			</div>
 
-			<p className={cx([bodyBold, signInHeader])}>
+			<p className={cx([ bodyBold, signInHeader ])}>
 				Have a subscription? Made a contribution? Already registered?
 			</p>
 

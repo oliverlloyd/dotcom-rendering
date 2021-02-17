@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { palette } from '@guardian/src-foundations';
 import { body, textSans } from '@guardian/src-foundations/typography';
 import { pillarPalette, neutralBorder } from '@root/src/lib/pillars';
@@ -33,11 +33,11 @@ export const ListStyle = (iconColour: string) => css`
 
 export const LinkStyle = (pillar: Theme) => css`
 	a {
-		color: ${pillarPalette[pillar].dark};
+		color: ${pillarPalette[ pillar ].dark};
 		text-decoration: none;
 		border-bottom: 1px solid ${neutralBorder(pillar)};
 		:hover {
-			border-bottom: 1px solid ${pillarPalette[pillar].dark};
+			border-bottom: 1px solid ${pillarPalette[ pillar ].dark};
 		}
 	}
 `;
@@ -51,7 +51,7 @@ export const TextStyle = (pillar: Theme) => css`
 		${body.medium()};
 		font-weight: 300;
 		word-wrap: break-word;
-		color: ${palette.neutral[7]};
+		color: ${palette.neutral[ 7 ]};
 	}
 
 	blockquote {

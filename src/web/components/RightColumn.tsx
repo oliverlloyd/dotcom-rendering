@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { from, until } from '@guardian/src-foundations/mq';
 
 const hideBelowDesktop = css`

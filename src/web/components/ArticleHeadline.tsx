@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { HeadlineTag } from '@root/src/web/components/HeadlineTag';
 import { HeadlineByline } from '@root/src/web/components/HeadlineByline';
@@ -105,8 +105,8 @@ const shiftSlightly = css`
 const invertedStyles = (palette: Palette) => css`
 	position: relative;
 	white-space: pre-wrap;
-	padding-bottom: ${space[1]}px;
-	padding-right: ${space[1]}px;
+	padding-bottom: ${space[ 1 ]}px;
+	padding-right: ${space[ 1 ]}px;
 	box-shadow: -6px 0 0 ${palette.background.headline};
 	/* Box decoration is required to push the box shadow out on Firefox */
 	box-decoration-break: clone;
@@ -114,18 +114,18 @@ const invertedStyles = (palette: Palette) => css`
 
 const immersiveStyles = css`
 	min-height: 112px;
-	padding-bottom: ${space[9]}px;
-	padding-left: ${space[1]}px;
+	padding-bottom: ${space[ 9 ]}px;
+	padding-left: ${space[ 1 ]}px;
 	${from.mobileLandscape} {
-		padding-left: ${space[3]}px;
+		padding-left: ${space[ 3 ]}px;
 	}
 	${from.tablet} {
-		padding-left: ${space[1]}px;
+		padding-left: ${space[ 1 ]}px;
 	}
-	margin-right: ${space[5]}px;
+	margin-right: ${space[ 5 ]}px;
 `;
 const reducedBottomPadding = css`
-	padding-bottom: ${space[4]}px;
+	padding-bottom: ${space[ 4 ]}px;
 `;
 
 const darkBackground = (palette: Palette) => css`
@@ -134,8 +134,8 @@ const darkBackground = (palette: Palette) => css`
 
 const invertedText = css`
 	white-space: pre-wrap;
-	padding-bottom: ${space[1]}px;
-	padding-right: ${space[1]}px;
+	padding-bottom: ${space[ 1 ]}px;
+	padding-right: ${space[ 1 ]}px;
 `;
 
 const maxWidth = css`

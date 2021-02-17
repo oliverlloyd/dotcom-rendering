@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { border, background } from '@guardian/src-foundations/palette';
 import { headline, textSans } from '@guardian/src-foundations/typography';
@@ -15,7 +15,7 @@ type Props = {
 	isTracking: boolean;
 	source?: string;
 	sourceDomain?: string;
-	abTests: CAPIType['config']['abTests'];
+	abTests: CAPIType[ 'config' ][ 'abTests' ];
 };
 
 const roleTextSize = (role: RoleType) => {
@@ -92,7 +92,7 @@ const shouldDisplayOverlay = (
 	return isInABTestVariant;
 };
 
-const isInABTestVariant = (abTestConfig: CAPIType['config']['abTests']) => {
+const isInABTestVariant = (abTestConfig: CAPIType[ 'config' ][ 'abTests' ]) => {
 	return abTestConfig.clickToViewVariant === 'variant';
 };
 
@@ -105,7 +105,7 @@ export const ClickToView = ({
 	sourceDomain = 'unknown',
 	abTests,
 }: Props) => {
-	const [isOverlayClicked, setIsOverlayClicked] = useState<boolean>(false);
+	const [ isOverlayClicked, setIsOverlayClicked ] = useState<boolean>(false);
 
 	const handleClick = () => {
 		setIsOverlayClicked(true);
@@ -132,7 +132,7 @@ export const ClickToView = ({
 					display: flex;
 					flex-direction: column;
 					justify-content: space-between;
-					padding: ${space[3]}px;
+					padding: ${space[ 3 ]}px;
 					margin-bottom: 8px;
 				`}
 			>
@@ -171,19 +171,19 @@ export const ClickToView = ({
 							</p>
 						</>
 					) : (
-						<>
-							<p>
-								This article includes content hosted on{' '}
-								{sourceDomain}. We ask for your permission
+							<>
+								<p>
+									This article includes content hosted on{' '}
+									{sourceDomain}. We ask for your permission
 								before anything is loaded, as the provider may
 								be using cookies and other technologies.
 							</p>
-							<p>
-								To view this content, click &apos;Allow and
-								continue&apos;.
+								<p>
+									To view this content, click &apos;Allow and
+									continue&apos;.
 							</p>
-						</>
-					)}
+							</>
+						)}
 				</div>
 				<div>
 					<Button

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { CommentBlockComponent } from '@frontend/web/components/elements/CommentBlockComponent';
 

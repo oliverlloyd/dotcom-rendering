@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { breakpoints } from '@guardian/src-foundations/mq';
 
@@ -38,7 +38,7 @@ const getSourcesForRoleAndResolution = (
 		({ weighting }) =>
 			// Use toLowerCase to handle cases where we have halfWidth comparing to halfwidth
 			weighting.toLowerCase() === role.toLowerCase(),
-	)[0].srcSet;
+	)[ 0 ].srcSet;
 
 	return resolution === 'hdpi'
 		? setsForRole.filter((set) => set.src.includes('dpr=2'))

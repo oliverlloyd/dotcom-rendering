@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { Design } from '@guardian/types';
 import { headline } from '@guardian/src-foundations/typography';
@@ -82,9 +82,9 @@ const underlinedStyles = (size: SmallHeadlineSize) => {
 
 const fullCardImageTextStyles = css`
 	${headline.xxxsmall()};
-	color: ${neutral[100]};
+	color: ${neutral[ 100 ]};
 	background-color: rgba(0, 0, 0, 0.75);
-	box-shadow: -${space[1]}px 0 0 rgba(0, 0, 0, 0.75);
+	box-shadow: -${space[ 1 ]}px 0 0 rgba(0, 0, 0, 0.75);
 	/* Box decoration is required to push the box shadow out on Firefox */
 	box-decoration-break: clone;
 	line-height: 1.25;
@@ -110,7 +110,7 @@ export const CardHeadline = ({
 				fontStyles(size),
 				format.design === Design.Analysis && underlinedStyles(size),
 				isFullCardImage &&
-					css`
+				css`
 						line-height: 1; /* Reset line height in full image carousel */
 					`,
 			)}

@@ -1,4 +1,4 @@
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import { opinion, palette, space } from '@guardian/src-foundations';
 import { from } from '@guardian/src-foundations/mq';
 import { headline, textSans } from '@guardian/src-foundations/typography';
@@ -25,7 +25,7 @@ export const signInGateContainer = css`
 export const headingStyles = css`
 	${headline.small({ fontWeight: 'bold' })};
 	border-top: 2px black solid;
-	padding-bottom: ${space[12]}px;
+	padding-bottom: ${space[ 12 ]}px;
 
 	${from.phablet} {
 		padding-right: 160px;
@@ -44,7 +44,7 @@ export const bodyBold = css`
 
 export const bodyText = css`
 	${textSans.medium({ lineHeight: 'regular' })}
-	padding-bottom: ${space[6]}px;
+	padding-bottom: ${space[ 6 ]}px;
 
 	${from.phablet} {
 		padding-right: 160px;
@@ -62,7 +62,7 @@ export const actionButtons = css`
 	margin-bottom: 42px;
 
 	> a {
-		margin-right: ${space[9]}px !important;
+		margin-right: ${space[ 9 ]}px !important;
 		text-decoration: none !important;
 	}
 `;
@@ -72,7 +72,7 @@ export const registerButton = css`
 `;
 
 export const laterButton = css`
-	color: ${palette.brand[400]} !important;
+	color: ${palette.brand[ 400 ]} !important;
 `;
 
 export const signInLink = css`
@@ -80,14 +80,14 @@ export const signInLink = css`
 `;
 
 export const faq = css`
-	padding-top: ${space[3]}px;
+	padding-top: ${space[ 3 ]}px;
 	padding-bottom: 18px;
-	margin-top: ${space[5]}px;
+	margin-top: ${space[ 5 ]}px;
 
 	& a {
 		color: ${palette.text.primary};
 		display: block;
-		margin-bottom: ${space[4]}px;
+		margin-bottom: ${space[ 4 ]}px;
 	}
 
 	& a:hover {
@@ -113,7 +113,7 @@ export const firstParagraphOverlay = (isComment: boolean) => css`
 	/* "transparent" only works here because == rgba(0,0,0,0) */
 	background-image: linear-gradient(
 		0deg,
-		${isComment ? opinion[800] : palette.background.primary},
+		${isComment ? opinion[ 800 ] : palette.background.primary},
 		70%,
 		rgba(255, 255, 255, 0)
 	);

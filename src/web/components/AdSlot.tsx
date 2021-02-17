@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { border, neutral, text } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
@@ -13,11 +13,11 @@ type Props = {
 };
 
 /*
-    This file's values are meant to mirror the values used by frontend.
-    Look for marks:
-        432b3a46-90c1-4573-90d3-2400b51af8d0
-        1b109a4a-791c-4214-acd2-2720d7d9f96f
-    ... in the frontend code
+	This file's values are meant to mirror the values used by frontend.
+	Look for marks:
+		432b3a46-90c1-4573-90d3-2400b51af8d0
+		1b109a4a-791c-4214-acd2-2720d7d9f96f
+	... in the frontend code
  */
 
 enum Size {
@@ -52,7 +52,7 @@ export const labelStyles = css`
 		${textSans.xsmall()};
 		position: relative;
 		height: 24px;
-		background-color: ${neutral[97]};
+		background-color: ${neutral[ 97 ]};
 		padding: 0 8px;
 		border-top: 1px solid ${border.secondary};
 		color: ${text.supporting};
@@ -96,8 +96,8 @@ const mobileStickyAdStyles = css`
 	.ad-slot__close-button svg {
 		height: 0.75rem;
 		width: 0.75rem;
-		stroke: ${neutral[7]};
-		fill: ${neutral[7]};
+		stroke: ${neutral[ 7 ]};
+		fill: ${neutral[ 7 ]};
 		stroke-linecap: round;
 		stroke-width: 0;
 		text-align: center;
@@ -106,7 +106,7 @@ const mobileStickyAdStyles = css`
 		display: block;
 	}
 	.ad-slot__close-button__x {
-		stroke: ${neutral[7]};
+		stroke: ${neutral[ 7 ]};
 		fill: transparent;
 		stroke-linecap: round;
 		stroke-width: 2;
@@ -117,10 +117,10 @@ const mobileStickyAdStyles = css`
 		line-height: 1.25rem;
 		position: relative;
 		height: 1.5rem;
-		background-color: ${neutral[97]};
+		background-color: ${neutral[ 97 ]};
 		padding: 0 0.5rem;
 		border-top: 0.0625rem solid ${border.secondary};
-		color: ${neutral[60]};
+		color: ${neutral[ 60 ]};
 		text-align: left;
 		box-sizing: border-box;
 		${textSans.xsmall()};
@@ -429,6 +429,6 @@ export const AdSlot: React.FC<Props> = ({ position, display }) => {
 	}
 };
 
-export const MobileStickyContainer: React.FC<{}> = ({}) => {
+export const MobileStickyContainer: React.FC<{}> = ({ }) => {
 	return <div className={`mobilesticky-container ${mobileStickyAdStyles}`} />;
 };

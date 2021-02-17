@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import {
 	brand,
@@ -22,7 +22,7 @@ const emailSignupWidth =
 	pillarWidth +
 	firstPillarWidth -
 	(emailSignupSideMargins * 2 + footerItemContainerPadding);
-const footerBorders = `1px solid ${brand[600]}`;
+const footerBorders = `1px solid ${brand[ 600 ]}`;
 
 // CSS
 const footer = css`
@@ -65,10 +65,10 @@ const emailSignup = css`
 
 	${from.wide} {
 		margin-right: ${pillarWidth * 2 +
-		firstPillarWidth -
-		(emailSignupWidth +
-			emailSignupSideMargins +
-			footerItemContainerPadding)}px;
+	firstPillarWidth -
+	(emailSignupWidth +
+		emailSignupSideMargins +
+		footerItemContainerPadding)}px;
 	}
 `;
 
@@ -81,7 +81,7 @@ const footerLink = css`
 
 	:hover {
 		text-decoration: underline;
-		color: ${brandAlt[400]};
+		color: ${brandAlt[ 400 ]};
 	}
 `;
 

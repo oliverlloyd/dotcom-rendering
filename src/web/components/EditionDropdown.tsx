@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { Dropdown } from '@root/src/web/components/Dropdown';
 import { brand } from '@guardian/src-foundations/palette';
@@ -14,7 +14,7 @@ const editionDropdown = css`
 
 	:before {
 		content: '';
-		border-left: 1px solid ${brand[600]};
+		border-left: 1px solid ${brand[ 600 ]};
 		display: block;
 		float: left;
 		height: 24px;
@@ -62,7 +62,7 @@ export const EditionDropdown: React.FC<{
 	];
 
 	// Find active link, default to UK
-	const activeLink = links.find((link) => link.isActive) || links[0];
+	const activeLink = links.find((link) => link.isActive) || links[ 0 ];
 
 	// Remove the active link and add it back to the top of the list
 	const linksToDisplay = links.filter((link) => !link.isActive);

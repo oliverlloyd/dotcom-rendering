@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { from, until } from '@guardian/src-foundations/mq';
 import { Badge } from '@frontend/web/components/Badge';
@@ -77,8 +77,8 @@ export const ArticleTitle = ({
 			className={cx(
 				badge && marginTop,
 				format.display === Display.Immersive &&
-					format.design !== Design.PrintShop &&
-					immersiveMargins,
+				format.design !== Design.PrintShop &&
+				immersiveMargins,
 			)}
 		>
 			<SeriesSectionLink

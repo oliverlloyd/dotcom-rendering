@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { space } from '@guardian/src-foundations';
 import { CommentCount } from '@frontend/web/components/CommentCount';
@@ -52,8 +52,8 @@ const commentIdFromUrl = () => {
 	const { hash } = window.location;
 	if (!hash) return;
 	if (!hash.includes('comment')) return;
-	if (!hash.split('-')[1]) return;
-	return parseInt(hash.split('-')[1], 10);
+	if (!hash.split('-')[ 1 ]) return;
+	return parseInt(hash.split('-')[ 1 ], 10);
 };
 
 export const Discussion = ({
@@ -71,17 +71,17 @@ export const Discussion = ({
 	beingHydrated,
 	display,
 }: Props) => {
-	const [commentCount, setCommentCount] = useState<number>();
-	const [isClosedForComments, setIsClosedForComments] = useState<boolean>(
+	const [ commentCount, setCommentCount ] = useState<number>();
+	const [ isClosedForComments, setIsClosedForComments ] = useState<boolean>(
 		true,
 	);
-	const [commentPage, setCommentPage] = useState<number>();
-	const [commentPageSize, setCommentPageSize] = useState<25 | 50 | 100>();
-	const [commentOrderBy, setCommentOrderBy] = useState<
+	const [ commentPage, setCommentPage ] = useState<number>();
+	const [ commentPageSize, setCommentPageSize ] = useState<25 | 50 | 100>();
+	const [ commentOrderBy, setCommentOrderBy ] = useState<
 		'newest' | 'oldest' | 'recommendations'
 	>();
-	const [isExpanded, setIsExpanded] = useState<boolean>(false);
-	const [hashCommentId, setHashCommentId] = useState<number | undefined>(
+	const [ isExpanded, setIsExpanded ] = useState<boolean>(false);
+	const [ hashCommentId, setHashCommentId ] = useState<number | undefined>(
 		commentIdFromUrl(),
 	);
 	const hasCommentsHash =
@@ -113,7 +113,7 @@ export const Discussion = ({
 		if (isCommentable) {
 			callFetch();
 		}
-	}, [discussionApiUrl, shortUrlId, isCommentable]);
+	}, [ discussionApiUrl, shortUrlId, isCommentable ]);
 
 	// Check the url to see if there is a comment hash, e.g. ...crisis#comment-139113120
 	// If so, make a call to get the context of this comment so we know what page it is
@@ -129,13 +129,13 @@ export const Discussion = ({
 				},
 			);
 		}
-	}, [discussionApiUrl, hashCommentId]);
+	}, [ discussionApiUrl, hashCommentId ]);
 
 	useEffect(() => {
 		if (hasCommentsHash) {
 			setIsExpanded(true);
 		}
-	}, [hasCommentsHash]);
+	}, [ hasCommentsHash ]);
 
 	const hideAd = isAdFreeUser || shouldHideAds;
 
@@ -180,7 +180,7 @@ export const Discussion = ({
 						<Hide when="above" breakpoint="leftCol">
 							<div
 								className={css`
-									padding-bottom: ${space[2]}px;
+									padding-bottom: ${space[ 2 ]}px;
 								`}
 							>
 								<SignedInAs

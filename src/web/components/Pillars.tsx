@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import { brand, brandText } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
@@ -45,7 +45,7 @@ const pillarsStyles = (display: Display) => css`
 
 	:after {
 		content: '';
-		border-top: 1px solid ${brand[600]};
+		border-top: 1px solid ${brand[ 600 ]};
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -119,7 +119,7 @@ const pillarDivider = css`
 		top: 0;
 		bottom: 0;
 		width: 1px;
-		background-color: ${brand[600]};
+		background-color: ${brand[ 600 ]};
 
 		${from.tablet} {
 			bottom: 17px;
@@ -192,7 +192,7 @@ const linkStyle = (display: Display) => css`
 `;
 const pillarUnderline = (pillar: Theme) => css`
 	:after {
-		border-top: 4px solid ${pillarPalette[pillar].bright};
+		border-top: 4px solid ${pillarPalette[ pillar ].bright};
 		left: 0;
 		right: 1px;
 		top: -4px;
@@ -236,28 +236,28 @@ export const Pillars: React.FC<{
 	showLastPillarDivider = true,
 	dataLinkName,
 }) => (
-	<ul data-testid="pillar-list" className={pillarsStyles(display)}>
-		{pillars.map((p, i) => {
-			const isSelected = p.pillar === pillar;
-			const showDivider =
-				showLastPillarDivider || isNotLastPillar(i, pillars.length);
-			return (
-				<li key={p.title} className={pillarStyle}>
-					<a
-						className={cx(
-							linkStyle(display),
-							pillarUnderline(p.pillar),
-							isTopNav && showMenuUnderlineStyles,
-							isSelected && forceUnderline,
-							showDivider && pillarDivider,
-						)}
-						href={p.url}
-						data-link-name={`${dataLinkName} : primary : ${p.title}`}
-					>
-						{p.title}
-					</a>
-				</li>
-			);
-		})}
-	</ul>
-);
+		<ul data-testid="pillar-list" className={pillarsStyles(display)}>
+			{pillars.map((p, i) => {
+				const isSelected = p.pillar === pillar;
+				const showDivider =
+					showLastPillarDivider || isNotLastPillar(i, pillars.length);
+				return (
+					<li key={p.title} className={pillarStyle}>
+						<a
+							className={cx(
+								linkStyle(display),
+								pillarUnderline(p.pillar),
+								isTopNav && showMenuUnderlineStyles,
+								isSelected && forceUnderline,
+								showDivider && pillarDivider,
+							)}
+							href={p.url}
+							data-link-name={`${dataLinkName} : primary : ${p.title}`}
+						>
+							{p.title}
+						</a>
+					</li>
+				);
+			})}
+		</ul>
+	);

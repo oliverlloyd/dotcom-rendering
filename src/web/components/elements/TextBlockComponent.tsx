@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { neutral } from '@guardian/src-foundations/palette';
 import { body } from '@guardian/src-foundations/typography';
@@ -129,7 +129,7 @@ const paraStyles = css`
 		height: 12px;
 		width: 12px;
 		margin-right: 8px;
-		background-color: ${neutral[86]};
+		background-color: ${neutral[ 86 ]};
 		margin-left: -20px;
 	}
 

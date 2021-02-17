@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 
 import ArrowRight from '@frontend/static/icons/arrow-right.svg';
 import { palette } from '@guardian/src-foundations';
@@ -8,7 +8,7 @@ import { until } from '@guardian/src-foundations/mq';
 
 const supportStyles = css`
 	align-self: flex-start;
-	background-color: ${palette.brandAlt[400]};
+	background-color: ${palette.brandAlt[ 400 ]};
 	border-radius: 20px;
 	display: flex;
 	align-items: center;
@@ -37,7 +37,7 @@ const supportFooterStyles = css`
 
 const supportLinkStyles = css`
 	position: relative;
-	color: ${palette.neutral[7]};
+	color: ${palette.neutral[ 7 ]};
 	${textSans.medium()};
 	font-weight: 700;
 	display: block;
@@ -76,7 +76,7 @@ export const ReaderRevenueButton: React.SFC<{
 	rrCategory: ReaderRevenueCategory;
 	rightAlignIcon?: boolean;
 }> = ({ nav, linkLabel, rrLink, rrCategory, rightAlignIcon }) => {
-	const url = nav.readerRevenueLinks[rrLink][rrCategory];
+	const url = nav.readerRevenueLinks[ rrLink ][ rrCategory ];
 
 	if (url === '') {
 		return null;
@@ -94,7 +94,7 @@ export const ReaderRevenueButton: React.SFC<{
 				{linkLabel}
 				<span
 					className={cx({
-						[rightAlignedIcon]: !!rightAlignIcon,
+						[ rightAlignedIcon ]: !!rightAlignIcon,
 					})}
 				>
 					<ArrowRight />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { palette } from '@guardian/src-foundations';
 import { headline } from '@guardian/src-foundations/typography';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { pillarPalette } from '@root/src/lib/pillars';
 import { ArticleModel } from '@root/src/amp/types/ArticleModel';
 import { MainMedia } from '@root/src/amp/components/MainMedia';
@@ -17,18 +17,18 @@ const headerStyle = css`
 	${headline.small()};
 	font-weight: 100;
 	padding-top: 3px;
-	color: ${palette.neutral[7]};
+	color: ${palette.neutral[ 7 ]};
 `;
 
 const bylineStyle = (pillar: Theme) => css`
 	${headline.small()};
-	color: ${pillarPalette[pillar].main};
+	color: ${pillarPalette[ pillar ].main};
 	font-style: italic;
 	font-weight: 100;
 	padding-top: 3px;
 
 	a {
-		color: ${pillarPalette[pillar].main};
+		color: ${pillarPalette[ pillar ].main};
 		text-decoration: none;
 	}
 `;
@@ -45,8 +45,8 @@ const bylineWrapper = css`
 
 	background-image: repeating-linear-gradient(
 		to bottom,
-		${palette.neutral[86]},
-		${palette.neutral[86]} 1px,
+		${palette.neutral[ 86 ]},
+		${palette.neutral[ 86 ]} 1px,
 		transparent 1px,
 		transparent 4px
 	);
@@ -83,7 +83,7 @@ const BylineMeta: React.SFC<{
 				pillar={pillar}
 				guardianBaseURL={articleData.guardianBaseURL}
 				className={cx(bylineStyle(pillar), {
-					[bottomPadding]: !bylineImageUrl,
+					[ bottomPadding ]: !bylineImageUrl,
 				})}
 			/>
 

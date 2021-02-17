@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import {
 	brandBackground,
 	brandText,
@@ -26,10 +26,10 @@ const link = css`
 	line-height: ${iconHeight};
 
 	:hover {
-		color: ${brandAlt[400]};
+		color: ${brandAlt[ 400 ]};
 
 		.icon-container {
-			background-color: ${brandAlt[400]};
+			background-color: ${brandAlt[ 400 ]};
 		}
 	}
 `;

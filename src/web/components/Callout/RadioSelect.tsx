@@ -1,13 +1,13 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 import { RadioGroup, Radio } from '@guardian/src-radio';
 import { FieldLabel } from './FieldLabel';
 
 type FieldProp = {
 	formField: CampaignFieldRadio;
-	formData: { [key in string]: any };
-	setFormData: React.Dispatch<React.SetStateAction<{ [x: string]: any }>>;
+	formData: { [ key in string ]: any };
+	setFormData: React.Dispatch<React.SetStateAction<{ [ x: string ]: any }>>;
 };
 
 export const RadioSelect = ({
@@ -34,7 +34,7 @@ export const RadioSelect = ({
 			{formField.options.map((option, index) => {
 				const isRadioChecked =
 					formField.id in formData &&
-					formData[formField.id] === option.value;
+					formData[ formField.id ] === option.value;
 				return (
 					<Radio
 						data-testid={`form-field-${option.value}`}
@@ -46,7 +46,7 @@ export const RadioSelect = ({
 						onClick={() =>
 							setFormData({
 								...formData,
-								[formField.id]: option.value,
+								[ formField.id ]: option.value,
 							})
 						}
 					/>

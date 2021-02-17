@@ -22,6 +22,7 @@ import { VideoFacebookBlockComponent } from '@root/src/amp/components/elements/V
 import { VideoVimeoBlockComponent } from '@root/src/amp/components/elements/VideoVimeoBlockComponent';
 import { VideoYoutubeBlockComponent } from '@root/src/amp/components/elements/VideoYoutubeBlockComponent';
 import { YoutubeBlockComponent } from '@root/src/amp/components/elements/YoutubeBlockComponent';
+import { ClickToView } from '@root/src/amp/components/ClickToView';
 
 import { clean } from '@root/src/model/clean';
 
@@ -191,11 +192,18 @@ export const Elements = (
 				);
 			case 'model.dotcomrendering.pageElements.VideoFacebookBlockElement':
 				return (
-					<VideoFacebookBlockComponent
-						key={i}
-						element={element}
-						pillar={pillar}
-					/>
+					<ClickToView
+						isTracking={element.isThirdPartyTracking}
+						source={element.source}
+						sourceDomain={element.sourceDomain}
+						index={i}
+					>
+						<VideoFacebookBlockComponent
+							key={i}
+							element={element}
+							pillar={pillar}
+						/>
+					</ClickToView>
 				);
 			case 'model.dotcomrendering.pageElements.VideoVimeoBlockElement':
 				return (

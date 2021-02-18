@@ -184,7 +184,6 @@ export const document = ({ data }: Props): string => {
 		[
 			{ src: polyfillIO },
 			...getScriptArrayFromChunkName('ophan'),
-			CAPI.config && { src: CAPI.config.commercialBundleUrl },
 			...getScriptArrayFromChunkName('sentryLoader'),
 			...getScriptArrayFromChunkName('dynamicImport'),
 			...arrayOfLoadableScriptObjects, // This includes the 'react' entry point

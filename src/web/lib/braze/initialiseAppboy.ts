@@ -1,7 +1,7 @@
 import type appboy from '@braze/web-sdk-core';
 
 const SDK_OPTIONS = {
-	enableLogging: false,
+	enableLogging: true,
 	noCookies: true,
 	baseUrl: 'https://sdk.fra-01.braze.eu/api/v3',
 	sessionTimeoutInSeconds: 1,

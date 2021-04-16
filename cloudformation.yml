@@ -48,6 +48,9 @@ Parameters:
   ELKStream:
     Type: String
     Description: name of the kinesis stream to use to send logs to the central ELK stack
+	ELBAccessSecurityGroup:
+	  Type: AWS::EC2::SecurityGroup::Id
+		Description: Security Group ID for instances that need to connect to the DCR ELB.
 
 Conditions:
     HasLatencyScalingAlarm: !Equals [!Ref Stage, 'PROD']
@@ -78,6 +81,28 @@ Resources:
         FromPort: 80
         ToPort: 80
         CidrIp: 0.0.0.0/0
+      Tags:
+      - Key: Stage
+        Value:
+          Ref: Stage
+      - Key: Stack
+        Value:
+          Fn::FindInMap: [ Constants, Stack, Value ]
+      - Key: App
+        Value:
+          Fn::FindInMap: [ Constants, App, Value ]
+
+  InternalLoadBalancerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: HTTP access to the load balancer from ELBAccessSecurityGroup
+      VpcId:
+        Ref: VpcId
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        SourceSecurityGroupId: !Ref ELBAccessSecurityGroup
       Tags:
       - Key: Stage
         Value:
@@ -193,6 +218,45 @@ Resources:
         Value:
           Fn::FindInMap: [ Constants, App, Value ]
 
+  InternalLoadBalancer:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+		  Scheme: internal
+      Listeners:
+      - { LoadBalancerPort: 80, InstancePort: 9000, Protocol: HTTP }
+      CrossZone: true
+      HealthCheck:
+        Target: HTTP:9000/_healthcheck
+        HealthyThreshold: 2
+        UnhealthyThreshold: 10
+        Interval: 30
+        Timeout: 10
+      Subnets:
+        Ref: Subnets
+      SecurityGroups:
+      - Ref: InternalLoadBalancerSecurityGroup
+      AccessLoggingPolicy:
+        EmitInterval: 5
+        Enabled: true
+        S3BucketName: gu-elb-logs
+        S3BucketPrefix:
+          Fn::Join:
+          - "/"
+          - - InternalELBLogs
+            - Fn::FindInMap: [ Constants, Stack, Value ]
+            - Fn::FindInMap: [ Constants, App, Value ]
+            - Ref: Stage
+      Tags:
+      - Key: Stage
+        Value:
+          Ref: Stage
+      - Key: Stack
+        Value:
+          Fn::FindInMap: [ Constants, Stack, Value ]
+      - Key: App
+        Value:
+          Fn::FindInMap: [ Constants, App, Value ]
+
   LaunchConfig:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
@@ -245,6 +309,7 @@ Resources:
       HealthCheckGracePeriod: 120
       LoadBalancerNames:
       - Ref: LoadBalancer
+			- Ref: InternalLoadBalancer
       Tags:
       - Key: Stage
         Value:
@@ -300,5 +365,5 @@ Outputs:
   LoadBalancerUrl:
     Value:
       'Fn::GetAtt':
-      - LoadBalancer
+      - InternalLoadBalancer
       - DNSName

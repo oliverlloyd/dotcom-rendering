@@ -24,6 +24,7 @@ import { NumberedList } from '@root/fixtures/generated/articles/NumberedList';
 import { BootReact } from '@root/src/web/components/BootReact';
 import { embedIframe } from '@root/src/web/browser/embedIframe/embedIframe';
 import { mockRESTCalls } from '@root/src/web/lib/mockRESTCalls';
+import { buildCAPI } from '@root/src/web/server/render';
 
 import { extractNAV } from '@root/src/model/extract-nav';
 import { DecideLayout } from './DecideLayout';
@@ -51,16 +52,17 @@ const convertToShowcase = (CAPI: CAPIType) => {
 // the client. We need a separate component so that we can make use of useEffect to ensure
 // the hydrate step only runs once the dom has been rendered.
 const HydratedLayout = ({ ServerCAPI }: { ServerCAPI: CAPIType }) => {
-	const NAV = extractNAV(ServerCAPI.nav);
+	const enhancedServerCAPI = buildCAPI(ServerCAPI);
+	const NAV = extractNAV(enhancedServerCAPI.nav);
 
 	useEffect(() => {
-		const CAPI = makeGuardianBrowserCAPI(ServerCAPI);
+		const CAPI = makeGuardianBrowserCAPI(enhancedServerCAPI);
 		BootReact({ CAPI, NAV: makeGuardianBrowserNav(NAV) });
 		embedIframe().catch((e) =>
 			console.error(`HydratedLayout embedIframe - error: ${e}`),
 		);
-	}, [ServerCAPI, NAV]);
-	return <DecideLayout CAPI={ServerCAPI} NAV={NAV} />;
+	}, [enhancedServerCAPI, NAV]);
+	return <DecideLayout CAPI={enhancedServerCAPI} NAV={NAV} />;
 };
 
 export const ArticleStory = (): React.ReactNode => {

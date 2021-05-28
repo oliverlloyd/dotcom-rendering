@@ -17,13 +17,13 @@ const root = resolve(__dirname, '..', '..');
  *
  * A script to automatically download the latest json data for a production article and
  * insert it into a fixture file to use for testing. In particular, we use these fixtures
- * for our layoout stories
+ * for our layout stories
  *
  * Edit the articles array below to add or amend the urls that we use. The script will fetch
  * ${article.url}.json?dcr and save the response in ${article.name}.ts in the fixtures folder
  *
  * Usage
- * $ node scripts/test-data/gen-schema.js
+ * $ node scripts/test-data/gen-fixtures.js
  */
 
 const articles = [
@@ -113,6 +113,11 @@ const articles = [
 			'https://www.theguardian.com/with-you-all-the-way/2021/mar/16/secret-games-travelling-shows-and-pioneering-players-the-history-of-womens-football',
 	},
 	{
+		name: 'LabsPhotoEssay',
+		url:
+			'https://www.theguardian.com/saving-for-a-sunny-day-with-nsandi/2021/apr/20/its-incredibly-liberating-what-saving-for-a-piano-taught-me-about-my-finances',
+	},
+	{
 		name: 'NumberedList',
 		url:
 			'https://www.theguardian.com/technology/2019/dec/17/best-smartphone-2019-iphone-oneplus-samsung-and-huawei-compared-and-ranked',
@@ -127,7 +132,7 @@ const HEADER = `/**
 *
 * If the data in these fixtures is not what you expect then
 *
-* 1. Refresh the data using '$ node scrips/test-data/gen-fixtures.ts' or
+* 1. Refresh the data using '$ node scripts/test-data/gen-fixtures.ts' or
 * 2. if the latest live data is not what you need, then consider editing
 *    gen-fixtures.ts directly.
 */

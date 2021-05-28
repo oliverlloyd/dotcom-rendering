@@ -67,7 +67,7 @@ class CAPIEnhancer {
 	}
 }
 
-const buildCAPI = (body: CAPIType): CAPIType => {
+export const buildCAPI = (body: CAPIType): CAPIType => {
 	return new CAPIEnhancer(body)
 		.validateAsCAPIType()
 		.addDividers()

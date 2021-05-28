@@ -6,7 +6,7 @@
  *
  * If the data in these fixtures is not what you expect then
  *
- * 1. Refresh the data using '$ node scrips/test-data/gen-fixtures.ts' or
+ * 1. Refresh the data using '$ node scripts/test-data/gen-fixtures.ts' or
  * 2. if the latest live data is not what you need, then consider editing
  *    gen-fixtures.ts directly.
  */
@@ -14,6 +14,34 @@
 export const storyPackage = {
 	heading: 'More on this story',
 	trails: [
+		{
+			url:
+				'https://www.theguardian.com/science/2021/may/22/chinas-mars-rover-takes-first-drive-on-red-planet',
+			linkText:
+				'China’s Mars rover drives across planet a week after landing',
+			showByline: false,
+			byline: 'Associated Press in Beijing',
+			image:
+				'https://i.guim.co.uk/img/media/f2914ed7b5cedbb4f4608e05fdf63f9751b0767f/0_137_2400_1440/master/2400.jpg?width=300&quality=85&auto=format&fit=max&s=1b29b43cc559dbbbd679015601ca275d',
+			carouselImages: {
+				'300':
+					'https://i.guim.co.uk/img/media/f2914ed7b5cedbb4f4608e05fdf63f9751b0767f/0_137_2400_1440/master/2400.jpg?width=300&quality=85&auto=format&fit=max&s=1b29b43cc559dbbbd679015601ca275d',
+				'460':
+					'https://i.guim.co.uk/img/media/f2914ed7b5cedbb4f4608e05fdf63f9751b0767f/0_137_2400_1440/master/2400.jpg?width=460&quality=85&auto=format&fit=max&s=e1867a83c136b61d7e972e9e6d685394',
+			},
+			isLiveBlog: false,
+			pillar: 'news',
+			designType: 'Article',
+			format: {
+				design: 'ArticleDesign',
+				theme: 'NewsPillar',
+				display: 'StandardDisplay',
+			},
+			webPublicationDate: '2021-05-22T08:33:41.000Z',
+			headline:
+				'China’s Mars rover drives across planet a week after landing',
+			shortUrl: 'https://www.theguardian.com/p/hg7yt',
+		},
 		{
 			url:
 				'https://www.theguardian.com/science/2021/apr/19/nasas-mars-helicopter-makes-first-ever-powered-flight-on-another-planet',
@@ -87,7 +115,7 @@ export const storyPackage = {
 				'460':
 					'https://i.guim.co.uk/img/media/16d5a2f2b7d8ff8f454b9cf34a21283941b3ae26/0_160_4000_2400/master/4000.jpg?width=460&quality=85&auto=format&fit=max&s=ddade4520902a2c16979500f69c21b95',
 			},
-			ageWarning: '2 months',
+			ageWarning: '3 months',
 			isLiveBlog: false,
 			pillar: 'news',
 			designType: 'Article',
@@ -116,7 +144,7 @@ export const storyPackage = {
 				'460':
 					'https://i.guim.co.uk/img/media/9fd7f7041490dc6a7974c555b91e102bc1704e33/0_155_4150_2490/master/4150.jpg?width=460&quality=85&auto=format&fit=max&s=29b950b314ce5d89bf583e8652a9edf0',
 			},
-			ageWarning: '2 months',
+			ageWarning: '3 months',
 			isLiveBlog: false,
 			pillar: 'news',
 			designType: 'Article',
@@ -203,7 +231,7 @@ export const storyPackage = {
 				'460':
 					'https://i.guim.co.uk/img/media/4f5c3b613611970b89dbc2f797dcc7ac780e2815/0_7_1021_613/master/1021.jpg?width=460&quality=85&auto=format&fit=max&s=4dc109e47f27812d1b004082c3f8048a',
 			},
-			ageWarning: '9 months',
+			ageWarning: '10 months',
 			isLiveBlog: false,
 			pillar: 'news',
 			designType: 'Article',
@@ -216,62 +244,6 @@ export const storyPackage = {
 			headline:
 				"UAE successfully launches Hope probe, Arab world's first mission to Mars",
 			shortUrl: 'https://www.theguardian.com/p/ecx5h',
-		},
-		{
-			url:
-				'https://www.theguardian.com/science/2020/jul/12/we-are-all-martians-space-explorers-seek-to-solve-the-riddle-of-life-on-mars',
-			linkText:
-				"'We are all Martians!': space explorers seek to solve the riddle of life on Mars",
-			showByline: false,
-			byline: 'Robin McKie',
-			image:
-				'https://i.guim.co.uk/img/media/eb6ede3d42ebe5d572ed3f1f435c08a19b841730/0_100_8000_4800/master/8000.jpg?width=300&quality=85&auto=format&fit=max&s=229a86c4a6f2709462668315bd101bfc',
-			carouselImages: {
-				'300':
-					'https://i.guim.co.uk/img/media/eb6ede3d42ebe5d572ed3f1f435c08a19b841730/0_100_8000_4800/master/8000.jpg?width=300&quality=85&auto=format&fit=max&s=229a86c4a6f2709462668315bd101bfc',
-				'460':
-					'https://i.guim.co.uk/img/media/eb6ede3d42ebe5d572ed3f1f435c08a19b841730/0_100_8000_4800/master/8000.jpg?width=460&quality=85&auto=format&fit=max&s=5ef8d00c965ddc1850e254095c9a2afa',
-			},
-			isLiveBlog: false,
-			pillar: 'news',
-			designType: 'Feature',
-			format: {
-				design: 'FeatureDesign',
-				theme: 'NewsPillar',
-				display: 'StandardDisplay',
-			},
-			webPublicationDate: '2020-07-12T06:18:06.000Z',
-			headline:
-				"'We are all Martians!': space explorers seek to solve the riddle of life on Mars",
-			shortUrl: 'https://www.theguardian.com/p/e9pmh',
-		},
-		{
-			url:
-				'https://www.theguardian.com/world/2020/jun/09/it-is-about-our-survival-uaes-mars-mission-prepares-for-launch',
-			linkText:
-				"'It is about our survival': UAE's Mars mission prepares for launch",
-			showByline: false,
-			byline: 'Patrick Wintour Diplomatic editor',
-			image:
-				'https://i.guim.co.uk/img/media/a82f154b4fcde702f8573d822fa054265c0fe270/106_0_1582_950/master/1582.jpg?width=300&quality=85&auto=format&fit=max&s=c45bfff16c0feb6af861cc111bc9aa3b',
-			carouselImages: {
-				'300':
-					'https://i.guim.co.uk/img/media/a82f154b4fcde702f8573d822fa054265c0fe270/106_0_1582_950/master/1582.jpg?width=300&quality=85&auto=format&fit=max&s=c45bfff16c0feb6af861cc111bc9aa3b',
-				'460':
-					'https://i.guim.co.uk/img/media/a82f154b4fcde702f8573d822fa054265c0fe270/106_0_1582_950/master/1582.jpg?width=460&quality=85&auto=format&fit=max&s=bfad2f8f10750242ed792a6510b05e41',
-			},
-			isLiveBlog: false,
-			pillar: 'news',
-			designType: 'Feature',
-			format: {
-				design: 'FeatureDesign',
-				theme: 'NewsPillar',
-				display: 'StandardDisplay',
-			},
-			webPublicationDate: '2020-06-09T04:00:38.000Z',
-			headline:
-				"'It is about our survival': UAE's Mars mission prepares for launch",
-			shortUrl: 'https://www.theguardian.com/p/e2pm9',
 		},
 	],
 };

@@ -6,7 +6,7 @@
  *
  * If the data in these fixtures is not what you expect then
  *
- * 1. Refresh the data using '$ node scrips/test-data/gen-fixtures.ts' or
+ * 1. Refresh the data using '$ node scripts/test-data/gen-fixtures.ts' or
  * 2. if the latest live data is not what you need, then consider editing
  *    gen-fixtures.ts directly.
  */
@@ -1719,7 +1719,7 @@ export const Quiz: CAPIType = {
 				},
 			],
 			_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-			elementId: '597369b9-7860-4bd8-9cba-ca9b1261e8a9',
+			elementId: '5a6ed4fb-678f-442c-99a4-87f4212fa3b9',
 		},
 	],
 	webPublicationDate: '2020-06-12T09:09:24.000Z',
@@ -2351,7 +2351,7 @@ export const Quiz: CAPIType = {
 					],
 					_type:
 						'model.dotcomrendering.pageElements.QuizAtomBlockElement',
-					elementId: 'c17d66c2-9530-4b81-9135-559c93eafed3',
+					elementId: '4e081049-83cf-4d39-8a62-9aaceeaf9035',
 				},
 			],
 			blockCreatedOn: 1591866131000,

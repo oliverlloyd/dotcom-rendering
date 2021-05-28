@@ -6,7 +6,7 @@
  *
  * If the data in these fixtures is not what you expect then
  *
- * 1. Refresh the data using '$ node scrips/test-data/gen-fixtures.ts' or
+ * 1. Refresh the data using '$ node scripts/test-data/gen-fixtures.ts' or
  * 2. if the latest live data is not what you need, then consider editing
  *    gen-fixtures.ts directly.
  */
@@ -394,7 +394,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '2fb8337a-bf69-46cf-9115-3fd5567277d3',
+		elementId: '8ec9aff6-6224-4aee-929f-57a0713aecaa',
 	},
 	{
 		media: {
@@ -777,7 +777,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '31391a63-da36-4587-9684-22d6544b7443',
+		elementId: '6571bf5a-93d9-486f-aa56-d178c6b8dfca',
 	},
 	{
 		media: {
@@ -1161,7 +1161,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '97f85cf0-05ef-4cbe-9150-341d0c735b8a',
+		elementId: '94716cf0-c3cd-4c60-b944-77c19a813208',
 	},
 	{
 		media: {
@@ -1545,7 +1545,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: 'e8393308-290b-4512-907c-e5866769cb24',
+		elementId: 'ca7c136a-3777-4ba0-a054-a72f12bd6ac0',
 	},
 	{
 		media: {
@@ -1929,7 +1929,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: 'b006bc64-ee3b-40f8-b411-cf7430d851fc',
+		elementId: '199b2697-a50b-4624-99c3-cc2f08e810b3',
 	},
 	{
 		media: {
@@ -2313,7 +2313,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '81bbd632-5f92-49c5-a09a-d6e4ed3ccbad',
+		elementId: '9e9fd99a-f955-4dcd-86fd-e2f6118877d2',
 	},
 	{
 		media: {
@@ -2697,7 +2697,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '3587fb31-b5ec-44af-a038-b9c6bdaa1b54',
+		elementId: 'df71194b-98d6-4d98-b543-3de3247028f6',
 	},
 	{
 		media: {
@@ -3069,7 +3069,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: 'a737efa1-e62e-41e6-b3b2-e4321920aa2d',
+		elementId: '893ceadc-8a3f-4551-9145-78ceb0c76a20',
 	},
 	{
 		media: {
@@ -3452,7 +3452,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '41f61565-54b0-4936-a42c-452a38c59dfc',
+		elementId: '32644d11-df79-43fb-b959-e6ca4e55d6a3',
 	},
 	{
 		media: {
@@ -3836,7 +3836,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '9476f051-4064-4b92-b53c-f31f88760423',
+		elementId: '2a0e2280-c5d3-444a-b576-a0926533fd19',
 	},
 	{
 		media: {
@@ -4220,7 +4220,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '61c09ea5-d2bd-46e1-9dcf-6d71e462b95e',
+		elementId: '08611e58-c82a-4886-a651-1c9490b558bb',
 	},
 	{
 		media: {
@@ -4603,7 +4603,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '330041b5-4138-4018-b9ec-770dbb82eeb0',
+		elementId: '2a34fa71-4b18-455d-9f03-cc57e5a1cf44',
 	},
 	{
 		media: {
@@ -4987,7 +4987,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: 'ae08e48e-ccf0-4285-acd7-190303b6a4ca',
+		elementId: 'd83182a6-2082-42d8-b612-f364ce37f03f',
 	},
 	{
 		media: {
@@ -5371,7 +5371,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '80a0e5ec-0f5a-4ce3-be55-654035516598',
+		elementId: 'e1774074-0ba0-4d0c-9a12-e53bdddb99d8',
 	},
 	{
 		media: {
@@ -5754,7 +5754,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: 'fc6d8bb1-d713-4728-9159-6987e98b3a78',
+		elementId: 'd4f4a82c-1922-498a-a5fa-8c9c7d1e75a4',
 	},
 	{
 		media: {
@@ -6138,7 +6138,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '0aea28b1-2428-4b57-8137-10935d118731',
+		elementId: '90ced14d-6303-44bd-a3b1-591a5518f023',
 	},
 	{
 		media: {
@@ -6522,7 +6522,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '80bbb882-e816-4c44-9fa6-279bb3643d09',
+		elementId: '42690a96-e7e6-43c5-ba10-e040106a9eb3',
 	},
 	{
 		media: {
@@ -6905,7 +6905,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: 'f3b8be41-c154-4063-b584-ea49c88bb143',
+		elementId: '2aa4e945-1c04-459b-9156-1824c0b8796a',
 	},
 	{
 		media: {
@@ -7288,7 +7288,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: 'd12f3c08-f6fe-415e-94c2-f6df4d17c886',
+		elementId: '673e86a8-6d2a-404a-9f5b-1303ae4531b4',
 	},
 	{
 		media: {
@@ -7671,7 +7671,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: 'd562ecf9-764e-4bff-92c2-ced84dd67ab2',
+		elementId: 'c1a659a8-a375-49e9-b539-19f0201c9adc',
 	},
 	{
 		media: {
@@ -8054,7 +8054,7 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '52a10725-4601-4fd5-9727-b63caf0e24b8',
+		elementId: '8cd4db05-227b-4ddf-91e6-161ffe3efe77',
 	},
 	{
 		media: {
@@ -8437,6 +8437,6 @@ export const images: ImageBlockElement[] = [
 			},
 		],
 		_type: 'model.dotcomrendering.pageElements.ImageBlockElement',
-		elementId: '3f6323e3-90a8-4051-8ec2-8f7e70d6fedf',
+		elementId: 'b33a57ec-7240-4f71-8153-a09485bee295',
 	},
 ];

@@ -10,7 +10,7 @@ module.exports = {
 		// Support typescript in Storybook
 		// https://storybook.js.org/docs/configurations/typescript-config/
 		rules.push({
-			test: /\.[jt]sx?|mjs$/,
+			test: /\.([jt]sx?|mjs)$/,
 			exclude: [
 				{
 					test: /node_modules/,

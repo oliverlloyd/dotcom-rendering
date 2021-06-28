@@ -533,6 +533,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 					pageViewId={pageViewId}
 					contributionsServiceUrl={CAPI.contributionsServiceUrl}
 					ophanRecord={ophanRecord}
+					isSignedIn={isSignedIn}
 				/>
 			</Portal>
 			<HydrateOnce rootId="links-root" waitFor={[user]}>

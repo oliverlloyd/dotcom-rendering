@@ -14,6 +14,7 @@ import { from, until } from '@guardian/src-foundations/mq';
 
 import {
 	getLastOneOffContributionDate,
+	isRecurringContributor,
 	MODULES_VERSION,
 	shouldHideSupportMessaging,
 } from '@root/src/web/lib/contributions';
@@ -27,6 +28,7 @@ import {
 	sendOphanComponentEvent,
 	submitComponentEvent,
 } from '@root/src/web/browser/ophan/ophan';
+import { useOnce } from '@root/src/web/lib/useOnce';
 
 type Props = {
 	edition: Edition;
@@ -42,6 +44,7 @@ type Props = {
 		support: string;
 		contribute: string;
 	};
+	isSignedIn?: boolean;
 };
 
 const headerStyles = css`
@@ -172,12 +175,14 @@ const ReaderRevenueLinksRemote: React.FC<{
 	pageViewId: string;
 	contributionsServiceUrl: string;
 	ophanRecord: OphanRecordFunction;
+	isSignedIn?: boolean;
 }> = ({
 	edition,
 	countryCode,
 	pageViewId,
 	contributionsServiceUrl,
 	ophanRecord,
+	isSignedIn,
 }) => {
 	const [
 		supportHeaderResponse,
@@ -188,7 +193,7 @@ const ReaderRevenueLinksRemote: React.FC<{
 		setSupportHeader,
 	] = useState<React.FC<SupportHeaderProps> | null>(null);
 
-	useEffect((): void => {
+	useOnce((): void => {
 		setAutomat();
 
 		const requestData = {
@@ -201,10 +206,11 @@ const ReaderRevenueLinksRemote: React.FC<{
 			targeting: {
 				showSupportMessaging: !shouldHideSupportMessaging(),
 				edition,
-				countryCode,
+				countryCode: 'AU',
 				modulesVersion: MODULES_VERSION,
 				mvtId: Number(getCookie('GU_mvt_id')),
 				lastOneOffContributionDate: getLastOneOffContributionDate(),
+				isRecurringContributor: isRecurringContributor(true),
 			},
 		};
 		fetch(`${contributionsServiceUrl}/header`, {
@@ -240,7 +246,7 @@ const ReaderRevenueLinksRemote: React.FC<{
 				);
 			});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [isSignedIn]);
 
 	if (SupportHeader && supportHeaderResponse) {
 		return (
@@ -382,6 +388,7 @@ export const ReaderRevenueLinks: React.FC<Props> = ({
 	contributionsServiceUrl,
 	ophanRecord,
 	pageViewId = '',
+	isSignedIn,
 }: Props) => {
 	if (inHeader && remoteHeaderEnabled) {
 		return (
@@ -391,6 +398,7 @@ export const ReaderRevenueLinks: React.FC<Props> = ({
 				pageViewId={pageViewId}
 				contributionsServiceUrl={contributionsServiceUrl}
 				ophanRecord={ophanRecord}
+				isSignedIn={isSignedIn}
 			/>
 		);
 	}

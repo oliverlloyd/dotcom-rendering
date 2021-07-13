@@ -12,10 +12,7 @@ export const decideDesign = (format: CAPIFormat): Design => {
 		case 'AnalysisDesign':
 			return Design.Analysis;
 		case 'CommentDesign':
-			// Temporary hack until we can handle Immersive Opinion pieces
-			return format.display === 'ImmersiveDisplay'
-				? Design.Article
-				: Design.Comment;
+			return Design.Comment;
 		case 'LetterDesign':
 			return Design.Letter;
 		case 'FeatureDesign':

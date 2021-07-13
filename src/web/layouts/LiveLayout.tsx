@@ -1,5 +1,4 @@
-import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/react';
 
 import {
 	neutral,
@@ -10,8 +9,8 @@ import {
 } from '@guardian/src-foundations/palette';
 import { from, until } from '@guardian/src-foundations/mq';
 import type { Format } from '@guardian/types';
+import { Lines } from '@guardian/src-ed-lines';
 
-import { GuardianLines } from '@root/src/web/components/GuardianLines';
 import { StarRating } from '@root/src/web/components/StarRating/StarRating';
 import { ArticleBody } from '@root/src/web/components/ArticleBody';
 import { RightColumn } from '@root/src/web/components/RightColumn';
@@ -26,7 +25,7 @@ import { Standfirst } from '@root/src/web/components/Standfirst';
 import { Header } from '@root/src/web/components/Header';
 import { Footer } from '@root/src/web/components/Footer';
 import { SubNav } from '@root/src/web/components/SubNav/SubNav';
-import { Section } from '@root/src/web/components/Section';
+import { ElementContainer } from '@root/src/web/components/ElementContainer';
 import { Nav } from '@root/src/web/components/Nav/Nav';
 import { HeaderAdSlot } from '@root/src/web/components/HeaderAdSlot';
 import { MobileStickyContainer, AdSlot } from '@root/src/web/components/AdSlot';
@@ -52,7 +51,7 @@ import { ContainerLayout } from '../components/ContainerLayout';
 
 const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 	<div
-		className={css`
+		css={css`
 			/* IE Fallback */
 			display: flex;
 			flex-direction: column;
@@ -70,11 +69,15 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 
 				grid-column-gap: 10px;
 
+				/*
+					Explanation of each unit of grid-template-columns
+
+					Main content
+					Empty border for spacing
+					Right Column
+				*/
 				${from.desktop} {
-					grid-template-columns:
-						309px /* Left Column (220 - 1px border) */
-						1px /* Empty border for spacing */
-						1fr /* Main content */;
+					grid-template-columns: 309px 1px 1fr;
 					grid-template-areas:
 						'lines border media'
 						'meta  border media'
@@ -83,11 +86,7 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 				}
 
 				${from.wide} {
-					grid-template-columns:
-						309px
-						1px
-						1fr
-						340px;
+					grid-template-columns: 309px 1px 1fr 340px;
 					grid-template-areas:
 						'lines border media right-column'
 						'meta  border media right-column'
@@ -215,21 +214,22 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 		<>
 			<div data-print-layout="hide">
 				<Stuck>
-					<Section
+					<ElementContainer
 						showTopBorder={false}
 						showSideBorders={false}
 						padded={false}
 						shouldCenter={false}
+						element="aside"
 					>
 						<HeaderAdSlot
 							isAdFreeUser={CAPI.isAdFreeUser}
 							shouldHideAds={CAPI.shouldHideAds}
 							display={format.display}
 						/>
-					</Section>
+					</ElementContainer>
 				</Stuck>
 				<SendToBack>
-					<Section
+					<ElementContainer
 						showTopBorder={false}
 						showSideBorders={false}
 						padded={false}
@@ -245,9 +245,9 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 									'variant'
 							}
 						/>
-					</Section>
+					</ElementContainer>
 
-					<Section
+					<ElementContainer
 						showSideBorders={true}
 						borderColour={brandLine.primary}
 						showTopBorder={false}
@@ -265,31 +265,32 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 							}
 							edition={CAPI.editionId}
 						/>
-					</Section>
+					</ElementContainer>
 
 					{NAV.subNavSections && (
-						<Section
+						<ElementContainer
 							backgroundColour={palette.background.article}
 							padded={false}
 							sectionId="sub-nav-root"
 							borderColour={palette.border.article}
+							element="nav"
 						>
 							<SubNav
 								subNavSections={NAV.subNavSections}
 								currentNavLink={NAV.currentNavLink}
 								palette={palette}
 							/>
-						</Section>
+						</ElementContainer>
 					)}
 
-					<Section
+					<ElementContainer
 						backgroundColour={palette.background.article}
 						padded={false}
 						showTopBorder={false}
 						borderColour={palette.border.article}
 					>
-						<GuardianLines count={4} palette={palette} />
-					</Section>
+						<Lines count={4} effect="straight" />
+					</ElementContainer>
 				</SendToBack>
 			</div>
 			<ContainerLayout
@@ -311,10 +312,10 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 					/>
 				}
 			>
-				<div className={maxWidth}>
+				<div css={maxWidth}>
 					<ArticleHeadlinePadding design={format.design}>
 						{age && (
-							<div className={ageWarningMargins}>
+							<div css={ageWarningMargins}>
 								<AgeWarning age={age} />
 							</div>
 						)}
@@ -329,7 +330,7 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 					</ArticleHeadlinePadding>
 				</div>
 				{CAPI.starRating || CAPI.starRating === 0 ? (
-					<div className={starWrapper}>
+					<div css={starWrapper}>
 						<StarRating rating={CAPI.starRating} size="large" />
 					</div>
 				) : (
@@ -347,32 +348,35 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 				<Standfirst format={format} standfirst={CAPI.standfirst} />
 			</ContainerLayout>
 
-			<Section
+			<ElementContainer
 				showTopBorder={false}
 				borderColour={palette.border.article}
 				backgroundColour={palette.background.article}
 			>
 				<div
-					className={css`
+					css={css`
 						height: ${space[4]}px;
 					`}
 				/>
-			</Section>
+			</ElementContainer>
 
-			<Section
+			<ElementContainer
 				showTopBorder={false}
 				backgroundColour={palette.background.article}
 				borderColour={palette.border.article}
+				element="article"
 			>
 				<LiveGrid>
 					<GridItem area="media">
-						<div className={maxWidth}>
+						<div css={maxWidth}>
 							<MainMedia
 								format={format}
 								palette={palette}
 								elements={CAPI.mainMediaElements}
 								adTargeting={adTargeting}
 								host={host}
+								pageId={CAPI.pageId}
+								webTitle={CAPI.webTitle}
 							/>
 						</div>
 					</GridItem>
@@ -380,11 +384,10 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						<></>
 					</GridItem>
 					<GridItem area="lines">
-						<div className={maxWidth}>
-							<div className={stretchLines}>
-								<GuardianLines
+						<div css={maxWidth}>
+							<div css={stretchLines}>
+								<Lines
 									count={decideLineCount(format.design)}
-									palette={palette}
 									effect={decideLineEffect(
 										format.design,
 										format.theme,
@@ -394,7 +397,7 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						</div>
 					</GridItem>
 					<GridItem area="meta">
-						<div className={maxWidth}>
+						<div css={maxWidth}>
 							<ArticleMeta
 								branding={branding}
 								format={format}
@@ -412,7 +415,7 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 					</GridItem>
 					<GridItem area="body">
 						<ArticleContainer>
-							<main className={articleWidth}>
+							<main css={articleWidth}>
 								<ArticleBody
 									format={format}
 									palette={palette}
@@ -423,10 +426,10 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 									webTitle={CAPI.webTitle}
 								/>
 								{showBodyEndSlot && <div id="slot-body-end" />}
-								<GuardianLines
+								<Lines
 									data-print-layout="hide"
 									count={4}
-									palette={palette}
+									effect="straight"
 								/>
 								<SubMeta
 									palette={palette}
@@ -450,7 +453,7 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 					</GridItem>
 					<GridItem area="right-column">
 						<div
-							className={css`
+							css={css`
 								padding-top: 6px;
 								height: 100%;
 								${from.desktop} {
@@ -474,33 +477,39 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						</div>
 					</GridItem>
 				</LiveGrid>
-			</Section>
+			</ElementContainer>
 
-			<Section
+			<ElementContainer
 				data-print-layout="hide"
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={neutral[93]}
+				element="aside"
 			>
 				<AdSlot
 					data-print-layout="hide"
 					position="merchandising-high"
 					display={format.display}
 				/>
-			</Section>
+			</ElementContainer>
 
 			{/* Onwards (when signed OUT) */}
-			<div data-print-layout="hide" id="onwards-upper-whensignedout" />
+			<aside data-print-layout="hide" id="onwards-upper-whensignedout" />
 			{showOnwardsLower && (
-				<Section
+				<ElementContainer
 					data-print-layout="hide"
 					sectionId="onwards-lower-whensignedout"
+					element="aside"
 				/>
 			)}
 
 			{!isPaidContent && showComments && (
-				<Section data-print-layout="hide" sectionId="comments">
+				<ElementContainer
+					data-print-layout="hide"
+					sectionId="comments"
+					element="aside"
+				>
 					<Discussion
 						discussionApiUrl={CAPI.config.discussionApiUrl}
 						shortUrlId={CAPI.config.shortUrlId}
@@ -517,51 +526,55 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						beingHydrated={false}
 						display={format.display}
 					/>
-				</Section>
+				</ElementContainer>
 			)}
 
 			{/* Onwards (when signed IN) */}
-			<div data-print-layout="hide" id="onwards-upper-whensignedin" />
+			<aside data-print-layout="hide" id="onwards-upper-whensignedin" />
 			{showOnwardsLower && (
-				<Section
+				<ElementContainer
 					data-print-layout="hide"
 					sectionId="onwards-lower-whensignedin"
+					element="aside"
 				/>
 			)}
 
 			{!isPaidContent && (
-				<Section
+				<ElementContainer
 					data-print-layout="hide"
 					sectionId="most-viewed-footer"
+					element="aside"
 				/>
 			)}
 
-			<Section
+			<ElementContainer
 				data-print-layout="hide"
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={neutral[93]}
+				element="aside"
 			>
 				<AdSlot position="merchandising" display={format.display} />
-			</Section>
+			</ElementContainer>
 
 			{NAV.subNavSections && (
-				<Section
+				<ElementContainer
 					data-print-layout="hide"
 					padded={false}
 					sectionId="sub-nav-root"
+					element="nav"
 				>
 					<SubNav
 						subNavSections={NAV.subNavSections}
 						currentNavLink={NAV.currentNavLink}
 						palette={palette}
 					/>
-					<GuardianLines count={4} palette={palette} />
-				</Section>
+					<Lines count={4} effect="straight" />
+				</ElementContainer>
 			)}
 
-			<Section
+			<ElementContainer
 				data-print-layout="hide"
 				padded={false}
 				backgroundColour={brandBackground.primary}
@@ -573,7 +586,7 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 					pillar={format.theme}
 					pillars={NAV.pillars}
 				/>
-			</Section>
+			</ElementContainer>
 
 			<BannerWrapper data-print-layout="hide" />
 			<MobileStickyContainer data-print-layout="hide" />

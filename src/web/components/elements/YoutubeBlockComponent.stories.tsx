@@ -1,11 +1,10 @@
-import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/react';
 
 import { Display, Design, Pillar } from '@guardian/types';
 
 import { decidePalette } from '@root/src/web/lib/decidePalette';
 
-import { Section } from '../Section';
+import { ElementContainer } from '../ElementContainer';
 import { Flex } from '../Flex';
 import { LeftColumn } from '../LeftColumn';
 import { RightColumn } from '../RightColumn';
@@ -18,13 +17,13 @@ export default {
 };
 
 const Container = ({ children }: { children: React.ReactNode }) => (
-	<Section showTopBorder={false}>
+	<ElementContainer showTopBorder={false}>
 		<Flex>
 			<LeftColumn>
 				<></>
 			</LeftColumn>
 			<div
-				className={css`
+				css={css`
 					max-width: 620px;
 					padding: 20px;
 				`}
@@ -35,7 +34,7 @@ const Container = ({ children }: { children: React.ReactNode }) => (
 				<></>
 			</RightColumn>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 
 export const Default = () => {
@@ -61,7 +60,6 @@ export const Default = () => {
 				assetId="d2Q5bXvEgMg"
 				mediaTitle="Prince Harry and Meghan's 'bombshell' plans explained – video"
 				id="c2b8a51c-cb3d-41e7-bb79-1d9a091d0c28"
-				channelId="UCIRYBXDze5krPDzAEOxFGVA"
 				expired={false}
 				// eslint-disable-next-line jsx-a11y/aria-role
 				role="inline"
@@ -100,7 +98,6 @@ export const Vertical = () => {
 				assetId="d2Q5bXvEgMg"
 				mediaTitle="Prince Harry and Meghan's 'bombshell' plans explained – video"
 				id="c2b8a51c-cb3d-41e7-bb79-1d9a091d0c28"
-				channelId="UCIRYBXDze5krPDzAEOxFGVA"
 				expired={false}
 				// eslint-disable-next-line jsx-a11y/aria-role
 				role="inline"
@@ -141,7 +138,6 @@ export const Expired = () => {
 				assetId="d2Q5bXvEgMg"
 				mediaTitle="Prince Harry and Meghan's 'bombshell' plans explained – video"
 				id="c2b8a51c-cb3d-41e7-bb79-1d9a091d0c28"
-				channelId="UCIRYBXDze5krPDzAEOxFGVA"
 				expired={true}
 				overrideImage="https://i.guim.co.uk/img/media/49565a29c6586fe6b748926e0be96c5e9c90473c/0_0_4981_2989/500.jpg?quality=85&auto=format&fit=max&s=17c70ec70002ea34886fd6c2605cd81e"
 				// eslint-disable-next-line jsx-a11y/aria-role
@@ -183,7 +179,6 @@ export const WithOverlayImage = () => {
 				assetId="d2Q5bXvEgMg"
 				mediaTitle="Prince Harry and Meghan's 'bombshell' plans explained – video"
 				id="c2b8a51c-cb3d-41e7-bb79-1d9a091d0c28"
-				channelId="UCIRYBXDze5krPDzAEOxFGVA"
 				expired={false}
 				duration={333}
 				overrideImage="https://i.guim.co.uk/img/media/49565a29c6586fe6b748926e0be96c5e9c90473c/0_0_4981_2989/500.jpg?quality=85&auto=format&fit=max&s=17c70ec70002ea34886fd6c2605cd81e"
@@ -226,7 +221,6 @@ export const WithPosterImage = () => {
 				assetId="d2Q5bXvEgMg"
 				mediaTitle="Prince Harry and Meghan's 'bombshell' plans explained – video"
 				id="c2b8a51c-cb3d-41e7-bb79-1d9a091d0c28"
-				channelId="UCIRYBXDze5krPDzAEOxFGVA"
 				expired={false}
 				duration={333}
 				posterImage={[
@@ -295,7 +289,6 @@ export const WithPosterAndOverlayImage = () => {
 				assetId="d2Q5bXvEgMg"
 				mediaTitle="Prince Harry and Meghan's 'bombshell' plans explained – video"
 				id="c2b8a51c-cb3d-41e7-bb79-1d9a091d0c28"
-				channelId="UCIRYBXDze5krPDzAEOxFGVA"
 				expired={false}
 				overrideImage="https://i.guim.co.uk/img/media/49565a29c6586fe6b748926e0be96c5e9c90473c/0_0_4981_2989/500.jpg?quality=85&auto=format&fit=max&s=17c70ec70002ea34886fd6c2605cd81e"
 				duration={333}

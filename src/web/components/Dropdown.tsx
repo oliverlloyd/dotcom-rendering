@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { css, cx } from 'emotion';
+import { useState, useEffect } from 'react';
+import { css } from '@emotion/react';
 
 import {
 	text,
@@ -33,6 +33,14 @@ interface Props {
 const ulStyles = css`
 	${getZIndex('dropdown')}
 	list-style: none;
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns */
+	/* Needs double escape char: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#es2018_revision_of_illegal_escape_sequences */
+	li::before {
+		content: '\\200B'; /* Zero width space */
+		display: block;
+		height: 0;
+		width: 0;
+	}
 	background-color: white;
 	padding: 6px 0;
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
@@ -216,7 +224,7 @@ export const Dropdown = ({
 		<>
 			{noJS ? (
 				<div
-					className={css`
+					css={css`
 						${`#${checkboxID}`} {
 							/* Never show the input */
 							${visuallyHidden}
@@ -234,7 +242,7 @@ export const Dropdown = ({
 				>
 					<label
 						htmlFor={checkboxID}
-						className={buttonStyles(overrideColor)}
+						css={buttonStyles(overrideColor)}
 					>
 						{label}
 					</label>
@@ -244,16 +252,16 @@ export const Dropdown = ({
 						aria-checked="false"
 						tabIndex={-1}
 					/>
-					<ul id={dropdownID} className={ulStyles}>
+					<ul id={dropdownID} css={ulStyles}>
 						{links.map((l, index) => (
 							<li key={l.title}>
 								<a
 									href={l.url}
-									className={cx({
-										[linkStyles]: true,
-										[linkActive]: !!l.isActive,
-										[linkFirst]: index === 0,
-									})}
+									css={[
+										linkStyles,
+										!!l.isActive && linkActive,
+										index === 0 && linkFirst,
+									]}
 									data-link-name={l.dataLinkName}
 								>
 									{l.title}
@@ -266,30 +274,30 @@ export const Dropdown = ({
 				<>
 					<button
 						onClick={handleToggle}
-						className={cx(
+						css={[
 							buttonStyles(overrideColor),
 							isExpanded && buttonExpanded,
-						)}
+						]}
 						aria-expanded={isExpanded ? 'true' : 'false'}
 						data-link-name={dataLinkName}
 						data-cy="dropdown-button"
 					>
 						{label}
 					</button>
-					<div className={isExpanded ? displayBlock : displayNone}>
+					<div css={isExpanded ? displayBlock : displayNone}>
 						{children ? (
 							<>{children}</>
 						) : (
-							<ul className={ulStyles} data-cy="dropdown-options">
+							<ul css={ulStyles} data-cy="dropdown-options">
 								{links.map((l, index) => (
 									<li key={l.title}>
 										<a
 											href={l.url}
-											className={cx({
-												[linkStyles]: true,
-												[linkActive]: !!l.isActive,
-												[linkFirst]: index === 0,
-											})}
+											css={[
+												linkStyles,
+												!!l.isActive && linkActive,
+												index === 0 && linkFirst,
+											]}
 											data-link-name={l.dataLinkName}
 										>
 											{l.title}

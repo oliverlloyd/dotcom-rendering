@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import { css } from 'emotion';
+
+import { css } from '@emotion/react';
 
 import { ContainerLayout } from '@frontend/web/components/ContainerLayout';
-import { Section } from '@frontend/web/components/Section';
+import { ElementContainer } from '@frontend/web/components/ElementContainer';
 import { Footer } from '@frontend/web/components/Footer';
 import { UL } from '@frontend/web/components/Card/components/UL';
 import { LI } from '@frontend/web/components/Card/components/LI';
@@ -29,7 +29,7 @@ const Grey = ({
 	padded?: boolean;
 }) => (
 	<div
-		className={css`
+		css={css`
 			background-color: ${neutral[93]};
 			width: 100%;
 			height: ${heightInPixels}px;
@@ -50,7 +50,7 @@ export default {
 
 export const Newsletters = (): React.ReactNode => (
 	<>
-		<Section
+		<ElementContainer
 			showSideBorders={true}
 			borderColour={brandLine.primary}
 			showTopBorder={false}
@@ -67,10 +67,10 @@ export const Newsletters = (): React.ReactNode => (
 				subscribeUrl=""
 				edition="UK"
 			/>
-		</Section>
-		<Section showTopBorder={false} showSideBorders={true}>
+		</ElementContainer>
+		<ElementContainer showTopBorder={false} showSideBorders={true}>
 			<h1
-				className={css`
+				css={css`
 					padding-top: 1.5rem;
 					padding-bottom: 1.5rem;
 					${headline.xlarge({ fontWeight: 'bold' })}
@@ -78,7 +78,7 @@ export const Newsletters = (): React.ReactNode => (
 			>
 				Guardian newsletters: sign up
 			</h1>
-		</Section>
+		</ElementContainer>
 		<ContainerLayout
 			title="News Roundups"
 			sideBorders={true}
@@ -145,7 +145,7 @@ export const Newsletters = (): React.ReactNode => (
 				</UL>
 			</UL>
 		</ContainerLayout>
-		<Section
+		<ElementContainer
 			padded={false}
 			backgroundColour={brandBackground.primary}
 			borderColour={brandBorder.primary}
@@ -156,7 +156,7 @@ export const Newsletters = (): React.ReactNode => (
 				pillar={Pillar.News}
 				pillars={NAV.pillars}
 			/>
-		</Section>
+		</ElementContainer>
 	</>
 );
 Newsletters.story = { name: 'Example email newsletters page' };

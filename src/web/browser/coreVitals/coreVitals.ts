@@ -34,28 +34,32 @@ export const coreVitals = (): void => {
 		value: number;
 	};
 
+	const nineDigitPrecision = (value: number) => {
+		// The math functions are to make sure the length of number is <= 9
+		return Math.round(value * 1_000_000) / 1_000_000;
+	};
+
 	const addToJson = ({ name, value }: CoreVitalsArgs): void => {
 		switch (name) {
-			// The math functions are to make sure the length of number is <= 9
 			case 'FCP':
-				jsonData.fcp = Math.round(value * 1000000) / 1000000;
+				jsonData.fcp = nineDigitPrecision(value);
 				break;
 			case 'CLS':
-				jsonData.cls = Math.round(value * 1000000) / 1000000;
+				jsonData.cls = nineDigitPrecision(value);
 				break;
 			case 'LCP':
-				jsonData.lcp = Math.round(value * 1000000) / 1000000;
+				jsonData.lcp = nineDigitPrecision(value);
 				break;
 			case 'FID':
-				jsonData.fid = Math.round(value * 1000000) / 1000000;
+				jsonData.fid = nineDigitPrecision(value);
 				break;
 			case 'TTFB':
-				jsonData.ttfb = Math.round(value * 1000000) / 1000000;
+				jsonData.ttfb = nineDigitPrecision(value);
 				break;
 		}
 
 		// Some browser ID's are not caputured (and if they have no cookie there won't be one)
-		// but there are occassions of reoccuring users without a browser ID being sent
+		// but there are occassions of reoccuring users without a browser ID being sent.
 		if (window.guardian && window.guardian.ophan) {
 			jsonData.page_view_id = window.guardian.ophan.pageViewId;
 			jsonData.browser_id = window.guardian.config.ophan.browserId;
@@ -70,26 +74,36 @@ export const coreVitals = (): void => {
 			window.location.hostname === 'm.code.dev-theguardian.com' ||
 			window.location.hostname === 'localhost' ||
 			window.location.hostname === 'preview.gutools.co.uk'
-				? 'http://performance-events.code.dev-guardianapis.com/core-web-vitals'
+				? 'https://performance-events.code.dev-guardianapis.com/core-web-vitals'
 				: 'https://performance-events.guardianapis.com/core-web-vitals';
 
-		// If CLS has been calculated
-		if (jsonData.cls !== null) {
-			// Set page view and browser ID
+		// Browser support
+		// getCLS(): Chromium,
+		// getFCP(): Chromium, Firefox, Safari Technology Preview
+		// getFID(): Chromium, Firefox, Safari, Internet Explorer (with the polyfill)
+		// getLCP(): Chromium
+		// getTTFB(): Chromium, Firefox, Safari, Internet Explorer
 
-			fetch(endpoint, {
-				method: 'POST', // *GET, POST, PUT, DELETE, etc.
-				mode: 'cors', // no-cors, *cors, same-origin
-				cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-				credentials: 'same-origin', // include, *same-origin, omit
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				redirect: 'follow',
-				referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-w
-				body: JSON.stringify(jsonData),
-			}).catch(() => {});
-		}
+		// We will send all data whenever any update. This means `null` values will appear in the lake
+		// and need handling.
+
+		fetch(endpoint, {
+			method: 'POST', // *GET, POST, PUT, DELETE, etc.
+			mode: 'cors', // no-cors, *cors, same-origin
+			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+			credentials: 'same-origin', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			redirect: 'follow',
+			referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-w
+			body: JSON.stringify(jsonData),
+		}).catch((error) =>
+			window.guardian.modules.sentry.reportError(
+				error,
+				'core-web-vitals-dcr',
+			),
+		);
 	};
 
 	getCLS(addToJson, false);

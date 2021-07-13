@@ -20,6 +20,7 @@ export const htmlTemplate = ({
 	openGraphData,
 	twitterData,
 	keywords,
+	accessibilityLink,
 }: {
 	title?: string;
 	description: string;
@@ -36,6 +37,7 @@ export const htmlTemplate = ({
 	openGraphData: { [key: string]: string };
 	twitterData: { [key: string]: string };
 	keywords: string;
+	accessibilityLink: string;
 }): string => {
 	const favicon =
 		process.env.NODE_ENV === 'production'
@@ -99,7 +101,12 @@ export const htmlTemplate = ({
 		`https://support.theguardian.com`,
 	];
 
-	const preconnectTags = staticPreconnectUrls.map(
+	const allStaticPreconnectUrls =
+		process.env.NODE_ENV === 'production'
+			? [...staticPreconnectUrls, 'https://sourcepoint.theguardian.com']
+			: staticPreconnectUrls;
+
+	const preconnectTags = allStaticPreconnectUrls.map(
 		(src) => `<link rel="preconnect" href="${src}">`,
 	);
 
@@ -139,6 +146,16 @@ export const htmlTemplate = ({
 
         We are hiring, ever thought about joining us?
         https://workforus.theguardian.com/careers/product-engineering/
+
+
+         GGGGG    GGG     GGG
+        G     G  G   G   G   G     G   G  GGGGGG    GG    GGGGG    GGGG
+              G G     G G     G     G G   G        G  G   G    G  G
+         GGGGG  G     G G     G      G    GGGGG   G    G  G    G   GGGG
+        G       G     G G     G      G    G       GGGGGG  GGGGG        G
+        G        G   G   G   G       G    G       G    G  G   G   G    G
+        GGGGGGG   GGG     GGG        G    GGGGGG  G    G  G    G   GGGG
+
 --->`;
 
 	return `<!doctype html>
@@ -271,6 +288,7 @@ export const htmlTemplate = ({
             </head>
 
             <body>
+				${accessibilityLink}
                 <div id="react-root"></div>
                 ${html}
                 ${[...lowPriorityScriptTags].join('\n')}

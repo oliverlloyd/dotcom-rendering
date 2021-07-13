@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 
 import { Design } from '@guardian/types';
 
@@ -38,6 +37,7 @@ export const ExactlyFive = ({ content }: Props) => (
 					mediaDuration={content[0].mediaDuration}
 					commentCount={content[0].commentCount}
 					starRating={content[0].starRating}
+					branding={content[0].branding}
 				/>
 			</LI>
 			<LI
@@ -69,6 +69,7 @@ export const ExactlyFive = ({ content }: Props) => (
 					mediaDuration={content[1].mediaDuration}
 					commentCount={content[1].commentCount}
 					starRating={content[1].starRating}
+					branding={content[1].branding}
 				/>
 			</LI>
 			<LI
@@ -101,6 +102,7 @@ export const ExactlyFive = ({ content }: Props) => (
 							mediaDuration={content[2].mediaDuration}
 							commentCount={content[2].commentCount}
 							starRating={content[2].starRating}
+							branding={content[2].branding}
 						/>
 					</LI>
 					<LI bottomMargin={true} stretch={true}>
@@ -126,6 +128,7 @@ export const ExactlyFive = ({ content }: Props) => (
 							mediaDuration={content[3].mediaDuration}
 							commentCount={content[3].commentCount}
 							starRating={content[3].starRating}
+							branding={content[3].branding}
 						/>
 					</LI>
 					<LI bottomMargin={false} stretch={true}>
@@ -151,6 +154,7 @@ export const ExactlyFive = ({ content }: Props) => (
 							mediaDuration={content[4].mediaDuration}
 							commentCount={content[4].commentCount}
 							starRating={content[4].starRating}
+							branding={content[4].branding}
 						/>
 					</LI>
 				</UL>

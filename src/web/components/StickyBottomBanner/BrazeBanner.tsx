@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { css } from 'emotion';
+import { useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 
 import { getZIndex } from '@root/src/web/lib/getZIndex';
 import type { Props as BrazeBannerProps } from '@guardian/braze-components';
@@ -40,11 +40,11 @@ const containerStyles = css`
 // - The force-braze-message query string arg is passed
 export const canShow = async (
 	brazeMessagesPromise: Promise<BrazeMessagesInterface>,
-): Promise<CanShowResult> => {
+): Promise<CanShowResult<any>> => {
 	const forcedBrazeMeta = getBrazeMetaFromUrlFragment();
 	if (forcedBrazeMeta) {
 		return {
-			result: true,
+			show: true,
 			meta: forcedBrazeMeta,
 		};
 	}
@@ -68,9 +68,9 @@ export const canShow = async (
 			logButtonClickWithBraze,
 		};
 
-		return { result: true, meta };
+		return { show: true, meta };
 	} catch (e) {
-		return { result: false };
+		return { show: false };
 	}
 };
 
@@ -99,7 +99,7 @@ const BrazeBannerWithSatisfiedDependencies = ({
 	}, []);
 
 	return (
-		<div className={containerStyles}>
+		<div css={containerStyles}>
 			<BrazeComponent
 				logButtonClickWithBraze={meta.logButtonClickWithBraze}
 				submitComponentEvent={submitComponentEvent}

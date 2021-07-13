@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 
 import { Design } from '@guardian/types';
 
@@ -61,6 +60,7 @@ export const FourOrLess = ({ content }: Props) => {
 							mediaDuration={trail.mediaDuration}
 							commentCount={trail.commentCount}
 							starRating={trail.starRating}
+							branding={trail.branding}
 						/>
 					</LI>
 				))}

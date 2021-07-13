@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/aria-role */
-import React from 'react';
-import { css } from 'emotion';
+
+import { css } from '@emotion/react';
 
 import { Display, Design, Pillar } from '@guardian/types';
 import { decidePalette } from '@root/src/web/lib/decidePalette';
-import { Section } from '../Section';
+import { ElementContainer } from '../ElementContainer';
 import { Flex } from '../Flex';
 import { LeftColumn } from '../LeftColumn';
 import { RightColumn } from '../RightColumn';
@@ -23,13 +23,13 @@ export default {
 };
 
 const Container = ({ children }: { children: React.ReactNode }) => (
-	<Section showTopBorder={false}>
+	<ElementContainer showTopBorder={false}>
 		<Flex>
 			<LeftColumn>
 				<></>
 			</LeftColumn>
 			<div
-				className={css`
+				css={css`
 					max-width: 620px;
 					padding: 20px;
 					flex-grow: 1;
@@ -41,7 +41,7 @@ const Container = ({ children }: { children: React.ReactNode }) => (
 				<></>
 			</RightColumn>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 
 /**

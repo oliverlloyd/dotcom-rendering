@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 
 import { Design, Special } from '@guardian/types';
 
@@ -55,6 +54,7 @@ export const MoreThanFive = ({ content }: Props) => {
 						mediaDuration={content[0].mediaDuration}
 						commentCount={content[0].commentCount}
 						starRating={content[0].starRating}
+						branding={content[0].branding}
 					/>
 				</LI>
 				<LI
@@ -86,6 +86,7 @@ export const MoreThanFive = ({ content }: Props) => {
 						mediaDuration={content[1].mediaDuration}
 						commentCount={content[1].commentCount}
 						starRating={content[1].starRating}
+						branding={content[1].branding}
 					/>
 				</LI>
 				<LI
@@ -117,6 +118,7 @@ export const MoreThanFive = ({ content }: Props) => {
 						mediaDuration={content[2].mediaDuration}
 						commentCount={content[2].commentCount}
 						starRating={content[2].starRating}
+						branding={content[2].branding}
 					/>
 				</LI>
 				<LI
@@ -148,6 +150,7 @@ export const MoreThanFive = ({ content }: Props) => {
 						mediaDuration={content[3].mediaDuration}
 						commentCount={content[3].commentCount}
 						starRating={content[3].starRating}
+						branding={content[3].branding}
 					/>
 				</LI>
 			</UL>
@@ -190,6 +193,7 @@ export const MoreThanFive = ({ content }: Props) => {
 							mediaDuration={trail.mediaDuration}
 							commentCount={trail.commentCount}
 							starRating={trail.starRating}
+							branding={trail.branding}
 						/>
 					</LI>
 				))}

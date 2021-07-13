@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { cmp } from '@guardian/consent-management-platform';
 import {
 	canShowRRBanner,
@@ -16,8 +16,9 @@ import {
 	MaybeFC,
 	CandidateConfig,
 } from '@root/src/web/lib/messagePicker';
-import { CountryCode } from '@guardian/libs/dist/esm/types/countries';
+import { CountryCode } from '@guardian/types';
 import type { BrazeMessagesInterface } from '@guardian/braze-components/logic';
+import { useSignInGateWillShow } from '@root/src/web/lib/useSignInGateWillShow';
 import { BrazeBanner, canShow as canShowBrazeBanner } from './BrazeBanner';
 
 type Props = {
@@ -25,12 +26,13 @@ type Props = {
 	asyncCountryCode?: Promise<CountryCode | null>;
 	CAPI: CAPIBrowserType;
 	brazeMessages?: Promise<BrazeMessagesInterface>;
+	isPreview: boolean;
 };
 
 type RRBannerConfig = {
 	id: string;
 	BannerComponent: React.FC<BannerProps>;
-	canShowFn: CanShowFunctionType;
+	canShowFn: CanShowFunctionType<BannerProps>;
 	isEnabled: (switches: CAPIType['config']['switches']) => boolean;
 };
 
@@ -45,13 +47,15 @@ const getBannerLastClosedAt = (key: string): string | undefined => {
 
 const DEFAULT_BANNER_TIMEOUT_MILLIS = 2000;
 
-const buildCmpBannerConfig = (): CandidateConfig => ({
+const buildCmpBannerConfig = (): CandidateConfig<void> => ({
 	candidate: {
 		id: 'cmpUi',
 		canShow: () =>
 			cmp
 				.willShowPrivacyMessage()
-				.then((result) => ({ result: !!result })),
+				.then((result) =>
+					result ? { show: true, meta: undefined } : { show: false },
+				),
 		show: () => {
 			// New CMP is not a react component and is shown outside of react's world
 			// so render nothing if it will show
@@ -71,7 +75,9 @@ const buildRRBannerConfigWith = ({
 		CAPI: CAPIBrowserType,
 		isSignedIn: boolean,
 		asyncCountryCode: Promise<string>,
-	): CandidateConfig => {
+		isPreview: boolean,
+		signInGateWillShow: boolean = false,
+	): CandidateConfig<BannerProps> => {
 		return {
 			candidate: {
 				id,
@@ -96,9 +102,16 @@ const buildRRBannerConfigWith = ({
 							'subscriptionBannerLastClosedAt',
 						),
 						section: CAPI.config.section,
+						isPreview,
+						idApiUrl: CAPI.config.idApiUrl,
+						signInGateWillShow,
 					}),
-				show: ({ meta, module }: BannerProps) => () => (
-					<BannerComponent meta={meta} module={module} />
+				show: ({ meta, module, email }: BannerProps) => () => (
+					<BannerComponent
+						meta={meta}
+						module={module}
+						email={email}
+					/>
 				),
 			},
 			timeoutMillis: DEFAULT_BANNER_TIMEOUT_MILLIS,
@@ -110,19 +123,19 @@ const buildPuzzlesBannerConfig = buildRRBannerConfigWith({
 	id: 'puzzles-banner',
 	BannerComponent: PuzzlesBanner,
 	canShowFn: canShowPuzzlesBanner,
-	isEnabled: (swtiches) => swtiches.puzzlesBanner,
+	isEnabled: (switches) => switches.puzzlesBanner,
 });
 
 const buildReaderRevenueBannerConfig = buildRRBannerConfigWith({
 	id: 'reader-revenue-banner',
 	BannerComponent: ReaderRevenueBanner,
 	canShowFn: canShowRRBanner,
-	isEnabled: (swtiches) => swtiches.remoteBanner,
+	isEnabled: (switches) => switches.remoteBanner,
 });
 
 const buildBrazeBanner = (
 	brazeMessages: Promise<BrazeMessagesInterface>,
-): CandidateConfig => ({
+): CandidateConfig<any> => ({
 	candidate: {
 		id: 'braze-banner',
 		canShow: () => canShowBrazeBanner(brazeMessages),
@@ -136,19 +149,24 @@ export const StickyBottomBanner = ({
 	asyncCountryCode,
 	CAPI,
 	brazeMessages,
+	isPreview,
 }: Props) => {
 	const [SelectedBanner, setSelectedBanner] = useState<React.FC | null>(null);
+	const signInGateWillShow = useSignInGateWillShow({ isSignedIn, CAPI });
 	useOnce(() => {
 		const CMP = buildCmpBannerConfig();
 		const puzzlesBanner = buildPuzzlesBannerConfig(
 			CAPI,
 			isSignedIn as boolean,
 			asyncCountryCode as Promise<string>,
+			isPreview,
 		);
 		const readerRevenue = buildReaderRevenueBannerConfig(
 			CAPI,
 			isSignedIn as boolean,
 			asyncCountryCode as Promise<CountryCode>,
+			isPreview,
+			signInGateWillShow,
 		);
 		const brazeBanner = buildBrazeBanner(
 			brazeMessages as Promise<BrazeMessagesInterface>,

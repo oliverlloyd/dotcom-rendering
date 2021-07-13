@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Design, Display, Pillar } from '@guardian/types';
 
 import { RichLink } from '@root/src/web/components/RichLink';
@@ -9,6 +7,13 @@ type DefaultProps = {
 	headlineText: string;
 	url: string;
 	isPlaceholder?: boolean;
+};
+
+const defaultImageData = {
+	thumbnailUrl: '',
+	altText: '',
+	width: '',
+	height: '',
 };
 
 export const DefaultRichLink: React.FC<DefaultProps> = ({
@@ -21,7 +26,7 @@ export const DefaultRichLink: React.FC<DefaultProps> = ({
 		<RichLink
 			richLinkIndex={index}
 			cardStyle="news"
-			thumbnailUrl=""
+			imageData={defaultImageData}
 			headlineText={headlineText}
 			contentType="article"
 			url={url}

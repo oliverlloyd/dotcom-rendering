@@ -1,5 +1,4 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 
 import {
 	text,
@@ -8,7 +7,7 @@ import {
 } from '@guardian/src-foundations/palette';
 import { headline, textSans } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
-import type { Format } from '@guardian/types';
+import { Format, Special } from '@guardian/types';
 
 import ArrowInCircle from '@frontend/static/icons/arrow-in-circle.svg';
 
@@ -18,12 +17,10 @@ import { QuoteIcon } from '@root/src/web/components/QuoteIcon';
 import { Hide } from '@root/src/web/components/Hide';
 import { Avatar } from '@frontend/web/components/Avatar';
 
-type ColourType = string;
-
 interface Props {
 	richLinkIndex: number;
 	cardStyle: RichLinkCardType;
-	thumbnailUrl: string;
+	imageData: RichLinkImageData;
 	headlineText: string;
 	contentType: ContentType;
 	url: string;
@@ -33,6 +30,12 @@ interface Props {
 	sponsorName: string;
 	contributorImage?: string;
 	isPlaceholder?: boolean; // use 'true' for server-side default prior to client-side enrichment
+}
+export interface RichLinkImageData {
+	thumbnailUrl: string;
+	altText: string;
+	width: string;
+	height: string;
 }
 
 const neutralBackground = css`
@@ -45,19 +48,19 @@ const neutralBackground = css`
 	}
 `;
 
-const pillarBackground: (palette: Palette) => ColourType = (palette) => {
+const pillarBackground = (palette: Palette) => {
 	return css`
 		background-color: ${palette.background.richLink};
 	`;
 };
 
-const textColour: (palette: Palette) => ColourType = (palette) => {
+const textColour = (palette: Palette) => {
 	return css`
 		color: ${palette.text.richLink};
 	`;
 };
 
-const richLinkTopBorder: (palette: Palette) => ColourType = (palette) => {
+const richLinkTopBorder = (palette: Palette) => {
 	return css`
 		border-top: 1px;
 		border-top-style: solid;
@@ -93,7 +96,14 @@ const richLinkTitle = css`
 	}
 `;
 
-const richLinkReadMore: (palette: Palette) => ColourType = (palette) => {
+const labsRichLinkTitle = css`
+	${from.wide} {
+		${textSans.medium({ fontWeight: 'bold', lineHeight: 'regular' })}
+	}
+	${textSans.small({ fontWeight: 'bold', lineHeight: 'regular' })}
+`;
+
+const richLinkReadMore = (palette: Palette) => {
 	return css`
 		fill: ${palette.fill.richLink};
 		color: ${palette.text.richLink};
@@ -115,6 +125,17 @@ const readMoreTextStyle = css`
 	vertical-align: top;
 	font-weight: 500;
 	text-decoration: none;
+`;
+
+const labsReadMoreTextStyle = css`
+	${textSans.medium({ fontWeight: 'regular' })}
+	display: inline-block;
+	height: 30px;
+	line-height: 25px;
+	padding-left: 4px;
+	vertical-align: top;
+	text-decoration: none;
+	color: ${neutral[7]};
 `;
 
 const byline = css`
@@ -144,7 +165,7 @@ const contributorImageWrapper = css`
 `;
 
 const paidForBranding = css`
-	${textSans.xsmall()};
+	${textSans.xxsmall()};
 	font-weight: bold;
 	color: ${text.supporting};
 `;
@@ -180,7 +201,7 @@ const imageStyles = css`
 export const RichLink = ({
 	richLinkIndex,
 	cardStyle,
-	thumbnailUrl,
+	imageData,
 	headlineText,
 	contentType,
 	url,
@@ -196,36 +217,44 @@ export const RichLink = ({
 		cardStyle === 'letters' ? `${headlineText} | Letters ` : headlineText;
 
 	const imageCardStyles = ['news', 'letters', 'media', 'feature'];
-	const showImage = thumbnailUrl && imageCardStyles.includes(cardStyle);
+	const showImage =
+		imageData &&
+		imageData.thumbnailUrl &&
+		imageCardStyles.includes(cardStyle);
 	const isPaidContent = tags
 		? tags.filter((t) => t.id === 'tone/advertisement-features').length > 0
 		: false;
 	const isOpinion = cardStyle === 'comment';
 	const mainContributor = getMainContributor(tags);
+	const isLabs = format.theme === Special.Labs;
 
 	return (
 		<div
 			data-print-layout="hide"
 			data-link-name={`rich-link-${richLinkIndex} | ${richLinkIndex}`}
 			data-component="rich-link"
-			className={pillarBackground(palette)}
+			css={pillarBackground(palette)}
 			data-name={(isPlaceholder && 'placeholder') || ''}
 		>
-			<div className={neutralBackground}>
-				<a className={richLinkLink} href={url}>
-					<div className={richLinkTopBorder(palette)} />
+			<div css={neutralBackground}>
+				<a css={richLinkLink} href={url}>
+					<div css={richLinkTopBorder(palette)} />
 					{showImage && (
 						<div>
 							<img
-								className={imageStyles}
-								src={thumbnailUrl}
-								alt=""
+								css={imageStyles}
+								src={imageData.thumbnailUrl}
+								alt={imageData.altText}
+								width={imageData.width}
+								height={imageData.height}
 							/>
 						</div>
 					)}
-					<div className={richLinkElements}>
-						<div className={richLinkHeader}>
-							<div className={richLinkTitle}>
+					<div css={richLinkElements}>
+						<div css={richLinkHeader}>
+							<div
+								css={isLabs ? labsRichLinkTitle : richLinkTitle}
+							>
 								{isOpinion && (
 									<>
 										<Hide when="above" breakpoint="wide">
@@ -245,14 +274,12 @@ export const RichLink = ({
 								{linkText}
 							</div>
 							{isOpinion && (
-								<div
-									className={cx(byline, textColour(palette))}
-								>
+								<div css={[byline, textColour(palette)]}>
 									{mainContributor}
 								</div>
 							)}
 							{starRating && starRating > 0 && (
-								<div className={starWrapper}>
+								<div css={starWrapper}>
 									<StarRating
 										rating={starRating}
 										size="medium"
@@ -260,13 +287,13 @@ export const RichLink = ({
 								</div>
 							)}
 							{isPaidContent && sponsorName && (
-								<div className={paidForBranding}>
+								<div css={paidForBranding}>
 									Paid for by {sponsorName}
 								</div>
 							)}
 						</div>
 						{isOpinion && contributorImage && (
-							<div className={contributorImageWrapper}>
+							<div css={contributorImageWrapper}>
 								<Avatar
 									imageSrc={contributorImage}
 									imageAlt={mainContributor}
@@ -274,9 +301,15 @@ export const RichLink = ({
 								/>
 							</div>
 						)}
-						<div className={richLinkReadMore(palette)}>
+						<div css={richLinkReadMore(palette)}>
 							<ArrowInCircle />
-							<div className={readMoreTextStyle}>
+							<div
+								css={
+									isLabs
+										? labsReadMoreTextStyle
+										: readMoreTextStyle
+								}
+							>
 								{readMoreText(contentType)}
 							</div>
 						</div>

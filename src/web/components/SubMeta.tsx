@@ -1,5 +1,4 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 
 import { space } from '@guardian/src-foundations';
 import { headline, textSans } from '@guardian/src-foundations/typography';
@@ -11,7 +10,7 @@ import { ShareIcons } from '@frontend/web/components/ShareIcons';
 import { Badge } from '@frontend/web/components/Badge';
 
 const labelStyles = (palette: Palette) => css`
-	${textSans.xsmall()};
+	${textSans.xxsmall()};
 	display: block;
 	color: ${palette.text.subMetaLabel};
 `;
@@ -30,6 +29,14 @@ const bottomPadding = css`
 
 const listStyleNone = css`
 	list-style: none;
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns */
+	/* Needs double escape char: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#es2018_revision_of_illegal_escape_sequences */
+	li::before {
+		content: '\\200B'; /* Zero width space */
+		display: block;
+		height: 0;
+		width: 0;
+	}
 `;
 
 const listWrapper = (palette: Palette) => css`
@@ -124,9 +131,9 @@ export const SubMeta = ({
 	const hasSectionLinks = subMetaSectionLinks.length > 0;
 	const hasKeywordLinks = subMetaKeywordLinks.length > 0;
 	return (
-		<div data-print-layout="hide" className={bottomPadding}>
+		<div data-print-layout="hide" css={bottomPadding}>
 			{badge && (
-				<div className={badgeWrapper}>
+				<div css={badgeWrapper}>
 					<Badge
 						imageUrl={badge.imageUrl}
 						seriesTag={badge.seriesTag}
@@ -135,23 +142,23 @@ export const SubMeta = ({
 			)}
 			{(hasSectionLinks || hasKeywordLinks) && (
 				<>
-					<span className={labelStyles(palette)}>Topics</span>
-					<div className={listWrapper(palette)}>
+					<span css={labelStyles(palette)}>Topics</span>
+					<div css={listWrapper(palette)}>
 						{hasSectionLinks && (
-							<ul className={listStyleNone}>
+							<ul css={listStyleNone}>
 								{subMetaSectionLinks.map((link, i) => (
 									<li
-										className={cx(
+										css={[
 											listItemStyles(palette),
 											sectionStyles(format),
 											i ===
 												subMetaSectionLinks.length -
 													1 && hideSlash,
-										)}
+										]}
 										key={link.url}
 									>
 										<a
-											className={linkStyles(palette)}
+											css={linkStyles(palette)}
 											href={link.url}
 										>
 											{link.title}
@@ -161,20 +168,20 @@ export const SubMeta = ({
 							</ul>
 						)}
 						{hasKeywordLinks && (
-							<ul className={listStyleNone}>
+							<ul css={listStyleNone}>
 								{subMetaKeywordLinks.map((link, i) => (
 									<li
-										className={cx(
+										css={[
 											listItemStyles(palette),
 											keywordStyles,
 											i ===
 												subMetaKeywordLinks.length -
 													1 && hideSlash,
-										)}
+										]}
 										key={link.url}
 									>
 										<a
-											className={linkStyles(palette)}
+											css={linkStyles(palette)}
 											href={link.url}
 										>
 											{link.title}
@@ -188,7 +195,7 @@ export const SubMeta = ({
 			)}
 			{showBottomSocialButtons && (
 				<div
-					className={css`
+					css={css`
 						display: flex;
 						justify-content: space-between;
 					`}
@@ -207,7 +214,7 @@ export const SubMeta = ({
 						]}
 						size="medium"
 					/>
-					<div className={syndicationButtonOverrides(palette)}>
+					<div css={syndicationButtonOverrides(palette)}>
 						<LinkButton
 							priority="tertiary"
 							size="xsmall"

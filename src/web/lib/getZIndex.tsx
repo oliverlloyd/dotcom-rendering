@@ -30,8 +30,13 @@ const indices = [
 	'expanded-veggie-menu-wrapper',
 	'expanded-veggie-menu',
 
-	// Header
+	// Headers with sticky ads
+	'stickyAdWrapperLabsHeader',
 	'stickyAdWrapper',
+	'stickyAdWrapperNav',
+
+	// Edition selector in nav - needs to be below stickyAdWrapper
+	'editionDropdown',
 
 	// Search link should be above The Guardian svg
 	'searchHeaderLink',

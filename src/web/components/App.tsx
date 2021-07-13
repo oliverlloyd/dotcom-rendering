@@ -4,7 +4,6 @@ import { useAB } from '@guardian/ab-react';
 import { tests } from '@frontend/web/experiments/ab-tests';
 import { ShareCount } from '@frontend/web/components/ShareCount';
 import { MostViewedFooter } from '@frontend/web/components/MostViewed/MostViewedFooter/MostViewedFooter';
-import { CalloutBlockComponent } from '@root/src/web/components/elements/CalloutBlockComponent';
 import { ReaderRevenueLinks } from '@frontend/web/components/ReaderRevenueLinks';
 import { SlotBodyEnd } from '@root/src/web/components/SlotBodyEnd/SlotBodyEnd';
 import { Links } from '@frontend/web/components/Links';
@@ -44,12 +43,13 @@ import { getUser } from '@root/src/web/lib/getUser';
 
 import { FocusStyleManager } from '@guardian/src-foundations/utils';
 import { Display, Design } from '@guardian/types';
-import type { Format } from '@guardian/types';
+import type { Format, CountryCode } from '@guardian/types';
 import { incrementAlreadyVisited } from '@root/src/web/lib/alreadyVisited';
 import { incrementDailyArticleCount } from '@frontend/web/lib/dailyArticleCount';
-import { getArticleCountConsent } from '@frontend/web/lib/contributions';
+import { hasOptedOutOfArticleCount } from '@frontend/web/lib/contributions';
 import { ReaderRevenueDevUtils } from '@root/src/web/lib/readerRevenueDevUtils';
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
+import { getSharingUrls } from '@root/src/lib/sharing-urls';
 
 import {
 	cmp,
@@ -60,18 +60,10 @@ import { injectPrivacySettingsLink } from '@root/src/web/lib/injectPrivacySettin
 import { updateIframeHeight } from '@root/src/web/browser/updateIframeHeight';
 import { ClickToView } from '@root/src/web/components/ClickToView';
 import { LabsHeader } from '@root/src/web/components/LabsHeader';
-import { DocumentBlockComponent } from '@root/src/web/components/elements/DocumentBlockComponent';
-import { EmbedBlockComponent } from '@root/src/web/components/elements/EmbedBlockComponent';
-import { UnsafeEmbedBlockComponent } from '@root/src/web/components/elements/UnsafeEmbedBlockComponent';
-import { InstagramBlockComponent } from '@root/src/web/components/elements/InstagramBlockComponent';
-import { MapEmbedBlockComponent } from '@root/src/web/components/elements/MapEmbedBlockComponent';
-import { SpotifyBlockComponent } from '@root/src/web/components/elements/SpotifyBlockComponent';
-import { VideoFacebookBlockComponent } from '@root/src/web/components/elements/VideoFacebookBlockComponent';
-import { VineBlockComponent } from '@root/src/web/components/elements/VineBlockComponent';
-import type { CountryCode } from '@guardian/libs/dist/esm/types/countries';
+
 import type { BrazeMessagesInterface } from '@guardian/braze-components/logic';
-import { remoteRrHeaderLinksTestName } from '@root/src/web/experiments/tests/remoteRrHeaderLinksTest';
-import { OphanRecordFunction } from '@root/node_modules/@guardian/ab-core/dist/types';
+import { OphanRecordFunction } from '@guardian/ab-core/dist/types';
+import { ConsentState } from '@guardian/consent-management-platform/dist/types';
 import {
 	submitComponentEvent,
 	OphanComponentEvent,
@@ -79,6 +71,7 @@ import {
 import { trackPerformance } from '../browser/ga/ga';
 import { decidePalette } from '../lib/decidePalette';
 import { buildBrazeMessages } from '../lib/braze/buildBrazeMessages';
+import { CommercialMetrics } from './CommercialMetrics';
 
 // *******************************
 // ****** Dynamic imports ********
@@ -157,6 +150,11 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 	>();
 
 	const pageViewId = window.guardian?.config?.ophan?.pageViewId;
+	const [browserId, setBrowserId] = useState<string | undefined>(undefined);
+	useOnce(() => {
+		// TODO: can the browserId actually be null?
+		setBrowserId(getCookie('bwid') ?? undefined);
+	}, []);
 
 	const componentEventHandler = (
 		componentType: any,
@@ -227,7 +225,8 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 	// article pages when other pages are supported by DCR.
 	useEffect(() => {
 		const incrementArticleCountsIfConsented = async () => {
-			if (await getArticleCountConsent()) {
+			const hasOptedOut = await hasOptedOutOfArticleCount();
+			if (!hasOptedOut) {
 				incrementDailyArticleCount();
 				incrementWeeklyArticleCount();
 			}
@@ -293,7 +292,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 		if (CAPI.config.switches.consentManagement && countryCode) {
 			const pubData = {
 				platform: 'next-gen',
-				browserId: getCookie('bwid') || undefined,
+				browserId,
 				pageViewId,
 			};
 			injectPrivacySettingsLink(); // manually updates the footer DOM because it's not hydrated
@@ -325,13 +324,18 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 				pubData,
 			});
 		}
-	}, [countryCode, CAPI.config.switches.consentManagement, pageViewId]);
+	}, [
+		countryCode,
+		CAPI.config.switches.consentManagement,
+		pageViewId,
+		browserId,
+	]);
 
 	// ************************
 	// *   Google Analytics   *
 	// ************************
 	useEffect(() => {
-		onConsentChange((state: any) => {
+		onConsentChange((state: ConsentState) => {
 			const consentGiven = getConsentFor('google-analytics', state);
 			if (consentGiven) {
 				Promise.all([
@@ -365,11 +369,6 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 	const palette = decidePalette(format);
 
 	const adTargeting: AdTargeting = buildAdTargeting(CAPI.config);
-
-	const inRemoteModuleTest = ABTestAPI.isUserInVariant(
-		remoteRrHeaderLinksTestName,
-		'remote',
-	);
 
 	// There are docs on loadable in ./docs/loadable-components.md
 	const YoutubeBlockComponent = loadable(
@@ -432,10 +431,211 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 		},
 	);
 
+	const InteractiveContentsBlockElement = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.InteractiveContentsBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/InteractiveContentsBlockElement'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) =>
+				module.InteractiveContentsBlockElement,
+		},
+	);
+
+	const CalloutBlockComponent = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.CalloutBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/CalloutBlockComponent'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.CalloutBlockComponent,
+		},
+	);
+
+	const DocumentBlockComponent = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.DocumentBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/DocumentBlockComponent'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.DocumentBlockComponent,
+		},
+	);
+
+	const EmbedBlockComponent = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.EmbedBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/EmbedBlockComponent'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.EmbedBlockComponent,
+		},
+	);
+
+	const UnsafeEmbedBlockComponent = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.EmbedBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/UnsafeEmbedBlockComponent'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.UnsafeEmbedBlockComponent,
+		},
+	);
+
+	const InstagramBlockComponent = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.InstagramBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/InstagramBlockComponent'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.InstagramBlockComponent,
+		},
+	);
+
+	const MapEmbedBlockComponent = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.MapBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/MapEmbedBlockComponent'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.MapEmbedBlockComponent,
+		},
+	);
+
+	const SpotifyBlockComponent = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.SpotifyBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/SpotifyBlockComponent'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.SpotifyBlockComponent,
+		},
+	);
+
+	const VideoFacebookBlockComponent = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.VideoFacebookBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/VideoFacebookBlockComponent'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.VideoFacebookBlockComponent,
+		},
+	);
+
+	const VineBlockComponent = loadable(
+		() => {
+			if (
+				CAPI.elementsToHydrate.filter(
+					(element) =>
+						element._type ===
+						'model.dotcomrendering.pageElements.VineBlockElement',
+				).length > 0
+			) {
+				return import(
+					'@frontend/web/components/elements/VineBlockComponent'
+				);
+			}
+			return Promise.reject();
+		},
+		{
+			resolveComponent: (module) => module.VineBlockComponent,
+		},
+	);
+
 	// We use this function to filter the elementsToHydrate array by a particular
 	// type so that we can hydrate them. We use T to force the type and keep TS
 	// content because *we* know that if _type equals a thing then the type is
-	// guarenteed but TS isn't so sure and needs assurance
+	// guaranteed but TS isn't so sure and needs assurance
 	const elementsByType = <T extends CAPIElement>(
 		elements: CAPIElement[],
 		type: string,
@@ -513,6 +713,10 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 		CAPI.elementsToHydrate,
 		'model.dotcomrendering.pageElements.InteractiveBlockElement',
 	);
+	const interactiveContentsElement = elementsByType<InteractiveContentsBlockElement>(
+		CAPI.elementsToHydrate,
+		'model.dotcomrendering.pageElements.InteractiveContentsBlockElement',
+	);
 
 	return (
 		// Do you need to HydrateOnce or do you want a Portal?
@@ -526,6 +730,15 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 		//
 		// Note: Both require a 'root' element that needs to be server rendered.
 		<React.StrictMode>
+			{[
+				CAPI.config.switches.commercialMetrics,
+				window.guardian.config?.ophan !== undefined,
+			].every(Boolean) && (
+				<CommercialMetrics
+					browserId={browserId}
+					pageViewId={pageViewId}
+				/>
+			)}
 			<Portal rootId="reader-revenue-links-header">
 				<ReaderRevenueLinks
 					urls={CAPI.nav.readerRevenueLinks.header}
@@ -533,7 +746,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 					countryCode={countryCode}
 					dataLinkNamePrefix="nav2 : "
 					inHeader={true}
-					inRemoteModuleTest={inRemoteModuleTest}
+					remoteHeaderEnabled={CAPI.config.remoteHeader}
 					pageViewId={pageViewId}
 					contributionsServiceUrl={CAPI.contributionsServiceUrl}
 					ophanRecord={ophanRecord}
@@ -556,12 +769,14 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 			<HydrateOnce rootId="labs-header">
 				<LabsHeader />
 			</HydrateOnce>
-			<Portal rootId="share-count-root">
-				<ShareCount
-					ajaxUrl={CAPI.config.ajaxUrl}
-					pageId={CAPI.pageId}
-				/>
-			</Portal>
+			{CAPI.config.switches.serverShareCounts && (
+				<Portal rootId="share-count-root">
+					<ShareCount
+						ajaxUrl={CAPI.config.ajaxUrl}
+						pageId={CAPI.pageId}
+					/>
+				</Portal>
+			)}
 			{youTubeAtoms.map((youTubeAtom) => (
 				<HydrateOnce rootId={youTubeAtom.elementId}>
 					<YoutubeBlockComponent
@@ -574,7 +789,6 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 						isMainMedia={false}
 						id={youTubeAtom.id}
 						assetId={youTubeAtom.assetId}
-						channelId={youTubeAtom.channelId}
 						expired={youTubeAtom.expired}
 						overrideImage={youTubeAtom.overrideImage}
 						posterImage={youTubeAtom.posterImage}
@@ -597,6 +811,16 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 					/>
 				</HydrateOnce>
 			))}
+			{interactiveContentsElement.map((interactiveBlock) => (
+				<HydrateOnce rootId={interactiveBlock.elementId}>
+					<InteractiveContentsBlockElement
+						subheadingLinks={interactiveBlock.subheadingLinks}
+						endDocumentElementId={
+							interactiveBlock.endDocumentElementId
+						}
+					/>
+				</HydrateOnce>
+			))}
 			{quizAtoms.map((quizAtom) => (
 				<HydrateOnce rootId={quizAtom.elementId}>
 					<>
@@ -605,12 +829,23 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 								id={quizAtom.id}
 								questions={quizAtom.questions}
 								resultBuckets={quizAtom.resultBuckets}
+								sharingUrls={getSharingUrls(
+									CAPI.pageId,
+									CAPI.webTitle,
+								)}
+								theme={format.theme}
 							/>
 						)}
 						{quizAtom.quizType === 'knowledge' && (
 							<KnowledgeQuizAtom
 								id={quizAtom.id}
 								questions={quizAtom.questions}
+								resultGroups={quizAtom.resultGroups}
+								sharingUrls={getSharingUrls(
+									CAPI.pageId,
+									CAPI.webTitle,
+								)}
+								theme={format.theme}
 							/>
 						)}
 					</>
@@ -637,7 +872,6 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 				<Portal rootId={richLink.elementId}>
 					<RichLinkComponent
 						element={richLink}
-						pillar={pillar}
 						ajaxEndpoint={CAPI.config.ajaxUrl}
 						richLinkIndex={index}
 					/>
@@ -663,6 +897,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 						trackUrl={audioAtom.trackUrl}
 						kicker={audioAtom.kicker}
 						title={audioAtom.title}
+						duration={audioAtom.duration}
 						pillar={pillar}
 						contentIsNotSensitive={!CAPI.config.isSensitive}
 						aCastisEnabled={CAPI.config.switches.acast}
@@ -804,7 +1039,10 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 							source={embed.source}
 							sourceDomain={embed.sourceDomain}
 						>
-							<EmbedBlockComponent html={embed.html} />
+							<EmbedBlockComponent
+								html={embed.html}
+								alt={embed.alt}
+							/>
 						</ClickToView>
 					) : (
 						<ClickToView
@@ -928,7 +1166,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 			<Portal rootId="most-viewed-right">
 				<Lazy margin={100}>
 					<Suspense fallback={<></>}>
-						<MostViewedRightWrapper palette={palette} />
+						<MostViewedRightWrapper />
 					</Suspense>
 				</Lazy>
 			</Portal>
@@ -954,6 +1192,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 					contributionsServiceUrl={CAPI.contributionsServiceUrl}
 					brazeMessages={brazeMessages}
 					idApiUrl={CAPI.config.idApiUrl}
+					stage={CAPI.stage}
 				/>
 			</Portal>
 			<Portal
@@ -976,7 +1215,6 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 							keywordIds={CAPI.config.keywordIds}
 							contentType={CAPI.contentType}
 							tags={CAPI.tags}
-							edition={CAPI.editionId}
 							format={format}
 						/>
 					</Suspense>
@@ -1038,7 +1276,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 						countryCode={countryCode}
 						dataLinkNamePrefix="footer : "
 						inHeader={false}
-						inRemoteModuleTest={false}
+						remoteHeaderEnabled={false}
 						pageViewId={pageViewId}
 						contributionsServiceUrl={CAPI.contributionsServiceUrl}
 						ophanRecord={ophanRecord}
@@ -1051,6 +1289,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 					asyncCountryCode={asyncCountryCode}
 					CAPI={CAPI}
 					brazeMessages={brazeMessages}
+					isPreview={!!CAPI.isPreview}
 				/>
 			</Portal>
 		</React.StrictMode>

@@ -35,7 +35,10 @@ const textHeadline = (format: Format): string => {
 		case Display.Showcase:
 		case Display.NumberedList:
 		case Display.Standard: {
-			if (format.theme === Special.SpecialReport)
+			if (
+				format.theme === Special.SpecialReport &&
+				format.design !== Design.Interview
+			)
 				return specialReport[100];
 			switch (format.design) {
 				case Design.Review:
@@ -94,6 +97,7 @@ const textByline = (format: Format): string => {
 		case Display.Immersive:
 			return WHITE;
 		case Display.Showcase:
+		case Display.NumberedList:
 		case Display.Standard:
 			switch (format.design) {
 				case Design.Interview:
@@ -108,6 +112,7 @@ const textByline = (format: Format): string => {
 
 const textHeadlineByline = (format: Format): string => {
 	if (format.theme === Special.SpecialReport) return specialReport[300];
+	if (format.theme === Special.Labs) return BLACK
 	switch (format.display) {
 		case Display.Immersive:
 			switch (format.design) {
@@ -135,6 +140,8 @@ const textTwitterHandle = (format: Format): string => {
 
 const textCaption = (format: Format): string => {
 	if (format.theme === Special.SpecialReport) return specialReport[100];
+	if (format.theme === Special.Labs) return neutral[20];
+
 	switch (format.design) {
 		case Design.PhotoEssay:
 			return pillarPalette[format.theme].dark;
@@ -374,7 +381,9 @@ const backgroundArticle = (format: Format): string => {
 	if (format.design === Design.Comment) return opinion[800];
 	if (format.design === Design.Editorial) return opinion[800];
 	if (format.theme === Special.SpecialReport) return specialReport[800]; // Note, check theme rather than design here
-	if (format.theme === Special.Labs) return neutral[97];
+	if (format.theme === Special.Labs && format.display !== Display.Immersive)
+		return neutral[97];
+
 	return 'transparent';
 };
 
@@ -393,6 +402,7 @@ const backgroundSeriesTitle = (format: Format): string => {
 			}
 
 		case Display.Showcase:
+		case Display.NumberedList:
 		case Display.Standard:
 		default:
 			return 'transparent';
@@ -404,6 +414,7 @@ const backgroundSectionTitle = (format: Format): string => {
 		case Display.Immersive:
 			return pillarPalette[format.theme].main;
 		case Display.Showcase:
+		case Display.NumberedList:
 		case Display.Standard:
 		default:
 			return 'transparent';
@@ -459,6 +470,7 @@ const backgroundHeadline = (format: Format): string => {
 					return BLACK;
 			}
 		case Display.Showcase:
+		case Display.NumberedList:
 		case Display.Standard:
 			if (format.design === Design.Interview) return BLACK;
 			return 'transparent';
@@ -648,6 +660,7 @@ const topBarCard = (format: Format): string => {
 };
 
 const hoverHeadlineByline = (format: Format): string => {
+	if (format.theme === Special.Labs) return BLACK;
 	return pillarPalette[format.theme].dark;
 };
 

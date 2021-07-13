@@ -1,8 +1,12 @@
-import React from 'react';
-import { extractCritical } from 'emotion-server';
+import { StrictMode } from 'react';
 import { renderToString } from 'react-dom/server';
-import { cache } from 'emotion';
-import { CacheProvider } from '@emotion/core';
+
+import createEmotionServer from '@emotion/server/create-instance';
+import createCache from '@emotion/cache';
+import { CacheProvider, Global, css } from '@emotion/react';
+
+import { focusHalo } from '@guardian/src-foundations/accessibility';
+
 import { escapeData } from '@root/src/lib/escapeData';
 import {
 	CDN,
@@ -17,6 +21,7 @@ import { Pillar } from '@guardian/types';
 import { DecideLayout } from '../layouts/DecideLayout';
 import { htmlTemplate } from './htmlTemplate';
 import { decideTheme } from '../lib/decideTheme';
+import { AccessibleSkipButton } from '../components/AccessibleSkipButton';
 
 interface RenderToStringResult {
 	html: string;
@@ -54,13 +59,30 @@ const decideTitle = (CAPI: CAPIType): string => {
 export const document = ({ data }: Props): string => {
 	const { CAPI, NAV, linkedData } = data;
 	const title = decideTitle(CAPI);
-	const { html, css, ids: cssIDs }: RenderToStringResult = extractCritical(
+	const key = 'dcr';
+	const cache = createCache({ key });
+	// eslint-disable-next-line @typescript-eslint/unbound-method
+	const { extractCritical } = createEmotionServer(cache);
+
+	const {
+		html,
+		css: extractedCss,
+		ids: cssIDs,
+	}: RenderToStringResult = extractCritical(
 		renderToString(
-			// TODO: CacheProvider can be removed when we've moved over to using @emotion/core
 			<CacheProvider value={cache}>
-				<React.StrictMode>
+				<StrictMode>
+					<Global
+						styles={css`
+							/* Crude but effective mechanism. Specific components may need to improve on this behaviour. */
+							/* The not(.src...) selector is to work with Source's FocusStyleManager. */
+							*:focus {
+								${focusHalo}
+							}
+						`}
+					/>
 					<DecideLayout CAPI={CAPI} NAV={NAV} />
-				</React.StrictMode>
+				</StrictMode>
 			</CacheProvider>,
 		),
 	);
@@ -93,6 +115,44 @@ export const document = ({ data }: Props): string => {
 			chunkName: 'elements-InteractiveBlockComponent',
 			addWhen:
 				'model.dotcomrendering.pageElements.InteractiveBlockElement',
+		},
+		{
+			chunkName: 'elements-InteractiveContentsBlockComponent',
+			addWhen:
+				'model.dotcomrendering.pageElements.InteractiveContentsBlockElement',
+		},
+		{
+			chunkName: 'elements-CalloutBlockComponent',
+			addWhen: 'model.dotcomrendering.pageElements.CalloutBlockElement',
+		},
+		{
+			chunkName: 'elements-DocumentBlockComponent',
+			addWhen: 'model.dotcomrendering.pageElements.DocumentBlockElement',
+		},
+		{
+			chunkName: 'elements-EmbedBlockComponent',
+			addWhen: 'model.dotcomrendering.pageElements.EmbedBlockElement',
+		},
+		{
+			chunkName: 'elements-InstagramBlockComponent',
+			addWhen: 'model.dotcomrendering.pageElements.InstagramBlockElement',
+		},
+		{
+			chunkName: 'elements-MapEmbedBlockComponent',
+			addWhen: 'model.dotcomrendering.pageElements.MapBlockElement',
+		},
+		{
+			chunkName: 'elements-SpotifyBlockComponent',
+			addWhen: 'model.dotcomrendering.pageElements.SpotifyBlockElement',
+		},
+		{
+			chunkName: 'elements-VideoFacebookBlockComponent',
+			addWhen:
+				'model.dotcomrendering.pageElements.VideoFacebookBlockElement',
+		},
+		{
+			chunkName: 'elements-VineBlockComponent',
+			addWhen: 'model.dotcomrendering.pageElements.VineBlockElement',
 		},
 	];
 	// We want to only insert script tags for the elements or main media elements on this page view
@@ -228,7 +288,6 @@ export const document = ({ data }: Props): string => {
 	 * unlikely.
 	 */
 	const lowPriorityScriptTags = generateScriptTags([
-		...getScriptArrayFromChunkName('lotame'),
 		...getScriptArrayFromChunkName('atomIframe'),
 		...getScriptArrayFromChunkName('embedIframe'),
 		...getScriptArrayFromChunkName('newsletterEmbedIframe'),
@@ -254,7 +313,15 @@ export const document = ({ data }: Props): string => {
 		JSON.stringify(makeWindowGuardian(data, cssIDs)),
 	);
 
-	const ampLink = `https://amp.theguardian.com/${data.CAPI.pageId}`;
+	const hasAmpInteractiveTag = CAPI.tags.some(
+		(tag) => tag.id === 'tracking/platformfunctional/ampinteractive',
+	);
+
+	// Only include AMP link for interactives which have the 'ampinteractive' tag
+	const ampLink =
+		CAPI.format.design !== 'InteractiveDesign' || hasAmpInteractiveTag
+			? `https://amp.theguardian.com/${data.CAPI.pageId}`
+			: undefined;
 
 	const { openGraphData } = CAPI;
 	const { twitterData } = CAPI;
@@ -264,12 +331,14 @@ export const document = ({ data }: Props): string => {
 			? ''
 			: CAPI.config.keywords;
 
+	const accessibilityLink = renderToString(<AccessibleSkipButton />);
+
 	return htmlTemplate({
 		linkedData,
 		loadableConfigScripts,
 		priorityScriptTags,
 		lowPriorityScriptTags,
-		css,
+		css: extractedCss,
 		html,
 		fontFiles,
 		title,
@@ -280,5 +349,6 @@ export const document = ({ data }: Props): string => {
 		openGraphData,
 		twitterData,
 		keywords,
+		accessibilityLink,
 	});
 };

@@ -1,17 +1,14 @@
-import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/react';
 
 import {
 	neutral,
 	brandBackground,
-	brandAltBackground,
 	brandLine,
 	brandBorder,
 	labs,
 	border,
 } from '@guardian/src-foundations/palette';
 import { from, until } from '@guardian/src-foundations/mq';
-import { GuardianLines } from '@root/src/web/components/GuardianLines';
 import { Design, Special } from '@guardian/types';
 import type { Format } from '@guardian/types';
 
@@ -28,7 +25,7 @@ import { Standfirst } from '@root/src/web/components/Standfirst';
 import { Header } from '@root/src/web/components/Header';
 import { Footer } from '@root/src/web/components/Footer';
 import { SubNav } from '@root/src/web/components/SubNav/SubNav';
-import { Section } from '@root/src/web/components/Section';
+import { ElementContainer } from '@root/src/web/components/ElementContainer';
 import { Nav } from '@root/src/web/components/Nav/Nav';
 import { HeaderAdSlot } from '@root/src/web/components/HeaderAdSlot';
 import { MobileStickyContainer, AdSlot } from '@root/src/web/components/AdSlot';
@@ -37,7 +34,6 @@ import { GridItem } from '@root/src/web/components/GridItem';
 import { AgeWarning } from '@root/src/web/components/AgeWarning';
 import { Discussion } from '@frontend/web/components/Discussion';
 import { LabsHeader } from '@frontend/web/components/LabsHeader';
-import { AnniversaryAtomComponent } from '@frontend/web/components/AnniversaryAtomComponent';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { parse } from '@frontend/lib/slot-machine-flags';
@@ -52,10 +48,11 @@ import {
 	SendToBack,
 	BannerWrapper,
 } from '@root/src/web/layouts/lib/stickiness';
+import { Lines } from '@guardian/src-ed-lines';
 
 const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 	<div
-		className={css`
+		css={css`
 			/* IE Fallback */
 			display: flex;
 			flex-direction: column;
@@ -76,12 +73,16 @@ const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 
 				grid-column-gap: 10px;
 
+				/*
+					Explanation of each unit of grid-template-columns
+
+					Left Column (220 - 1px border)
+					Vertical grey border
+					Main content
+					Right Column
+				*/
 				${from.wide} {
-					grid-template-columns:
-						219px /* Left Column (220 - 1px border) */
-						1px /* Vertical grey border */
-						1fr /* Main content */
-						300px; /* Right Column */
+					grid-template-columns: 219px 1px 1fr 300px;
 					grid-template-areas:
 						'title  border  headline    headline'
 						'lines  border  media       media'
@@ -92,11 +93,7 @@ const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 				}
 
 				${until.wide} {
-					grid-template-columns:
-						140px /* Left Column (220 - 1px border) */
-						1px /* Vertical grey border */
-						1fr /* Main content */
-						300px; /* Right Column */
+					grid-template-columns: 140px 1px 1fr 300px;
 					grid-template-areas:
 						'title  border  headline    headline'
 						'lines  border  media       media'
@@ -106,10 +103,14 @@ const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 						'.      border  .           right-column';
 				}
 
+				/*
+					Explanation of each unit of grid-template-columns
+
+					Main content
+					Right Column
+				*/
 				${until.leftCol} {
-					grid-template-columns:
-						1fr /* Main content */
-						300px; /* Right Column */
+					grid-template-columns: 1fr 300px;
 					grid-template-areas:
 						'title      right-column'
 						'headline   right-column'
@@ -185,17 +186,17 @@ const PositionHeadline = ({
 		case Design.Interview:
 			return (
 				<div
-					className={css`
+					css={css`
 						${from.leftCol} {
 							margin-bottom: -100px;
 						}
 					`}
 				>
-					<div className={maxWidth}>{children}</div>
+					<div css={maxWidth}>{children}</div>
 				</div>
 			);
 		default:
-			return <div className={maxWidth}>{children}</div>;
+			return <div css={maxWidth}>{children}</div>;
 	}
 };
 
@@ -257,7 +258,7 @@ export const ShowcaseLayout = ({
 			{format.theme !== Special.Labs ? (
 				<div>
 					<Stuck>
-						<Section
+						<ElementContainer
 							showTopBorder={false}
 							showSideBorders={false}
 							padded={false}
@@ -267,10 +268,10 @@ export const ShowcaseLayout = ({
 								shouldHideAds={CAPI.shouldHideAds}
 								display={format.display}
 							/>
-						</Section>
+						</ElementContainer>
 					</Stuck>
 					<SendToBack>
-						<Section
+						<ElementContainer
 							showTopBorder={false}
 							showSideBorders={false}
 							padded={false}
@@ -284,9 +285,9 @@ export const ShowcaseLayout = ({
 									CAPI.config.switches.anniversaryHeaderSvg
 								}
 							/>
-						</Section>
+						</ElementContainer>
 
-						<Section
+						<ElementContainer
 							showSideBorders={true}
 							borderColour={brandLine.primary}
 							showTopBorder={false}
@@ -304,10 +305,10 @@ export const ShowcaseLayout = ({
 								}
 								edition={CAPI.editionId}
 							/>
-						</Section>
+						</ElementContainer>
 
 						{NAV.subNavSections && (
-							<Section
+							<ElementContainer
 								backgroundColour={palette.background.article}
 								padded={false}
 								sectionId="sub-nav-root"
@@ -317,68 +318,60 @@ export const ShowcaseLayout = ({
 									currentNavLink={NAV.currentNavLink}
 									palette={palette}
 								/>
-							</Section>
+							</ElementContainer>
 						)}
 
-						<Section
+						<ElementContainer
 							backgroundColour={palette.background.article}
 							padded={false}
 							showTopBorder={false}
 						>
-							<GuardianLines count={4} palette={palette} />
-						</Section>
-						<Section
-							backgroundColour={brandAltBackground.primary}
-							padded={false}
-							showTopBorder={false}
-							showSideBorders={false}
-						>
-							<AnniversaryAtomComponent
-								anniversaryInteractiveAtom={
-									CAPI.anniversaryInteractiveAtom
-								}
-							/>
-						</Section>
+							<Lines count={4} effect="straight" />
+						</ElementContainer>
 					</SendToBack>
 				</div>
 			) : (
 				// Else, this is a labs article so just show Nav and the Labs header
 				<>
-					<Stuck>
-						<Section
-							showTopBorder={false}
-							showSideBorders={false}
-							padded={false}
-						>
-							<HeaderAdSlot
-								isAdFreeUser={CAPI.isAdFreeUser}
-								shouldHideAds={CAPI.shouldHideAds}
-								display={format.display}
-							/>
-						</Section>
-					</Stuck>
-					<Section
-						showSideBorders={true}
-						borderColour={brandLine.primary}
-						showTopBorder={false}
-						padded={false}
-						backgroundColour={brandBackground.primary}
-					>
-						<Nav
-							nav={NAV}
-							format={{
-								...format,
-								theme: getCurrentPillar(CAPI),
-							}}
-							subscribeUrl={
-								CAPI.nav.readerRevenueLinks.header.subscribe
-							}
-							edition={CAPI.editionId}
-						/>
-					</Section>
-
-					<Stuck>
-						<Section
+					<div>
+						<Stuck zIndex="stickyAdWrapper">
+							<ElementContainer
+								showTopBorder={false}
+								showSideBorders={false}
+								padded={false}
+							>
+								<HeaderAdSlot
+									isAdFreeUser={CAPI.isAdFreeUser}
+									shouldHideAds={CAPI.shouldHideAds}
+									display={format.display}
+								/>
+							</ElementContainer>
+						</Stuck>
+						<Stuck zIndex="stickyAdWrapperNav">
+							<ElementContainer
+								showSideBorders={true}
+								borderColour={brandLine.primary}
+								showTopBorder={false}
+								padded={false}
+								backgroundColour={brandBackground.primary}
+							>
+								<Nav
+									nav={NAV}
+									format={{
+										...format,
+										theme: getCurrentPillar(CAPI),
+									}}
+									subscribeUrl={
+										CAPI.nav.readerRevenueLinks.header
+											.subscribe
+									}
+									edition={CAPI.editionId}
+								/>
+							</ElementContainer>
+						</Stuck>
+					</div>
+					<Stuck zIndex="stickyAdWrapperLabsHeader">
+						<ElementContainer
 							showSideBorders={true}
 							showTopBorder={false}
 							backgroundColour={labs[400]}
@@ -386,14 +379,15 @@ export const ShowcaseLayout = ({
 							sectionId="labs-header"
 						>
 							<LabsHeader />
-						</Section>
+						</ElementContainer>
 					</Stuck>
 				</>
 			)}
 
-			<Section
+			<ElementContainer
 				showTopBorder={false}
 				backgroundColour={palette.background.article}
+				element="article"
 			>
 				<ShowcaseGrid>
 					<GridItem area="title">
@@ -413,12 +407,12 @@ export const ShowcaseLayout = ({
 					<GridItem area="headline">
 						<PositionHeadline design={format.design}>
 							<div
-								className={css`
+								css={css`
 									padding-bottom: 24px;
 								`}
 							>
 								{age && (
-									<div className={ageWarningMargins}>
+									<div css={ageWarningMargins}>
 										<AgeWarning age={age} />
 									</div>
 								)}
@@ -439,7 +433,7 @@ export const ShowcaseLayout = ({
 						</PositionHeadline>
 					</GridItem>
 					<GridItem area="media">
-						<div className={mainMediaWrapper}>
+						<div css={mainMediaWrapper}>
 							<MainMedia
 								format={format}
 								palette={palette}
@@ -452,6 +446,8 @@ export const ShowcaseLayout = ({
 										: undefined
 								}
 								host={host}
+								pageId={CAPI.pageId}
+								webTitle={CAPI.webTitle}
 							/>
 						</div>
 					</GridItem>
@@ -462,11 +458,10 @@ export const ShowcaseLayout = ({
 						/>
 					</GridItem>
 					<GridItem area="lines">
-						<div className={maxWidth}>
-							<div className={stretchLines}>
-								<GuardianLines
+						<div css={maxWidth}>
+							<div css={stretchLines}>
+								<Lines
 									count={decideLineCount(format.design)}
-									palette={palette}
 									effect={decideLineEffect(
 										format.design,
 										format.theme,
@@ -476,7 +471,7 @@ export const ShowcaseLayout = ({
 						</div>
 					</GridItem>
 					<GridItem area="meta">
-						<div className={maxWidth}>
+						<div css={maxWidth}>
 							<ArticleMeta
 								branding={branding}
 								format={format}
@@ -494,7 +489,7 @@ export const ShowcaseLayout = ({
 					</GridItem>
 					<GridItem area="body">
 						<ArticleContainer>
-							<main className={maxWidth}>
+							<main css={maxWidth}>
 								<ArticleBody
 									format={format}
 									palette={palette}
@@ -505,7 +500,7 @@ export const ShowcaseLayout = ({
 									webTitle={CAPI.webTitle}
 								/>
 								{showBodyEndSlot && <div id="slot-body-end" />}
-								<GuardianLines count={4} palette={palette} />
+								<Lines count={4} effect="straight" />
 								<SubMeta
 									palette={palette}
 									format={format}
@@ -528,7 +523,7 @@ export const ShowcaseLayout = ({
 					</GridItem>
 					<GridItem area="right-column">
 						<div
-							className={css`
+							css={css`
 								padding-top: 6px;
 								height: 100%;
 								${from.desktop} {
@@ -557,28 +552,32 @@ export const ShowcaseLayout = ({
 						</div>
 					</GridItem>
 				</ShowcaseGrid>
-			</Section>
+			</ElementContainer>
 
-			<Section
+			<ElementContainer
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={neutral[93]}
+				element="aside"
 			>
 				<AdSlot
 					position="merchandising-high"
 					display={format.display}
 				/>
-			</Section>
+			</ElementContainer>
 
 			{/* Onwards (when signed OUT) */}
-			<div id="onwards-upper-whensignedout" />
+			<aside id="onwards-upper-whensignedout" />
 			{showOnwardsLower && (
-				<Section sectionId="onwards-lower-whensignedout" />
+				<ElementContainer
+					sectionId="onwards-lower-whensignedout"
+					element="aside"
+				/>
 			)}
 
 			{!isPaidContent && showComments && (
-				<Section sectionId="comments">
+				<ElementContainer sectionId="comments" element="aside">
 					<Discussion
 						discussionApiUrl={CAPI.config.discussionApiUrl}
 						shortUrlId={CAPI.config.shortUrlId}
@@ -595,38 +594,51 @@ export const ShowcaseLayout = ({
 						beingHydrated={false}
 						display={format.display}
 					/>
-				</Section>
+				</ElementContainer>
 			)}
 
 			{/* Onwards (when signed IN) */}
-			<div id="onwards-upper-whensignedin" />
+			<aside id="onwards-upper-whensignedin" />
 			{showOnwardsLower && (
-				<Section sectionId="onwards-lower-whensignedin" />
+				<ElementContainer
+					sectionId="onwards-lower-whensignedin"
+					element="aside"
+				/>
 			)}
 
-			{!isPaidContent && <Section sectionId="most-viewed-footer" />}
+			{!isPaidContent && (
+				<ElementContainer
+					sectionId="most-viewed-footer"
+					element="aside"
+				/>
+			)}
 
-			<Section
+			<ElementContainer
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={neutral[93]}
+				element="aside"
 			>
 				<AdSlot position="merchandising" display={format.display} />
-			</Section>
+			</ElementContainer>
 
 			{NAV.subNavSections && (
-				<Section padded={false} sectionId="sub-nav-root">
+				<ElementContainer
+					padded={false}
+					sectionId="sub-nav-root"
+					element="nav"
+				>
 					<SubNav
 						subNavSections={NAV.subNavSections}
 						currentNavLink={NAV.currentNavLink}
 						palette={palette}
 					/>
-					<GuardianLines count={4} palette={palette} />
-				</Section>
+					<Lines count={4} effect="straight" />
+				</ElementContainer>
 			)}
 
-			<Section
+			<ElementContainer
 				padded={false}
 				backgroundColour={brandBackground.primary}
 				borderColour={brandBorder.primary}
@@ -637,7 +649,7 @@ export const ShowcaseLayout = ({
 					pillar={format.theme}
 					pillars={NAV.pillars}
 				/>
-			</Section>
+			</ElementContainer>
 
 			<BannerWrapper />
 			<MobileStickyContainer />

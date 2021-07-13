@@ -1,15 +1,7 @@
-import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/react';
 
 import { from, until } from '@guardian/src-foundations/mq';
 import { space } from '@guardian/src-foundations';
-
-type Props = {
-	children: React.ReactNode;
-	isMainMedia: boolean;
-	role?: RoleType | 'richLink';
-	id?: string;
-};
 
 const roleCss = {
 	inline: css`
@@ -129,7 +121,8 @@ const roleCss = {
 	`,
 };
 
-const decidePosition = (role: RoleType | 'richLink') => {
+// Used for vast majority of layouts.
+export const defaultRoleStyles = (role: RoleType | 'richLink') => {
 	switch (role) {
 		case 'inline':
 			return roleCss.inline;
@@ -150,11 +143,24 @@ const decidePosition = (role: RoleType | 'richLink') => {
 	}
 };
 
+type Props = {
+	children: React.ReactNode;
+	isMainMedia: boolean;
+	role?: RoleType | 'richLink';
+	id?: string;
+	isNumberedListTitle?: boolean;
+};
+
+const mainMediaFigureStyles = css`
+	height: 100%;
+`;
+
 export const Figure = ({
 	role = 'inline',
 	children,
 	id,
 	isMainMedia,
+	isNumberedListTitle = false,
 }: Props) => {
 	if (isMainMedia) {
 		// Don't add in-body styles for main media elements
@@ -162,10 +168,20 @@ export const Figure = ({
 		// as showcase twitter embeds, then we should remove the role positioning which
 		// currently lives in ImageComponent and hoist it up to here, the same as we're
 		// doing using decidePosition for in-body elements
-		return <figure id={id}>{children}</figure>;
+		return (
+			<figure id={id} key={id} css={mainMediaFigureStyles}>
+				{children}
+			</figure>
+		);
 	}
 	return (
-		<figure id={id} className={decidePosition(role)}>
+		<figure
+			id={id}
+			css={defaultRoleStyles(role)}
+			data-spacefinder-ignore={
+				isNumberedListTitle ? 'numbered-list-title' : null
+			}
+		>
 			{children}
 		</figure>
 	);

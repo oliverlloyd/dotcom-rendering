@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { matchReport } from '@root/fixtures/generated/match-report';
 
-import { Section } from './Section';
+import { ElementContainer } from './ElementContainer';
 import { Flex } from './Flex';
 import { LeftColumn } from './LeftColumn';
 import { ArticleContainer } from './ArticleContainer';
@@ -24,7 +22,7 @@ Default.story = { name: 'default' };
 
 export const InContext = () => {
 	return (
-		<Section>
+		<ElementContainer>
 			<Flex>
 				<LeftColumn>
 					<></>
@@ -39,7 +37,7 @@ export const InContext = () => {
 					<></>
 				</RightColumn>
 			</Flex>
-		</Section>
+		</ElementContainer>
 	);
 };
 InContext.story = { name: 'when placed in article context' };

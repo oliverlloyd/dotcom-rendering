@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/aria-role */
-import React from 'react';
 
 import { Design, Display, Pillar, Special } from '@guardian/types';
 
@@ -8,10 +7,16 @@ import { ContainerLayout } from '@frontend/web/components/ContainerLayout';
 
 import { RichLink } from './RichLink';
 
-const someImage =
-	'https://i.guim.co.uk/img/media/268d42accabbe8168fdbdee51ad31ab2f156b211/137_0_2088_1253/master/2088.jpg?width=460&quality=85&auto=format&fit=max&s=cf5abc39fb2af7a56b10306df21ab8e6';
 const someContributor =
 	'https://i.guim.co.uk/img/uploads/2017/10/09/Oliver-Wainwright,-L.png?width=300&quality=85&auto=format&fit=max&s=e1aa270c46b716e34c4783ced3376cc9';
+
+const someImageData = {
+	thumbnailUrl:
+		'https://i.guim.co.uk/img/media/268d42accabbe8168fdbdee51ad31ab2f156b211/137_0_2088_1253/master/2088.jpg?width=460&quality=85&auto=format&fit=max&s=cf5abc39fb2af7a56b10306df21ab8e6',
+	altText: 'What a lovely arch in this image',
+	width: '1600',
+	height: '900',
+};
 
 export default {
 	component: RichLink,
@@ -25,7 +30,7 @@ export const Article = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="news"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="article"
 					url=""
@@ -49,7 +54,7 @@ export const Network = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="special-report"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="network"
 					url=""
@@ -79,7 +84,7 @@ export const SectionStory = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="live"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="section"
 					url=""
@@ -106,7 +111,7 @@ export const Inline = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="external"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link when inline"
 					contentType="section"
 					url=""
@@ -133,7 +138,7 @@ export const ImageContent = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="dead"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="imageContent"
 					url=""
@@ -163,7 +168,7 @@ export const Interactive = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="feature"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="interactive"
 					url=""
@@ -192,7 +197,7 @@ export const Gallery = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="comment"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="gallery"
 					url=""
@@ -222,7 +227,7 @@ export const Video = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="comment"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="video"
 					url=""
@@ -253,7 +258,7 @@ export const Audio = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="podcast"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="audio"
 					url=""
@@ -277,7 +282,7 @@ export const LiveBlog = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="media"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="liveBlog"
 					url=""
@@ -307,7 +312,7 @@ export const Tag = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="analysis"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="tag"
 					url=""
@@ -331,7 +336,7 @@ export const Index = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="review"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="index"
 					url=""
@@ -362,7 +367,7 @@ export const Crossword = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="letters"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="crossword"
 					url=""
@@ -386,7 +391,7 @@ export const Survey = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="external"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="survey"
 					url=""
@@ -410,7 +415,7 @@ export const Signup = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="comment"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="signup"
 					url=""
@@ -435,7 +440,7 @@ export const Userid = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="editorial"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="userid"
 					url=""
@@ -459,7 +464,7 @@ export const PaidFor = () => {
 				<RichLink
 					richLinkIndex={1}
 					cardStyle="news"
-					thumbnailUrl={someImage}
+					imageData={someImageData}
 					headlineText="Rich link headline"
 					contentType="userid"
 					url=""

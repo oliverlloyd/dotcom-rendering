@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { css } from 'emotion';
+import { useState } from 'react';
+import { css } from '@emotion/react';
 
 import { useHasBeenSeen } from '@root/src/web/lib/useHasBeenSeen';
 import {
@@ -8,10 +8,11 @@ import {
 } from '@root/node_modules/@guardian/automat-client';
 import {
 	shouldHideSupportMessaging,
-	getArticleCountConsent,
 	withinLocalNoBannerCachePeriod,
 	setLocalNoBannerCachePeriod,
 	MODULES_VERSION,
+	hasOptedOutOfArticleCount,
+	getEmail,
 } from '@root/src/web/lib/contributions';
 import { getCookie } from '@root/src/web/browser/cookie';
 import {
@@ -44,22 +45,25 @@ type BaseProps = {
 
 type BuildPayloadProps = BaseProps & {
 	countryCode: string;
-	hasConsentedToArticleCounts: boolean;
+	optedOutOfArticleCount: boolean;
 };
 
 type CanShowProps = BaseProps & {
 	asyncCountryCode: Promise<string>;
 	remoteBannerConfig: boolean;
 	section: string;
+	isPreview: boolean;
+	idApiUrl: string;
+	signInGateWillShow: boolean;
 };
 
 type ReaderRevenueComponentType =
 	| 'ACQUISITIONS_SUBSCRIPTIONS_BANNER'
 	| 'ACQUISITIONS_OTHER';
 
-export type CanShowFunctionType = (
+export type CanShowFunctionType<T> = (
 	props: CanShowProps,
-) => Promise<CanShowResult>;
+) => Promise<CanShowResult<T>>;
 
 // TODO specify return type (need to update client to provide this first)
 const buildPayload = ({
@@ -70,7 +74,7 @@ const buildPayload = ({
 	engagementBannerLastClosedAt,
 	subscriptionBannerLastClosedAt,
 	countryCode,
-	hasConsentedToArticleCounts,
+	optedOutOfArticleCount,
 }: BuildPayloadProps) => {
 	return {
 		tracking: {
@@ -89,7 +93,7 @@ const buildPayload = ({
 			mvtId: Number(getCookie('GU_mvt_id')),
 			countryCode,
 			weeklyArticleHistory: getWeeklyArticleHistory(),
-			hasOptedOutOfArticleCount: !hasConsentedToArticleCounts,
+			optedOutOfArticleCount,
 			modulesVersion: MODULES_VERSION,
 		},
 	};
@@ -115,7 +119,7 @@ const getBanner = (meta: { [key: string]: any }, url: string): Promise<any> => {
 		.then((response) => response.json());
 };
 
-export const canShowRRBanner: CanShowFunctionType = async ({
+export const canShowRRBanner: CanShowFunctionType<BannerProps> = async ({
 	remoteBannerConfig,
 	isSignedIn,
 	asyncCountryCode,
@@ -130,12 +134,20 @@ export const canShowRRBanner: CanShowFunctionType = async ({
 	alreadyVisitedCount,
 	engagementBannerLastClosedAt,
 	subscriptionBannerLastClosedAt,
+	isPreview,
+	idApiUrl,
+	signInGateWillShow,
 }) => {
-	if (!remoteBannerConfig) return { result: false };
+	if (!remoteBannerConfig) return { show: false };
 
-	if (shouldHideReaderRevenue || isPaidContent) {
+	if (
+		shouldHideReaderRevenue ||
+		isPaidContent ||
+		isPreview ||
+		signInGateWillShow
+	) {
 		// We never serve Reader Revenue banners in this case
-		return { result: false };
+		return { show: false };
 	}
 
 	if (
@@ -143,11 +155,11 @@ export const canShowRRBanner: CanShowFunctionType = async ({
 		subscriptionBannerLastClosedAt &&
 		withinLocalNoBannerCachePeriod()
 	) {
-		return { result: false };
+		return { show: false };
 	}
 
 	const countryCode = await asyncCountryCode;
-	const hasConsentedToArticleCounts = await getArticleCountConsent();
+	const optedOutOfArticleCount = await hasOptedOutOfArticleCount();
 	const bannerPayload = buildPayload({
 		isSignedIn,
 		countryCode,
@@ -162,32 +174,30 @@ export const canShowRRBanner: CanShowFunctionType = async ({
 		alreadyVisitedCount,
 		engagementBannerLastClosedAt,
 		subscriptionBannerLastClosedAt,
-		hasConsentedToArticleCounts,
+		optedOutOfArticleCount,
 	});
 	const forcedVariant = getForcedVariant('banner');
 	const queryString = forcedVariant ? `?force=${forcedVariant}` : '';
 
-	return getBanner(
+	const json: { data?: any } = await getBanner(
 		bannerPayload,
 		`${contributionsServiceUrl}/banner${queryString}`,
-	).then((json: { data?: any }) => {
-		if (!json.data) {
-			if (
-				engagementBannerLastClosedAt &&
-				subscriptionBannerLastClosedAt
-			) {
-				setLocalNoBannerCachePeriod();
-			}
-			return { result: false };
+	);
+	if (!json.data) {
+		if (engagementBannerLastClosedAt && subscriptionBannerLastClosedAt) {
+			setLocalNoBannerCachePeriod();
 		}
+		return { show: false };
+	}
 
-		const { module, meta } = json.data;
+	const { module, meta } = json.data;
 
-		return { result: true, meta: { module, meta } };
-	});
+	const email = isSignedIn ? await getEmail(idApiUrl) : undefined;
+
+	return { show: true, meta: { module, meta, email } };
 };
 
-export const canShowPuzzlesBanner: CanShowFunctionType = async ({
+export const canShowPuzzlesBanner: CanShowFunctionType<BannerProps> = async ({
 	remoteBannerConfig,
 	isSignedIn,
 	asyncCountryCode,
@@ -210,12 +220,12 @@ export const canShowPuzzlesBanner: CanShowFunctionType = async ({
 
 	if (shouldHideReaderRevenue) {
 		// We never serve Reader Revenue banners in this case
-		return { result: false };
+		return { show: false };
 	}
 
 	if (isPuzzlesPage && remoteBannerConfig) {
 		const countryCode = await asyncCountryCode;
-		const hasConsentedToArticleCounts = await getArticleCountConsent();
+		const optedOutOfArticleCount = await hasOptedOutOfArticleCount();
 		const bannerPayload = buildPayload({
 			isSignedIn,
 			countryCode,
@@ -230,28 +240,29 @@ export const canShowPuzzlesBanner: CanShowFunctionType = async ({
 			alreadyVisitedCount,
 			engagementBannerLastClosedAt,
 			subscriptionBannerLastClosedAt,
-			hasConsentedToArticleCounts,
+			optedOutOfArticleCount,
 		});
 		return getBanner(
 			bannerPayload,
 			`${contributionsServiceUrl}/puzzles`,
 		).then((json: { data?: any }) => {
 			if (!json.data) {
-				return { result: false };
+				return { show: false };
 			}
 
 			const { module, meta } = json.data;
 
-			return { result: true, meta: { module, meta } };
+			return { show: true, meta: { module, meta } };
 		});
 	}
 
-	return { result: false };
+	return { show: false };
 };
 
 export type BannerProps = {
 	meta: any;
 	module: { url: string; name: string; props: any[] };
+	email?: string;
 };
 
 type RemoteBannerProps = BannerProps & {
@@ -264,6 +275,7 @@ const RemoteBanner = ({
 	displayEvent,
 	meta,
 	module,
+	email,
 }: RemoteBannerProps) => {
 	const [Banner, setBanner] = useState<React.FC>();
 
@@ -314,7 +326,7 @@ const RemoteBanner = ({
 			// The css here is necessary to put the container div in view, so that we can track the view
 			<div
 				ref={setNode}
-				className={css`
+				css={css`
 					width: 100%;
 					${getZIndex('banner')}
 				`}
@@ -324,6 +336,7 @@ const RemoteBanner = ({
 					{...module.props}
 					// @ts-ignore
 					submitComponentEvent={submitComponentEvent}
+					email={email}
 				/>
 				{/* eslint-enable react/jsx-props-no-spreading */}
 			</div>
@@ -333,12 +346,13 @@ const RemoteBanner = ({
 	return null;
 };
 
-export const ReaderRevenueBanner = ({ meta, module }: BannerProps) => (
+export const ReaderRevenueBanner = ({ meta, module, email }: BannerProps) => (
 	<RemoteBanner
 		componentTypeName="ACQUISITIONS_SUBSCRIPTIONS_BANNER"
 		displayEvent="subscription-banner : display"
 		meta={meta}
 		module={module}
+		email={email}
 	/>
 );
 

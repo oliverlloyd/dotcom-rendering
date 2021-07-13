@@ -1,5 +1,4 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 
 import { headline } from '@guardian/src-foundations/typography';
 import { between } from '@guardian/src-foundations/mq';
@@ -20,7 +19,7 @@ type Props = {
 };
 
 const globalH2Styles = (display: Display) => css`
-	h2 {
+	h2:not([data-ignore='global-h2-styling']) {
 		${display === Display.Immersive
 			? headline.medium({ fontWeight: 'light' })
 			: headline.xxsmall({ fontWeight: 'bold' })};
@@ -71,12 +70,14 @@ export const ArticleBody = ({
 	pageId,
 	webTitle,
 }: Props) => {
+	const isInteractive = format.design === Design.Interactive;
+
 	if (
 		format.design === Design.LiveBlog ||
 		format.design === Design.DeadBlog
 	) {
 		return (
-			<div className={cx(globalStrongStyles, globalLinkStyles(palette))}>
+			<div css={[globalStrongStyles, globalLinkStyles(palette)]}>
 				<LiveBlogRenderer
 					format={format}
 					blocks={blocks}
@@ -90,13 +91,16 @@ export const ArticleBody = ({
 	}
 	return (
 		<div
-			className={cx(
-				bodyPadding,
+			// eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+			tabIndex={0}
+			id="maincontent"
+			css={[
+				isInteractive ? null : bodyPadding,
 				globalH2Styles(format.display),
 				globalH3Styles(format.display),
 				globalStrongStyles,
 				globalLinkStyles(palette),
-			)}
+			]}
 		>
 			<ArticleRenderer
 				format={format}
@@ -104,6 +108,8 @@ export const ArticleBody = ({
 				elements={blocks[0] ? blocks[0].elements : []}
 				adTargeting={adTargeting}
 				host={host}
+				pageId={pageId}
+				webTitle={webTitle}
 			/>
 		</div>
 	);

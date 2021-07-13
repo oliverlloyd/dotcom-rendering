@@ -1,5 +1,4 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 
 import {
 	neutral,
@@ -17,7 +16,6 @@ import { ArticleBody } from '@root/src/web/components/ArticleBody';
 import { RightColumn } from '@root/src/web/components/RightColumn';
 import { ArticleContainer } from '@root/src/web/components/ArticleContainer';
 import { ArticleMeta } from '@root/src/web/components/ArticleMeta';
-import { GuardianLines } from '@root/src/web/components/GuardianLines';
 import { SubMeta } from '@root/src/web/components/SubMeta';
 import { MainMedia } from '@root/src/web/components/MainMedia';
 import { ArticleTitle } from '@root/src/web/components/ArticleTitle';
@@ -25,7 +23,7 @@ import { ArticleHeadline } from '@root/src/web/components/ArticleHeadline';
 import { Standfirst } from '@root/src/web/components/Standfirst';
 import { Footer } from '@root/src/web/components/Footer';
 import { SubNav } from '@root/src/web/components/SubNav/SubNav';
-import { Section } from '@root/src/web/components/Section';
+import { ElementContainer } from '@root/src/web/components/ElementContainer';
 import { Nav } from '@root/src/web/components/Nav/Nav';
 import { MobileStickyContainer, AdSlot } from '@root/src/web/components/AdSlot';
 import { Border } from '@root/src/web/components/Border';
@@ -36,6 +34,7 @@ import { ContainerLayout } from '@root/src/web/components/ContainerLayout';
 import { Discussion } from '@frontend/web/components/Discussion';
 import { Hide } from '@root/src/web/components/Hide';
 import { LabsHeader } from '@frontend/web/components/LabsHeader';
+import { GuardianLabsLines } from '@frontend/web/components/GuardianLabsLines';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { getZIndex } from '@frontend/web/lib/getZIndex';
@@ -47,10 +46,11 @@ import {
 	decideLineEffect,
 	getCurrentPillar,
 } from '@root/src/web/lib/layoutHelpers';
+import { Lines } from '@guardian/src-ed-lines';
 
 const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 	<div
-		className={css`
+		css={css`
 			/* IE Fallback */
 			display: flex;
 			flex-direction: column;
@@ -69,13 +69,17 @@ const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 				width: 100%;
 				margin-left: 0;
 
+				/*
+					Explanation of each unit of grid-template-columns
+
+					Left Column (220 - 1px border)
+					Vertical grey border
+					Main content
+					Right Column
+				*/
 				${from.wide} {
 					grid-column-gap: 10px;
-					grid-template-columns:
-						219px /* Left Column (220 - 1px border) */
-						1px /* Vertical grey border */
-						1fr /* Main content */
-						300px; /* Right Column */
+					grid-template-columns: 219px 1px 1fr 300px;
 					grid-template-areas:
 						'caption    border      title       right-column'
 						'.          border      headline    right-column'
@@ -88,13 +92,17 @@ const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 						'.          border      .           right-column';
 				}
 
+				/*
+					Explanation of each unit of grid-template-columns
+
+					Left Column (220 - 1px border)
+					Vertical grey border
+					Main content
+					Right Column
+				*/
 				${until.wide} {
 					grid-column-gap: 10px;
-					grid-template-columns:
-						140px /* Left Column (220 - 1px border) */
-						1px /* Vertical grey border */
-						1fr /* Main content */
-						300px; /* Right Column */
+					grid-template-columns: 140px 1px 1fr 300px;
 					grid-template-areas:
 						'.          border      title       right-column'
 						'.          border      headline    right-column'
@@ -107,11 +115,15 @@ const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 						'.          border      .           right-column';
 				}
 
+				/*
+					Explanation of each unit of grid-template-columns
+
+					Main content
+					Right Column
+				*/
 				${until.leftCol} {
+					grid-template-columns: 1fr 300px;
 					grid-column-gap: 20px;
-					grid-template-columns:
-						1fr /* Main content */
-						300px; /* Right Column */
 					grid-template-areas:
 						'title       right-column'
 						'headline    right-column'
@@ -204,7 +216,7 @@ const Box = ({
 	children: React.ReactNode;
 }) => (
 	<div
-		className={css`
+		css={css`
 			/*
 				This pseudo css shows a black box to the right of the headline
 				so that the black background of the inverted text stretches
@@ -268,7 +280,7 @@ export const ImmersiveLayout = ({
 
 	const LeftColCaption = () => (
 		<div
-			className={css`
+			css={css`
 				margin-top: ${HEADLINE_OFFSET}px;
 				position: absolute;
 				margin-left: 20px;
@@ -279,6 +291,7 @@ export const ImmersiveLayout = ({
 				captionText={captionText}
 				format={format}
 				shouldLimitWidth={true}
+				isLeftCol={true}
 			/>
 		</div>
 	);
@@ -286,26 +299,26 @@ export const ImmersiveLayout = ({
 	return (
 		<>
 			<div
-				className={css`
+				css={css`
 					background-color: ${palette.background.article};
 				`}
 			>
 				<div
-					className={cx(
+					css={[
 						mainMedia && hasMainMediaStyles,
 						css`
 							display: flex;
 							flex-direction: column;
 						`,
-					)}
+					]}
 				>
 					<header
-						className={css`
+						css={css`
 							${getZIndex('headerWrapper')}
 							order: 0;
 						`}
 					>
-						<Section
+						<ElementContainer
 							showSideBorders={false}
 							showTopBorder={false}
 							padded={false}
@@ -322,12 +335,12 @@ export const ImmersiveLayout = ({
 								}
 								edition={CAPI.editionId}
 							/>
-						</Section>
+						</ElementContainer>
 					</header>
 
 					{format.theme === Special.Labs && (
 						<Stuck>
-							<Section
+							<ElementContainer
 								showSideBorders={true}
 								showTopBorder={false}
 								backgroundColour={labs[400]}
@@ -335,7 +348,7 @@ export const ImmersiveLayout = ({
 								sectionId="labs-header"
 							>
 								<LabsHeader />
-							</Section>
+							</ElementContainer>
 						</Stuck>
 					)}
 
@@ -351,12 +364,14 @@ export const ImmersiveLayout = ({
 						}
 						host={host}
 						hideCaption={true}
+						pageId={CAPI.pageId}
+						webTitle={CAPI.webTitle}
 					/>
 				</div>
 				{mainMedia && (
 					<>
 						<div
-							className={css`
+							css={css`
 								margin-top: -${HEADLINE_OFFSET}px;
 								/*
                         This z-index is what ensures the headline title text shows above main media. For
@@ -402,10 +417,11 @@ export const ImmersiveLayout = ({
 					</>
 				)}
 			</div>
-			<Section
+			<ElementContainer
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={palette.background.article}
+				element="article"
 			>
 				<ImmersiveGrid>
 					{/* Above leftCol, the Caption is controled by ContainerLayout ^^ */}
@@ -430,7 +446,7 @@ export const ImmersiveLayout = ({
 						<>
 							{!mainMedia && (
 								<div
-									className={css`
+									css={css`
 										margin-top: -8px;
 										margin-left: -4px;
 										margin-bottom: 12px;
@@ -456,7 +472,7 @@ export const ImmersiveLayout = ({
 					<GridItem area="headline">
 						<>
 							{!mainMedia && (
-								<div className={maxWidth}>
+								<div css={maxWidth}>
 									<ArticleHeadline
 										format={format}
 										headlineString={CAPI.headline}
@@ -484,25 +500,31 @@ export const ImmersiveLayout = ({
 						/>
 					</GridItem>
 					<GridItem area="lines">
-						{format.design === Design.PhotoEssay ? (
+						{format.design === Design.PhotoEssay &&
+						format.theme !== Special.Labs ? (
 							<></>
 						) : (
-							<div className={maxWidth}>
-								<div className={stretchLines}>
-									<GuardianLines
-										palette={palette}
-										effect={decideLineEffect(
-											Design.Article,
-											format.theme,
-										)}
-										count={decideLineCount(Design.Article)}
-									/>
+							<div css={maxWidth}>
+								<div css={stretchLines}>
+									{format.theme === Special.Labs ? (
+										<GuardianLabsLines />
+									) : (
+										<Lines
+											effect={decideLineEffect(
+												Design.Article,
+												format.theme,
+											)}
+											count={decideLineCount(
+												Design.Article,
+											)}
+										/>
+									)}
 								</div>
 							</div>
 						)}
 					</GridItem>
 					<GridItem area="meta">
-						<div className={maxWidth}>
+						<div css={maxWidth}>
 							<ArticleMeta
 								branding={branding}
 								format={format}
@@ -520,7 +542,7 @@ export const ImmersiveLayout = ({
 					</GridItem>
 					<GridItem area="body">
 						<ArticleContainer>
-							<main className={maxWidth}>
+							<main css={maxWidth}>
 								<ArticleBody
 									format={format}
 									palette={palette}
@@ -531,7 +553,7 @@ export const ImmersiveLayout = ({
 									webTitle={CAPI.webTitle}
 								/>
 								{showBodyEndSlot && <div id="slot-body-end" />}
-								<GuardianLines count={4} palette={palette} />
+								<Lines count={4} effect="straight" />
 								<SubMeta
 									palette={palette}
 									format={format}
@@ -554,7 +576,7 @@ export const ImmersiveLayout = ({
 					</GridItem>
 					<GridItem area="right-column">
 						<div
-							className={css`
+							css={css`
 								padding-top: 6px;
 								height: 100%;
 								${from.desktop} {
@@ -573,7 +595,7 @@ export const ImmersiveLayout = ({
 								<>
 									{mainMedia && (
 										<div
-											className={css`
+											css={css`
 												margin-top: ${space[4]}px;
 											`}
 										>
@@ -588,28 +610,32 @@ export const ImmersiveLayout = ({
 						</div>
 					</GridItem>
 				</ImmersiveGrid>
-			</Section>
+			</ElementContainer>
 
-			<Section
+			<ElementContainer
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={neutral[93]}
+				element="aside"
 			>
 				<AdSlot
 					position="merchandising-high"
 					display={format.display}
 				/>
-			</Section>
+			</ElementContainer>
 
 			{/* Onwards (when signed OUT) */}
-			<div id="onwards-upper-whensignedout" />
+			<aside id="onwards-upper-whensignedout" />
 			{showOnwardsLower && (
-				<Section sectionId="onwards-lower-whensignedout" />
+				<ElementContainer
+					sectionId="onwards-lower-whensignedout"
+					element="aside"
+				/>
 			)}
 
 			{!isPaidContent && showComments && (
-				<Section sectionId="comments">
+				<ElementContainer sectionId="comments" element="aside">
 					<Discussion
 						discussionApiUrl={CAPI.config.discussionApiUrl}
 						shortUrlId={CAPI.config.shortUrlId}
@@ -626,38 +652,51 @@ export const ImmersiveLayout = ({
 						beingHydrated={false}
 						display={format.display}
 					/>
-				</Section>
+				</ElementContainer>
 			)}
 
 			{/* Onwards (when signed IN) */}
-			<div id="onwards-upper-whensignedin" />
+			<aside id="onwards-upper-whensignedin" />
 			{showOnwardsLower && (
-				<Section sectionId="onwards-lower-whensignedin" />
+				<ElementContainer
+					sectionId="onwards-lower-whensignedin"
+					element="aside"
+				/>
 			)}
 
-			{!isPaidContent && <Section sectionId="most-viewed-footer" />}
+			{!isPaidContent && (
+				<ElementContainer
+					sectionId="most-viewed-footer"
+					element="aside"
+				/>
+			)}
 
-			<Section
+			<ElementContainer
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={neutral[93]}
+				element="aside"
 			>
 				<AdSlot position="merchandising" display={format.display} />
-			</Section>
+			</ElementContainer>
 
 			{NAV.subNavSections && (
-				<Section padded={false} sectionId="sub-nav-root">
+				<ElementContainer
+					padded={false}
+					sectionId="sub-nav-root"
+					element="nav"
+				>
 					<SubNav
 						subNavSections={NAV.subNavSections}
 						currentNavLink={NAV.currentNavLink}
 						palette={palette}
 					/>
-					<GuardianLines count={4} palette={palette} />
-				</Section>
+					<Lines count={4} effect="straight" />
+				</ElementContainer>
 			)}
 
-			<Section
+			<ElementContainer
 				padded={false}
 				backgroundColour={brandBackground.primary}
 				borderColour={brandBorder.primary}
@@ -668,7 +707,7 @@ export const ImmersiveLayout = ({
 					pillar={format.theme}
 					pillars={NAV.pillars}
 				/>
-			</Section>
+			</ElementContainer>
 
 			<BannerWrapper />
 			<MobileStickyContainer />

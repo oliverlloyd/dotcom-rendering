@@ -1,5 +1,4 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 
 import { brand, brandText, brandAlt } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
@@ -83,6 +82,14 @@ const columnLinks = css`
 	display: flex;
 	flex-wrap: wrap;
 	list-style: none;
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns */
+	/* Needs double escape char: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#es2018_revision_of_illegal_escape_sequences */
+	li::before {
+		content: '\\200B'; /* Zero width space */
+		display: block;
+		height: 0;
+		width: 0;
+	}
 	margin: 0;
 	padding: 0 0 12px;
 	position: relative;
@@ -121,6 +128,14 @@ const hideStyles = (columnInputId: string) => css`
 const columnStyle = css`
 	${textSans.medium()};
 	list-style: none;
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns */
+	/* Needs double escape char: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#es2018_revision_of_illegal_escape_sequences */
+	&::before {
+		content: '\\200B'; /* Zero width space */
+		display: block;
+		height: 0;
+		width: 0;
+	}
 	margin: 0;
 	padding-bottom: 10px;
 	position: relative;
@@ -175,7 +190,7 @@ export const Column = ({
 	const collapseColumnInputId = `${column.title}-button`;
 
 	return (
-		<li className={cx(columnStyle, pillarDivider)} role="none">
+		<li css={[columnStyle, pillarDivider]} role="none">
 			{/*
                 IMPORTANT NOTE: Supporting NoJS and accessibility is hard.
 
@@ -210,7 +225,7 @@ export const Column = ({
             */}
 			<input
 				type="checkbox"
-				className={css`
+				css={css`
 					${visuallyHidden};
 				`}
 				id={columnInputId}
@@ -227,12 +242,12 @@ export const Column = ({
 
 			{/* ColumnLinks */}
 			<ul
-				className={cx(
+				css={[
 					columnLinks,
-					{ [firstColumnLinks]: index === 0 },
-					{ [pillarColumnLinks]: !!column.pillar },
+					index === 0 && firstColumnLinks,
+					!!column.pillar && pillarColumnLinks,
 					columnInputId && hideStyles(columnInputId),
-				)}
+				]}
 				role="menu"
 				id={`${column.title.toLowerCase()}Links`}
 				data-cy={`${column.title.toLowerCase()}Links`}
@@ -240,16 +255,15 @@ export const Column = ({
 				{(column.children || []).map((link) => (
 					<li
 						key={link.title.toLowerCase()}
-						className={cx(mainMenuLinkStyle, {
-							[hideDesktop]: !!link.mobileOnly,
-						})}
+						css={[
+							mainMenuLinkStyle,
+							!!link.mobileOnly && hideDesktop,
+						]}
 						role="none"
 					>
 						<a
-							className={cx(
-								'selectableMenuItem',
-								columnLinkTitle,
-							)}
+							className="selectableMenuItem"
+							css={columnLinkTitle}
 							href={link.url}
 							role="menuitem"
 							data-link-name={`nav2 : secondary : ${link.longTitle}`}

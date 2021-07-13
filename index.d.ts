@@ -38,7 +38,8 @@ type CAPIDesign =
 	| 'QuizDesign'
 	| 'InteractiveDesign'
 	| 'PhotoEssayDesign'
-	| 'PrintShopDesign';
+	| 'PrintShopDesign'
+	| 'ObituaryDesign';
 
 // CAPIDisplay is the display information passed through from CAPI and dictates the displaystyle of the content e.g. Immersive
 // https://github.com/guardian/content-api-scala-client/blob/master/client/src/main/scala/com.gu.contentapi.client/utils/format/Display.scala
@@ -195,22 +196,19 @@ interface EditionCommercialProperties {
 
 type CommercialProperties = { [E in Edition]: EditionCommercialProperties };
 
+type BrandingLogo = {
+	src: string;
+	link: string;
+	label: string;
+	dimensions: { width: number; height: number };
+}
+
 interface Branding {
 	brandingType?: { name: string };
 	sponsorName: string;
-	logo: {
-		src: string;
-		link: string;
-		label: string;
-		dimensions: { width: number; height: number };
-	};
+	logo: BrandingLogo;
 	aboutThisLink: string;
-	logoForDarkBackground?: {
-		src: string;
-		dimensions: { width: number; height: number };
-		link: string;
-		label: string;
-	};
+	logoForDarkBackground?: BrandingLogo;
 }
 
 interface LinkType extends SimpleLinkType {
@@ -502,6 +500,9 @@ type CAPIBrowserType = {
 	isLive: boolean;
 	matchUrl?: string;
 	elementsToHydrate: CAPIElement[];
+	isPreview?: boolean;
+	webTitle: string;
+	stage: string;
 };
 
 interface TagType {
@@ -570,6 +571,7 @@ type UserProfile = {
 type TeamType = {
 	id: string;
 	name: string;
+	codename: string;
 	players: PlayerType[];
 	possession: number;
 	shotsOn: number;
@@ -672,10 +674,9 @@ interface ConfigType extends CommercialConfigType {
 	googletagUrl: string;
 	stage: string;
 	frontendAssetsFullURL: string;
-	hbImpl: { [key: string]: any } | string;
 	adUnit: string;
 	isSensitive: boolean;
-	videoDuration: number;
+	videoDuration?: number;
 	edition: string;
 	section: string;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -688,15 +689,16 @@ interface ConfigType extends CommercialConfigType {
 	discussionApiUrl: string;
 	discussionD2Uid: string;
 	discussionApiClientHeader: string;
-	isPhotoEssay: boolean;
+	isPhotoEssay?: boolean;
 	references?: { [key: string]: string }[];
 	host?: string;
 	idUrl?: string;
 	mmaUrl?: string;
 	brazeApiKey?: string;
 	ipsosTag?: string;
-	isLiveBlog: boolean;
-	isLive: boolean;
+	isLiveBlog?: boolean;
+	isLive?: boolean;
+	isPreview?: boolean;
 }
 
 interface ConfigTypeBrowser {
@@ -727,6 +729,7 @@ interface ConfigTypeBrowser {
 	discussionApiClientHeader: string;
 	dcrSentryDsn: string;
 	remoteBanner: boolean;
+	remoteHeader: boolean;
 	puzzlesBanner: boolean;
 	ausMoment2020Header: boolean;
 	switches: CAPIType['config']['switches'];
@@ -801,13 +804,69 @@ interface RichLinkBlockLoadable extends ComponentNameChunkMap {
     addWhen: RichLinkBlockElement['_type'];
 }
 
-interface InteractiveBlockLoadaable extends ComponentNameChunkMap {
+interface InteractiveBlockLoadable extends ComponentNameChunkMap {
     chunkName: 'elements-InteractiveBlockComponent';
     addWhen: InteractiveBlockElement['_type'];
 }
 
+interface InteractiveContentsBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'elements-InteractiveContentsBlockComponent';
+    addWhen: InteractiveContentsBlockElement['_type'];
+}
+
+interface CalloutBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'elements-CalloutBlockComponent';
+    addWhen: CalloutBlockElement['_type'];
+}
+
+interface DocumentBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'elements-DocumentBlockComponent';
+    addWhen: DocumentBlockElement['_type'];
+}
+interface EmbedBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'elements-EmbedBlockComponent';
+    addWhen: EmbedBlockElement['_type'];
+}
+
+interface InstagramBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'elements-InstagramBlockComponent';
+    addWhen: InstagramBlockElement['_type'];
+}
+interface MapBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'elements-MapEmbedBlockComponent';
+    addWhen: MapBlockElement['_type'];
+}
+
+interface SpotifyBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'elements-SpotifyBlockComponent';
+    addWhen: SpotifyBlockElement['_type'];
+}
+
+interface FacebookVideoBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'elements-VideoFacebookBlockComponent';
+    addWhen: VideoFacebookBlockElement['_type'];
+}
+interface VineBlockLoadable extends ComponentNameChunkMap {
+    chunkName: 'elements-VineBlockComponent';
+    addWhen: VineBlockElement['_type'];
+}
+
 // There are docs on loadable in ./docs/loadable-components.md
-type LoadableComponents = [EditionDropdownLoadable, YoutubeBlockLoadable, RichLinkBlockLoadable, InteractiveBlockLoadaable]
+type LoadableComponents = [
+	EditionDropdownLoadable,
+	YoutubeBlockLoadable,
+	RichLinkBlockLoadable,
+	InteractiveBlockLoadable,
+	InteractiveContentsBlockLoadable,
+	CalloutBlockLoadable,
+	DocumentBlockLoadable,
+	EmbedBlockLoadable,
+	InstagramBlockLoadable,
+	MapBlockLoadable,
+	SpotifyBlockLoadable,
+	FacebookVideoBlockLoadable,
+	VineBlockLoadable,
+]
 
 interface CarouselImagesMap {
 	'300'?: string;
@@ -831,6 +890,7 @@ interface BaseTrailType {
     commentCount?: number;
     starRating?: number;
     linkText?: string;
+	branding?: Branding
 }
 interface TrailType extends BaseTrailType {
 	palette: Palette;
@@ -897,9 +957,6 @@ type AdSlotType =
 // 3rd party type declarations //
 // ------------------------------
 /* eslint-disable @typescript-eslint/no-explicit-any */
-declare module 'emotion-server' {
-	export const extractCritical: any;
-}
 declare module 'dompurify' {
 	const createDOMPurify: any;
 	export default createDOMPurify;
@@ -943,6 +1000,7 @@ declare namespace JSX {
 		'amp-analytics': any;
 		'amp-pixel': any;
 		'amp-ad': any;
+		'amp-sticky-ad': any;
 		'amp-youtube': any;
 		'amp-geo': any;
 		'amp-consent': any;

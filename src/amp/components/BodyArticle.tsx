@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/react';
 
 import { Design, Special } from '@guardian/types';
 import { until } from '@guardian/src-foundations/mq';
@@ -7,19 +7,24 @@ import { text } from '@guardian/src-foundations/palette';
 import { palette } from '@guardian/src-foundations';
 import { textSans } from '@guardian/src-foundations/typography';
 
-import { InnerContainer } from '@root/src/amp/components/InnerContainer';
 import { Elements } from '@root/src/amp/components/Elements';
 import { ArticleModel } from '@root/src/amp/types/ArticleModel';
 import { TopMeta } from '@root/src/amp/components/topMeta/TopMeta';
 import { SubMeta } from '@root/src/amp/components/SubMeta';
 import { pillarPalette_DO_NOT_USE } from '@root/src/lib/pillars';
 import { Ad } from '@root/src/amp/components/Ad';
+import { StickyAd } from '@root/src/amp/components/StickyAd';
 import { findAdSlots } from '@root/src/amp/lib/find-adslots';
 import { getSharingUrls } from '@root/src/lib/sharing-urls';
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { Epic } from '@root/src/amp/components/Epic';
 import { decideDesign } from '@root/src/web/lib/decideDesign';
 import { decideTheme } from '@root/src/web/lib/decideTheme';
+
+const innerContainerStyles = css`
+	padding-left: 10px;
+	padding-right: 10px;
+`;
 
 const bulletStyle = (pillar: Theme) => css`
 	.bullet {
@@ -70,7 +75,7 @@ const adStyle = css`
 	:before {
 		content: 'Advertisement';
 		display: block;
-		${textSans.xsmall()};
+		${textSans.xxsmall()};
 		/* Adverts specifcally don't use the GU font branding. */
 		/* stylelint-disable-next-line property-blacklist */
 		font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
@@ -129,7 +134,7 @@ export const Body: React.FC<{
 							<div
 								id={`ad-${i + 1}`}
 								data-sort-time="1"
-								className={adStyle}
+								css={adStyle}
 							>
 								<Ad
 									adRegion="US"
@@ -170,7 +175,7 @@ export const Body: React.FC<{
 			<div
 				id="clean-blocks"
 				data-sort-time="1"
-				className={css`
+				css={css`
 					clear: both;
 				`}
 			/>
@@ -182,7 +187,7 @@ export const Body: React.FC<{
 	);
 
 	return (
-		<InnerContainer className={body(pillar, design)}>
+		<div css={[body(pillar, design), innerContainerStyles]}>
 			<TopMeta
 				data={data}
 				design={design}
@@ -194,6 +199,15 @@ export const Body: React.FC<{
 
 			{epic}
 
+			<StickyAd
+				adRegion="US"
+				edition={data.editionId}
+				section={data.sectionName || ''}
+				contentType={adInfo.contentType}
+				config={adConfig}
+				commercialProperties={adInfo.commercialProperties}
+			/>
+
 			<SubMeta
 				sections={data.subMetaSectionLinks}
 				keywords={data.subMetaKeywordLinks}
@@ -203,6 +217,6 @@ export const Body: React.FC<{
 				isCommentable={data.isCommentable}
 				guardianBaseURL={data.guardianBaseURL}
 			/>
-		</InnerContainer>
+		</div>
 	);
 };

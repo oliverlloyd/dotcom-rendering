@@ -16,6 +16,7 @@ Frontend rendering framework for theguardian.com. It uses [React](https://reactj
   - [Feedback](#feedback)
 - [Where can I see Dotcom Rendering in Production?](#where-can-i-see-dotcom-rendering-in-production)
 - [Code Quality](#code-quality)
+  - [Snyk Code Scanning](#snyk-code-scanning)
 - [IDE setup](#ide-setup)
   - [Extensions](#extensions)
   - [Auto fix on save](#auto-fix-on-save)
@@ -47,7 +48,9 @@ Visit the [root path of the dev server](http://localhost:3030) for some example 
 
 You can render a specific article by [specifying the production URL in the query string](http://localhost:3030/Article?url=https://www.theguardian.com/sport/2019/jul/28/tour-de-france-key-moments-egan-bernal-yellow-jersey).
 
-You can view the JSON representation of an article, as per the model sent to the renderer on the server, by going to [/ArticleJson](http://localhost:3030/ArticleJson?url=https://www.theguardian.com/sport/2019/jul/28/tour-de-france-key-moments-egan-bernal-yellow-jersey).
+You can view the JSON representation of an article, as per the model sent to the renderer on the server, by going to
+
+http://localhost:3030/ArticleJson?url=https://www.theguardian.com/sport/2019/jul/28/tour-de-france-key-moments-egan-bernal-yellow-jersey
 
 ### Detailed Setup
 
@@ -81,22 +84,22 @@ There are some concepts to learn, that will make working with Dotcom Rendering c
 -   Dynamic imports
 -   [EnhanceCAPI](docs/patterns/enhance-capi.md)
 -   Data generated in Frontend
+
 ### Feedback
 
 After completing this setup guide, we would greatly appreciate it if you could complete our [dotcom-rendering setup
 questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSdwFc05qejwW_Gtl3pyW4N22KqmY5zXoDKAUAjrkOwb2uXNcQ/viewform?vc=0&c=0&w=1). It should only take 3 minutes and will help us improve this documentation and the setup process in the future. Thank you! 🙏
+
+
 ## Where can I see Dotcom Rendering in Production?
 
-Add `?dcr` to the URL of a Production (or CODE) article to see it rendered with Dotcom Rendering:
-
-```
-https://www.theguardian.com/info/developer-blog/2016/dec/14/mirrors-lights-sawdust-lasers?dcr
-```
+As of April 2021, most articles are rendered with Dotcom Rendering.
 
 You can force DCR on or off explicitly with
 [`?dcr=true` or `?dcr=false`](https://github.com/guardian/frontend/pull/21753).
 
 One way to verify whether the article you're looking at is being rendered by DCR or not is to look for `(modern)` in the footer after the copyright notice.
+
 ## Code Quality
 
 You can ensure your code passes code quality tests by running:
@@ -126,6 +129,9 @@ See [the makefile](https://github.com/guardian/dotcom-rendering/blob/main/makefi
 
 [Read about testing tools and testing strategy](docs/testing.md).
 
+### Snyk Code Scanning
+There's a Github action set up on the repository to scan for vulnerabilities. This is set to "continue on error" and so will show a green tick regardless. In order to check the vulnerabilities we can use the Github code scanning feature in the security tab and this will list all vulnerabilities for a given branch etc. You should use this if adding/removing/updating packages to see if there are any vulnerabilities.
+
 ## IDE setup
 
 We recommend using [VSCode](https://code.visualstudio.com/).
@@ -150,10 +156,10 @@ We recommend you update your workspace settings to automatically fix formatting 
 
 If you prefer not to use an editor like VSCode then you can use the following commands to manage formatting:
 
-`yarn prettier:check` // Checks for prettier issues
-`yarn prettier:fix` // Checks and fixes prettier issues
-`yarn lint` // Checks for linting issues
-`yarn lint --fix` // Checks and fixes linting issues
+- `yarn prettier:check` &rarr; Checks for prettier issues
+- `yarn prettier:fix` &rarr; Checks and fixes prettier issues
+- `yarn lint` &rarr; Checks for linting issues
+- `yarn lint --fix` &rarr; Checks and fixes linting issues
 
 ## Thanks
 

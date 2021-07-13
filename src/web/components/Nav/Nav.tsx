@@ -1,20 +1,18 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css, ThemeProvider } from '@emotion/react';
 
 import { visuallyHidden } from '@guardian/src-foundations/accessibility';
 import { Pillars } from '@root/src/web/components/Pillars';
 import { GuardianRoundel } from '@root/src/web/components/GuardianRoundel';
 import { space } from '@guardian/src-foundations';
 import { until } from '@guardian/src-foundations/mq';
-import { ThemeProvider } from 'emotion-theming';
-import { Button, buttonReaderRevenueBrand } from '@guardian/src-button';
+import { LinkButton, buttonReaderRevenue } from '@guardian/src-button';
 import { SvgArrowRightStraight } from '@guardian/src-icons';
 
 import { Hide } from '@frontend/web/components/Hide';
 
 import { clearFix } from '@root/src/lib/mixins';
 
-import { Display } from '@guardian/types';
+import { Display, Special } from '@guardian/types';
 import { navInputCheckboxId, showMoreButtonId, veggieBurgerId } from './config';
 import { ExpandedMenu } from './ExpandedMenu/ExpandedMenu';
 
@@ -41,7 +39,7 @@ const minHeight = css`
 
 const PositionRoundel = ({ children }: { children: React.ReactNode }) => (
 	<div
-		className={css`
+		css={css`
 			margin-top: 3px;
 			z-index: 2;
 
@@ -58,7 +56,7 @@ const PositionRoundel = ({ children }: { children: React.ReactNode }) => (
 
 const PositionButton = ({ children }: { children: React.ReactNode }) => (
 	<div
-		className={css`
+		css={css`
 			margin-top: ${space[1]}px;
 			margin-left: ${space[2]}px;
 		`}
@@ -68,8 +66,11 @@ const PositionButton = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const Nav = ({ format, nav, subscribeUrl, edition }: Props) => {
+	const displayRoundel =
+		format.display === Display.Immersive || format.theme === Special.Labs;
+
 	return (
-		<div className={rowStyles}>
+		<div css={rowStyles}>
 			{/*
                 IMPORTANT NOTE: Supporting NoJS and accessibility is hard.
 
@@ -160,33 +161,30 @@ export const Nav = ({ format, nav, subscribeUrl, edition }: Props) => {
 				}}
 			/>
 			<nav
-				className={cx(
+				css={[
 					clearFixStyle,
 					rowStyles,
 					format.display === Display.Immersive && minHeight,
-				)}
+				]}
 				role="navigation"
 				aria-label="Guardian sections"
 				data-component="nav2"
 			>
 				{format.display === Display.Immersive && (
 					<Hide when="above" breakpoint="tablet">
-						<ThemeProvider theme={buttonReaderRevenueBrand}>
+						<ThemeProvider theme={buttonReaderRevenue}>
 							<PositionButton>
-								<Button
+								<LinkButton
 									priority="primary"
 									size="small"
 									iconSide="right"
 									icon={<SvgArrowRightStraight />}
 									data-link-name="nav2 : support-cta"
 									data-edition={edition}
-									onClick={() => {
-										window.location.href = subscribeUrl;
-										return false;
-									}}
+									href={subscribeUrl}
 								>
 									Subscribe
-								</Button>
+								</LinkButton>
 							</PositionButton>
 						</ThemeProvider>
 					</Hide>
@@ -199,7 +197,7 @@ export const Nav = ({ format, nav, subscribeUrl, edition }: Props) => {
             */}
 				<input
 					type="checkbox"
-					className={css`
+					css={css`
 						${visuallyHidden};
 					`}
 					id={navInputCheckboxId}
@@ -217,7 +215,7 @@ export const Nav = ({ format, nav, subscribeUrl, edition }: Props) => {
 				/>
 				<ExpandedMenu nav={nav} display={format.display} />
 			</nav>
-			{format.display === Display.Immersive && (
+			{displayRoundel && (
 				<PositionRoundel>
 					<GuardianRoundel />
 				</PositionRoundel>

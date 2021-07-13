@@ -1,5 +1,4 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 
 import { Design, Display } from '@guardian/types';
 import { neutral } from '@guardian/src-foundations/palette';
@@ -20,11 +19,11 @@ type Props = {
 
 const ageStyles = (format: Format, palette: Palette) => {
 	return css`
-		${textSans.xsmall()};
+		${textSans.xxsmall()};
 		color: ${palette.text.cardFooter};
 
 		/* Provide side padding for positioning and also to keep spacing
-    between any sibings (like GuardianLines) */
+    between any sibings (like Lines) */
 		padding-left: 5px;
 		padding-right: 5px;
 		${until.tablet} {
@@ -40,7 +39,7 @@ const ageStyles = (format: Format, palette: Palette) => {
 		}
 
 		> time {
-			${textSans.xsmall({
+			${textSans.xxsmall({
 				fontWeight: format.design === Design.Media ? `bold` : `regular`,
 			})};
 		}
@@ -72,12 +71,12 @@ export const CardAge = ({
 	}
 
 	return (
-		<span className={cx(ageStyles(format, palette))}>
+		<span css={ageStyles(format, palette)}>
 			<span
-				className={cx(
+				css={
 					format.display === Display.Immersive &&
-						fullCardImageTextStyles,
-				)}
+					fullCardImageTextStyles
+				}
 			>
 				{showClock && <ClockIcon />}
 				<time dateTime={webPublicationDate}>{displayString}</time>

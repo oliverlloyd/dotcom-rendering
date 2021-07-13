@@ -37,6 +37,8 @@ export const decideDesign = (format: CAPIFormat): Design => {
 			return Design.PhotoEssay;
 		case 'PrintShopDesign':
 			return Design.PrintShop;
+		case 'ObituaryDesign':
+			return Design.Obituary;
 		default:
 			return Design.Article;
 	}

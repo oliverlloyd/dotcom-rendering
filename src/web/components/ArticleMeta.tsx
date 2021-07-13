@@ -1,13 +1,14 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 import { between, from, until } from '@guardian/src-foundations/mq';
+import { Display, Design, Special } from '@guardian/types';
+import type { Format } from '@guardian/types';
+
 import { Contributor } from '@root/src/web/components/Contributor';
 import { Avatar } from '@root/src/web/components/Avatar';
 import { Counts } from '@root/src/web/components/Counts';
-
 import { Branding } from '@root/src/web/components/Branding';
-import { Display, Design, Special } from '@guardian/types';
-import type { Format } from '@guardian/types';
+import { Lines } from '@guardian/src-ed-lines';
+import { border, space } from '@guardian/src-foundations';
 import { ShareIcons } from './ShareIcons';
 import { Dateline } from './Dateline';
 
@@ -53,6 +54,17 @@ const metaFlex = css`
 	flex-wrap: wrap;
 `;
 
+const stretchLines = css`
+	${until.phablet} {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+	${until.mobileLandscape} {
+		margin-left: -10px;
+		margin-right: -10px;
+	}
+`;
+
 const metaExtras = (palette: Palette) => css`
 	border-top: 1px solid ${palette.border.article};
 	flex-grow: 1;
@@ -71,10 +83,10 @@ const metaExtras = (palette: Palette) => css`
 		padding-left: 10px;
 		padding-right: 10px;
 	}
-`;
 
-const contributorTopBorder = (palette: Palette) => css`
-	border-top: 1px solid ${palette.border.article};
+	${between.leftCol.and.wide} {
+		padding-bottom: 6px;
+	}
 `;
 
 const metaNumbers = (palette: Palette) => css`
@@ -103,39 +115,43 @@ const metaNumbers = (palette: Palette) => css`
 `;
 
 const metaContainer = (format: Format) => {
+	const defaultMargins = css`
+		${until.phablet} {
+			margin-left: -20px;
+			margin-right: -20px;
+		}
+		${until.mobileLandscape} {
+			margin-left: -10px;
+			margin-right: -10px;
+		}
+	`;
 	switch (format.display) {
 		case Display.Immersive:
 		case Display.Showcase:
+		case Display.NumberedList:
 		case Display.Standard: {
 			switch (format.design) {
 				case Design.PhotoEssay:
-					return css`
-						${until.phablet} {
-							margin-left: -20px;
-							margin-right: -20px;
-						}
-						${until.mobileLandscape} {
-							margin-left: -10px;
-							margin-right: -10px;
-						}
-						${from.leftCol} {
-							margin-left: 20px;
-						}
-						${from.wide} {
-							margin-left: 40px;
-						}
-					`;
+					return format.theme === Special.Labs
+						? defaultMargins
+						: css`
+								${until.phablet} {
+									margin-left: -20px;
+									margin-right: -20px;
+								}
+								${until.mobileLandscape} {
+									margin-left: -10px;
+									margin-right: -10px;
+								}
+								${from.leftCol} {
+									margin-left: 20px;
+								}
+								${from.wide} {
+									margin-left: 40px;
+								}
+						  `;
 				default:
-					return css`
-						${until.phablet} {
-							margin-left: -20px;
-							margin-right: -20px;
-						}
-						${until.mobileLandscape} {
-							margin-left: -10px;
-							margin-right: -10px;
-						}
-					`;
+					return defaultMargins;
 			}
 		}
 	}
@@ -156,6 +172,7 @@ const shouldShowAvatar = (format: Format) => {
 		case Display.Immersive:
 			return false;
 		case Display.Showcase:
+		case Display.NumberedList:
 		case Display.Standard: {
 			switch (format.design) {
 				case Design.Feature:
@@ -191,7 +208,7 @@ const shouldShowContributor = (format: Format) => {
 
 const AvatarContainer = ({ children }: { children: React.ReactNode }) => (
 	<div
-		className={css`
+		css={css`
 			width: 140px;
 			height: 140px;
 			margin-top: 6px;
@@ -215,7 +232,7 @@ const AvatarContainer = ({ children }: { children: React.ReactNode }) => (
 
 const RowBelowLeftCol = ({ children }: { children: React.ReactNode }) => (
 	<div
-		className={css`
+		css={css`
 			display: flex;
 			flex-direction: column;
 
@@ -247,9 +264,25 @@ export const ArticleMeta = ({
 
 	const showAvatar = onlyOneContributor && shouldShowAvatar(format);
 	return (
-		<div className={metaContainer(format)}>
-			<div className={cx(meta)}>
+		<div css={metaContainer(format)}>
+			<div css={meta}>
 				{branding && <Branding branding={branding} palette={palette} />}
+				{format.theme === Special.Labs ? (
+					<div css={stretchLines}>
+						<Lines
+							count={1}
+							effect="straight"
+							color={border.primary}
+						/>
+						<div
+							css={css`
+								height: ${space[1]}px;
+							`}
+						/>
+					</div>
+				) : (
+					''
+				)}
 				<RowBelowLeftCol>
 					<>
 						{showAvatar && bylineImageUrl && (
@@ -261,13 +294,8 @@ export const ArticleMeta = ({
 								/>
 							</AvatarContainer>
 						)}
-						<div
-							className={
-								format.theme === Special.Labs
-									? contributorTopBorder(palette)
-									: ''
-							}
-						>
+
+						<div>
 							{shouldShowContributor(format) && (
 								<Contributor
 									author={author}
@@ -283,8 +311,8 @@ export const ArticleMeta = ({
 						</div>
 					</>
 				</RowBelowLeftCol>
-				<div data-print-layout="hide" className={metaFlex}>
-					<div className={metaExtras(palette)}>
+				<div data-print-layout="hide" css={metaFlex}>
+					<div css={metaExtras(palette)}>
 						<ShareIcons
 							pageId={pageId}
 							webTitle={webTitle}
@@ -293,9 +321,9 @@ export const ArticleMeta = ({
 							size="medium"
 						/>
 					</div>
-					<div className={metaNumbers(palette)}>
+					<div css={metaNumbers(palette)}>
 						<Counts>
-							{/* The meta-number classname is needed by Counts.tsx */}
+							{/* The meta-number css is needed by Counts.tsx */}
 							<div
 								className="meta-number"
 								id="share-count-root"

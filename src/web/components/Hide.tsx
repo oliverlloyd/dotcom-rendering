@@ -1,5 +1,4 @@
-import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/react';
 import { until, from, Breakpoint } from '@guardian/src-foundations/mq';
 
 interface Props {
@@ -10,11 +9,9 @@ interface Props {
 
 interface PropsSpan extends Props {
 	el?: 'span';
-	key?: string;
 }
 interface PropsLi extends Props {
 	el: 'li';
-	key: string;
 }
 
 export const Hide = ({
@@ -22,7 +19,6 @@ export const Hide = ({
 	when,
 	breakpoint,
 	el,
-	key,
 }: PropsSpan | PropsLi) => {
 	let whenToHide;
 	if (when === 'below') {
@@ -39,10 +35,8 @@ export const Hide = ({
 		`;
 	}
 	return el === 'li' ? (
-		<li className={whenToHide} key={key}>
-			{children}
-		</li>
+		<li css={whenToHide}>{children}</li>
 	) : (
-		<span className={whenToHide}>{children}</span>
+		<span css={whenToHide}>{children}</span>
 	);
 };

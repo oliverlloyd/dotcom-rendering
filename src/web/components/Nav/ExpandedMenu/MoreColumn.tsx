@@ -1,5 +1,4 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 
 import { brand, brandText, brandAlt } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
@@ -22,6 +21,14 @@ const pillarColumnLinks = css`
 const columnStyle = css`
 	${textSans.medium()};
 	list-style: none;
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns */
+	/* Needs double escape char: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#es2018_revision_of_illegal_escape_sequences */
+	&::before {
+		content: '\\200B'; /* Zero width space */
+		display: block;
+		height: 0;
+		width: 0;
+	}
 	margin: 0;
 	padding-bottom: 10px;
 	position: relative;
@@ -94,6 +101,14 @@ const columnLinks = css`
 	display: flex;
 	flex-wrap: wrap;
 	list-style: none;
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns */
+	/* Needs double escape char: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#es2018_revision_of_illegal_escape_sequences */
+	li::before {
+		content: '\\200B'; /* Zero width space */
+		display: block;
+		height: 0;
+		width: 0;
+	}
 	margin: 0;
 	padding: 0 0 12px;
 	position: relative;
@@ -172,29 +187,26 @@ export const MoreColumn: React.FC<{
 	};
 	return (
 		<li
-			className={cx(columnStyle, pillarDivider, pillarDividerExtended)}
+			css={[columnStyle, pillarDivider, pillarDividerExtended]}
 			role="none"
 		>
 			<ul
-				className={cx(columnLinks, {
-					[pillarColumnLinks]: !!moreColumn.pillar,
-				})}
+				css={[columnLinks, !!moreColumn.pillar && pillarColumnLinks]}
 				role="menu"
 				id={subNavId}
 			>
 				{(moreColumn.children || []).map((link) => (
 					<li
 						key={link.title.toLowerCase()}
-						className={cx(mainMenuLinkStyle, {
-							[hideDesktop]: !!link.mobileOnly,
-						})}
+						css={[
+							mainMenuLinkStyle,
+							!!link.mobileOnly && hideDesktop,
+						]}
 						role="none"
 					>
 						<a
-							className={cx(
-								'selectableMenuItem',
-								columnLinkTitle,
-							)}
+							className="selectableMenuItem"
+							css={columnLinkTitle}
 							href={link.url}
 							role="menuitem"
 							data-link-name={`nav2 : secondary : ${link.longTitle}`}

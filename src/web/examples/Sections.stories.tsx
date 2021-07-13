@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import { css } from 'emotion';
+
+import { css } from '@emotion/react';
 
 import { ContainerLayout } from '@frontend/web/components/ContainerLayout';
-import { Section } from '@frontend/web/components/Section';
+import { ElementContainer } from '@frontend/web/components/ElementContainer';
 import { Header } from '@frontend/web/components/Header';
 import { Footer } from '@frontend/web/components/Footer';
-import { GuardianLines } from '@root/src/web/components/GuardianLines';
 import { Nav } from '@root/src/web/components/Nav/Nav';
 
+import { Lines } from '@guardian/src-ed-lines';
 import { Display, Pillar, Design } from '@guardian/types';
 
 import {
@@ -21,7 +21,6 @@ import {
 } from '@guardian/src-foundations/palette';
 
 import { NAV, pageFooter } from './Example.mocks';
-import { decidePalette } from '../lib/decidePalette';
 
 const Grey = ({
 	heightInPixels = 400,
@@ -31,7 +30,7 @@ const Grey = ({
 	padded?: boolean;
 }) => (
 	<div
-		className={css`
+		css={css`
 			background-color: ${neutral[93]};
 			width: 100%;
 			height: ${heightInPixels}px;
@@ -52,7 +51,7 @@ export default {
 
 export const Sections = (): React.ReactNode => (
 	<>
-		<Section
+		<ElementContainer
 			showTopBorder={false}
 			showSideBorders={true}
 			borderColour={brandLine.primary}
@@ -60,8 +59,8 @@ export const Sections = (): React.ReactNode => (
 			backgroundColour={brandBackground.primary}
 		>
 			<Header edition="UK" />
-		</Section>
-		<Section
+		</ElementContainer>
+		<ElementContainer
 			showSideBorders={true}
 			borderColour={brandLine.primary}
 			showTopBorder={false}
@@ -78,22 +77,15 @@ export const Sections = (): React.ReactNode => (
 				subscribeUrl=""
 				edition="UK"
 			/>
-		</Section>
-		<Section
+		</ElementContainer>
+		<ElementContainer
 			backgroundColour={background.primary}
 			padded={false}
 			showTopBorder={false}
 			showSideBorders={true}
 		>
-			<GuardianLines
-				count={4}
-				palette={decidePalette({
-					display: Display.Standard,
-					design: Design.Article,
-					theme: Pillar.News,
-				})}
-			/>
-		</Section>
+			<Lines count={4} effect="straight" />
+		</ElementContainer>
 		<ContainerLayout
 			showTopBorder={false}
 			title="Page Title"
@@ -134,21 +126,14 @@ export const Sections = (): React.ReactNode => (
 		>
 			<Grey />
 		</ContainerLayout>
-		<Section
+		<ElementContainer
 			backgroundColour={background.primary}
 			padded={false}
 			showTopBorder={false}
 		>
-			<GuardianLines
-				count={4}
-				palette={decidePalette({
-					display: Display.Standard,
-					design: Design.Article,
-					theme: Pillar.News,
-				})}
-			/>
-		</Section>
-		<Section
+			<Lines count={4} effect="straight" />
+		</ElementContainer>
+		<ElementContainer
 			padded={false}
 			backgroundColour={brandBackground.primary}
 			borderColour={brandBorder.primary}
@@ -159,7 +144,7 @@ export const Sections = (): React.ReactNode => (
 				pillar={Pillar.News}
 				pillars={NAV.pillars}
 			/>
-		</Section>
+		</ElementContainer>
 	</>
 );
 Sections.story = { name: 'Example using different sections' };

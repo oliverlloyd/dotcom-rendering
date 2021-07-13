@@ -1,25 +1,28 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+	core: {
+		builder: 'webpack5',
+	},
 	stories: ['../src/**/*.stories.@(tsx)'],
 	addons: ['@storybook/addon-essentials'],
 	webpackFinal: async (config) => {
 		const rules = config.module.rules;
 		const { extensions } = config.resolve;
 
+		// Mock JSDOM for storybook - it relies on native node.js packages
+		// Allows us to use enhancers in stories for better testing of compoenents & full articles
+		config.resolve.alias.jsdom$ = path.resolve(
+			__dirname,
+			'./mocks/jsdom.js',
+		);
+
 		// Support typescript in Storybook
 		// https://storybook.js.org/docs/configurations/typescript-config/
 		rules.push({
 			test: /\.[jt]sx?|mjs$/,
-			exclude: [
-				{
-					test: /node_modules/,
-					exclude: [
-						/@guardian\/(?!(automat-modules))/,
-						/dynamic-import-polyfill/,
-					],
-				},
-			],
+			exclude: require('../scripts/webpack/browser').babelExclude,
 			use: [
 				{
 					loader: 'babel-loader',
@@ -65,6 +68,14 @@ module.exports = {
 			'@root': path.resolve(__dirname, '..'),
 			'@frontend': path.resolve(__dirname, '../src'),
 		};
+
+		// Required as otherwise 'process' will not be defined when included on its own (without .env)
+		// e.g process?.env?.SOME_VAR
+		config.plugins.push(
+			new webpack.DefinePlugin({
+				process: '{}',
+			}),
+		);
 
 		return config;
 	},

@@ -1,10 +1,9 @@
-import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/react';
 
 import { news } from '@guardian/src-foundations';
 import { Display, Design, Pillar, Special } from '@guardian/types';
 
-import { Section } from './Section';
+import { ElementContainer } from './ElementContainer';
 import { ArticleHeadline } from './ArticleHeadline';
 import { Flex } from './Flex';
 import { LeftColumn } from './LeftColumn';
@@ -20,7 +19,7 @@ export default {
 };
 
 export const ArticleStory = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -42,12 +41,12 @@ export const ArticleStory = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 ArticleStory.story = { name: 'Article' };
 
 export const Feature = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -69,19 +68,19 @@ export const Feature = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Feature.story = { name: 'Feature' };
 
 export const ShowcaseInterview = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
 			</LeftColumn>
 			<ArticleContainer>
 				<div
-					className={css`
+					css={css`
 						margin-bottom: -100px;
 					`}
 				>
@@ -115,22 +114,24 @@ export const ShowcaseInterview = () => (
 					})}
 					hideCaption={true}
 					elements={mainMediaElements}
+					pageId="testID"
+					webTitle="story article"
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 ShowcaseInterview.story = { name: 'Interview (with showcase)' };
 
 export const ShowcaseInterviewNobyline = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
 			</LeftColumn>
 			<ArticleContainer>
 				<div
-					className={css`
+					css={css`
 						margin-bottom: -100px;
 					`}
 				>
@@ -164,17 +165,19 @@ export const ShowcaseInterviewNobyline = () => (
 					})}
 					hideCaption={true}
 					elements={mainMediaElements}
+					pageId="testID"
+					webTitle="story article"
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 ShowcaseInterviewNobyline.story = {
 	name: 'Interview (with showcase and NO BYLINE)',
 };
 
 export const Interview = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -216,15 +219,71 @@ export const Interview = () => (
 					})}
 					hideCaption={true}
 					elements={mainMediaElements}
+					pageId="testID"
+					webTitle="story article"
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Interview.story = { name: 'Interview (without showcase)' };
 
+export const InterviewSpecialReport = () => (
+	<ElementContainer>
+		<Flex>
+			<LeftColumn>
+				<></>
+			</LeftColumn>
+			<ArticleContainer>
+				<ArticleHeadline
+					headlineString="This is an Interview headline. It has a black background, white text and overlays the image below it (as a sibling)"
+					palette={decidePalette({
+						display: Display.Standard,
+						design: Design.Interview,
+						theme: Special.SpecialReport,
+					})}
+					format={{
+						display: Display.Standard,
+						design: Design.Interview,
+						theme: Special.SpecialReport,
+					}}
+					tags={[]}
+					byline="Byline text"
+				/>
+				<Standfirst
+					format={{
+						display: Display.Standard,
+						design: Design.Interview,
+						theme: Special.SpecialReport,
+					}}
+					standfirst="This is the standfirst text. We include here to demonstrate spacing in this case where we have a Interview type article that does not have a showcase main media element"
+				/>
+				<MainMedia
+					format={{
+						display: Display.Standard,
+						design: Design.Article,
+						theme: Special.SpecialReport,
+					}}
+					palette={decidePalette({
+						display: Display.Standard,
+						design: Design.Article,
+						theme: Special.SpecialReport,
+					})}
+					hideCaption={true}
+					elements={mainMediaElements}
+					pageId="testID"
+					webTitle="story article"
+				/>
+			</ArticleContainer>
+		</Flex>
+	</ElementContainer>
+);
+InterviewSpecialReport.story = {
+	name: 'Interview Special Report (without showcase)',
+};
+
 export const InterviewNoByline = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -266,17 +325,19 @@ export const InterviewNoByline = () => (
 					})}
 					hideCaption={true}
 					elements={mainMediaElements}
+					pageId="testID"
+					webTitle="story article"
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 InterviewNoByline.story = {
 	name: 'Interview (without showcase with NO BYLINE)',
 };
 
 export const Comment = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -298,12 +359,12 @@ export const Comment = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Comment.story = { name: 'Comment' };
 
 export const Analysis = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -325,12 +386,12 @@ export const Analysis = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Analysis.story = { name: 'Analysis' };
 
 export const Media = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -352,12 +413,12 @@ export const Media = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Media.story = { name: 'Media' };
 
 export const Review = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -379,12 +440,12 @@ export const Review = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Review.story = { name: 'Review' };
 
 export const PhotoEssay = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -406,12 +467,12 @@ export const PhotoEssay = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 PhotoEssay.story = { name: 'PhotoEssay' };
 
 export const Quiz = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -433,12 +494,12 @@ export const Quiz = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Quiz.story = { name: 'Quiz' };
 
 export const Recipe = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -460,12 +521,12 @@ export const Recipe = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Recipe.story = { name: 'Recipe' };
 
 export const Immersive = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -487,12 +548,12 @@ export const Immersive = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Immersive.story = { name: 'Immersive' };
 
 export const ImmersiveNoMainMedia = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -514,12 +575,12 @@ export const ImmersiveNoMainMedia = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 ImmersiveNoMainMedia.story = { name: 'Printshop (with no main media)' };
 
 export const ImmersiveComment = () => (
-	<Section
+	<ElementContainer
 		showSideBorders={false}
 		showTopBorder={false}
 		backgroundColour="orange"
@@ -545,12 +606,12 @@ export const ImmersiveComment = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 ImmersiveComment.story = { name: 'Immersive opinion piece' };
 
 export const Editorial = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -572,12 +633,12 @@ export const Editorial = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 Editorial.story = { name: 'Editorial' };
 
 export const MatchReport = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -599,12 +660,12 @@ export const MatchReport = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 MatchReport.story = { name: 'MatchReport' };
 
 export const SpecialReport = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -626,12 +687,12 @@ export const SpecialReport = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 SpecialReport.story = { name: 'SpecialReport' };
 
 export const LiveBlog = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -653,7 +714,7 @@ export const LiveBlog = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 LiveBlog.story = {
 	name: 'LiveBlog',
@@ -671,7 +732,7 @@ LiveBlog.story = {
 };
 
 export const DeadBlog = () => (
-	<Section>
+	<ElementContainer>
 		<Flex>
 			<LeftColumn>
 				<></>
@@ -693,6 +754,6 @@ export const DeadBlog = () => (
 				/>
 			</ArticleContainer>
 		</Flex>
-	</Section>
+	</ElementContainer>
 );
 DeadBlog.story = { name: 'DeadBlog' };

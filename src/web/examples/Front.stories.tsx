@@ -1,18 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 
 import { ContainerLayout } from '@frontend/web/components/ContainerLayout';
-import { Section } from '@frontend/web/components/Section';
+import { ElementContainer } from '@frontend/web/components/ElementContainer';
 import { Header } from '@frontend/web/components/Header';
 import { Footer } from '@frontend/web/components/Footer';
 import { UL } from '@frontend/web/components/Card/components/UL';
 import { LI } from '@frontend/web/components/Card/components/LI';
-import { GuardianLines } from '@root/src/web/components/GuardianLines';
 import { Nav } from '@root/src/web/components/Nav/Nav';
-import { decidePalette } from '@root/src/web/lib/decidePalette';
-
 import { Card } from '@frontend/web/components/Card/Card';
 
+import { Lines } from '@guardian/src-ed-lines';
 import { Display, Design, Pillar } from '@guardian/types';
 
 import {
@@ -45,7 +42,7 @@ export default {
 
 export const Front = () => (
 	<>
-		<Section
+		<ElementContainer
 			showTopBorder={false}
 			showSideBorders={true}
 			borderColour={brandLine.primary}
@@ -53,8 +50,8 @@ export const Front = () => (
 			backgroundColour={brandBackground.primary}
 		>
 			<Header edition="UK" />
-		</Section>
-		<Section
+		</ElementContainer>
+		<ElementContainer
 			showSideBorders={true}
 			borderColour={brandLine.primary}
 			showTopBorder={false}
@@ -71,22 +68,15 @@ export const Front = () => (
 				subscribeUrl=""
 				edition="UK"
 			/>
-		</Section>
-		<Section
+		</ElementContainer>
+		<ElementContainer
 			backgroundColour={background.primary}
 			padded={false}
 			showTopBorder={false}
 			showSideBorders={true}
 		>
-			<GuardianLines
-				count={4}
-				palette={decidePalette({
-					display: Display.Standard,
-					design: Design.Article,
-					theme: Pillar.News,
-				})}
-			/>
-		</Section>
+			<Lines count={4} effect="straight" />
+		</ElementContainer>
 		<ContainerLayout
 			showTopBorder={false}
 			title="Headlines"
@@ -424,7 +414,7 @@ export const Front = () => (
 						showQuotes={true}
 						byline="George Monbiot"
 						kickerText={kickers[3]}
-						webPublicationDate={'2019-11-11T09={45={30.000Z'}
+						webPublicationDate="2019-11-14T06:00:31Z"
 						avatar={{
 							src:
 								'https://i.guim.co.uk/img/uploads/2017/10/06/George-Monbiot,-L.png?width=173&quality=85&auto=format&fit=max&s=be5b0d3f3aa55682e4930057fc3929a3',
@@ -447,7 +437,7 @@ export const Front = () => (
 						}}
 						headlineText={headlines[11]}
 						headlineSize="medium"
-						webPublicationDate={'2019-11-11T09={45={30.000Z'}
+						webPublicationDate="2019-11-14T06:00:31Z"
 						imageUrl={images[0]}
 						imagePosition="top"
 						showClock={true}
@@ -469,7 +459,7 @@ export const Front = () => (
 						headlineText={headlines[11]}
 						headlineSize="medium"
 						kickerText={kickers[0]}
-						webPublicationDate={'2019-11-11T09={45={30.000Z'}
+						webPublicationDate="2019-11-14T06:00:31Z"
 						imageUrl={images[0]}
 						imagePosition="top"
 						showClock={true}
@@ -491,7 +481,7 @@ export const Front = () => (
 						headlineText={headlines[11]}
 						headlineSize="medium"
 						kickerText={kickers[2]}
-						webPublicationDate={'2019-11-11T09={45={30.000Z'}
+						webPublicationDate="2019-11-14T06:00:31Z"
 						imageUrl={images[0]}
 						imagePosition="top"
 						showClock={true}
@@ -520,28 +510,21 @@ export const Front = () => (
 					headlineText={headlines[11]}
 					headlineSize="large"
 					kickerText={kickers[1]}
-					webPublicationDate={'2019-11-11T09={45={30.000Z'}
+					webPublicationDate="2019-11-14T06:00:31Z"
 					imageUrl={images[0]}
 					imagePosition="right"
 					imageSize="jumbo"
 				/>
 			</LI>
 		</ContainerLayout>
-		<Section
+		<ElementContainer
 			backgroundColour={background.primary}
 			padded={false}
 			showTopBorder={false}
 		>
-			<GuardianLines
-				count={4}
-				palette={decidePalette({
-					display: Display.Standard,
-					design: Design.Media,
-					theme: Pillar.Sport,
-				})}
-			/>
-		</Section>
-		<Section
+			<Lines count={4} effect="straight" />
+		</ElementContainer>
+		<ElementContainer
 			padded={false}
 			backgroundColour={brandBackground.primary}
 			borderColour={brandBorder.primary}
@@ -552,7 +535,7 @@ export const Front = () => (
 				pillar={Pillar.News}
 				pillars={NAV.pillars}
 			/>
-		</Section>
+		</ElementContainer>
 	</>
 );
 Front.story = { name: 'Example front' };

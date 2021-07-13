@@ -1,5 +1,4 @@
-import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 
 import { brand, brandText, brandAlt } from '@guardian/src-foundations/palette';
 import { headline, textSans } from '@guardian/src-foundations/typography';
@@ -9,7 +8,7 @@ import { Column } from './Column';
 import { ReaderRevenueLinks } from './ReaderRevenueLinks';
 import { MoreColumn } from './MoreColumn';
 
-const ColumnsStyle = css`
+const columnsStyle = css`
 	box-sizing: border-box;
 	max-width: none;
 	${from.desktop} {
@@ -46,6 +45,14 @@ const brandExtensionList = css`
 	${textSans.medium()};
 	flex-wrap: wrap;
 	list-style: none;
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns */
+	/* Needs double escape char: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#es2018_revision_of_illegal_escape_sequences */
+	li::before {
+		content: '\\200B'; /* Zero width space */
+		display: block;
+		height: 0;
+		width: 0;
+	}
 	margin: 0;
 	padding: 0 0 12px;
 	display: flex;
@@ -101,7 +108,7 @@ const brandExtensionLink = css`
 export const Columns: React.FC<{
 	nav: NavType;
 }> = ({ nav }) => (
-	<ul className={ColumnsStyle} role="menubar" data-cy="nav-menu-columns">
+	<ul css={columnsStyle} role="menubar" data-cy="nav-menu-columns">
 		{nav.pillars.map((column, i) => (
 			<Column
 				column={column}
@@ -115,18 +122,13 @@ export const Columns: React.FC<{
 			brandExtensions={nav.brandExtensions}
 			key="more"
 		/>
-		<li className={desktopBrandExtensionColumn} role="none">
-			<ul className={brandExtensionList} role="menu">
+		<li css={desktopBrandExtensionColumn} role="none">
+			<ul css={brandExtensionList} role="menu">
 				{nav.brandExtensions.map((brandExtension) => (
-					<li
-						className={brandExtensionListItem}
-						key={brandExtension.title}
-					>
+					<li css={brandExtensionListItem} key={brandExtension.title}>
 						<a
-							className={cx(
-								'selectableMenuItem',
-								brandExtensionLink,
-							)}
+							className="selectableMenuItem"
+							css={brandExtensionLink}
 							href={brandExtension.url}
 							key={brandExtension.title}
 							role="menuitem"

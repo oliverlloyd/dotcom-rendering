@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { Design, Display, Pillar, Special } from '@guardian/types';
 
-import { Section } from '@frontend/web/components/Section';
+import { ElementContainer } from '@frontend/web/components/ElementContainer';
 import { decidePalette } from '@root/src/web/lib/decidePalette';
 
 import { CardHeadline } from '@frontend/web/components/CardHeadline';
@@ -14,7 +12,7 @@ export default {
 };
 
 export const Article = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how an Article card headline looks"
 			format={{
@@ -28,12 +26,12 @@ export const Article = () => (
 				theme: Pillar.News,
 			})}
 		/>
-	</Section>
+	</ElementContainer>
 );
 Article.story = { name: 'Article' };
 
 export const Analysis = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how an Analysis card headline looks"
 			format={{
@@ -47,12 +45,12 @@ export const Analysis = () => (
 				theme: Pillar.News,
 			})}
 		/>
-	</Section>
+	</ElementContainer>
 );
 Analysis.story = { name: 'Analysis' };
 
 export const Feature = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how a Feature card headline looks"
 			format={{
@@ -66,12 +64,12 @@ export const Feature = () => (
 				theme: Pillar.News,
 			})}
 		/>
-	</Section>
+	</ElementContainer>
 );
 Feature.story = { name: 'Feature' };
 
 export const xsmallStory = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how a large card headline looks"
 			format={{
@@ -86,12 +84,12 @@ export const xsmallStory = () => (
 			})}
 			size="large"
 		/>
-	</Section>
+	</ElementContainer>
 );
 xsmallStory.story = { name: 'Size | large' };
 
 export const liveStory = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how a card headline with a live kicker looks"
 			format={{
@@ -106,12 +104,12 @@ export const liveStory = () => (
 			})}
 			kickerText="Live"
 		/>
-	</Section>
+	</ElementContainer>
 );
 liveStory.story = { name: 'With Live kicker' };
 
 export const noSlash = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how a card headline with no kicker slash looks"
 			format={{
@@ -127,12 +125,12 @@ export const noSlash = () => (
 			kickerText="Live"
 			showSlash={false}
 		/>
-	</Section>
+	</ElementContainer>
 );
 noSlash.story = { name: 'With Live kicker but no slash' };
 
 export const pulsingDot = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how a card headline with a pulsing dot looks"
 			format={{
@@ -148,12 +146,12 @@ export const pulsingDot = () => (
 			kickerText="Live"
 			showPulsingDot={true}
 		/>
-	</Section>
+	</ElementContainer>
 );
 pulsingDot.story = { name: 'With pulsing dot' };
 
 export const cultureVariant = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how a Feature card headline with the culture pillar looks"
 			format={{
@@ -168,12 +166,12 @@ export const cultureVariant = () => (
 			})}
 			kickerText="Art and stuff"
 		/>
-	</Section>
+	</ElementContainer>
 );
 cultureVariant.story = { name: 'With a culture kicker' };
 
 export const AnalysisXSmall = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="Xsmall card headline for an Analysis article"
 			format={{
@@ -188,12 +186,12 @@ export const AnalysisXSmall = () => (
 			})}
 			size="large"
 		/>
-	</Section>
+	</ElementContainer>
 );
 AnalysisXSmall.story = { name: 'Underlined | large' };
 
 export const opinionxxxsmall = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how small card headline for opinion articles look"
 			format={{
@@ -209,12 +207,12 @@ export const opinionxxxsmall = () => (
 			showQuotes={true}
 			size="small"
 		/>
-	</Section>
+	</ElementContainer>
 );
 opinionxxxsmall.story = { name: 'Quotes | small' };
 
 export const OpinionKicker = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="This is how an opinion card headline with a kicker and quotes looks"
 			format={{
@@ -231,12 +229,12 @@ export const OpinionKicker = () => (
 			kickerText="George Monbiot"
 			showSlash={true}
 		/>
-	</Section>
+	</ElementContainer>
 );
 OpinionKicker.story = { name: 'With an opinion kicker' };
 
 export const SpecialReport = () => (
-	<Section
+	<ElementContainer
 		showTopBorder={false}
 		showSideBorders={false}
 		backgroundColour="grey"
@@ -257,12 +255,12 @@ export const SpecialReport = () => (
 			kickerText="Special Report"
 			showSlash={true}
 		/>
-	</Section>
+	</ElementContainer>
 );
 SpecialReport.story = { name: 'with theme SpecialReport' };
 
 export const Busy = () => (
-	<Section showTopBorder={false} showSideBorders={false}>
+	<ElementContainer showTopBorder={false} showSideBorders={false}>
 		<CardHeadline
 			headlineText="I look life a buffoon. I feel incredible. And then I vomit"
 			format={{
@@ -279,13 +277,13 @@ export const Busy = () => (
 			kickerText="Aerial Yoga"
 			showSlash={true}
 		/>
-	</Section>
+	</ElementContainer>
 );
 Busy.story = { name: 'Lifestyle opinion' };
 
 export const Byline = () => (
 	<>
-		<Section showTopBorder={true} showSideBorders={false}>
+		<ElementContainer showTopBorder={true} showSideBorders={false}>
 			<CardHeadline
 				headlineText="I look life a buffoon. I feel incredible. And then I vomit"
 				format={{
@@ -301,9 +299,9 @@ export const Byline = () => (
 				byline="Labs byline"
 				showByline={true}
 			/>
-		</Section>
+		</ElementContainer>
 		<br />
-		<Section showTopBorder={true} showSideBorders={false}>
+		<ElementContainer showTopBorder={true} showSideBorders={false}>
 			<CardHeadline
 				headlineText="I look life a buffoon. I feel incredible. And then I vomit"
 				format={{
@@ -319,9 +317,9 @@ export const Byline = () => (
 				byline="News byline"
 				showByline={true}
 			/>
-		</Section>
+		</ElementContainer>
 		<br />
-		<Section showTopBorder={true} showSideBorders={false}>
+		<ElementContainer showTopBorder={true} showSideBorders={false}>
 			<CardHeadline
 				headlineText="I look life a buffoon. I feel incredible. And then I vomit"
 				format={{
@@ -337,9 +335,9 @@ export const Byline = () => (
 				byline="Sport byline"
 				showByline={true}
 			/>
-		</Section>
+		</ElementContainer>
 		<br />
-		<Section showTopBorder={true} showSideBorders={false}>
+		<ElementContainer showTopBorder={true} showSideBorders={false}>
 			<CardHeadline
 				headlineText="I look life a buffoon. I feel incredible. And then I vomit"
 				format={{
@@ -355,9 +353,9 @@ export const Byline = () => (
 				byline="Culture byline"
 				showByline={true}
 			/>
-		</Section>
+		</ElementContainer>
 		<br />
-		<Section showTopBorder={true} showSideBorders={false}>
+		<ElementContainer showTopBorder={true} showSideBorders={false}>
 			<CardHeadline
 				headlineText="I look life a buffoon. I feel incredible. And then I vomit"
 				format={{
@@ -373,9 +371,9 @@ export const Byline = () => (
 				byline="Lifestyle byline"
 				showByline={true}
 			/>
-		</Section>
+		</ElementContainer>
 		<br />
-		<Section showTopBorder={true} showSideBorders={false}>
+		<ElementContainer showTopBorder={true} showSideBorders={false}>
 			<CardHeadline
 				headlineText="I look life a buffoon. I feel incredible. And then I vomit"
 				format={{
@@ -391,9 +389,9 @@ export const Byline = () => (
 				byline="Opinion byline"
 				showByline={true}
 			/>
-		</Section>
+		</ElementContainer>
 		<br />
-		<Section
+		<ElementContainer
 			showTopBorder={true}
 			showSideBorders={false}
 			backgroundColour={specialReport[300]}
@@ -413,7 +411,7 @@ export const Byline = () => (
 				byline="SpecialReport byline"
 				showByline={true}
 			/>
-		</Section>
+		</ElementContainer>
 	</>
 );
 Byline.story = { name: 'With byline' };

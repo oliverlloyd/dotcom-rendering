@@ -32,24 +32,12 @@ const scriptPath = (dcrPackage) =>
 			'webpack-hot-middleware/client?name=browser&overlayWarnings=true',
 	].filter(Boolean);
 
-module.exports.babelExclude = {
-	and: [/node_modules/],
-	not: [
-		// Include all @guardian modules, except automat-modules
-		/@guardian\/(?!(automat-modules))/,
-
-		// Include the dynamic-import-polyfill
-		/dynamic-import-polyfill/,
-	],
-};
-
 module.exports = ({ isLegacyJS }) => ({
 	entry: {
 		sentryLoader: scriptPath('sentryLoader'),
 		ga: scriptPath('ga'),
 		ophan: scriptPath('ophan'),
 		react: scriptPath('react'),
-		lotame: scriptPath('lotame'),
 		dynamicImport: scriptPath('dynamicImport'),
 		atomIframe: scriptPath('atomIframe'),
 		coreVitals: scriptPath('coreVitals'),
@@ -128,3 +116,14 @@ module.exports = ({ isLegacyJS }) => ({
 		],
 	},
 });
+
+module.exports.babelExclude = {
+	and: [/node_modules/],
+	not: [
+		// Include all @guardian modules, except automat-modules
+		/@guardian\/(?!(automat-modules))/,
+
+		// Include the dynamic-import-polyfill
+		/dynamic-import-polyfill/,
+	],
+};

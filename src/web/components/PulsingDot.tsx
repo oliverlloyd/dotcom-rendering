@@ -1,12 +1,10 @@
-import React from 'react';
-import { css, cx } from 'emotion';
-import { keyframes } from '@emotion/core';
+import { css, keyframes } from '@emotion/react';
 
 import { storage } from '@guardian/libs';
 
 const dotStyles = (colour?: string) => css`
 	color: ${colour && colour};
-	::before {
+	:before {
 		border-radius: 62.5rem;
 		display: inline-block;
 		position: relative;
@@ -47,7 +45,5 @@ export const PulsingDot = ({ colour }: Props) => {
 	// flashingPreference is null if no preference exists and explicitly
 	// false when the reader has said they don't want flashing
 	const flashingEnabled = flashingPreference !== false;
-	return (
-		<span className={cx(dotStyles(colour), flashingEnabled && animate)} />
-	);
+	return <span css={[dotStyles(colour), flashingEnabled && animate]} />;
 };

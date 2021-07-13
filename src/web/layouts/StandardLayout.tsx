@@ -1,5 +1,4 @@
-import React from 'react';
-import { css } from 'emotion';
+import { css } from '@emotion/react';
 
 import {
 	neutral,
@@ -14,7 +13,6 @@ import { from, until } from '@guardian/src-foundations/mq';
 import { Design, Special } from '@guardian/types';
 import type { Format } from '@guardian/types';
 
-import { GuardianLines } from '@root/src/web/components/GuardianLines';
 import { StarRating } from '@root/src/web/components/StarRating/StarRating';
 import { ArticleBody } from '@root/src/web/components/ArticleBody';
 import { RightColumn } from '@root/src/web/components/RightColumn';
@@ -30,7 +28,7 @@ import { Standfirst } from '@root/src/web/components/Standfirst';
 import { Header } from '@root/src/web/components/Header';
 import { Footer } from '@root/src/web/components/Footer';
 import { SubNav } from '@root/src/web/components/SubNav/SubNav';
-import { Section } from '@root/src/web/components/Section';
+import { ElementContainer } from '@root/src/web/components/ElementContainer';
 import { HeaderAdSlot } from '@root/src/web/components/HeaderAdSlot';
 import { MobileStickyContainer, AdSlot } from '@root/src/web/components/AdSlot';
 import { Border } from '@root/src/web/components/Border';
@@ -40,7 +38,7 @@ import { Discussion } from '@frontend/web/components/Discussion';
 import { Placeholder } from '@frontend/web/components/Placeholder';
 import { Nav } from '@frontend/web/components/Nav/Nav';
 import { LabsHeader } from '@frontend/web/components/LabsHeader';
-import { AnniversaryAtomComponent } from '@frontend/web/components/AnniversaryAtomComponent';
+import { GuardianLabsLines } from '@frontend/web/components/GuardianLabsLines';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { parse } from '@frontend/lib/slot-machine-flags';
@@ -51,6 +49,7 @@ import {
 	getCurrentPillar,
 } from '@root/src/web/lib/layoutHelpers';
 import { Stuck, BannerWrapper } from '@root/src/web/layouts/lib/stickiness';
+import { Lines } from '@guardian/src-ed-lines';
 
 const StandardGrid = ({
 	children,
@@ -60,7 +59,7 @@ const StandardGrid = ({
 	isMatchReport: boolean;
 }) => (
 	<div
-		className={css`
+		css={css`
 			/* IE Fallback */
 			display: flex;
 			flex-direction: column;
@@ -81,12 +80,16 @@ const StandardGrid = ({
 
 				grid-column-gap: 10px;
 
+				/*
+					Explanation of each unit of grid-template-columns
+
+					Left Column (220 - 1px border)
+					Vertical grey border
+					Main content
+					Right Column
+				*/
 				${from.wide} {
-					grid-template-columns:
-						219px /* Left Column (220 - 1px border) */
-						1px /* Vertical grey border */
-						1fr /* Main content */
-						300px; /* Right Column */
+					grid-template-columns: 219px 1px 1fr 300px;
 
 					${isMatchReport
 						? css`
@@ -110,12 +113,16 @@ const StandardGrid = ({
 						  `}
 				}
 
+				/*
+					Explanation of each unit of grid-template-columns
+
+					Left Column
+					Vertical grey border
+					Main content
+					Right Column
+				*/
 				${until.wide} {
-					grid-template-columns:
-						140px /* Left Column */
-						1px /* Vertical grey border */
-						1fr /* Main content */
-						300px; /* Right Column */
+					grid-template-columns: 140px 1px 1fr 300px;
 
 					${isMatchReport
 						? css`
@@ -139,10 +146,14 @@ const StandardGrid = ({
 						  `}
 				}
 
+				/*
+					Explanation of each unit of grid-template-columns
+
+					Main content
+					Right Column
+				*/
 				${until.leftCol} {
-					grid-template-columns:
-						1fr /* Main content */
-						300px; /* Right Column */
+					grid-template-columns: 1fr 300px;
 					${isMatchReport
 						? css`
 								grid-template-areas:
@@ -322,12 +333,21 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 	const age = getAgeWarning(CAPI.tags, CAPI.webPublicationDate);
 
 	const { branding } = CAPI.commercialProperties[CAPI.editionId];
+
+	const formatForNav =
+		format.theme === Special.Labs
+			? format
+			: {
+					...format,
+					theme: getCurrentPillar(CAPI),
+			  };
+
 	return (
 		<>
 			<div data-print-layout="hide">
 				<>
 					<Stuck>
-						<Section
+						<ElementContainer
 							showTopBorder={false}
 							showSideBorders={false}
 							padded={false}
@@ -338,10 +358,10 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 								shouldHideAds={CAPI.shouldHideAds}
 								display={format.display}
 							/>
-						</Section>
+						</ElementContainer>
 					</Stuck>
 					{format.theme !== Special.Labs && (
-						<Section
+						<ElementContainer
 							showTopBorder={false}
 							showSideBorders={false}
 							padded={false}
@@ -355,12 +375,12 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 									CAPI.config.switches.anniversaryHeaderSvg
 								}
 							/>
-						</Section>
+						</ElementContainer>
 					)}
 				</>
 			</div>
 
-			<Section
+			<ElementContainer
 				showSideBorders={true}
 				borderColour={brandLine.primary}
 				showTopBorder={false}
@@ -369,17 +389,14 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 			>
 				<Nav
 					nav={NAV}
-					format={{
-						...format,
-						theme: getCurrentPillar(CAPI),
-					}}
+					format={formatForNav}
 					subscribeUrl={CAPI.nav.readerRevenueLinks.header.subscribe}
 					edition={CAPI.editionId}
 				/>
-			</Section>
+			</ElementContainer>
 
 			{NAV.subNavSections && format.theme !== Special.Labs && (
-				<Section
+				<ElementContainer
 					backgroundColour={palette.background.article}
 					padded={false}
 					sectionId="sub-nav-root"
@@ -389,34 +406,20 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						currentNavLink={NAV.currentNavLink}
 						palette={palette}
 					/>
-				</Section>
+				</ElementContainer>
 			)}
 
 			{format.theme !== Special.Labs ? (
-				<>
-					<Section
-						backgroundColour={palette.background.article}
-						padded={false}
-						showTopBorder={false}
-					>
-						<GuardianLines count={4} palette={palette} />
-					</Section>
-					<Section
-						backgroundColour={brandAltBackground.primary}
-						padded={false}
-						showTopBorder={false}
-						showSideBorders={false}
-					>
-						<AnniversaryAtomComponent
-							anniversaryInteractiveAtom={
-								CAPI.anniversaryInteractiveAtom
-							}
-						/>
-					</Section>
-				</>
+				<ElementContainer
+					backgroundColour={palette.background.article}
+					padded={false}
+					showTopBorder={false}
+				>
+					<Lines count={4} effect="straight" />
+				</ElementContainer>
 			) : (
 				<Stuck>
-					<Section
+					<ElementContainer
 						showSideBorders={true}
 						showTopBorder={false}
 						backgroundColour={labs[400]}
@@ -424,7 +427,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						sectionId="labs-header"
 					>
 						<LabsHeader />
-					</Section>
+					</ElementContainer>
 				</Stuck>
 			)}
 
@@ -432,11 +435,12 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 				<AdSlot position="survey" display={format.display} />
 			)}
 
-			<Section
+			<ElementContainer
 				data-print-layout="hide"
 				showTopBorder={false}
 				backgroundColour={palette.background.article}
 				borderColour={palette.border.article}
+				element="article"
 			>
 				<StandardGrid isMatchReport={isMatchReport}>
 					<GridItem area="title">
@@ -458,7 +462,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						)}
 					</GridItem>
 					<GridItem area="matchNav">
-						<div className={maxWidth}>
+						<div css={maxWidth}>
 							{format.design === Design.MatchReport &&
 								CAPI.matchUrl && (
 									<Placeholder
@@ -469,7 +473,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						</div>
 					</GridItem>
 					<GridItem area="headline">
-						<div className={maxWidth}>
+						<div css={maxWidth}>
 							<ArticleHeadlinePadding
 								design={format.design}
 								starRating={
@@ -477,7 +481,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 								}
 							>
 								{age && (
-									<div className={ageWarningMargins}>
+									<div css={ageWarningMargins}>
 										<AgeWarning age={age} />
 									</div>
 								)}
@@ -497,7 +501,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 							</ArticleHeadlinePadding>
 						</div>
 						{CAPI.starRating || CAPI.starRating === 0 ? (
-							<div className={starWrapper}>
+							<div css={starWrapper}>
 								<StarRating
 									rating={CAPI.starRating}
 									size="large"
@@ -514,32 +518,37 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						/>
 					</GridItem>
 					<GridItem area="media">
-						<div className={maxWidth}>
+						<div css={maxWidth}>
 							<MainMedia
 								format={format}
 								palette={palette}
 								elements={CAPI.mainMediaElements}
 								adTargeting={adTargeting}
 								host={host}
+								pageId={CAPI.pageId}
+								webTitle={CAPI.webTitle}
 							/>
 						</div>
 					</GridItem>
 					<GridItem area="lines">
-						<div className={maxWidth}>
-							<div className={stretchLines}>
-								<GuardianLines
-									count={decideLineCount(format.design)}
-									palette={palette}
-									effect={decideLineEffect(
-										format.design,
-										format.theme,
-									)}
-								/>
+						<div css={maxWidth}>
+							<div css={stretchLines}>
+								{format.theme === Special.Labs ? (
+									<GuardianLabsLines />
+								) : (
+									<Lines
+										count={decideLineCount(format.design)}
+										effect={decideLineEffect(
+											format.design,
+											format.theme,
+										)}
+									/>
+								)}
 							</div>
 						</div>
 					</GridItem>
 					<GridItem area="meta">
-						<div className={maxWidth}>
+						<div css={maxWidth}>
 							<ArticleMeta
 								branding={branding}
 								format={format}
@@ -557,7 +566,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 					</GridItem>
 					<GridItem area="body">
 						<ArticleContainer>
-							<main className={articleWidth}>
+							<main css={articleWidth}>
 								<ArticleBody
 									format={format}
 									palette={palette}
@@ -570,10 +579,10 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 								{isMatchReport && <div id="match-stats" />}
 
 								{showBodyEndSlot && <div id="slot-body-end" />}
-								<GuardianLines
+								<Lines
 									data-print-layout="hide"
 									count={4}
-									palette={palette}
+									effect="straight"
 								/>
 								<SubMeta
 									palette={palette}
@@ -597,7 +606,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 					</GridItem>
 					<GridItem area="right-column">
 						<div
-							className={css`
+							css={css`
 								padding-top: 6px;
 								height: 100%;
 								${from.desktop} {
@@ -626,33 +635,39 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						</div>
 					</GridItem>
 				</StandardGrid>
-			</Section>
+			</ElementContainer>
 
-			<Section
+			<ElementContainer
 				data-print-layout="hide"
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={neutral[93]}
+				element="aside"
 			>
 				<AdSlot
 					data-print-layout="hide"
 					position="merchandising-high"
 					display={format.display}
 				/>
-			</Section>
+			</ElementContainer>
 
 			{/* Onwards (when signed OUT) */}
-			<div data-print-layout="hide" id="onwards-upper-whensignedout" />
+			<aside data-print-layout="hide" id="onwards-upper-whensignedout" />
 			{showOnwardsLower && (
-				<Section
+				<ElementContainer
 					data-print-layout="hide"
 					sectionId="onwards-lower-whensignedout"
+					element="aside"
 				/>
 			)}
 
 			{!isPaidContent && showComments && (
-				<Section data-print-layout="hide" sectionId="comments">
+				<ElementContainer
+					data-print-layout="hide"
+					sectionId="comments"
+					element="aside"
+				>
 					<Discussion
 						discussionApiUrl={CAPI.config.discussionApiUrl}
 						shortUrlId={CAPI.config.shortUrlId}
@@ -669,51 +684,53 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						beingHydrated={false}
 						display={format.display}
 					/>
-				</Section>
+				</ElementContainer>
 			)}
 
 			{/* Onwards (when signed IN) */}
-			<div data-print-layout="hide" id="onwards-upper-whensignedin" />
+			<aside data-print-layout="hide" id="onwards-upper-whensignedin" />
 			{showOnwardsLower && (
-				<Section
+				<ElementContainer
 					data-print-layout="hide"
 					sectionId="onwards-lower-whensignedin"
 				/>
 			)}
 
 			{!isPaidContent && (
-				<Section
+				<ElementContainer
 					data-print-layout="hide"
 					sectionId="most-viewed-footer"
 				/>
 			)}
 
-			<Section
+			<ElementContainer
 				data-print-layout="hide"
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={neutral[93]}
+				element="aside"
 			>
 				<AdSlot position="merchandising" display={format.display} />
-			</Section>
+			</ElementContainer>
 
 			{NAV.subNavSections && (
-				<Section
+				<ElementContainer
 					data-print-layout="hide"
 					padded={false}
 					sectionId="sub-nav-root"
+					element="nav"
 				>
 					<SubNav
 						subNavSections={NAV.subNavSections}
 						currentNavLink={NAV.currentNavLink}
 						palette={palette}
 					/>
-					<GuardianLines count={4} palette={palette} />
-				</Section>
+					<Lines count={4} effect="straight" />
+				</ElementContainer>
 			)}
 
-			<Section
+			<ElementContainer
 				data-print-layout="hide"
 				padded={false}
 				backgroundColour={brandBackground.primary}
@@ -725,7 +742,7 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 					pillar={format.theme}
 					pillars={NAV.pillars}
 				/>
-			</Section>
+			</ElementContainer>
 
 			<BannerWrapper data-print-layout="hide" />
 			<MobileStickyContainer data-print-layout="hide" />

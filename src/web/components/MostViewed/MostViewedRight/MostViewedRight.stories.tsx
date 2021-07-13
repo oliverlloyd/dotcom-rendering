@@ -1,14 +1,10 @@
-import React from 'react';
 import fetchMock from 'fetch-mock';
-
-import { Design, Display, Pillar } from '@guardian/types';
 
 import { Flex } from '@root/src/web/components/Flex';
 import { RightColumn } from '@root/src/web/components/RightColumn';
 import { LeftColumn } from '@root/src/web/components/LeftColumn';
 import { ArticleContainer } from '@root/src/web/components/ArticleContainer';
-import { Section } from '@frontend/web/components/Section';
-import { decidePalette } from '@root/src/web/lib/decidePalette';
+import { ElementContainer } from '@frontend/web/components/ElementContainer';
 
 import { mockTab1 } from '../MostViewed.mocks';
 import { MostViewedRight } from './MostViewedRight';
@@ -28,7 +24,7 @@ export const defaultStory = () => {
 	});
 
 	return (
-		<Section>
+		<ElementContainer>
 			<Flex>
 				<LeftColumn
 					showPartialRightBorder={true}
@@ -40,22 +36,16 @@ export const defaultStory = () => {
 					<></>
 				</ArticleContainer>
 				<RightColumn>
-					<Section
+					<ElementContainer
 						showSideBorders={false}
 						showTopBorder={false}
 						padded={false}
 					>
-						<MostViewedRight
-							palette={decidePalette({
-								display: Display.Standard,
-								design: Design.Article,
-								theme: Pillar.News,
-							})}
-						/>
-					</Section>
+						<MostViewedRight />
+					</ElementContainer>
 				</RightColumn>
 			</Flex>
-		</Section>
+		</ElementContainer>
 	);
 };
 defaultStory.story = { name: 'default' };
@@ -67,7 +57,7 @@ export const limitItemsStory = () => {
 	});
 
 	return (
-		<Section>
+		<ElementContainer>
 			<Flex>
 				<LeftColumn>
 					<></>
@@ -76,23 +66,16 @@ export const limitItemsStory = () => {
 					<></>
 				</ArticleContainer>
 				<RightColumn>
-					<Section
+					<ElementContainer
 						showSideBorders={false}
 						showTopBorder={false}
 						padded={false}
 					>
-						<MostViewedRight
-							palette={decidePalette({
-								display: Display.Standard,
-								design: Design.Article,
-								theme: Pillar.News,
-							})}
-							limitItems={3}
-						/>
-					</Section>
+						<MostViewedRight limitItems={3} />
+					</ElementContainer>
 				</RightColumn>
 			</Flex>
-		</Section>
+		</ElementContainer>
 	);
 };
 limitItemsStory.story = { name: 'with a limit of 3 items' };
@@ -104,15 +87,9 @@ export const outsideContextStory = () => {
 	});
 
 	return (
-		<Section>
-			<MostViewedRight
-				palette={decidePalette({
-					display: Display.Standard,
-					design: Design.Article,
-					theme: Pillar.News,
-				})}
-			/>
-		</Section>
+		<ElementContainer>
+			<MostViewedRight />
+		</ElementContainer>
 	);
 };
 outsideContextStory.story = {

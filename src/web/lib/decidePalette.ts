@@ -112,7 +112,7 @@ const textByline = (format: Format): string => {
 
 const textHeadlineByline = (format: Format): string => {
 	if (format.theme === Special.SpecialReport) return specialReport[300];
-	if (format.theme === Special.Labs) return BLACK
+	if (format.theme === Special.Labs) return BLACK;
 	switch (format.display) {
 		case Display.Immersive:
 			switch (format.design) {

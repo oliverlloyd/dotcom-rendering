@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from '@emotion/react';
 
 import {
 	neutral,
@@ -15,7 +15,7 @@ import { ArticleBody } from '@root/src/web/components/ArticleBody';
 import { RightColumn } from '@root/src/web/components/RightColumn';
 import { ArticleContainer } from '@root/src/web/components/ArticleContainer';
 import { ArticleMeta } from '@root/src/web/components/ArticleMeta';
-import { GuardianLines } from '@root/src/web/components/GuardianLines';
+import { Lines } from '@guardian/src-ed-lines';
 import { SubMeta } from '@root/src/web/components/SubMeta';
 import { MainMedia } from '@root/src/web/components/MainMedia';
 import { ArticleTitle } from '@root/src/web/components/ArticleTitle';
@@ -23,7 +23,7 @@ import { ArticleHeadline } from '@root/src/web/components/ArticleHeadline';
 import { Standfirst } from '@root/src/web/components/Standfirst';
 import { Footer } from '@root/src/web/components/Footer';
 import { SubNav } from '@root/src/web/components/SubNav/SubNav';
-import { Section } from '@root/src/web/components/Section';
+import { ElementContainer } from '@root/src/web/components/ElementContainer';
 import { Nav } from '@root/src/web/components/Nav/Nav';
 import { MobileStickyContainer, AdSlot } from '@root/src/web/components/AdSlot';
 import { Border } from '@root/src/web/components/Border';
@@ -48,7 +48,7 @@ import { ContributorAvatar } from '../components/ContributorAvatar';
 
 const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 	<div
-		className={css`
+		css={css`
 			/* IE Fallback */
 			display: flex;
 			flex-direction: column;
@@ -217,12 +217,12 @@ export const ImmersiveOpinionLayout = ({
 	return (
 		<>
 			<div
-				className={css`
+				css={css`
 					background-color: ${palette.background.article};
 				`}
 			>
 				<div
-					className={cx(
+					css={[
 						mainMedia &&
 							css`
 								height: 100vh;
@@ -242,15 +242,15 @@ export const ImmersiveOpinionLayout = ({
 							display: flex;
 							flex-direction: column;
 						`,
-					)}
+					]}
 				>
 					<header
-						className={css`
+						css={css`
 							${getZIndex('headerWrapper')}
 							order: 0;
 						`}
 					>
-						<Section
+						<ElementContainer
 							showSideBorders={false}
 							showTopBorder={false}
 							padded={false}
@@ -267,7 +267,7 @@ export const ImmersiveOpinionLayout = ({
 								}
 								edition={CAPI.editionId}
 							/>
-						</Section>
+						</ElementContainer>
 					</header>
 
 					<MainMedia
@@ -282,6 +282,8 @@ export const ImmersiveOpinionLayout = ({
 						}
 						host={host}
 						hideCaption={true}
+						pageId={CAPI.pageId}
+						webTitle={CAPI.webTitle}
 					/>
 					{mainMedia && (
 						<>
@@ -307,7 +309,7 @@ export const ImmersiveOpinionLayout = ({
 								}
 							>
 								<div
-									className={css`
+									css={css`
 										display: flex;
 										flex-direction: column;
 										justify-content: space-between;
@@ -320,7 +322,7 @@ export const ImmersiveOpinionLayout = ({
 									<div>
 										<Hide when="above" breakpoint="leftCol">
 											<div
-												className={css`
+												css={css`
 													position: absolute;
 													top: -30px;
 													left: 0;
@@ -353,7 +355,7 @@ export const ImmersiveOpinionLayout = ({
 										/>
 									</div>
 									{showAvatar && avatarUrl && (
-										<div className={avatarPositionStyles}>
+										<div css={avatarPositionStyles}>
 											<ContributorAvatar
 												imageSrc={avatarUrl}
 												imageAlt={
@@ -364,12 +366,12 @@ export const ImmersiveOpinionLayout = ({
 									)}
 								</div>
 							</ContainerLayout>
-							<GuardianLines count={8} palette={palette} />
+							<Lines count={8} color={palette.border.article} />
 						</>
 					)}
 				</div>
 			</div>
-			<Section
+			<ElementContainer
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={palette.background.article}
@@ -404,10 +406,10 @@ export const ImmersiveOpinionLayout = ({
 						{format.design === Design.PhotoEssay ? (
 							<></>
 						) : (
-							<div className={maxWidth}>
-								<div className={stretchLines}>
-									<GuardianLines
-										palette={palette}
+							<div css={maxWidth}>
+								<div css={stretchLines}>
+									<Lines
+										color={palette.border.article}
 										effect={decideLineEffect(
 											Design.Article,
 											format.theme,
@@ -419,7 +421,7 @@ export const ImmersiveOpinionLayout = ({
 						)}
 					</GridItem>
 					<GridItem area="meta">
-						<div className={maxWidth}>
+						<div css={maxWidth}>
 							<ArticleMeta
 								branding={branding}
 								format={format}
@@ -437,7 +439,7 @@ export const ImmersiveOpinionLayout = ({
 					</GridItem>
 					<GridItem area="body">
 						<ArticleContainer>
-							<main className={maxWidth}>
+							<main css={maxWidth}>
 								<ArticleBody
 									format={format}
 									palette={palette}
@@ -448,7 +450,10 @@ export const ImmersiveOpinionLayout = ({
 									webTitle={CAPI.webTitle}
 								/>
 								{showBodyEndSlot && <div id="slot-body-end" />}
-								<GuardianLines count={4} palette={palette} />
+								<Lines
+									count={4}
+									color={palette.border.article}
+								/>
 								<SubMeta
 									format={format}
 									palette={palette}
@@ -471,7 +476,7 @@ export const ImmersiveOpinionLayout = ({
 					</GridItem>
 					<GridItem area="right-column">
 						<div
-							className={css`
+							css={css`
 								padding-top: 6px;
 								height: 100%;
 								${from.desktop} {
@@ -490,7 +495,7 @@ export const ImmersiveOpinionLayout = ({
 								<>
 									{mainMedia && (
 										<div
-											className={css`
+											css={css`
 												margin-top: ${space[4]}px;
 											`}
 										>
@@ -505,9 +510,9 @@ export const ImmersiveOpinionLayout = ({
 						</div>
 					</GridItem>
 				</ImmersiveGrid>
-			</Section>
+			</ElementContainer>
 
-			<Section
+			<ElementContainer
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
@@ -517,18 +522,18 @@ export const ImmersiveOpinionLayout = ({
 					position="merchandising-high"
 					display={format.display}
 				/>
-			</Section>
+			</ElementContainer>
 
 			{!isPaidContent && (
 				<>
 					{/* Onwards (when signed OUT) */}
 					<div id="onwards-upper-whensignedout" />
 					{showOnwardsLower && (
-						<Section sectionId="onwards-lower-whensignedout" />
+						<ElementContainer sectionId="onwards-lower-whensignedout" />
 					)}
 
 					{showComments && (
-						<Section sectionId="comments">
+						<ElementContainer sectionId="comments">
 							<Discussion
 								discussionApiUrl={CAPI.config.discussionApiUrl}
 								shortUrlId={CAPI.config.shortUrlId}
@@ -545,40 +550,40 @@ export const ImmersiveOpinionLayout = ({
 								beingHydrated={false}
 								display={format.display}
 							/>
-						</Section>
+						</ElementContainer>
 					)}
 
 					{/* Onwards (when signed IN) */}
 					<div id="onwards-upper-whensignedin" />
 					{showOnwardsLower && (
-						<Section sectionId="onwards-lower-whensignedin" />
+						<ElementContainer sectionId="onwards-lower-whensignedin" />
 					)}
 
-					<Section sectionId="most-viewed-footer" />
+					<ElementContainer sectionId="most-viewed-footer" />
 				</>
 			)}
 
-			<Section
+			<ElementContainer
 				padded={false}
 				showTopBorder={false}
 				showSideBorders={false}
 				backgroundColour={neutral[93]}
 			>
 				<AdSlot position="merchandising" display={format.display} />
-			</Section>
+			</ElementContainer>
 
 			{NAV.subNavSections && (
-				<Section padded={false} sectionId="sub-nav-root">
+				<ElementContainer padded={false} sectionId="sub-nav-root">
 					<SubNav
 						subNavSections={NAV.subNavSections}
 						currentNavLink={NAV.currentNavLink}
 						palette={palette}
 					/>
-					<GuardianLines count={4} palette={palette} />
-				</Section>
+					<Lines count={4} color={palette.border.article} />
+				</ElementContainer>
 			)}
 
-			<Section
+			<ElementContainer
 				padded={false}
 				backgroundColour={brandBackground.primary}
 				borderColour={brandBorder.primary}
@@ -589,7 +594,7 @@ export const ImmersiveOpinionLayout = ({
 					pillar={format.theme}
 					pillars={NAV.pillars}
 				/>
-			</Section>
+			</ElementContainer>
 
 			<BannerWrapper />
 			<MobileStickyContainer />

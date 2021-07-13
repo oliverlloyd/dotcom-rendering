@@ -65,7 +65,7 @@ import { DocumentBlockComponent } from '@root/src/web/components/elements/Docume
 import { EmbedBlockComponent } from '@root/src/web/components/elements/EmbedBlockComponent';
 import { UnsafeEmbedBlockComponent } from '@root/src/web/components/elements/UnsafeEmbedBlockComponent';
 import { InstagramBlockComponent } from '@root/src/web/components/elements/InstagramBlockComponent';
-import { InteractiveContentsBlockElement } from '@root/src/web/components/elements/InteractiveContentsBlockElement';
+import { InteractiveContentsBlockComponent } from '@root/src/web/components/elements/InteractiveContentsBlockComponent';
 import { MapEmbedBlockComponent } from '@root/src/web/components/elements/MapEmbedBlockComponent';
 import { SpotifyBlockComponent } from '@root/src/web/components/elements/SpotifyBlockComponent';
 import { VideoFacebookBlockComponent } from '@root/src/web/components/elements/VideoFacebookBlockComponent';
@@ -622,7 +622,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 			))}
 			{interactiveContentsElement.map((interactiveBlock) => (
 				<HydrateOnce rootId={interactiveBlock.elementId}>
-					<InteractiveContentsBlockElement
+					<InteractiveContentsBlockComponent
 						subheadingLinks={interactiveBlock.subheadingLinks}
 						endDocumentElementId={
 							interactiveBlock.endDocumentElementId

@@ -44,6 +44,7 @@ import {
 } from '@root/src/web/lib/layoutHelpers';
 import { BannerWrapper } from '@root/src/web/layouts/lib/stickiness';
 import { ContributorAvatar } from '../components/ContributorAvatar';
+import { decidePalette } from '../lib/decidePalette';
 // import { Container } from 'src/amp/components/Container';
 
 const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
@@ -138,6 +139,10 @@ const stretchLines = css`
 		margin-left: -10px;
 		margin-right: -10px;
 	}
+`;
+
+const backgroundForLines = (format: Format) => css`
+	background-color: ${decidePalette(format).border.navPillar};
 `;
 
 const avatarPositionStyles = css`
@@ -366,7 +371,12 @@ export const ImmersiveOpinionLayout = ({
 									)}
 								</div>
 							</ContainerLayout>
-							<Lines count={8} color={palette.border.article} />
+							<div css={backgroundForLines(format)}>
+								<Lines
+									count={8}
+									color={decidePalette(format).border.lines}
+								/>
+							</div>
 						</>
 					)}
 				</div>

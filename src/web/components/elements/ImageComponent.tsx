@@ -8,7 +8,7 @@ import { Picture } from '@root/src/web/components/Picture';
 import { Caption } from '@root/src/web/components/Caption';
 import { Hide } from '@root/src/web/components/Hide';
 import { StarRating } from '@root/src/web/components/StarRating/StarRating';
-import { Display } from '@guardian/types';
+import { Design, Display } from '@guardian/types';
 
 type Props = {
 	element: ImageBlockElement;
@@ -234,6 +234,43 @@ export const ImageComponent = ({
 			element.media.allImages[0] &&
 			element.media.allImages[0].fields.height) ||
 		'372';
+
+	if (
+		isMainMedia &&
+		format.display === Display.Immersive &&
+		(format.design === Design.Comment ||
+			format.design === Design.Editorial ||
+			format.design === Design.Letter)
+	) {
+		return (
+			<div
+				css={css`
+					/* For immersive opinion articles we do not want the iamge to fill the screen but
+					   instead take account of the headline which overlays it */
+					height: 100%;
+					width: 100%;
+
+					img {
+						object-fit: cover;
+					}
+				`}
+			>
+				<Picture
+					role={role}
+					imageSources={element.imageSources}
+					alt={element.data.alt || ''}
+					width={imageWidth}
+					height={imageHeight}
+					isLazy={!isMainMedia}
+					isMainMedia={isMainMedia}
+				/>
+				{starRating && <PositionStarRating rating={starRating} />}
+				{title && (
+					<ImageTitle title={title} role={role} palette={palette} />
+				)}
+			</div>
+		);
+	}
 
 	if (isMainMedia && format.display === Display.Immersive) {
 		return (

@@ -45,7 +45,6 @@ import {
 import { BannerWrapper } from '@root/src/web/layouts/lib/stickiness';
 import { ContributorAvatar } from '../components/ContributorAvatar';
 import { decidePalette } from '../lib/decidePalette';
-// import { Container } from 'src/amp/components/Container';
 
 const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 	<div
@@ -142,18 +141,19 @@ const stretchLines = css`
 `;
 
 const backgroundForLines = (format: Format) => css`
-	background-color: ${decidePalette(format).border.navPillar};
+	background-color: ${decidePalette(format).background.bullet};
 `;
 
 const avatarPositionStyles = css`
+	float: right;
+	position: absolute;
 	display: flex;
 	justify-content: flex-end;
 	overflow: hidden;
-	margin-bottom: -29px;
-	margin-top: -70px;
 	pointer-events: none;
-
-	${until.phablet} {
+	bottom: -29px;
+	right: 0;
+	/* ${until.phablet} {
 		img {
 			margin-right: -1.85rem;
 		}
@@ -163,7 +163,16 @@ const avatarPositionStyles = css`
 		img {
 			margin-right: 7.5rem;
 		}
-	}
+	} */
+
+	shape-outside: polygon(
+		0 8.125rem,
+		0 9.375rem,
+		11.25rem 9.375rem,
+		11.25rem 0,
+		1.25rem 0,
+		1.25rem 6rem
+	);
 `;
 
 interface Props {
@@ -302,7 +311,9 @@ export const ImmersiveOpinionLayout = ({
 								verticalMargins={false}
 								padContent={true}
 								centralBorder="full"
-								borderColour={palette.border.headline}
+								borderColour={
+									decidePalette(format).border.lines
+								}
 								padSides={true}
 								leftColSize="compact"
 								backgroundColour={palette.background.headline}
@@ -324,10 +335,10 @@ export const ImmersiveOpinionLayout = ({
 										display: flex;
 										flex-direction: column;
 										justify-content: space-between;
-										min-height: 259px;
 										${until.phablet} {
 											min-height: 200px;
 										}
+										position: relative;
 									`}
 								>
 									<div>
@@ -357,6 +368,7 @@ export const ImmersiveOpinionLayout = ({
 												/>
 											</div>
 										</Hide>
+
 										<ArticleHeadline
 											format={format}
 											headlineString={CAPI.headline}
@@ -364,17 +376,17 @@ export const ImmersiveOpinionLayout = ({
 											tags={CAPI.tags}
 											byline={CAPI.author.byline}
 										/>
+										{showAvatar && avatarUrl && (
+											<div css={avatarPositionStyles}>
+												<ContributorAvatar
+													imageSrc={avatarUrl}
+													imageAlt={
+														CAPI.author.byline || ''
+													}
+												/>
+											</div>
+										)}
 									</div>
-									{showAvatar && avatarUrl && (
-										<div css={avatarPositionStyles}>
-											<ContributorAvatar
-												imageSrc={avatarUrl}
-												imageAlt={
-													CAPI.author.byline || ''
-												}
-											/>
-										</div>
-									)}
 								</div>
 							</ContainerLayout>
 							<div css={backgroundForLines(format)}>

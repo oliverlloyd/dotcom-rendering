@@ -175,6 +175,13 @@ const avatarPositionStyles = css`
 	);
 `;
 
+const headlineWidths = css`
+	${until.desktop} {
+		max-width: 75%;
+		word-break: normal;
+	}
+`;
+
 interface Props {
 	CAPI: CAPIType;
 	NAV: NavType;
@@ -368,14 +375,15 @@ export const ImmersiveOpinionLayout = ({
 												/>
 											</div>
 										</Hide>
-
-										<ArticleHeadline
-											format={format}
-											headlineString={CAPI.headline}
-											palette={palette}
-											tags={CAPI.tags}
-											byline={CAPI.author.byline}
-										/>
+										<div css={headlineWidths}>
+											<ArticleHeadline
+												format={format}
+												headlineString={CAPI.headline}
+												palette={palette}
+												tags={CAPI.tags}
+												byline={CAPI.author.byline}
+											/>
+										</div>
 										{showAvatar && avatarUrl && (
 											<div css={avatarPositionStyles}>
 												<ContributorAvatar

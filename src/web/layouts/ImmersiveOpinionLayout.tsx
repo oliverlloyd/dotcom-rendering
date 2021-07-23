@@ -71,10 +71,10 @@ const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 				${from.wide} {
 					grid-column-gap: 10px;
 					grid-template-columns:
-						219px /* Left Column (220 - 1px border) */
-						1px /* Vertical grey border */
-						1fr /* Main content */
-						300px; /* Right Column */
+						219px
+						1px
+						1fr
+						300px;
 					grid-template-areas:
 						'meta       border      standfirst  right-column'
 						'meta       border      body        right-column'
@@ -84,10 +84,10 @@ const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 				${until.wide} {
 					grid-column-gap: 10px;
 					grid-template-columns:
-						140px /* Left Column (220 - 1px border) */
-						1px /* Vertical grey border */
-						1fr /* Main content */
-						300px; /* Right Column */
+						140px
+						1px
+						1fr
+						300px;
 					grid-template-areas:
 						'meta       border      standfirst  right-column'
 						'meta       border      body        right-column'
@@ -97,8 +97,8 @@ const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 				${until.leftCol} {
 					grid-column-gap: 20px;
 					grid-template-columns:
-						1fr /* Main content */
-						300px; /* Right Column */
+						1fr
+						300px;
 					grid-template-areas:
 						'standfirst  right-column'
 						'caption     right-column'
@@ -109,7 +109,7 @@ const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 
 				${until.desktop} {
 					grid-column-gap: 0px;
-					grid-template-columns: 1fr; /* Main content */
+					grid-template-columns: 1fr;
 					grid-template-areas:
 						'standfirst'
 						'caption'
@@ -237,10 +237,10 @@ export const ImmersiveOpinionLayout = ({
 						mainMedia &&
 							css`
 								height: 100vh;
-								/**
-									100vw is normally enough but don't let the content shrink vertically too
-									much just in case
-								*/
+
+								/* 100vw is normally enough but don't let the content shrink vertically too
+									much just in case */
+
 								min-height: 25rem;
 								${from.desktop} {
 									min-height: 31.25rem;

@@ -158,6 +158,12 @@ const avatarPositionStyles = css`
 			margin-right: -1.85rem;
 		}
 	}
+
+	${from.wide} {
+		img {
+			margin-right: 7.5rem;
+		}
+	}
 `;
 
 interface Props {

@@ -290,21 +290,37 @@ interface AuthorType {
 interface Block {
 	id: string;
 	elements: CAPIElement[];
-	blockCreatedOn?: number;
-	blockCreatedOnDisplay?: string;
-	blockLastUpdated?: number;
-	blockLastUpdatedDisplay?: string;
+
+	/**
+	 * @TJS-format date-time
+	 */
+	createdDate?: string;
+
+	/**
+	 * @TJS-format date-time
+	 */
+	lastModifiedDate?: string;
+
+	/**
+	 * @TJS-format date-time
+	 */
+	firstPublishedDate?: string;
+
+	blockCreatedOn?: number; // TODO remove
+	blockCreatedOnDisplay?: string; // TODO remove
+	blockLastUpdated?: number; // TODO remove
+	blockLastUpdatedDisplay?: string; // TODO remove
 	title?: string;
-	blockFirstPublished?: number;
-	blockFirstPublishedDisplay?: string;
-	primaryDateLine: string;
-	secondaryDateLine: string;
-	createdOn?: number;
-	createdOnDisplay?: string;
-	lastUpdated?: number;
-	lastUpdatedDisplay?: string;
-	firstPublished?: number;
-	firstPublishedDisplay?: string;
+	blockFirstPublished?: number; // TODO remove
+	blockFirstPublishedDisplay?: string; // TODO remove
+	primaryDateLine: string; // TODO remove
+	secondaryDateLine: string; // TODO remove
+	createdOn?: number; // TODO remove
+	createdOnDisplay?: string; // TODO remove
+	lastUpdated?: number; // TODO remove
+	lastUpdatedDisplay?: string; // TODO remove
+	firstPublished?: number; // TODO remove
+	firstPublishedDisplay?: string; // TODO remove
 }
 
 interface Pagination {
@@ -402,8 +418,13 @@ interface CAPIType {
 	 */
 	webPublicationDate: string;
 
-	webPublicationDateDisplay: string;
-	webPublicationSecondaryDateDisplay: string;
+	/**
+	 * @TJS-format date-time
+	 */
+	lastModifiedDate: string;
+
+	webPublicationDateDisplay: string; // TODO remove
+	webPublicationSecondaryDateDisplay: string; // TODO remove
 	editionLongForm: string;
 	editionId: Edition;
 	pageId: string;

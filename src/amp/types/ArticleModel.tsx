@@ -8,7 +8,7 @@ export interface ArticleModel {
 	pagination?: Pagination;
 	blocks: Block[];
 	author: AuthorType;
-	webPublicationDateDeprecated: string;
+	webPublicationDate: string;
 	webPublicationDateDisplay: string;
 	pageId: string;
 	format: CAPIFormat;

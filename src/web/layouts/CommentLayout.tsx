@@ -310,7 +310,7 @@ export const CommentLayout = ({
 
 	const showAvatar = avatarUrl && onlyOneContributor;
 
-	const age = getAgeWarning(CAPI.tags, CAPI.webPublicationDateDeprecated);
+	const age = getAgeWarning(CAPI.tags, CAPI.webPublicationDate);
 
 	const { branding } = CAPI.commercialProperties[CAPI.editionId];
 

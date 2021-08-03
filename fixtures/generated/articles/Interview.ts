@@ -1950,7 +1950,7 @@ export const Interview: CAPIType = {
 			elementId: '5d9d2994-b98c-4488-9054-3ad6efd78b51',
 		},
 	],
-	webPublicationDateDeprecated: '2020-02-09T11:00:04.000Z',
+	webPublicationDate: '2020-02-09T11:00:04.000Z',
 	blocks: [
 		{
 			id: '8c447c98-b1ab-43fc-9570-a401998486d3',

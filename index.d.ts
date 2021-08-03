@@ -400,7 +400,7 @@ interface CAPIType {
 	/**
 	 * @TJS-format date-time
 	 */
-	webPublicationDateDeprecated: string;
+	webPublicationDate: string;
 
 	webPublicationDateDisplay: string;
 	webPublicationSecondaryDateDisplay: string;

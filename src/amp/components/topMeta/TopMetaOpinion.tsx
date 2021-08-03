@@ -140,7 +140,7 @@ export const TopMetaOpinion: React.FC<{
 				pillar={pillar}
 				ageWarning={getAgeWarning(
 					articleData.tags,
-					articleData.webPublicationDateDeprecated,
+					articleData.webPublicationDate,
 				)}
 				webPublicationDate={articleData.webPublicationDateDisplay}
 				twitterHandle={articleData.author.twitterHandle}

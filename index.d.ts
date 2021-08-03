@@ -423,7 +423,6 @@ interface CAPIType {
 	 */
 	lastModifiedDate: string;
 
-	webPublicationDateDisplay: string; // TODO remove
 	webPublicationSecondaryDateDisplay: string; // TODO remove
 	editionLongForm: string;
 	editionId: Edition;

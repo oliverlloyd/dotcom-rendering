@@ -80,40 +80,6 @@ const Footer = ({ children }: { children: React.ReactNode }) => {
 	);
 };
 
-const BlockMedia = ({ children }: { children: React.ReactNode }) => {
-	return (
-		// Don't set side margins, causing content to flow to the edges (but
-		// we do set margins on any figcaption)
-		<div
-			css={css`
-				& figcaption {
-					margin-left: ${ASIDE_WIDTH}px;
-					padding-left: ${GUTTER}px;
-					padding-right: ${GUTTER}px;
-				}
-			`}
-		>
-			{children}
-		</div>
-	);
-};
-
-const BlockText = ({ children }: { children: React.ReactNode }) => {
-	return (
-		// Set a left margin the same with as the left aside column plus
-		// padding gutters on both sides
-		<div
-			css={css`
-				margin-left: ${ASIDE_WIDTH}px;
-				padding-left: ${GUTTER}px;
-				padding-right: ${GUTTER}px;
-			`}
-		>
-			{children}
-		</div>
-	);
-};
-
 const BlockTitle = ({ title }: { title: string }) => {
 	return (
 		<h2
@@ -162,12 +128,11 @@ const FirstPublished = ({
 		<a
 			href={blockLink}
 			data-ignore="global-link-styling"
-			// title={publishedDate.toLocaleString()}
 			css={css`
-				${textSans.xxsmall({ fontWeight: 'bold' })}
-				margin-bottom: ${space[1]}px;
+				${textSans.xxsmall()};
+				margin-bottom: ${space[3]}px;
 				padding-top: ${space[1]}px;
-				display: flex;
+
 				flex-direction: row;
 				${from.phablet} {
 					flex-direction: column;
@@ -181,14 +146,15 @@ const FirstPublished = ({
 			<time
 				dateTime={publishedDate.toISOString()}
 				css={css`
-					color: ${neutral[20]};
+					${textSans.xxsmall({ fontWeight: 'bold' })};
+					margin-right: ${space[2]}px;
+					color: ${neutral[46]};
 				`}
 			>
 				{timeAgo(firstPublished)}
 			</time>
 			<span
 				css={css`
-					${textSans.xxsmall()};
 					color: ${neutral[46]};
 				`}
 			>
@@ -197,6 +163,12 @@ const FirstPublished = ({
 		</a>
 	);
 };
+
+const firstPublishedStyle = css``;
+
+const spanStyle = css`
+	${textSans.xxlarge()};
+`;
 
 export const LiveBlock = ({
 	format,
@@ -231,15 +203,16 @@ export const LiveBlock = ({
 						padding-right: ${GUTTER}px;
 						padding-bottom: ${space[2]}px;
 					`}
-				>
-					{block.blockFirstPublished && (
-						<FirstPublished
-							firstPublished={block.blockFirstPublished}
-							blockLink={blockLink}
-						/>
-					)}
-				</aside>
+				/>
 				<span>
+					{block.blockFirstPublished && (
+						<div css={firstPublishedStyle}>
+							<FirstPublished
+								firstPublished={block.blockFirstPublished}
+								blockLink={blockLink}
+							/>
+						</div>
+					)}
 					{block.title && <BlockTitle title={block.title} />}
 					{block.elements.map((element) =>
 						renderArticleElement({

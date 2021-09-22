@@ -21,6 +21,7 @@ type Props = {
 	webTitle: string;
 	adTargeting: AdTargeting;
 	host?: string;
+	children?: React.ReactNode[];
 };
 
 const Container = ({
@@ -204,6 +205,7 @@ export const LiveBlock = ({
 	webTitle,
 	adTargeting,
 	host,
+	children,
 }: Props) => {
 	if (block.elements.length === 0) return null;
 	const palette = decidePalette(format);
@@ -254,24 +256,6 @@ export const LiveBlock = ({
 					)}
 				</span>
 			</Header>
-			<main>
-				{/* For each element, we decide what margins to set depending on the type */}
-				{block.elements.map((element, index) => (
-					<BlockMedia key={`${element._type}-${index}`}>
-						{renderArticleElement({
-							format,
-							palette,
-							element,
-							adTargeting,
-							host,
-							index,
-							isMainMedia: false,
-							pageId,
-							webTitle,
-						})}
-					</BlockMedia>
-				))}
-			</main>
 			<Footer>
 				<Hide when="below" breakpoint="phablet">
 					<div

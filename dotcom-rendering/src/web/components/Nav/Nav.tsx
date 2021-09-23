@@ -107,7 +107,7 @@ export const Nav = ({ format, nav, subscribeUrl, edition }: Props) => {
                         }
 
 						if (!navInputCheckbox) return; // Sticky nav replaces the nav so element no longer exists for users in test.
-
+						const bc = new BroadcastChannel('braze_custom_events');
                         navInputCheckbox.addEventListener('click',function(){
                           if(!navInputCheckbox.checked) {
                             showMoreButton.setAttribute('data-link-name','nav2 : veggie-burger: show')
@@ -116,6 +116,9 @@ export const Nav = ({ format, nav, subscribeUrl, edition }: Props) => {
                                 $selectableElement.setAttribute('tabindex','-1')
                             })
                           } else {
+							console.log("hi tx nav opened!");
+							bc.postMessage('navOpened');
+
                             showMoreButton.setAttribute('data-link-name','nav2 : veggie-burger: hide')
                             veggieBurger.setAttribute('data-link-name','nav2 : veggie-burger: hide')
                             expandedMenuClickableTags.forEach(function($selectableElement){

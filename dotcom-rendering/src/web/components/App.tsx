@@ -163,6 +163,24 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 		Promise<BrazeMessagesInterface>
 	>();
 
+	useOnce(() => {
+		(brazeMessages as Promise<BrazeMessagesInterface>)
+			.then((b) => {
+				const bc = new BroadcastChannel('braze_custom_events');
+
+				bc.onmessage = (evt) => {
+					if (evt.data === 'navOpened') {
+						if (b.appboy) {
+							console.log('Loggin custom event');
+							// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+							b.appboy.logCustomEvent('navOpened');
+						}
+					}
+				};
+			})
+			.catch(() => console.log('something went wrong'));
+	}, [brazeMessages]);
+
 	const pageViewId = window.guardian?.config?.ophan?.pageViewId;
 	// [string] for the actual id;
 	// [null] for when the cookie does not exist;

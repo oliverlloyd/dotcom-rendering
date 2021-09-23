@@ -29,6 +29,7 @@ type EpicConfig = {
 
 export const canShow = async (
 	brazeMessagesPromise: Promise<BrazeMessagesInterface>,
+	sectionName: string
 ): Promise<CanShowResult<any>> => {
 	const forcedBrazeMeta = getBrazeMetaFromUrlFragment();
 	if (forcedBrazeMeta) {
@@ -40,7 +41,7 @@ export const canShow = async (
 
 	try {
 		const brazeMessages = await brazeMessagesPromise;
-		const message = await brazeMessages.getMessageForEndOfArticle();
+		const message = await brazeMessages.getMessageForEndOfArticle(sectionName);
 
 		return {
 			show: true,

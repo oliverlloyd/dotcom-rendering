@@ -79,11 +79,12 @@ const buildBrazeEpicConfig = (
 	brazeMessages: Promise<BrazeMessagesInterface>,
 	countryCode: string,
 	idApiUrl: string,
+	sectionName: string,
 ): CandidateConfig<any> => {
 	return {
 		candidate: {
 			id: 'braze-epic',
-			canShow: () => canShowBrazeEpic(brazeMessages),
+			canShow: () => canShowBrazeEpic(brazeMessages, sectionName),
 			show: (meta: any) => () => (
 				<MaybeBrazeEpic
 					meta={meta}
@@ -133,6 +134,7 @@ export const SlotBodyEnd = ({
 			brazeMessages as Promise<BrazeMessagesInterface>,
 			countryCode as string,
 			idApiUrl,
+			sectionName,
 		);
 		const epicConfig: SlotConfig = {
 			candidates: [brazeEpic, readerRevenueEpic],

@@ -40,7 +40,9 @@ export const canShow = async (
 
 	try {
 		const brazeMessages = await brazeMessagesPromise;
-		const message = await brazeMessages.getMessageForEndOfArticle();
+		const message = await brazeMessages.getMessageForEndOfArticle(
+			window.guardian.config.page.section,
+		);
 
 		return {
 			show: true,

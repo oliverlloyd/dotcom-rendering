@@ -11,13 +11,14 @@ import { Article as ExampleArticle } from '@root/fixtures/generated/articles/Art
 import { generatePermutivePayload } from '@root/src/amp/lib/permutive';
 import { getAmpExperimentCache } from '@root/src/amp/server/ampExperimentCache';
 
-export const render = ({ body }: express.Request, res: express.Response) => {
+export const render = (req: express.Request, res: express.Response) => {
 	try {
 		// TODO remove when migrated to v2
-		const CAPI = validateV2(body);
+		const CAPI = validateV2(req.body);
 		const { linkedData } = CAPI;
 		const { config } = CAPI;
 		const blockElements = CAPI.blocks.map((block) => block.elements);
+		const queryString = req.originalUrl.split('?')[1];
 
 		// This is simply to flatten the elements
 		const elements = ([] as CAPIElement[]).concat(...blockElements);
@@ -58,6 +59,7 @@ export const render = ({ body }: express.Request, res: express.Response) => {
 			title: `${CAPI.headline} | ${CAPI.sectionLabel} | The Guardian`,
 			body: (
 				<Article
+					queryString={queryString}
 					experimentsData={getAmpExperimentCache()}
 					articleData={CAPI}
 					nav={extractNAV(CAPI.nav)}

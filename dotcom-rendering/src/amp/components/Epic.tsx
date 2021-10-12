@@ -343,12 +343,15 @@ const reminderWrapperStyle = css`
 	}
 `;
 
-export const Epic: React.FC<{ webURL: string }> = ({ webURL }) => {
+export const Epic: React.FC<{ webURL: string; queryString?: string }> = ({
+																			 webURL,
+																			 queryString,
+																		 }) => {
 	const supportDotcomComponentsUrl =
 		process.env.GU_STAGE === 'PROD'
 			? 'https://contributions.guardianapis.com'
 			: process?.env?.SDC_URL ??
-			  'https://contributions.code.dev-guardianapis.com';
+			'https://contributions.code.dev-guardianapis.com';
 
 	const setReminderUrl = `${supportDotcomComponentsUrl}/amp/set_reminder`;
 	const epicUrl = `${supportDotcomComponentsUrl}/amp/epic?ampVariantAssignments=VARIANTS&webUrl=${webURL}`;
@@ -370,6 +373,7 @@ export const Epic: React.FC<{ webURL: string }> = ({ webURL }) => {
 				items="."
 			>
 				<MoustacheTemplate>
+					<p>queryString: {queryString}</p>
 					<div css={epicStyle}>
 						<MoustacheSection name="ticker">
 							<div css={tickerWrapperStyle}>

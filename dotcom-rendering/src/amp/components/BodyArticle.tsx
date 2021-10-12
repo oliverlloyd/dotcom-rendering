@@ -97,7 +97,8 @@ const adStyle = css`
 export const Body: React.FC<{
 	data: ArticleModel;
 	config: ConfigType;
-}> = ({ data, config }) => {
+	queryString?: string;
+}> = ({ data, config, queryString }) => {
 	const capiElements = data.blocks[0] ? data.blocks[0].elements : [];
 	const adTargeting = buildAdTargeting({
 		isAdFreeUser: data.isAdFreeUser,
@@ -168,7 +169,7 @@ export const Body: React.FC<{
 	);
 
 	const epic = data.shouldHideReaderRevenue ? null : (
-		<Epic webURL={data.webURL} />
+		<Epic webURL={data.webURL} queryString={queryString} />
 	);
 
 	return (

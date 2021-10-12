@@ -28,7 +28,8 @@ const backgroundColour = css`
 const Body: React.FunctionComponent<{
 	data: ArticleModel;
 	config: ConfigType;
-}> = ({ data, config }) => {
+	queryString?: string;
+}> = ({ data, config, queryString }) => {
 	const { format } = data;
 
 	if (
@@ -37,16 +38,26 @@ const Body: React.FunctionComponent<{
 	) {
 		return <BodyLiveblog data={data} config={config} />;
 	}
-	return <BodyArticle data={data} config={config} />;
+	return (
+		<BodyArticle data={data} config={config} queryString={queryString} />
+	);
 };
 
 export const Article: React.FC<{
+	queryString?: string;
 	experimentsData?: AmpExperiments;
 	nav: NavType;
 	articleData: ArticleModel;
 	config: ConfigType;
 	analytics: AnalyticsModel;
-}> = ({ nav, articleData, config, analytics, experimentsData }) => {
+}> = ({
+	nav,
+	articleData,
+	config,
+	analytics,
+	experimentsData,
+	queryString,
+}) => {
 	return (
 		<>
 			<Analytics key="analytics" analytics={analytics} />
@@ -62,7 +73,11 @@ export const Article: React.FC<{
 					nav={nav}
 					guardianBaseURL={articleData.guardianBaseURL}
 				/>
-				<Body data={articleData} config={config} />
+				<Body
+					data={articleData}
+					config={config}
+					queryString={queryString}
+				/>
 				<Onward
 					pageID={articleData.pageId}
 					sectionID={articleData.sectionName}

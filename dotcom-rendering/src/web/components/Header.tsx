@@ -23,6 +23,8 @@ type Props = {
 
 export const Header = ({ edition, idUrl, mmaUrl, isAnniversary }: Props) => (
 	<header css={headerStyles}>
+		{/* See here for details: https://github.com/GoogleChromeLabs/dark-mode-toggle */}
+		<dark-mode-toggle permanent></dark-mode-toggle>
 		<Hide when="below" breakpoint="desktop">
 			<div id="edition-root">
 				<EditionDropdown

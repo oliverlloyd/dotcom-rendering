@@ -45,16 +45,20 @@ const generateScriptTags = (
 
 interface Props {
 	data: DCRServerDocumentData;
+	prefersColorScheme: string;
 }
 
 const decideTitle = (CAPI: CAPIType): string => {
-	if (decideTheme(CAPI.format) === ArticlePillar.Opinion && CAPI.author.byline) {
+	if (
+		decideTheme(CAPI.format) === ArticlePillar.Opinion &&
+		CAPI.author.byline
+	) {
 		return `${CAPI.headline} | ${CAPI.author.byline} | The Guardian`;
 	}
 	return `${CAPI.headline} | ${CAPI.sectionLabel} | The Guardian`;
 };
 
-export const document = ({ data }: Props): string => {
+export const document = ({ data, prefersColorScheme }: Props): string => {
 	const { CAPI, NAV, linkedData } = data;
 	const title = decideTitle(CAPI);
 	const key = 'dcr';
@@ -321,6 +325,8 @@ export const document = ({ data }: Props): string => {
 		<SkipTo id="navigation" label="Skip to navigation" />,
 	);
 
+	console.log('prefersColorScheme', prefersColorScheme);
+
 	return htmlTemplate({
 		linkedData,
 		loadableConfigScripts,
@@ -339,5 +345,6 @@ export const document = ({ data }: Props): string => {
 		keywords,
 		skipToMainContent,
 		skipToNavigation,
+		prefersColorScheme,
 	});
 };

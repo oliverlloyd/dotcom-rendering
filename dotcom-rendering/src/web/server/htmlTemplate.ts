@@ -22,6 +22,7 @@ export const htmlTemplate = ({
 	keywords,
 	skipToMainContent,
 	skipToNavigation,
+	prefersColorScheme = 'light',
 }: {
 	title?: string;
 	description: string;
@@ -40,6 +41,7 @@ export const htmlTemplate = ({
 	keywords: string;
 	skipToMainContent: string;
 	skipToNavigation: string;
+	prefersColorScheme?: 'dark' | 'light';
 }): string => {
 	const favicon =
 		process.env.NODE_ENV === 'production'
@@ -190,6 +192,41 @@ https://workforus.theguardian.com/careers/product-engineering/
 
                 ${twitterMetaTags}
 
+				// Only load the dark or light css that we need
+				// https://web.dev/prefers-color-scheme/
+				${
+					prefersColorScheme === 'dark'
+						? `
+					<link
+						rel="stylesheet"
+						href="${CDN}static/frontend/css/dark.css"
+					/>
+					<link
+						rel="stylesheet"
+						href="${CDN}static/frontend/css/light.css"
+						media="(prefers-color-scheme: light)"
+					/>
+				`
+						: ''
+				}
+				${
+					prefersColorScheme === 'light'
+						? `
+					<link
+						rel="stylesheet"
+						href="${CDN}static/frontend/css/light.css"
+					/>
+					<link
+						rel="stylesheet"
+						href="${CDN}static/frontend/css/dark.css"
+						media="(prefers-color-scheme: dark)"
+					/>
+				`
+						: ''
+				}
+
+				<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+
                 <!--  This tag enables pages to be featured in Google Discover as large previews
                     See: https://developers.google.com/search/docs/advanced/mobile/google-discover?hl=en&visit_id=637424198370039526-3805703503&rd=1 -->
                 <meta name="robots" content="max-image-preview:large">
@@ -288,14 +325,32 @@ https://workforus.theguardian.com/careers/product-engineering/
                 <style>${resetCSS}${css}</style>
 
                 <link rel="stylesheet" media="print" href="${CDN}static/frontend/css/print.css">
+
             </head>
 
-            <body>
+            <body class="${prefersColorScheme}">
 				${skipToMainContent}
 				${skipToNavigation}
                 <div id="react-root"></div>
                 ${html}
                 ${[...lowPriorityScriptTags].join('\n')}
+
+				<script type="module">
+					// See here for details: https://github.com/GoogleChromeLabs/dark-mode-toggle
+					const toggle = document.querySelector('dark-mode-toggle');
+					const body = document.body;
+
+					toggle.mode === 'dark' ? body.classList.add('dark') : body.classList.remove('dark');
+
+					toggle.addEventListener('colorschemechange', () => {
+						// TODO:
+						// As well as changing the class, we want to send this overriden value
+						// to the server so we don't SSR the wrong mode (the system setting). So
+						// I guess we can set it as a cookie?
+						console.log('toggle.mode', toggle.mode)
+						body.classList.toggle('dark', toggle.mode === 'dark');
+					});
+				</script>
             </body>
         </html>`;
 };

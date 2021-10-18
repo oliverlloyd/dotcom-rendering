@@ -24,8 +24,8 @@ import {
 // Here is the one place where we use `pillarPalette`
 import { pillarPalette_DO_NOT_USE as pillarPalette } from '@root/src/lib/pillars';
 
-const WHITE = neutral[100];
-const BLACK = neutral[7];
+const WHITE = 'var(--background-color)';
+const BLACK = 'var(--color)';
 
 const textHeadline = (format: ArticleFormat): string => {
 	switch (format.display) {
@@ -113,7 +113,7 @@ const textByline = (format: ArticleFormat): string => {
 					return pillarPalette[format.theme].main;
 			}
 		default:
-			return pillarPalette[format.theme].main;
+			return 'var(--color)';
 	}
 };
 
@@ -121,7 +121,7 @@ const textHeadlineByline = (format: ArticleFormat): string => {
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return specialReport[300];
 	if (format.theme === ArticleSpecial.Labs) return BLACK;
-	return pillarPalette[format.theme].main;
+	return 'var(--color)';
 };
 
 const textStandfirst = (format: ArticleFormat): string => {
@@ -145,7 +145,7 @@ const textCaption = (format: ArticleFormat): string => {
 		case ArticleDesign.PhotoEssay:
 			return pillarPalette[format.theme].dark;
 		default:
-			return text.supporting;
+			return 'var(--color)';
 	}
 };
 
@@ -384,7 +384,7 @@ const backgroundArticle = (format: ArticleFormat): string => {
 		format.design === ArticleDesign.LiveBlog ||
 		format.design === ArticleDesign.DeadBlog
 	)
-		return neutral[93];
+		return 'var(--background-color)';
 	// Order matters. We want comment special report pieces to have the opinion background
 	if (format.design === ArticleDesign.Letter) return opinion[800];
 	if (format.design === ArticleDesign.Comment) return opinion[800];
@@ -395,9 +395,9 @@ const backgroundArticle = (format: ArticleFormat): string => {
 		format.theme === ArticleSpecial.Labs &&
 		format.display !== ArticleDisplay.Immersive
 	)
-		return neutral[97];
+		return 'var(--background-color)';
 
-	return 'transparent';
+	return 'var(--background-color)';
 };
 
 const backgroundSeriesTitle = (format: ArticleFormat): string => {
@@ -474,16 +474,16 @@ const backgroundHeadline = (format: ArticleFormat): string => {
 		case ArticleDisplay.NumberedList:
 		case ArticleDisplay.Standard:
 			if (format.design === ArticleDesign.Interview) return BLACK;
-			return 'transparent';
+			return 'var(--background-color)';
 		default:
-			return 'transparent';
+			return 'var(--background-color)';
 	}
 };
 
 const backgroundHeadlineByline = (format: ArticleFormat): string => {
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return brandAltBackground.primary;
-	return 'transparent';
+	return 'var(--background-color)';
 };
 
 const backgroundBullet = (format: ArticleFormat): string => {

@@ -7,11 +7,22 @@ import { extract as extractGA } from '@root/src/model/extract-ga';
 import { Article as ExampleArticle } from '@root/fixtures/generated/articles/Article';
 
 export const renderArticle = (
-	{ body }: express.Request,
+	req: express.Request,
 	res: express.Response,
 ): void => {
+	// This code is copied from:
+	// https://web.dev/user-preference-media-features-headers/
+	// Tell the client the server accepts the `Sec-CH-Prefers-Color-Scheme` client hint…
+	res.set('Accept-CH', 'Sec-CH-Prefers-Color-Scheme');
+	// …and that the server's response will vary based on its value…
+	res.set('Vary', 'Sec-CH-Prefers-Color-Scheme');
+	// …and that the server considers this client hint a _critical_ client hint.
+	res.set('Critical-CH', 'Sec-CH-Prefers-Color-Scheme');
+	// Read the user's preferred color scheme from the headers…
+	const prefersColorScheme = req.get('sec-ch-prefers-color-scheme');
+
 	try {
-		const CAPI = enhanceCAPI(body);
+		const CAPI = enhanceCAPI(req.body);
 		const resp = document({
 			data: {
 				CAPI,
@@ -21,6 +32,7 @@ export const renderArticle = (
 				GA: extractGA(CAPI),
 				linkedData: CAPI.linkedData,
 			},
+			prefersColorScheme,
 		});
 
 		res.status(200).send(resp);
@@ -79,6 +91,7 @@ export const renderInteractive = (
 				GA: extractGA(CAPI),
 				linkedData: CAPI.linkedData,
 			},
+			prefersColorScheme: 'light',
 		});
 
 		res.status(200).send(resp);

@@ -86,26 +86,18 @@ const decideHeight = (role: RoleType) => {
 			return 500;
 	}
 };
-const getMinHeight = (role: RoleType, loaded: boolean) => {
-	if (loaded) {
-		return `auto`;
-	}
-	return `${decideHeight(role)}px`;
-};
+
 const wrapperStyle = ({
 	format,
-	role,
-	loaded,
+
 	palette,
 }: {
 	format: ArticleFormat;
-	role: RoleType;
-	loaded: boolean;
 	palette: Palette;
 }) => css`
 	${format.theme === ArticleSpecial.Labs ? textSans.medium() : body.medium()};
 	background-color: ${palette.background.article};
-	min-height: ${getMinHeight(role, loaded)};
+	min-height: "auto";
 	position: relative;
 `;
 

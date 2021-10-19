@@ -31,10 +31,9 @@ import {
 
 import { AudioAtomWrapper } from '@frontend/web/components/AudioAtomWrapper';
 
-import { Portal } from '@frontend/web/components/Portal';
+import { Portal, PortalOnce } from '@frontend/web/components/Portal';
 import {
-	HydrateOnce,
-	HydrateInteractiveOnce,
+	HydrateOnce
 } from '@frontend/web/components/HydrateOnce';
 import { Lazy } from '@frontend/web/components/Lazy';
 import { Placeholder } from '@root/src/web/components/Placeholder';
@@ -810,7 +809,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 				</HydrateOnce>
 			))}
 			{interactiveElements.map((interactiveBlock) => (
-				<HydrateInteractiveOnce rootId={interactiveBlock.elementId}>
+				<PortalOnce rootId={interactiveBlock.elementId}>
 					<InteractiveBlockComponent
 						url={interactiveBlock.url}
 						scriptUrl={interactiveBlock.scriptUrl}
@@ -820,7 +819,7 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 						format={format}
 						palette={palette}
 					/>
-				</HydrateInteractiveOnce>
+				</PortalOnce>
 			))}
 			{interactiveContentsElement.map((interactiveBlock) => (
 				<HydrateOnce rootId={interactiveBlock.elementId}>

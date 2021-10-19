@@ -24,3 +24,25 @@ export const Portal = ({ rootId, children }: Props) => {
 	const result = ReactDOM.createPortal(children, element);
 	return result;
 };
+
+/**
+ * This component will replace the placeholder specified by the data-name passed in rootId with the passed
+ * children. This will occur only once when the data-name placeholder exists.
+ *
+ * @param {Props} { rootId, children }
+ * @return {*}
+ */
+export const PortalOnce = ({ rootId, children }: Props) => {
+	const element = document.getElementById(rootId);
+	if (!element) return null;
+
+	const placeholderElement = element.querySelector(
+		'[data-name="placeholder"]',
+	);
+	if (placeholderElement) {
+		const result = ReactDOM.createPortal(children, element);
+		placeholderElement.remove();
+		return result;
+	}
+	return <>children</>
+};

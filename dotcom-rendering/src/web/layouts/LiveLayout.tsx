@@ -33,6 +33,7 @@ import { GridItem } from '@root/src/web/components/GridItem';
 import { AgeWarning } from '@root/src/web/components/AgeWarning';
 import { Discussion } from '@frontend/web/components/Discussion';
 import { Pagination } from '@frontend/web/components/Pagination';
+import { Placeholder } from '@frontend/web/components/Placeholder';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { parse } from '@frontend/lib/slot-machine-flags';
@@ -80,19 +81,21 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 				${from.desktop} {
 					grid-template-columns: 309px 1px 1fr;
 					grid-template-areas:
-						'lines border media'
-						'meta  border media'
-						'meta  border body'
-						'.     border .';
+						'lines 		border media'
+						'meta  		border media'
+						'meta  		border body'
+						'matchstats border body'
+						'.     		border .';
 				}
 
 				${from.wide} {
 					grid-template-columns: 309px 1px 1fr 340px;
 					grid-template-areas:
-						'lines border media right-column'
-						'meta  border media right-column'
-						'meta  border body  right-column'
-						'.     border .     right-column';
+						'lines 		border media right-column'
+						'meta  		border media right-column'
+						'matchstats border body  right-column'
+						'.	   		border body  right-column'
+						'.     		border .     right-column';
 				}
 
 				${until.desktop} {
@@ -101,6 +104,7 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 						'media'
 						'lines'
 						'meta'
+						'matchstats'
 						'body';
 				}
 
@@ -112,6 +116,7 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 						'media'
 						'lines'
 						'meta'
+						'matchstats'
 						'body';
 				}
 			}
@@ -285,6 +290,10 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						</ElementContainer>
 					)}
 
+					{CAPI.matchUrl && (
+						<Placeholder rootId="match-nav" height={230} />
+					)}
+
 					<ElementContainer
 						backgroundColour={palette.background.article}
 						padded={false}
@@ -415,6 +424,9 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 								}
 							/>
 						</div>
+					</GridItem>
+					<GridItem area="matchstats">
+						<div id="match-stats" />
 					</GridItem>
 					<GridItem area="body">
 						<ArticleContainer>

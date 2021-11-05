@@ -134,6 +134,7 @@ type Palette = {
 		carouselDotFocus: Colour;
 		headlineTag: Colour;
 		mostViewedTab: Colour;
+		matchStats: Colour;
 	};
 	fill: {
 		commentCount: Colour;
@@ -188,7 +189,7 @@ interface AdTargetParam {
 }
 
 type CustomParams = {
-	[key: string]: string | string[] | number | number[] | boolean | boolean[]
+	[key: string]: string | string[] | number | number[] | boolean | boolean[];
 };
 
 type AdTargeting =

@@ -400,6 +400,18 @@ const backgroundArticle = (format: ArticleFormat): string => {
 	return 'transparent';
 };
 
+const backgroundMatchStats = (format: ArticleFormat): string => {
+	switch (format.design) {
+		case ArticleDesign.LiveBlog:
+		case ArticleDesign.DeadBlog: {
+			return neutral[93];
+		}
+		default: {
+			return '#d9edf6';
+		}
+	}
+};
+
 const backgroundSeriesTitle = (format: ArticleFormat): string => {
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return brandAltBackground.primary;
@@ -835,6 +847,7 @@ export const decidePalette = (format: ArticleFormat): Palette => {
 			carouselDotFocus: backgroundCarouselDotFocus(format),
 			headlineTag: backgroundHeadlineTag(format),
 			mostViewedTab: backgroundMostViewedTab(format),
+			matchStats: backgroundMatchStats(format),
 		},
 		fill: {
 			commentCount: fillCommentCount(format),

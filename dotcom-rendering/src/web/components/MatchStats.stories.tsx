@@ -1,4 +1,5 @@
 import { matchReport } from '@root/fixtures/generated/match-report';
+import { ArticleDisplay, ArticleDesign, ArticlePillar } from '@guardian/libs';
 
 import { ElementContainer } from './ElementContainer';
 import { Flex } from './Flex';
@@ -15,12 +16,20 @@ export default {
 
 export const Default = () => {
 	return (
-		<MatchStats home={matchReport.homeTeam} away={matchReport.awayTeam} />
+		<MatchStats
+			format={{
+				display: ArticleDisplay.Standard,
+				design: ArticleDesign.Standard,
+				theme: ArticlePillar.Sport,
+			}}
+			home={matchReport.homeTeam}
+			away={matchReport.awayTeam}
+		/>
 	);
 };
 Default.story = { name: 'default' };
 
-export const InContext = () => {
+export const InArticle = () => {
 	return (
 		<ElementContainer>
 			<Flex>
@@ -29,6 +38,11 @@ export const InContext = () => {
 				</LeftColumn>
 				<ArticleContainer>
 					<MatchStats
+						format={{
+							display: ArticleDisplay.Standard,
+							design: ArticleDesign.Standard,
+							theme: ArticlePillar.Sport,
+						}}
 						home={matchReport.homeTeam}
 						away={matchReport.awayTeam}
 					/>
@@ -40,4 +54,31 @@ export const InContext = () => {
 		</ElementContainer>
 	);
 };
-InContext.story = { name: 'when placed in article context' };
+InArticle.story = { name: 'when placed in article context' };
+
+export const InLiveBlog = () => {
+	return (
+		<ElementContainer>
+			<Flex>
+				<LeftColumn>
+					<MatchStats
+						format={{
+							display: ArticleDisplay.Standard,
+							design: ArticleDesign.LiveBlog,
+							theme: ArticlePillar.Sport,
+						}}
+						home={matchReport.homeTeam}
+						away={matchReport.awayTeam}
+					/>
+				</LeftColumn>
+				<ArticleContainer>
+					<></>
+				</ArticleContainer>
+				<RightColumn>
+					<></>
+				</RightColumn>
+			</Flex>
+		</ElementContainer>
+	);
+};
+InLiveBlog.story = { name: 'when placed in liveblog context' };

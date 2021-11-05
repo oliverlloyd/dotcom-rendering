@@ -1226,7 +1226,10 @@ export const App = ({ CAPI, NAV, ophanRecord }: Props) => {
 				<Portal rootId="match-stats">
 					<Lazy margin={300}>
 						<Suspense fallback={<Placeholder height={800} />}>
-							<GetMatchStats matchUrl={CAPI.matchUrl} />
+							<GetMatchStats
+								format={format}
+								matchUrl={CAPI.matchUrl}
+							/>
 						</Suspense>
 					</Lazy>
 				</Portal>

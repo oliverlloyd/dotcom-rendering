@@ -422,6 +422,7 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 								{CAPI.pagination &&
 									CAPI.pagination.currentPage !== 1 && (
 										<Pagination
+											format={format}
 											currentPage={
 												CAPI.pagination?.currentPage ||
 												1
@@ -447,6 +448,7 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 								{CAPI.pagination &&
 									CAPI.pagination.totalPages > 1 && (
 										<Pagination
+											format={format}
 											currentPage={
 												CAPI.pagination?.currentPage ||
 												1

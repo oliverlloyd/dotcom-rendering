@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 import { space } from '@guardian/src-foundations';
-import { LinkButton } from '@guardian/src-button';
+import { EditorialLinkButton } from '@guardian/source-react-components-development-kitchen';
 import { textSans } from '@guardian/src-foundations/typography';
 import {
 	SvgChevronLeftSingle,
@@ -11,6 +11,7 @@ import { until } from '@guardian/src-foundations/mq';
 import { Hide } from './Hide';
 
 type Props = {
+	format: ArticleFormat;
 	currentPage: number;
 	totalPages: number;
 	newest?: string;
@@ -80,6 +81,7 @@ const Space = () => (
 );
 
 export const Pagination = ({
+	format,
 	currentPage,
 	totalPages,
 	oldest,
@@ -90,7 +92,8 @@ export const Pagination = ({
 	return (
 		<Container>
 			<Section>
-				<LinkButton
+				<EditorialLinkButton
+					format={format}
 					size="small"
 					priority="tertiary"
 					icon={<SvgChevronLeftSingle />}
@@ -100,9 +103,10 @@ export const Pagination = ({
 					<Hide when="below" breakpoint="phablet">
 						Newest
 					</Hide>
-				</LinkButton>
+				</EditorialLinkButton>
 				<Space />
-				<LinkButton
+				<EditorialLinkButton
+					format={format}
 					size="small"
 					priority="tertiary"
 					icon={<SvgChevronLeftSingle />}
@@ -112,7 +116,7 @@ export const Pagination = ({
 					<Hide when="below" breakpoint="phablet">
 						Previous
 					</Hide>
-				</LinkButton>
+				</EditorialLinkButton>
 			</Section>
 			<Section>
 				<Position>
@@ -122,7 +126,8 @@ export const Pagination = ({
 				</Position>
 			</Section>
 			<Section>
-				<LinkButton
+				<EditorialLinkButton
+					format={format}
 					size="small"
 					priority="tertiary"
 					icon={<SvgChevronRightSingle />}
@@ -132,9 +137,10 @@ export const Pagination = ({
 					<Hide when="below" breakpoint="phablet">
 						Next
 					</Hide>
-				</LinkButton>
+				</EditorialLinkButton>
 				<Space />
-				<LinkButton
+				<EditorialLinkButton
+					format={format}
 					size="small"
 					priority="tertiary"
 					icon={<SvgChevronRightSingle />}
@@ -144,7 +150,7 @@ export const Pagination = ({
 					<Hide when="below" breakpoint="phablet">
 						Oldest
 					</Hide>
-				</LinkButton>
+				</EditorialLinkButton>
 			</Section>
 		</Container>
 	);

@@ -135,6 +135,7 @@ type Palette = {
 		headlineTag: Colour;
 		mostViewedTab: Colour;
 		matchStats: Colour;
+		matchNav: Colour;
 	};
 	fill: {
 		commentCount: Colour;

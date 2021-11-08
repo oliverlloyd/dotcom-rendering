@@ -78,12 +78,21 @@ const textSeriesTitle = (format: ArticleFormat): string => {
 						case ArticlePillar.News:
 							return news[600];
 						case ArticlePillar.Sport:
+							return BLACK;
 						case ArticlePillar.Lifestyle:
 						case ArticlePillar.Culture:
 						case ArticlePillar.Opinion:
 						default:
 							return WHITE;
 					}
+				case ArticleDesign.DeadBlog:
+					switch (format.theme) {
+						case ArticlePillar.Sport:
+							return BLACK;
+						default:
+							return pillarPalette[format.theme].main;
+					}
+
 				case ArticleDesign.MatchReport:
 					return BLACK;
 				default:
@@ -410,6 +419,10 @@ const backgroundMatchStats = (format: ArticleFormat): string => {
 			return '#d9edf6';
 		}
 	}
+};
+
+const backgroundMatchNav = (): string => {
+	return brandAlt[400];
 };
 
 const backgroundSeriesTitle = (format: ArticleFormat): string => {
@@ -848,6 +861,7 @@ export const decidePalette = (format: ArticleFormat): Palette => {
 			headlineTag: backgroundHeadlineTag(format),
 			mostViewedTab: backgroundMostViewedTab(format),
 			matchStats: backgroundMatchStats(format),
+			matchNav: backgroundMatchNav(),
 		},
 		fill: {
 			commentCount: fillCommentCount(format),

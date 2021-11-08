@@ -1,3 +1,5 @@
+import { brandAlt } from '@guardian/src-foundations';
+
 import { ElementContainer } from './ElementContainer';
 import { Flex } from './Flex';
 import { LeftColumn } from './LeftColumn';
@@ -105,3 +107,27 @@ export const InContext = () => {
 	);
 };
 InContext.story = { name: 'when placed in article context' };
+
+export const InLiveblogContext = () => {
+	return (
+		<ElementContainer backgroundColour={brandAlt[400]} padded={false}>
+			<Flex>
+				<LeftColumn>
+					<></>
+				</LeftColumn>
+				<ArticleContainer>
+					<MatchNav
+						homeTeam={homeTeam}
+						awayTeam={awayTeam}
+						comments="Here is a comments string"
+						minByMinUrl="https://www.theguardian.com/football/live/2020/aug/10/manchester-united-v-fc-copenhagen-europa-league-quarter-final-live"
+					/>
+				</ArticleContainer>
+				<RightColumn>
+					<></>
+				</RightColumn>
+			</Flex>
+		</ElementContainer>
+	);
+};
+InLiveblogContext.story = { name: 'when placed in Liveblog context' };

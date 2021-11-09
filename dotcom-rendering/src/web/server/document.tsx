@@ -259,6 +259,7 @@ export const document = ({ data }: Props): string => {
 			...getScriptArrayFromChunkName('sentryLoader'),
 			...getScriptArrayFromChunkName('coreVitals'),
 			...getScriptArrayFromChunkName('dynamicImport'),
+			...getScriptArrayFromChunkName('hydration'),
 			pageHasNonBootInteractiveElements && {
 				src: `${CDN}static/frontend/js/curl-with-js-and-domReady.js`,
 			},

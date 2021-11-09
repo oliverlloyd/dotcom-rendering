@@ -39,6 +39,7 @@ import { Placeholder } from '@frontend/web/components/Placeholder';
 import { Nav } from '@frontend/web/components/Nav/Nav';
 import { LabsHeader } from '@frontend/web/components/LabsHeader';
 import { GuardianLabsLines } from '@frontend/web/components/GuardianLabsLines';
+import { Hydrate } from '@root/src/web/components/Hydrate';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { parse } from '@frontend/lib/slot-machine-flags';
@@ -50,6 +51,7 @@ import {
 } from '@root/src/web/lib/layoutHelpers';
 import { Stuck, BannerWrapper } from '@root/src/web/layouts/lib/stickiness';
 import { Lines } from '@guardian/source-react-components-development-kitchen';
+import { ClientComponent } from '../components/ClientComponent';
 
 const StandardGrid = ({
 	children,
@@ -459,6 +461,11 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 							sectionUrl={CAPI.sectionUrl}
 							guardianBaseURL={CAPI.guardianBaseURL}
 							badge={CAPI.badge}
+						/>
+						<Hydrate
+							component={ClientComponent}
+							name="ClientComponent"
+							props={{ hello: 'world' }}
 						/>
 					</GridItem>
 					<GridItem area="border">

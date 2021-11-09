@@ -48,6 +48,7 @@ const fileExists = async (glob) => {
 		'ophan',
 		'react',
 		'dynamicImport',
+		'hydration',
 		'atomIframe',
 		'embedIframe',
 		'newsletterEmbedIframe',

@@ -188,7 +188,7 @@ interface AdTargetParam {
 }
 
 type CustomParams = {
-	[key: string]: string | string[] | number | number[] | boolean | boolean[]
+	[key: string]: string | string[] | number | number[] | boolean | boolean[];
 };
 
 type AdTargeting =
@@ -1042,4 +1042,15 @@ declare module '*.svg' {
 interface PerformanceEntry {
 	loadTime: number;
 	renderTime: number;
+}
+
+declare namespace JSX {
+	interface IntrinsicElements {
+		'gu-hydrate': {
+			name: string;
+			when?: 'immediate' | 'idle' | 'visible';
+			props: any;
+			children: React.ReactNode;
+		};
+	}
 }

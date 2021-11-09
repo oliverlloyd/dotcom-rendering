@@ -52,6 +52,7 @@ import {
 import { Stuck, BannerWrapper } from '@root/src/web/layouts/lib/stickiness';
 import { Lines } from '@guardian/source-react-components-development-kitchen';
 import { ClientComponent } from '../components/ClientComponent';
+import { HelloWorld } from '../components/HelloWorld';
 
 const StandardGrid = ({
 	children,
@@ -462,11 +463,12 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 							guardianBaseURL={CAPI.guardianBaseURL}
 							badge={CAPI.badge}
 						/>
-						<Hydrate
-							component={ClientComponent}
-							name="ClientComponent"
-							props={{ hello: 'world' }}
-						/>
+						<Hydrate>
+							<ClientComponent hello="world" />
+						</Hydrate>
+						<Hydrate>
+							<HelloWorld hello="world" />
+						</Hydrate>
 					</GridItem>
 					<GridItem area="border">
 						{format.theme === ArticleSpecial.Labs ? (

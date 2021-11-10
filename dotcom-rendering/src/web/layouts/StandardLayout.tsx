@@ -53,7 +53,7 @@ import { Lines } from '@guardian/source-react-components-development-kitchen';
 import { ClientComponent } from '../components/ClientComponent';
 import { HelloWorld } from '../components/HelloWorld';
 import { Hydrate } from '../components/Hydrate';
-import { InsertPortal } from '../components/InsertPortal';
+import { ClientPortal } from '../components/ClientPortal';
 
 const StandardGrid = ({
 	children,
@@ -467,9 +467,9 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 						<Hydrate when="idle">
 							<ClientComponent hello="hydrate" />
 						</Hydrate>
-						<InsertPortal when="idle">
+						<ClientPortal when="idle" showPlaceholder={true}>
 							<ClientComponent hello="portal" />
-						</InsertPortal>
+						</ClientPortal>
 					</GridItem>
 					<GridItem area="border">
 						{format.theme === ArticleSpecial.Labs ? (
@@ -754,9 +754,9 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 				borderColour={brandBorder.primary}
 				showSideBorders={false}
 			>
-				<InsertPortal when="visible">
+				<ClientPortal when="visible">
 					<HelloWorld hello="portal" />
-				</InsertPortal>
+				</ClientPortal>
 				<Footer
 					pageFooter={CAPI.pageFooter}
 					pillar={format.theme}

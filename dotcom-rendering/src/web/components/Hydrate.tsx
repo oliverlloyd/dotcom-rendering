@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 interface HydrateProps {
 	when?: 'immediate' | 'idle' | 'visible';
 	children: JSX.Element;

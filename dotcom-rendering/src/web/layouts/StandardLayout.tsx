@@ -39,7 +39,6 @@ import { Placeholder } from '@frontend/web/components/Placeholder';
 import { Nav } from '@frontend/web/components/Nav/Nav';
 import { LabsHeader } from '@frontend/web/components/LabsHeader';
 import { GuardianLabsLines } from '@frontend/web/components/GuardianLabsLines';
-import { Hydrate } from '@root/src/web/components/Hydrate';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { parse } from '@frontend/lib/slot-machine-flags';
@@ -53,6 +52,8 @@ import { Stuck, BannerWrapper } from '@root/src/web/layouts/lib/stickiness';
 import { Lines } from '@guardian/source-react-components-development-kitchen';
 import { ClientComponent } from '../components/ClientComponent';
 import { HelloWorld } from '../components/HelloWorld';
+import { Hydrate } from '../components/Hydrate';
+import { InsertPortal } from '../components/InsertPortal';
 
 const StandardGrid = ({
 	children,
@@ -463,12 +464,12 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 							guardianBaseURL={CAPI.guardianBaseURL}
 							badge={CAPI.badge}
 						/>
-						<Hydrate>
-							<ClientComponent hello="world" />
+						<Hydrate when="idle">
+							<ClientComponent hello="hydrate" />
 						</Hydrate>
-						<Hydrate>
-							<HelloWorld hello="world" />
-						</Hydrate>
+						<InsertPortal when="idle">
+							<ClientComponent hello="portal" />
+						</InsertPortal>
 					</GridItem>
 					<GridItem area="border">
 						{format.theme === ArticleSpecial.Labs ? (
@@ -753,6 +754,9 @@ export const StandardLayout = ({ CAPI, NAV, format, palette }: Props) => {
 				borderColour={brandBorder.primary}
 				showSideBorders={false}
 			>
+				<InsertPortal when="visible">
+					<HelloWorld hello="portal" />
+				</InsertPortal>
 				<Footer
 					pageFooter={CAPI.pageFooter}
 					pillar={format.theme}

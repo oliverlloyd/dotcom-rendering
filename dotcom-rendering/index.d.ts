@@ -1052,5 +1052,10 @@ declare namespace JSX {
 			props: any;
 			children: React.ReactNode;
 		};
+		'gu-portal': {
+			name: string;
+			when?: 'immediate' | 'idle' | 'visible';
+			props: any;
+		};
 	}
 }

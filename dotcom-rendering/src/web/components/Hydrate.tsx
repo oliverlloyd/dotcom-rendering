@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface HydrateProps {
 	when?: 'immediate' | 'idle' | 'visible';
 	children: JSX.Element;

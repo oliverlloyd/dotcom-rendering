@@ -1,52 +1,75 @@
 import '../webpackPublicPath';
 
 import { startup } from '@root/src/web/browser/startup';
-import { hydrate, h } from 'preact';
-import { initPerf } from '../initPerf';
+// import { log } from '@guardian/libs';
+import { whenVisible } from './whenVisible';
+import { whenIdle } from './whenIdle';
+import { doHydration } from './doHydration';
+import { insertPortal } from './insertPortal';
+import { getName } from './getName';
+import { getProps } from './getProps';
 
 const init = () => {
-	const markers = document.querySelectorAll('gu-hydrate');
-	markers.forEach((marker) => {
-		if (marker instanceof HTMLElement) {
-			const p = marker.getAttribute('props');
-			const name = marker.getAttribute('name');
+	const hydrationMarkers = document.querySelectorAll('gu-hydrate');
+	hydrationMarkers.forEach((domElement) => {
+		if (domElement instanceof HTMLElement) {
+			const name = getName(domElement);
+			const props = getProps(domElement);
 
-			try {
-				const data = p && JSON.parse(p);
-				if (name) {
-					const { start, end } = initPerf(name);
-					start();
-					import(
-						/* webpackInclude: /(ClientComponent|HelloWorld)\.tsx$/ */
-						/* webpackMode: "lazy-once" */
-						/* webpackChunkName: "hydrate" */
-						`../../components/${name}`
-					)
-						.then((module) => {
-							hydrate(h(module[name], data), marker);
-							end();
-						})
-						.catch((error) => {
-							if (name && error.message.includes(name)) {
-								// Most likely, we're being asked to hydrate a component whose name hasn't been added to the
-								// webpackInclude option in the dynamic import statement above
-								console.error(
-									`🚨 Error importing ${name}. Did you forget to update webpackInclude in hydration/init.ts? 🚨`,
-								);
-								return;
-							}
-							throw error;
+			if (!name) return;
+
+			const when = domElement.getAttribute('when');
+			switch (when) {
+				case 'idle':
+					{
+						whenIdle(() => {
+							doHydration(name, props, domElement);
 						});
-				} else {
-					console.error(
-						`🚨 Error hydrating marker. No component name attribute supplied, check children.type.name in Hydrate.tsx 🚨`,
-					);
+					}
+					break;
+				case 'visible':
+					{
+						whenVisible(domElement, () => {
+							doHydration(name, props, domElement);
+						});
+					}
+					break;
+				case 'immediate':
+				default: {
+					doHydration(name, props, domElement);
 				}
-			} catch (error: unknown) {
-				console.error(
-					`🚨 Error hydrating ${name}. Are these props serialisable? ${p} 🚨`,
-				);
-				throw error;
+			}
+		}
+	});
+
+	const portalMarkers = document.querySelectorAll('gu-portal');
+	portalMarkers.forEach((domElement) => {
+		if (domElement instanceof HTMLElement) {
+			const name = getName(domElement);
+			const props = getProps(domElement);
+
+			if (!name) return;
+
+			const when = domElement.getAttribute('when');
+			switch (when) {
+				case 'idle':
+					{
+						whenIdle(() => {
+							insertPortal(name, props, domElement);
+						});
+					}
+					break;
+				case 'visible':
+					{
+						whenVisible(domElement, () => {
+							insertPortal(name, props, domElement);
+						});
+					}
+					break;
+				case 'immediate':
+				default: {
+					insertPortal(name, props, domElement);
+				}
 			}
 		}
 	});

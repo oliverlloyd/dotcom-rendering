@@ -2259,10 +2259,10 @@
   resolved "https://registry.yarnpkg.com/@guardian/automat-contributions/-/automat-contributions-0.4.3.tgz#3ef815d637022802cbeac7830813bbdf7326b43d"
   integrity sha512-zSvPfrswfd0FGx0qfCwORmebeI46RMhkxgQQiZ8uCC6IRUDd+3UYl7/0hAILeGKGZ7qDUC8EwQ6TX0le7+2a1g==
 
-"@guardian/braze-components@^5.0.0-0":
-  version "5.0.0-0"
-  resolved "https://registry.npmjs.org/@guardian/braze-components/-/braze-components-5.0.0-0.tgz#d2406b55448d6090e957a59fbe7d294f321c3075"
-  integrity sha512-0rBJQwjtJxtoQjsO3wJvEH+L/y9kqb+A6pu+VmaDHysA0EsHlTfIhGXf9BSCzPjS4S2grj7lYYA/d8qrlvr0Cw==
+"@guardian/braze-components@5.1.0-0":
+  version "5.1.0-0"
+  resolved "https://registry.yarnpkg.com/@guardian/braze-components/-/braze-components-5.1.0-0.tgz#efed23e40f73ba232f5046abf120a97420089311"
+  integrity sha512-Q9xOz2yiSfnppcFzTjs9O3ATKhEGz7+0MJHjHJ6VSVrTzBXaOsfCT0zA/Q0UlHys+Ae7rlKB4SS093m+f+A9Ng==
 
 "@guardian/commercial-core@^0.31.0":
   version "0.31.0"

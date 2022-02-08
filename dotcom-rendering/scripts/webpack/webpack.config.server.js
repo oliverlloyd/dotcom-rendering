@@ -20,6 +20,33 @@ module.exports = ({ sessionId }) => ({
 		minimize: false,
 		runtimeChunk: false,
 	},
+	devServer: {
+		compress: true,
+		port: 3030,
+		hot: false,
+		setupMiddlewares: (middlewares, devServer) => {
+			if (!devServer) {
+				throw new Error('webpack-dev-server is not defined');
+			}
+
+			const fs = devServer.middleware.context.outputFileSystem;
+			const server = fs.readFileSync('frontend.server.js');
+
+			devServer.compiler.hooks.done.tap('DevServer', () => {});
+
+			// TODO:
+
+			console.log(devServer);
+			console.log(devServer.middleware);
+			console.log(devServer.middleware?.context);
+			// console.log(devServer.compiler.compilers[0]);
+			// console.log(devServer.compiler.compilers[1]);
+
+			devServer.app.use(require('../dev-server/dev-server-test'));
+
+			return middlewares;
+		},
+	},
 	externals: [
 		'@loadable/component',
 		require('webpack-node-externals')({

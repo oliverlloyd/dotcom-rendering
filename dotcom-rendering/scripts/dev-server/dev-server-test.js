@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/hello', (req, res) => {
-	console.log(Object.keys(req));
+	console.log(req.serverBuild);
 	res.send('hello');
 });
 

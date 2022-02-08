@@ -72,7 +72,7 @@ dev: clear clean-dist install
 
 dev-test: clear clean-dist install
 	$(call log, "starting frontend DEV server")
-	@NODE_ENV=development SKIP_LEGACY=true webpack server --config ./scripts/webpack/webpack.config.js
+	@NODE_ENV=development SKIP_LEGACY=true webpack serve --config ./scripts/webpack/webpack.config.js
 
 dev-legacy: clear clean-dist install
 	$(call log, "starting frontend DEV server (Legacy support ENABLED)")

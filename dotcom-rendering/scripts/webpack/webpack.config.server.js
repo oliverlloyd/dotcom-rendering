@@ -1,6 +1,7 @@
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const chalk = require('chalk');
 const GuStatsReportPlugin = require('./gu-stats-report-plugin');
+const requireFromString = require('require-from-string');
 
 const DEV = process.env.NODE_ENV === 'development';
 
@@ -29,17 +30,37 @@ module.exports = ({ sessionId }) => ({
 				throw new Error('webpack-dev-server is not defined');
 			}
 
-			const fs = devServer.middleware.context.outputFileSystem;
-			const server = fs.readFileSync('frontend.server.js');
+			// const fs = devServer.middleware.context.outputFileSystem;
+			// const server = fs.readFileSync('frontend.server.js');
 
-			devServer.compiler.hooks.done.tap('DevServer', () => {});
+			// devServer.compiler.hooks.done.tap('DevServer', () => {});
 
 			// TODO:
 
-			console.log(devServer);
-			console.log(devServer.middleware);
-			console.log(devServer.middleware?.context);
-			// console.log(devServer.compiler.compilers[0]);
+			const serverCompiler = devServer.compiler.compilers.find(
+				(compiler) => compiler.name === 'server',
+			);
+
+			let serverBuild;
+
+			serverCompiler.hooks.afterEmit.tap('gu-dev-server', () => {
+				serverBuild = requireFromString(
+					serverCompiler.outputFileSystem.readFileSync(
+						'dist/frontend.server.js',
+						'utf-8',
+					),
+				);
+			});
+
+			devServer.app.use((req, res, next) => {
+				req.serverBuild = serverBuild;
+				next();
+			});
+
+			// console.log(devServer);
+			// console.log(devServer.middleware);
+			// console.log(devServer.middleware?.context);
+			// console.log(devServer.compiler);
 			// console.log(devServer.compiler.compilers[1]);
 
 			devServer.app.use(require('../dev-server/dev-server-test'));

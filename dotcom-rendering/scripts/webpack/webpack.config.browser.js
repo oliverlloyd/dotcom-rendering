@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const chalk = require('chalk');
+const requireFromString = require('require-from-string');
 const GuStatsReportPlugin = require('./gu-stats-report-plugin');
 
 const PROD = process.env.NODE_ENV === 'production';
@@ -46,6 +47,57 @@ module.exports = ({ isLegacyJS, sessionId }) => ({
 	// fix for known issue with webpack dynamic imports
 	optimization: {
 		splitChunks: { cacheGroups: { default: false } },
+	},
+	devServer: {
+		compress: true,
+		// port: 3030,
+		hot: false,
+		setupMiddlewares: (middlewares, devServer) => {
+			if (!devServer) {
+				throw new Error('webpack-dev-server is not defined');
+			}
+
+			// const fs = devServer.middleware.context.outputFileSystem;
+			// const server = fs.readFileSync('frontend.server.js');
+
+			// devServer.compiler.hooks.done.tap('DevServer', () => {});
+
+			// TODO:
+
+			const serverCompiler = devServer.compiler.compilers.find(
+				(compiler) => compiler.name === 'server',
+			);
+
+			let serverBuild;
+
+			serverCompiler.hooks.afterEmit.tap(
+				'gu-dev-server',
+				(compilation) => {
+					console.log(compilation.getStats());
+					serverBuild = requireFromString(
+						serverCompiler.outputFileSystem.readFileSync(
+							'dist/frontend.server.js',
+							'utf-8',
+						),
+					);
+				},
+			);
+
+			devServer.app.use((req, res, next) => {
+				req.serverBuild = serverBuild;
+				next();
+			});
+
+			// console.log(devServer);
+			// console.log(devServer.middleware);
+			// console.log(devServer.middleware?.context);
+			// console.log(devServer.compiler);
+			// console.log(devServer.compiler.compilers[1]);
+
+			devServer.app.use(require('../dev-server/dev-server-test'));
+
+			return middlewares;
+		},
 	},
 	plugins: [
 		DEV && new webpack.HotModuleReplacementPlugin(),

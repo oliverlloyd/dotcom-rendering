@@ -23,9 +23,6 @@ module.exports = (middlewares, devServer) => {
 		}),
 	);
 
-	// devServer.app.get('/Article', getConfigFromURLMiddleware);
-	// app.get('/ArticleJson', getConfigFromURL, hotServerRender);
-
 	devServer.app.get('/', (req, res) => {
 		res.sendFile(path.join(__dirname, 'index.html'));
 	});

@@ -12,46 +12,42 @@ import {
 } from '@guardian/source-foundations';
 import { ArticleDesign, ArticleFormat } from '@guardian/libs';
 import { Lines } from '@guardian/source-react-components-development-kitchen';
+import Accordion from '@guardian/common-rendering/src/components/accordion';
+import { Hide } from '@guardian/source-react-components';
+import { StarRating } from '../components/StarRating/StarRating';
+import { ArticleBody } from '../components/ArticleBody';
+import { RightColumn } from '../components/RightColumn';
+import { ArticleTitle } from '../components/ArticleTitle';
+import { ArticleContainer } from '../components/ArticleContainer';
+import { ArticleMeta } from '../components/ArticleMeta';
+import { SubMeta } from '../components/SubMeta';
+import { MainMedia } from '../components/MainMedia';
+import { ArticleHeadline } from '../components/ArticleHeadline';
+import { ArticleHeadlinePadding } from '../components/ArticleHeadlinePadding';
+import { Standfirst } from '../components/Standfirst';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
+import { SubNav } from '../components/SubNav.importable';
+import { ElementContainer } from '../components/ElementContainer';
+import { Nav } from '../components/Nav/Nav';
+import { HeaderAdSlot } from '../components/HeaderAdSlot';
+import { MobileStickyContainer, AdSlot } from '../components/AdSlot';
+import { GridItem } from '../components/GridItem';
+import { AgeWarning } from '../components/AgeWarning';
+import { DiscussionContainer } from '../components/DiscussionContainer.importable';
+import { Pagination } from '../components/Pagination';
+import { KeyEventsContainer } from '../components/KeyEventsContainer';
 
-import { StarRating } from '@root/src/web/components/StarRating/StarRating';
-import { ArticleBody } from '@root/src/web/components/ArticleBody';
-import { RightColumn } from '@root/src/web/components/RightColumn';
-import { ArticleTitle } from '@root/src/web/components/ArticleTitle';
-import { ArticleContainer } from '@root/src/web/components/ArticleContainer';
-import { ArticleMeta } from '@root/src/web/components/ArticleMeta';
-import { SubMeta } from '@root/src/web/components/SubMeta';
-import { MainMedia } from '@root/src/web/components/MainMedia';
-import { ArticleHeadline } from '@root/src/web/components/ArticleHeadline';
-import { ArticleHeadlinePadding } from '@root/src/web/components/ArticleHeadlinePadding';
-import { Standfirst } from '@root/src/web/components/Standfirst';
-import { Header } from '@root/src/web/components/Header';
-import { Footer } from '@root/src/web/components/Footer';
-import { SubNav } from '@root/src/web/components/SubNav.importable';
-import { ElementContainer } from '@root/src/web/components/ElementContainer';
-import { Nav } from '@root/src/web/components/Nav/Nav';
-import { HeaderAdSlot } from '@root/src/web/components/HeaderAdSlot';
-import { MobileStickyContainer, AdSlot } from '@root/src/web/components/AdSlot';
-import { GridItem } from '@root/src/web/components/GridItem';
-import { AgeWarning } from '@root/src/web/components/AgeWarning';
-import { DiscussionContainer } from '@root/src/web/components/DiscussionContainer.importable';
-import { Pagination } from '@frontend/web/components/Pagination';
-import { KeyEventsContainer } from '@frontend/web/components/KeyEventsContainer';
-
-import { buildAdTargeting } from '@root/src/lib/ad-targeting';
-import { parse } from '@frontend/lib/slot-machine-flags';
-import { getAgeWarning } from '@root/src/lib/age-warning';
+import { buildAdTargeting } from '../../lib/ad-targeting';
+import { parse } from '../../lib/slot-machine-flags';
+import { getAgeWarning } from '../../lib/age-warning';
 import {
 	decideLineCount,
 	decideLineEffect,
 	getCurrentPillar,
-} from '@root/src/web/lib/layoutHelpers';
-import {
-	Stuck,
-	SendToBack,
-	BannerWrapper,
-} from '@root/src/web/layouts/lib/stickiness';
-import Accordion from '@guardian/common-rendering/src/components/accordion';
-import { Hide } from '@guardian/source-react-components';
+} from '../lib/layoutHelpers';
+import { Stuck, SendToBack, BannerWrapper } from './lib/stickiness';
+import { FilterKeyEventsToggle } from '../components/FilterKeyEventsToggle.importable';
 import { Placeholder } from '../components/Placeholder';
 import { ContainerLayout } from '../components/ContainerLayout';
 import { Island } from '../components/Island';
@@ -168,6 +164,7 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 						'lines		 media'
 						'meta		 media'
 						'keyevents	 media'
+						'keyevents   filter'
 						'keyevents	 body'
 						'keyevents	 body'
 						'. 			 .';
@@ -180,6 +177,7 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 						'lines 		 media	   right-column'
 						'meta  		 media     right-column'
 						'keyevents   media 	   right-column'
+						'keyevents   filter    right-column'
 						'keyevents   body      right-column'
 						'keyevents   body      right-column'
 						'.			 .         right-column';
@@ -192,6 +190,7 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 						'lines'
 						'meta'
 						'keyevents'
+						'filter'
 						'body';
 				}
 			}
@@ -233,6 +232,7 @@ const LiveGridSport = ({ children }: { children: React.ReactNode }) => (
 						'meta		 media'
 						'meta		 media'
 						'keyevents	 media'
+						'keyevents   filter'
 						'matchstats	 body'
 						'. 			 .';
 				}
@@ -245,6 +245,7 @@ const LiveGridSport = ({ children }: { children: React.ReactNode }) => (
 						'meta  		 media     right-column'
 						'keyevents   media 	   right-column'
 						'matchstats  body      right-column'
+						'keyevents   filter    right-column'
 						'.			 .         right-column';
 				}
 				/* until desktop define fixed body width */
@@ -257,6 +258,7 @@ const LiveGridSport = ({ children }: { children: React.ReactNode }) => (
 						'meta'
 						'keyevents'
 						'matchstats'
+						'filter'
 						'body';
 				}
 				/* fluid until tablet */
@@ -269,6 +271,7 @@ const LiveGridSport = ({ children }: { children: React.ReactNode }) => (
 						'meta'
 						'keyevents'
 						'matchstats'
+						'filter'
 						'body';
 				}
 			}
@@ -661,6 +664,15 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 					>
 						{CAPI.matchUrl ? (
 							<LiveGridSport>
+								<GridItem area="filter">
+									<Island deferUntil="visible">
+										<FilterKeyEventsToggle
+											filterKeyEvents={
+												CAPI.filterKeyEvents
+											}
+										/>
+									</Island>
+								</GridItem>
 								<GridItem area="matchtabs" element="aside">
 									<div css={maxWidth}>
 										{CAPI.matchUrl && showMatchTabs && (
@@ -746,6 +758,9 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 										<KeyEventsContainer
 											format={format}
 											keyEvents={CAPI.keyEvents}
+											filterKeyEvents={
+												CAPI.filterKeyEvents
+											}
 										/>
 									</div>
 								</GridItem>
@@ -886,6 +901,17 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 							</LiveGridSport>
 						) : (
 							<LiveGrid>
+								<GridItem area="filter">
+									<Hide below="desktop">
+										<Island deferUntil="visible">
+											<FilterKeyEventsToggle
+												filterKeyEvents={
+													CAPI.filterKeyEvents
+												}
+											/>
+										</Island>
+									</Hide>
+								</GridItem>
 								<GridItem area="media">
 									<div css={maxWidth}>
 										<MainMedia
@@ -959,6 +985,9 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 										<KeyEventsContainer
 											format={format}
 											keyEvents={CAPI.keyEvents}
+											filterKeyEvents={
+												CAPI.filterKeyEvents
+											}
 										/>
 									</div>
 								</GridItem>
@@ -969,6 +998,17 @@ export const LiveLayout = ({ CAPI, NAV, format, palette }: Props) => {
 											accordionTitle="Live feed"
 											context="liveFeed"
 										>
+											<GridItem area="filter">
+												<Hide above="desktop">
+													<Island deferUntil="visible">
+														<FilterKeyEventsToggle
+															filterKeyEvents={
+																CAPI.filterKeyEvents
+															}
+														/>
+													</Island>
+												</Hide>
+											</GridItem>
 											<ArticleContainer format={format}>
 												{CAPI.pagination &&
 													CAPI.pagination

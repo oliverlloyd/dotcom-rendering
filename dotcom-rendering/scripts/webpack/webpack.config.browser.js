@@ -55,6 +55,7 @@ module.exports = ({ isLegacyJS, sessionId }) => ({
 		devMiddleware: {
 			publicPath: '/assets/',
 			writeToDisk: true,
+			serverSideRender: true,
 			headers: (req, res) => {
 				// Allow any localhost request from accessing the assets
 				if (req.hostname === 'localhost' && req.headers.origin)

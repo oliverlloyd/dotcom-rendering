@@ -1,11 +1,5 @@
-import { render as renderAMPArticle } from '../amp/server';
-import {
-	renderArticle,
-	renderArticleJson,
-	renderBlocks,
-	renderInteractive,
-} from '../web/server';
-import { prodServer } from './prod-server';
+
+
 
 // this export is the function used by webpackHotServerMiddleware in /scripts/frontend-dev-server
 export default (webpackConfig) => (req, res) => {
@@ -27,8 +21,3 @@ export default (webpackConfig) => (req, res) => {
 
 	return renderArticle(req, res);
 };
-
-// this is the actual production server
-if (process.env.NODE_ENV === 'production') {
-	prodServer();
-}

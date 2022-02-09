@@ -53,17 +53,17 @@ module.exports = ({ sessionId }) => ({
 		},
 	],
 	plugins: [
-		DEV &&
-			new FriendlyErrorsWebpackPlugin({
-				compilationSuccessInfo: {
-					messages: [
-						'Server build complete',
-						`DEV server available at: ${chalk.blue.underline(
-							'http://localhost:3030',
-						)}`,
-					],
-				},
-			}),
+		// DEV &&
+		// 	new FriendlyErrorsWebpackPlugin({
+		// 		compilationSuccessInfo: {
+		// 			messages: [
+		// 				'Server build complete',
+		// 				`DEV server available at: ${chalk.blue.underline(
+		// 					'http://localhost:3030',
+		// 				)}`,
+		// 			],
+		// 		},
+		// 	}),
 		DEV &&
 			new GuStatsReportPlugin({
 				displayDisclaimer: true,

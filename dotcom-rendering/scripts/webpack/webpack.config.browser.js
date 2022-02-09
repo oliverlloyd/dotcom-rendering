@@ -2,7 +2,6 @@
 const webpack = require('webpack');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const chalk = require('chalk');
-const requireFromString = require('require-from-string');
 const GuStatsReportPlugin = require('./gu-stats-report-plugin');
 
 const PROD = process.env.NODE_ENV === 'production';
@@ -19,8 +18,8 @@ const generateName = (isLegacyJS) => {
 const scriptPath = (dcrPackage) =>
 	[
 		`./src/web/browser/${dcrPackage}/init.ts`,
-		DEV &&
-			'webpack-hot-middleware/client?name=browser&overlayWarnings=true',
+		// DEV &&
+		// 	'webpack-hot-middleware/client?name=browser&overlayWarnings=true',
 	].filter(Boolean);
 
 module.exports = ({ isLegacyJS, sessionId }) => ({
@@ -52,68 +51,38 @@ module.exports = ({ isLegacyJS, sessionId }) => ({
 		compress: true,
 		// port: 3030,
 		hot: false,
-		setupMiddlewares: (middlewares, devServer) => {
-			if (!devServer) {
-				throw new Error('webpack-dev-server is not defined');
-			}
-
-			// const fs = devServer.middleware.context.outputFileSystem;
-			// const server = fs.readFileSync('frontend.server.js');
-
-			// devServer.compiler.hooks.done.tap('DevServer', () => {});
-
-			// TODO:
-
-			const serverCompiler = devServer.compiler.compilers.find(
-				(compiler) => compiler.name === 'server',
-			);
-
-			let serverBuild;
-
-			serverCompiler.hooks.afterEmit.tap(
-				'gu-dev-server',
-				(compilation) => {
-					console.log(compilation.getStats());
-					serverBuild = requireFromString(
-						serverCompiler.outputFileSystem.readFileSync(
-							'dist/frontend.server.js',
-							'utf-8',
-						),
+		setupMiddlewares: require('../dev-server/setup-middlewares'),
+		devMiddleware: {
+			publicPath: '/assets/',
+			writeToDisk: true,
+			headers: (req, res) => {
+				// Allow any localhost request from accessing the assets
+				if (req.hostname === 'localhost' && req.headers.origin)
+					res.setHeader(
+						'Access-Control-Allow-Origin',
+						req.headers.origin,
 					);
-				},
-			);
-
-			devServer.app.use((req, res, next) => {
-				req.serverBuild = serverBuild;
-				next();
-			});
-
-			// console.log(devServer);
-			// console.log(devServer.middleware);
-			// console.log(devServer.middleware?.context);
-			// console.log(devServer.compiler);
-			// console.log(devServer.compiler.compilers[1]);
-
-			devServer.app.use(require('../dev-server/dev-server-test'));
-
-			return middlewares;
+			},
+			// 	(filePath) => {
+			// 	return /loadable-manifest$/.test(filePath);
+			//   },
 		},
 	},
 	plugins: [
 		DEV && new webpack.HotModuleReplacementPlugin(),
-		DEV &&
-			new FriendlyErrorsWebpackPlugin({
-				compilationSuccessInfo: {
-					messages: [
-						isLegacyJS
-							? 'Legacy client build complete'
-							: 'Client build complete',
-						`DEV server available at: ${chalk.blue.underline(
-							'http://localhost:3030',
-						)}`,
-					],
-				},
-			}),
+		// DEV &&
+		// 	new FriendlyErrorsWebpackPlugin({
+		// 		compilationSuccessInfo: {
+		// 			messages: [
+		// 				isLegacyJS
+		// 					? 'Legacy client build complete'
+		// 					: 'Client build complete',
+		// 				`DEV server available at: ${chalk.blue.underline(
+		// 					'http://localhost:3030',
+		// 				)}`,
+		// 			],
+		// 		},
+		// 	}),
 		DEV &&
 			new GuStatsReportPlugin({
 				buildName: isLegacyJS ? 'legacy-client' : 'client',

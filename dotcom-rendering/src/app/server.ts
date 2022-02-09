@@ -24,6 +24,14 @@ import {
 import { recordBaselineCloudWatchMetrics } from './aws/metrics-baseline';
 import { logger } from './logging';
 
+export {
+	renderArticle,
+	renderArticleJson,
+	renderAMPArticle,
+	renderInteractive,
+	renderBlocks,
+};
+
 // this export is the function used by webpackHotServerMiddleware in /scripts/frontend-dev-server
 export default (options: any) => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

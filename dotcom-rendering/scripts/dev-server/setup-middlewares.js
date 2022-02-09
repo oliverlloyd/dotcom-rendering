@@ -1,36 +1,34 @@
-const fetch = require('node-fetch');
 const path = require('path');
 const express = require('express');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
-
+const {
+	getConfigFromURLMiddleware,
+} = require('../../src/server/lib/get-config-from-url');
 
 module.exports = (middlewares, devServer) => {
 	if (!devServer) {
 		throw new Error('webpack-dev-server is not defined');
 	}
 
-
-
-	const { app } = devServer;
-
-	app.use(
+	devServer.app.use(
 		'/static/frontend',
 		express.static(path.join(__dirname, '../..', 'src', 'static')),
 	);
 
-	app.use(webpackHotServerMiddleware(devServer.compiler, {
-		chunkName: 'frontend.server',
-	}));
+	devServer.app.use(getConfigFromURLMiddleware);
 
+	devServer.app.use(
+		webpackHotServerMiddleware(devServer.compiler, {
+			chunkName: 'frontend.server',
+		}),
+	);
 
+	// devServer.app.get('/Article', getConfigFromURLMiddleware);
+	// app.get('/ArticleJson', getConfigFromURL, hotServerRender);
 
-	app.get('/', (req, res) => {
+	devServer.app.get('/', (req, res) => {
 		res.sendFile(path.join(__dirname, 'index.html'));
 	});
-
-	// app.get('*', (req, res) => {
-	// 	res.redirect('/');
-	// });
 
 	return middlewares;
 };

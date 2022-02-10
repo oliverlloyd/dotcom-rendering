@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const os = require('os');
 const { exec } = require('child_process');
-const megalog = require('megalog');
+const chalk = require('chalk');
 
 const PLUGIN_NAME = 'GuStatsReportPlugin';
 
@@ -23,9 +23,10 @@ class GuStatsReportPlugin {
 		this.fetchGitHash();
 
 		if (config?.displayDisclaimer)
-			megalog.info(
-				'This project reports build information, stats & basic machine information.\n\nThis information helps us improve developer experience for this project.',
-				{ heading: 'Build stats reporting' },
+			console.log(
+				chalk.yellow.dim(
+					'This project reports compilation and machine stats to improve the development experience.',
+				),
 			);
 	}
 

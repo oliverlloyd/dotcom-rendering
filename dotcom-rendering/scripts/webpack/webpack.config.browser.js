@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const GuStatsReportPlugin = require('./gu-stats-report-plugin');
+const GuStatsReportPlugin = require('./plugins/gu-stats-report-plugin');
 
 const PROD = process.env.NODE_ENV === 'production';
 const DEV = process.env.NODE_ENV === 'development';
@@ -39,29 +39,6 @@ module.exports = ({ isLegacyJS, sessionId }) => ({
 	// fix for known issue with webpack dynamic imports
 	optimization: {
 		splitChunks: { cacheGroups: { default: false } },
-	},
-	devServer: {
-		compress: false,
-		hot: false,
-		liveReload: true,
-		setupMiddlewares: require('../dev-server/setup-middlewares'),
-		client: {
-			logging: 'warn',
-			overlay: true,
-		},
-		devMiddleware: {
-			publicPath: '/assets/',
-			writeToDisk: true,
-			serverSideRender: true,
-			headers: (req, res) => {
-				// Allow any localhost request from accessing the assets
-				if (req.hostname === 'localhost' && req.headers.origin)
-					res.setHeader(
-						'Access-Control-Allow-Origin',
-						req.headers.origin,
-					);
-			},
-		},
 	},
 	plugins: [
 		DEV &&

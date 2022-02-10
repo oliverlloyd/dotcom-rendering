@@ -75,6 +75,7 @@ module.exports = [
 			platform: 'server',
 		}),
 		require(`./webpack.config.server`)({ sessionId }),
+		PROD ? {} : require(`./dev/webpack.config.dev-server`),
 	),
 	// browser bundle configs
 	// TODO: ignore static files for legacy compliation

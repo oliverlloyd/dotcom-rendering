@@ -1,4 +1,4 @@
-const GuStatsReportPlugin = require('./gu-stats-report-plugin');
+const GuStatsReportPlugin = require('./plugins/gu-stats-report-plugin');
 
 const DEV = process.env.NODE_ENV === 'development';
 

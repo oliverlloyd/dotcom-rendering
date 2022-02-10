@@ -29,7 +29,11 @@ exports.default = getConfigFromURL;
 
 exports.getConfigFromURLMiddleware = async (req, res, next) => {
 	if (req.query.url) {
-		req.body = await getConfigFromURL(req.query.url);
+		let { url } = req.query;
+		if (req.path.startsWith('/AMP')) {
+			url = url.replace('www', 'amp');
+		}
+		req.body = await getConfigFromURL(url);
 	}
 	next();
 };

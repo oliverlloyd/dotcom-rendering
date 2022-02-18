@@ -17,7 +17,7 @@ import { map, withDefault } from '@guardian/types';
 import type { Item } from 'item';
 import { pipe } from 'lib';
 import type { FC, ReactElement } from 'react';
-import { articleWidthStyles, darkModeCss, wideContentWidth } from 'styles';
+import { darkModeCss, wideContentWidth } from 'styles';
 import { getThemeStyles } from 'themeStyles';
 
 // ----- Component ----- //
@@ -119,7 +119,6 @@ const immersiveStyles = (theme: ArticleTheme): SerializedStyles => css`
 `;
 
 const standardStyles: SerializedStyles = css`
-	${articleWidthStyles}
 	padding-top: ${remSpace[1]};
 `;
 

@@ -17,7 +17,7 @@ import StarRating from 'components/starRating';
 import { headlineBackgroundColour, headlineTextColour } from 'editorialStyles';
 import type { Item } from 'item';
 import type { ReactElement } from 'react';
-import { articleWidthStyles, darkModeCss, wideContentWidth } from 'styles';
+import { darkModeCss, wideContentWidth } from 'styles';
 
 // ----- Component ----- //
 
@@ -31,8 +31,6 @@ const styles = (format: ArticleFormat): SerializedStyles => css`
     ${headlineBackgroundColour(format)}
     padding-bottom: ${remSpace[6]};
 	margin: 0;
-
-	${articleWidthStyles}
 `;
 
 const immersiveStyles = css`

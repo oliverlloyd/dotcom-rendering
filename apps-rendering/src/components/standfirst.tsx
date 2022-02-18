@@ -44,13 +44,12 @@ const isNotBlog = (format: ArticleFormat): boolean =>
 	format.design !== ArticleDesign.DeadBlog;
 
 const styles = (format: ArticleFormat): SerializedStyles => css`
-	margin-bottom: ${remSpace[3]};
 	color: ${text.standfirst(format)};
 	background-color: ${background.standfirst(format)};
 
 	p,
 	ul {
-		margin: ${remSpace[3]} 0;
+		padding: ${remSpace[3]} 0;
 	}
 
 	address {

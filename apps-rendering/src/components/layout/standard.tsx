@@ -5,15 +5,14 @@ import { css } from '@emotion/react';
 import { ArticleDisplay } from '@guardian/libs';
 import {
 	background,
-	breakpoints,
 	from,
-	neutral,
 	remSpace,
 } from '@guardian/source-foundations';
 import { Lines } from '@guardian/source-react-components-development-kitchen';
 import { map, none, withDefault } from '@guardian/types';
 import FootballScores from 'components/footballScores';
 import Footer from 'components/footer';
+import GridItem from 'components/gridItem';
 import Headline from 'components/headline';
 import ImmersiveCaption from 'components/immersiveCaption';
 import Metadata from 'components/metadata';
@@ -36,28 +35,86 @@ import type { FC, ReactNode } from 'react';
 import {
 	articleWidthStyles,
 	darkModeCss,
-	lineStyles,
 	onwardStyles,
 } from 'styles';
 import { getThemeStyles, themeToPillarString } from 'themeStyles';
 
 // ----- Styles ----- //
 
-const Styles = css`
-	background: ${neutral[97]};
-`;
-
-const DarkStyles = darkModeCss`
+const styles = darkModeCss`
     background: ${background.inverse};
 `;
 
-const BorderStyles = css`
-	background: ${neutral[100]};
-	${darkModeCss`background: ${background.inverse};`}
+const gridColumns = css`
+	display: grid;
+	grid-template-columns: 10px 1fr 10px;
+
+	${from.mobileLandscape} {
+		grid-template-columns: 20px 1fr 20px;
+	}
+
+	${from.tablet} {
+		column-gap: 20px;
+		grid-template-columns: 1fr 700px 1fr;
+	}
+
+	${from.desktop} {
+		grid-template-columns: 1fr 620px 300px 1fr;
+	}
+
+	${from.leftCol} {
+		grid-template-columns: 1fr 140px 620px 300px 1fr;
+	}
 
 	${from.wide} {
-		width: ${breakpoints.wide}px;
-		margin: 0 auto;
+		grid-template-columns: 1fr 220px 620px 60px 300px 1fr;
+	}
+`;
+
+const headerStyles = css`
+	${gridColumns}
+	grid-template-areas:
+		'main-media main-media main-media'
+		'. series .'
+		'. headline-standfirst .'
+		'multilines multilines multilines'
+		'. metadata .';
+
+	${from.phablet} {
+		grid-template-areas:
+			'. main-media .'
+			'. series .'
+			'. headline-standfirst .'
+			'. multilines .'
+			'. metadata .';
+	}
+
+	${from.tablet} {
+		grid-template-areas:
+			'. series .'
+			'. headline-standfirst .'
+			'. main-media .'
+			'. multilines .'
+			'. metadata .';
+	}
+
+	${from.leftCol} {
+		grid-template-areas:
+			'. series headline-standfirst . .'
+			'. multilines main-media . .'
+			'. metadata main-media . .'
+			'. . main-media . .';
+	}
+`;
+
+const mainStyles = css`
+	${gridColumns}
+	grid-template-areas:
+		'. body .';
+
+	${from.leftCol} {
+		grid-template-areas:
+			'. . body . .';
 	}
 `;
 
@@ -122,8 +179,29 @@ const Standard: FC<Props> = ({ item, children }) => {
 	const matchScores = 'football' in item ? item.football : none;
 
 	return (
-		<main css={[Styles, DarkStyles]}>
-			<article className="js-article" css={BorderStyles}>
+		<article css={styles}>
+			<header css={headerStyles}>
+				<GridItem area="series">
+					<Series item={item} />
+				</GridItem>
+				<GridItem area="headline-standfirst">
+					<Headline item={item} />
+					<Standfirst item={item} />
+					<ImmersiveCaption item={item} />
+				</GridItem>
+				<GridItem area="main-media">
+					<HeaderMedia item={item} />
+				</GridItem>
+				<GridItem area="multilines">
+					<Lines count={4} />
+				</GridItem>
+				<GridItem area="metadata">
+					<Metadata item={item} />
+					{OptionalLogo(item)}
+				</GridItem>
+			</header>
+
+			<main className="js-article" css={mainStyles}>
 				{maybeRender(matchScores, (scores) => (
 					<div id="js-football-scores">
 						<FootballScores
@@ -135,39 +213,26 @@ const Standard: FC<Props> = ({ item, children }) => {
 						/>
 					</div>
 				))}
-				<header>
-					<HeaderMedia item={item} />
-					<Series item={item} />
-					<Headline item={item} />
-					<div css={articleWidthStyles}>
-						<Standfirst item={item} />
-						<ImmersiveCaption item={item} />
-					</div>
-					<div css={lineStyles}>
-						<Lines count={4} />
-					</div>
-					<section css={articleWidthStyles}>
-						<Metadata item={item} />
-						{OptionalLogo(item)}
+				<GridItem area="body">
+					<Body
+						className={[itemStyles(item)]}
+						format={item}
+					>
+						{children}
+					</Body>
+					{epicContainer}
+					<section className="js-tags" css={articleWidthStyles}>
+						<Tags tags={item.tags} format={item} />
 					</section>
-				</header>
-				<Body
-					className={[articleWidthStyles, itemStyles(item)]}
-					format={item}
-				>
-					{children}
-				</Body>
-				{epicContainer}
-				<section className="js-tags" css={articleWidthStyles}>
-					<Tags tags={item.tags} format={item} />
-				</section>
-			</article>
+				</GridItem>
+			</main>
+
 			<section css={onwardStyles}>
 				<RelatedContent content={item.relatedContent} />
 			</section>
 			{commentContainer}
 			<Footer isCcpa={false} />
-		</main>
+		</article>
 	);
 };
 

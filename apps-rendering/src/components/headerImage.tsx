@@ -135,7 +135,11 @@ const getSizes = ({ display, design }: ArticleFormat, image: Image): Sizes => {
 			};
 		default:
 			return {
-				mediaQueries: [{ breakpoint: 'wide', size: '620px' }],
+				mediaQueries: [
+					{ breakpoint: 'phablet', size: '100%' },
+					{ breakpoint: 'tablet', size: '700px'},
+					{ breakpoint: 'desktop', size: '620px'},
+				],
 				default: '100vw',
 			};
 	}

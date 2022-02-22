@@ -168,9 +168,7 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 						'meta		 media'
 						'keyevents	 media'
 						'keyevents   filter'
-						'keyevents	 body'
-						'keyevents	 body'
-						'. 			 .';
+						'keyevents	 body';
 				}
 				/* from wide define fixed body width */
 				${from.wide} {
@@ -181,7 +179,6 @@ const LiveGrid = ({ children }: { children: React.ReactNode }) => (
 						'meta  		 media     right-column'
 						'keyevents   media 	   right-column'
 						'keyevents   filter    right-column'
-						'keyevents   body      right-column'
 						'keyevents   body      right-column'
 						'.			 .         right-column';
 				}
@@ -236,8 +233,7 @@ const LiveGridSport = ({ children }: { children: React.ReactNode }) => (
 						'meta		 media'
 						'keyevents	 media'
 						'keyevents   filter'
-						'matchstats	 body'
-						'. 			 .';
+						'matchstats	 body';
 				}
 				/* from wide define fixed body width */
 				${from.wide} {

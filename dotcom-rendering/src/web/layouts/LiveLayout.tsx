@@ -231,13 +231,12 @@ const LiveGridSport = ({ children }: { children: React.ReactNode }) => (
 					grid-column-gap: 20px;
 					grid-template-columns: 220px 700px;
 					grid-template-areas:
-						'lines		 matchtabs'
-						'meta		 media'
-						'meta		 media'
-						'keyevents	 media'
-						'keyevents   filter'
+						'lines 		 matchtabs'
+						'meta  		 media'
+						'.			 filter'
+						'keyevents	 body'
 						'matchstats	 body'
-						'. 			 .';
+						'.			 body';
 				}
 				/* from wide define fixed body width */
 				${from.wide} {
@@ -246,10 +245,10 @@ const LiveGridSport = ({ children }: { children: React.ReactNode }) => (
 					grid-template-areas:
 						'lines 		 matchtabs right-column'
 						'meta  		 media     right-column'
-						'keyevents   media 	   right-column'
-						'matchstats  body      right-column'
-						'keyevents   filter    right-column'
-						'.			 .         right-column';
+						'.			 filter    right-column'
+						'keyevents	 body      right-column'
+						'matchstats	 body      right-column'
+						'.			 body      right-column';
 				}
 				/* until desktop define fixed body width */
 				${until.desktop} {

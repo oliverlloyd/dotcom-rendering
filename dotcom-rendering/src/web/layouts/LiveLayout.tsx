@@ -243,8 +243,8 @@ const LiveGridSport = ({ children }: { children: React.ReactNode }) => (
 						'lines 		 matchtabs right-column'
 						'meta  		 media     right-column'
 						'keyevents   media 	   right-column'
-						'matchstats  body      right-column'
-						'keyevents   filter    right-column'
+						'keyevents   body      right-column'
+						'matchstats  filter    right-column'
 						'.			 .         right-column';
 				}
 				/* until desktop define fixed body width */

@@ -143,7 +143,7 @@ export const HeadlineByline = ({ format, byline, tags }: Props) => {
 					return (
 						<div css={wrapperStyles}>
 							<div css={yellowBoxStyles(format)}>
-								<BylineLink byline={byline} tags={tags} />
+								by <BylineLink byline={byline} tags={tags} />
 							</div>
 						</div>
 					);

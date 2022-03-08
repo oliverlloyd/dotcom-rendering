@@ -202,7 +202,8 @@ export const Footer: React.FC<{ nav: NavType }> = ({ nav }) => {
 				</a>
 				<div css={copyright}>
 					© {year} Guardian News & Media Limited or its affiliated
-					companies. All rights reserved.
+					companies. All rights reserved.{' '}
+					{group !== undefined ? <>({group})</> : null}
 				</div>
 			</div>
 		</footer>

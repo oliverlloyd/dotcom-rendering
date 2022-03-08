@@ -1,4 +1,5 @@
 import { adJson, stringify } from '../lib/ad-json';
+import { ContentABTestGroup, useContentABTestGroup } from './ContentABTest';
 
 // Largest size first
 const inlineSizes = [
@@ -46,6 +47,18 @@ const mapAdTargeting = (adTargeting: AdTargeting): AdTargetParam[] => {
 	return adTargetingMapped;
 };
 
+const realTimeConfigPubmatic = (useAmazon: boolean) =>
+	JSON.stringify({
+		vendors: {
+			openwrap: {
+				PROFILE_ID: '6611',
+				PUB_ID: '157207',
+			},
+		},
+		timeoutMillis: 1000,
+		...(useAmazon ? amazonConfig : {}),
+	});
+
 const realTimeConfig = (
 	usePrebid: boolean,
 	usePermutive: boolean,
@@ -86,6 +99,45 @@ const realTimeConfig = (
 	return JSON.stringify(data);
 };
 
+const variants = {
+	control: new Set([0, 1, 2, 3]),
+	'relevant-yield': new Set([4, 5, 6, 7]),
+	pubmatic: new Set([8, 9, 10, 11]),
+};
+
+const isInVariant = (
+	variantName: 'control' | 'relevant-yield' | 'pubmatic',
+	group: ContentABTestGroup,
+) => variants[variantName].has(group);
+
+/**
+ * TODO ...
+ *
+ */
+const useRealTimeConfig = (
+	usePrebid: boolean,
+	usePermutive: boolean,
+	useAmazon: boolean,
+	placementId: number,
+) => {
+	const { group } = useContentABTestGroup();
+
+	if (group === undefined || isInVariant('control', group)) {
+		return realTimeConfig(usePrebid, usePermutive, useAmazon, placementId);
+	}
+
+	if (isInVariant('pubmatic', group)) {
+		return realTimeConfigPubmatic(useAmazon);
+	}
+
+	if (isInVariant('relevant-yield', group)) {
+		// TODO
+		return '';
+	}
+
+	throw Error('unreachable');
+};
+
 interface CommercialConfig {
 	usePrebid: boolean;
 	usePermutive: boolean;
@@ -113,7 +165,7 @@ export const Ad = ({
 	contentType,
 	commercialProperties,
 	adTargeting,
-	config: { useAmazon, usePrebid, usePermutive },
+	config: { usePrebid, usePermutive, useAmazon },
 	placementId,
 }: AdProps) => {
 	const adSizes = isSticky ? stickySizes : inlineSizes;
@@ -121,6 +173,13 @@ export const Ad = ({
 	const [{ width, height }] = adSizes;
 	// Secondary ad sizes
 	const multiSizes = adSizes.map((e) => `${e.width}x${e.height}`).join(',');
+
+	const rtcConfig = useRealTimeConfig(
+		usePrebid,
+		usePermutive,
+		useAmazon,
+		placementId,
+	);
 
 	return (
 		<amp-ad
@@ -145,12 +204,7 @@ export const Ad = ({
 				]),
 			)}
 			data-slot={ampData(section, contentType)}
-			rtc-config={realTimeConfig(
-				usePrebid,
-				usePermutive,
-				useAmazon,
-				placementId,
-			)}
+			rtc-config={rtcConfig}
 		/>
 	);
 };

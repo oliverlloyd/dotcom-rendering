@@ -1,6 +1,6 @@
 import { SerializedStyles, css } from '@emotion/react';
 
-import { space, textSans, until } from '@guardian/source-foundations';
+import { from, space, textSans, until } from '@guardian/source-foundations';
 import {
 	Hide,
 	LinkButton,
@@ -23,17 +23,24 @@ type Props = {
 	format: ArticleFormat;
 };
 
+const containerStyles = css`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-top: ${space[1]}px;
+	padding-bottom: ${space[4]}px;
+
+	${until.tablet} {
+		padding-left: ${space[4]}px;
+		padding-right: ${space[4]}px;
+	}
+`
+
 const Container = ({ children }: { children: React.ReactNode }) => (
 	<nav
 		// Used to scroll the page to this point when using permalinks
 		id="liveblog-navigation"
-		css={css`
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			padding-top: ${space[1]}px;
-			padding-bottom: ${space[4]}px;
-		`}
+		css={containerStyles}
 	>
 		{children}
 	</nav>
@@ -101,6 +108,11 @@ const decidePaginationCss = (format: ArticleFormat): SerializedStyles => {
 		}
 	`;
 };
+
+const styles = css`
+ 	${from.tablet} {
+}
+`
 
 const Pagination = ({
 	currentPage,

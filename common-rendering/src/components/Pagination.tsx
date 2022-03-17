@@ -1,6 +1,5 @@
 import { SerializedStyles, css } from '@emotion/react';
-
-import { from, space, textSans, until } from '@guardian/source-foundations';
+import { space, textSans, until } from '@guardian/source-foundations';
 import {
 	Hide,
 	LinkButton,

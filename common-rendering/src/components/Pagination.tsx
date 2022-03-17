@@ -109,11 +109,6 @@ const decidePaginationCss = (format: ArticleFormat): SerializedStyles => {
 	`;
 };
 
-const styles = css`
- 	${from.tablet} {
-}
-`
-
 const Pagination = ({
 	currentPage,
 	totalPages,

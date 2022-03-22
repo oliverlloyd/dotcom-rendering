@@ -12,6 +12,7 @@ import { CanShowResult } from '../../lib/messagePicker';
 import { useOnce } from '../../lib/useOnce';
 import { useIsInView } from '../../lib/useIsInView';
 import { submitComponentEvent } from '../../browser/ophan/ophan';
+import {setAutomat} from "../../lib/setAutomat";
 
 const wrapperMargins = css`
 	margin: 18px 0;
@@ -145,14 +146,18 @@ export const MaybeBrazeEpic = ({ meta, countryCode, idApiUrl }: EpicConfig) => {
 		useState<React.FC<CommonEndOfArticleComponentProps>>();
 
 	useEffect(() => {
-		import(
-			/* webpackChunkName: "guardian-braze-components-end-of-article" */ '@guardian/braze-components/end-of-article'
-		)
+		setAutomat();
+		window
+			.guardianPolyfilledImport('http://localhost:8082/modules/v3/braze/BrazeEpic.js')
+		// import(
+		// 	/* webpackChunkName: "guardian-braze-components-end-of-article" */ '@guardian/braze-components/end-of-article'
+		// )
 			.then((module) => {
 				setBrazeComponent(() => module.BrazeEndOfArticleComponent);
 			})
 			.catch((error) =>
-				window.guardian.modules.sentry.reportError(error, 'braze-epic'),
+				console.log('FAILED',error)
+				// window.guardian.modules.sentry.reportError(error, 'braze-epic'),
 			);
 	}, []);
 

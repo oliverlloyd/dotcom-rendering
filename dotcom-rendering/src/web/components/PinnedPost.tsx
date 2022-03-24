@@ -53,7 +53,6 @@ const rowStyles = (palette: Palette) => css`
 	svg {
 		fill: ${neutral[100]};
 		height: 32px;
-		margin-bottom: ${space[1]}px;
 	}
 `;
 

@@ -19,7 +19,7 @@ import { css } from '@emotion/react';
 import { decidePalette } from '../lib/decidePalette';
 
 const pinnedPostContainer = (palette: Palette) => css`
-	border: 3px solid ${palette.border.pinnedPost};
+	border: solid ${palette.border.pinnedPost};
 	padding-bottom: ${space[1]}px;
 	margin-bottom: ${space[9]}px;
 	position: relative;

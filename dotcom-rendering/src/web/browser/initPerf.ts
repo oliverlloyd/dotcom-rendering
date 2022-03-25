@@ -9,7 +9,7 @@ export const initPerf = (
 	const startKey = `${name}-start`;
 	const endKey = `${name}-end`;
 
-	if (!perf || !perf.getEntriesByName) {
+	if (!perf?.getEntriesByName || !perf?.measure) {
 		// Return noops if window.performance or the required functions don't exist
 		return {
 			start: () => {},
@@ -24,20 +24,15 @@ export const initPerf = (
 
 	const end = (): TimeTakenInMilliseconds => {
 		perf.mark(endKey);
-		perf.measure(name, startKey, endKey);
+		const measure = perf.measure(name, startKey, endKey);
 
 		// eslint-disable-next-line no-console
 		log('dotcom', JSON.stringify(perf.getEntriesByName(name)));
 
-		const measureEntries = perf.getEntriesByName(name, 'measure');
-		const timeTakenFloat =
-			(measureEntries &&
-				measureEntries[0] &&
-				measureEntries[0].duration) ||
-			0;
-		const timeTakenInt = Math.round(timeTakenFloat);
+		if (!window.guardian.perf) window.guardian.perf = {};
+		window.guardian.perf[name] = Math.round(measure.duration);
 
-		return timeTakenInt;
+		return Math.round(measure.duration);
 	};
 
 	const clear = () => {

@@ -34,6 +34,7 @@ module.exports = ({ isLegacyJS, sessionId }) => ({
 			'./src/web/browser/newsletterEmbedIframe/init.ts',
 		relativeTime: './src/web/browser/relativeTime/init.ts',
 		initDiscussion: './src/web/browser/initDiscussion/init.ts',
+		performance: './src/web/browser/performance/init.ts',
 	},
 	output: {
 		filename: generateName(isLegacyJS),

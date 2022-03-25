@@ -40,8 +40,8 @@ const recordLog = ({
 	};
 
 	const endpoint = isDev
-		? 'https://logs.guardianapis.com/log'
-		: 'https://logs.code.dev-guardianapis.com/log';
+		? 'https://logs.code.dev-guardianapis.com/log'
+		: 'https://logs.guardianapis.com/log';
 
 	// eslint-disable-next-line no-void
 	void fetch(endpoint, {

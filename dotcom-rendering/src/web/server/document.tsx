@@ -139,6 +139,7 @@ export const document = ({ data }: Props): string => {
 		...getScriptArrayFromFile('newsletterEmbedIframe.js'),
 		...getScriptArrayFromFile('relativeTime.js'),
 		...getScriptArrayFromFile('initDiscussion.js'),
+		...getScriptArrayFromFile('performance.js'),
 	]);
 
 	const gaChunk = getScriptArrayFromFile('ga.js');

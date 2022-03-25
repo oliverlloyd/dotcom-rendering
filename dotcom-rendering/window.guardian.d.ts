@@ -42,6 +42,7 @@ declare global {
 				emotionReact: any;
 				emotionReactJsxRuntime: any;
 			};
+			perf: { [key: string]: number };
 			readerRevenue: ReaderRevenueDevUtils;
 			gaPath: string;
 			weeklyArticleCount: WeeklyArticleHistory | undefined;

@@ -6,6 +6,9 @@ const prepare = <T extends string | number>(
 	Object.entries(obj).map(([name, value]) => ({ name, value }));
 
 const listener = (e: Event) => {
+	const sampling = 1 / 100;
+	if (Math.random() > sampling) return;
+
 	if (e.type === 'visibilitychange' && document.visibilityState !== 'hidden')
 		return;
 

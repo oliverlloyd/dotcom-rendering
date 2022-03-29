@@ -26,7 +26,6 @@ export const initPerf = (
 		perf.mark(endKey);
 		const measure = perf.measure(name, startKey, endKey);
 
-		// eslint-disable-next-line no-console
 		log('dotcom', JSON.stringify(perf.getEntriesByName(name)));
 
 		if (!window.guardian.perf) window.guardian.perf = {};

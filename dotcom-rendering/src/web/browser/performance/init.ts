@@ -1,3 +1,5 @@
+import { log } from '@guardian/libs';
+
 const prepare = <T extends string | number>(
 	obj: Record<string, T>,
 ): Array<{ name: string; value: T }> =>
@@ -21,7 +23,7 @@ const listener = (e: Event) => {
 		: 'https://logs.guardianapis.com/log';
 
 	navigator.sendBeacon(endpoint, JSON.stringify(data));
-	console.log('dotcom', 'Performance metrics queued for sending', perf);
+	log('dotcom', 'Performance metrics queued for sending', perf);
 };
 
 window.addEventListener('visibilitychange', listener, { once: true });

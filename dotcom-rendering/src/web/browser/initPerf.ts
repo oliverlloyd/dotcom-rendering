@@ -28,10 +28,11 @@ export const initPerf = (
 
 		log('dotcom', JSON.stringify(perf.getEntriesByName(name)));
 
+		const duration = Math.round(measure.duration);
 		if (!window.guardian.perf) window.guardian.perf = {};
-		window.guardian.perf[name] = Math.round(measure.duration);
+		window.guardian.perf[name] = duration;
 
-		return Math.round(measure.duration);
+		return duration;
 	};
 
 	const clear = () => {

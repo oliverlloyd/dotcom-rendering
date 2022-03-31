@@ -512,53 +512,47 @@ export const LiveLayout = ({ CAPI, NAV, format }: Props) => {
 							</GridItem>
 							<GridItem area="lines">
 								<Hide from="desktop">
-									<div css={sidePaddingDesktop}>
-										<Lines
-											count={decideLineCount(
-												format.design,
-											)}
-											effect={decideLineEffect(
-												format.design,
-												format.theme,
-											)}
-											color={
-												format.design ===
-												ArticleDesign.LiveBlog
-													? 'rgba(255, 255, 255, 0.4)'
-													: undefined
-											}
-										/>
-									</div>
+									<Lines
+										count={decideLineCount(format.design)}
+										effect={decideLineEffect(
+											format.design,
+											format.theme,
+										)}
+										color={
+											format.design ===
+											ArticleDesign.LiveBlog
+												? 'rgba(255, 255, 255, 0.4)'
+												: undefined
+										}
+									/>
 								</Hide>
 							</GridItem>
 							<GridItem area="meta">
 								<Hide from="desktop">
-									<div css={sidePaddingDesktop}>
-										<ArticleMeta
-											branding={branding}
-											format={format}
-											pageId={CAPI.pageId}
-											webTitle={CAPI.webTitle}
-											author={CAPI.author}
-											tags={CAPI.tags}
-											primaryDateline={
-												CAPI.webPublicationDateDisplay
-											}
-											secondaryDateline={
-												CAPI.webPublicationSecondaryDateDisplay
-											}
-											isCommentable={CAPI.isCommentable}
-											discussionApiUrl={
-												CAPI.config.discussionApiUrl
-											}
-											shortUrlId={CAPI.config.shortUrlId}
-											ajaxUrl={CAPI.config.ajaxUrl}
-											showShareCount={
-												CAPI.config.switches
-													.serverShareCounts
-											}
-										/>
-									</div>
+									<ArticleMeta
+										branding={branding}
+										format={format}
+										pageId={CAPI.pageId}
+										webTitle={CAPI.webTitle}
+										author={CAPI.author}
+										tags={CAPI.tags}
+										primaryDateline={
+											CAPI.webPublicationDateDisplay
+										}
+										secondaryDateline={
+											CAPI.webPublicationSecondaryDateDisplay
+										}
+										isCommentable={CAPI.isCommentable}
+										discussionApiUrl={
+											CAPI.config.discussionApiUrl
+										}
+										shortUrlId={CAPI.config.shortUrlId}
+										ajaxUrl={CAPI.config.ajaxUrl}
+										showShareCount={
+											CAPI.config.switches
+												.serverShareCounts
+										}
+									/>
 								</Hide>
 							</GridItem>
 						</StandFirstGrid>

@@ -277,7 +277,7 @@ export const StickyBottomBanner = ({
 			section: sectionName,
 		};
 		const brazeBanner = buildBrazeBanner(
-			brazeMessages as BrazeMessagesInterface,
+			brazeMessages,
 			brazeArticleContext,
 		);
 		const bannerConfig: SlotConfig = {

@@ -145,7 +145,7 @@ export const SlotBodyEnd = ({
 			section: sectionName,
 		};
 		const brazeEpic = buildBrazeEpicConfig(
-			brazeMessages as BrazeMessagesInterface,
+			brazeMessages,
 			countryCode as string,
 			idApiUrl,
 			brazeArticleContext,

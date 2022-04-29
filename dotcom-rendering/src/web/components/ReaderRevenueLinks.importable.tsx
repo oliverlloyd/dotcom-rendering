@@ -394,24 +394,30 @@ export const ReaderRevenueLinks = ({
 	if (countryCode) {
 		if (inHeader && remoteHeader) {
 			return (
-				<ReaderRevenueLinksRemote
-					edition={edition}
-					countryCode={countryCode}
-					pageViewId={pageViewId}
-					contributionsServiceUrl={contributionsServiceUrl}
-					ophanRecord={ophanRecord}
-				/>
+				<>
+					<span>test</span>
+					<ReaderRevenueLinksRemote
+						edition={edition}
+						countryCode={countryCode}
+						pageViewId={pageViewId}
+						contributionsServiceUrl={contributionsServiceUrl}
+						ophanRecord={ophanRecord}
+					/>
+				</>
 			);
 		}
 		return (
-			<ReaderRevenueLinksNative
-				edition={edition}
-				dataLinkNamePrefix={dataLinkNamePrefix}
-				inHeader={inHeader}
-				urls={urls}
-				ophanRecord={ophanRecord}
-				pageViewId={pageViewId}
-			/>
+			<>
+				<span>test</span>
+				<ReaderRevenueLinksNative
+					edition={edition}
+					dataLinkNamePrefix={dataLinkNamePrefix}
+					inHeader={inHeader}
+					urls={urls}
+					ophanRecord={ophanRecord}
+					pageViewId={pageViewId}
+				/>
+			</>
 		);
 	}
 

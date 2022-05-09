@@ -49,6 +49,7 @@ import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout';
 import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
 import { getContributionsServiceUrl } from '../lib/contributions';
 import { decidePalette } from '../lib/decidePalette';
+import { BSLWidget } from '../components/BSLVideoWidget';
 
 const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 	<div
@@ -397,6 +398,7 @@ export const ImmersiveLayout = ({
 								format={format}
 								abTests={CAPIArticle.config.abTests}
 							>
+								<BSLWidget CAPIArticle={CAPIArticle} />
 								<ArticleBody
 									format={format}
 									blocks={CAPIArticle.blocks}

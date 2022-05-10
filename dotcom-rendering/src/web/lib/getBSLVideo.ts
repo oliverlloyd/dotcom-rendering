@@ -10,6 +10,8 @@ const BSL_VIDEOS: Record<string, YouTubeVideoDetails> = {
 	},
 };
 
-export const getBSLVideo = (articleId: string): YouTubeVideoDetails | undefined => {
+export const getBSLVideo = (
+	articleId: string,
+): YouTubeVideoDetails | undefined => {
 	return BSL_VIDEOS[articleId];
 };

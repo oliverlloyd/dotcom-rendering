@@ -646,7 +646,7 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 								format={format}
 								abTests={CAPIArticle.config.abTests}
 							>
-								<BSLWidget CAPIArticle={CAPIArticle}/>
+								<BSLWidget CAPIArticle={CAPIArticle} />
 								<ArticleBody
 									format={format}
 									blocks={CAPIArticle.blocks}

@@ -16,10 +16,9 @@ const buttonStyle = css`
 	}
 
 	span {
-		 padding: 0 5px;
-	 }
+		padding: 0 5px;
+	}
 `;
-
 
 interface Props {
 	CAPIArticle: CAPIArticleType;

@@ -1,7 +1,13 @@
 import { css } from '@emotion/react';
 
 import { ArticleDesign } from '@guardian/libs';
-import { brandAltBackground } from '@guardian/source-foundations';
+import {
+	brandAltBackground,
+	textSans,
+	palette,
+	space,
+} from '@guardian/source-foundations';
+import { SvgSignLanguage } from '../SvgSignLanguage';
 
 import { StarRating } from '../StarRating/StarRating';
 import { CardHeadline } from '../CardHeadline';
@@ -169,6 +175,27 @@ export const Card = ({
 
 	const positionFooterUnderContent = !moreThanTwoSubLinks && cardIsVertical;
 
+	/* Guess at the level of BSL support! */
+	const hasSignLanguage = Math.random() > 0.5;
+	const SignLanguage = (
+		<div
+			css={css`
+				background-color: ${palette.neutral[7]};
+				color: ${palette.neutral[100]};
+				${textSans.small()};
+				padding: 0 ${space[1]}px;
+				display: inline-flex;
+
+				svg {
+					fill: currentColor;
+				}
+			`}
+		>
+			BSL
+			<SvgSignLanguage />
+		</div>
+	);
+
 	const renderFooter = ({
 		renderAge = true,
 		renderMediaMeta = true,
@@ -219,6 +246,7 @@ export const Card = ({
 						/>
 					) : undefined
 				}
+				signLanguage={hasSignLanguage ? SignLanguage : undefined}
 				cardBranding={
 					renderCardBranding && branding ? (
 						<CardBranding branding={branding} format={format} />

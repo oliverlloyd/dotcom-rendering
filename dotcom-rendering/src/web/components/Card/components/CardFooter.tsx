@@ -6,6 +6,7 @@ import { StraightLines } from '@guardian/source-react-components-development-kit
 type Props = {
 	format: ArticleFormat;
 	age?: JSX.Element;
+	signLanguage?: JSX.Element;
 	mediaMeta?: JSX.Element;
 	commentCount?: JSX.Element;
 	cardBranding?: JSX.Element;
@@ -32,6 +33,7 @@ const linesWrapperStyles = css`
 export const CardFooter = ({
 	format,
 	age,
+	signLanguage,
 	mediaMeta,
 	commentCount,
 	cardBranding,
@@ -56,6 +58,7 @@ export const CardFooter = ({
 						count={4}
 					/>
 					{commentCount}
+					{signLanguage}
 				</div>
 			</footer>
 		);
@@ -69,6 +72,7 @@ export const CardFooter = ({
 					{mediaMeta}
 					{/* Show age if we have it otherwise try for commentCount */}
 					{age || commentCount}
+					{signLanguage}
 				</div>
 			</footer>
 		);
@@ -81,6 +85,7 @@ export const CardFooter = ({
 				<div css={spaceBetween}>
 					{age}
 					{commentCount}
+					{signLanguage}
 				</div>
 			</footer>
 		);
@@ -91,6 +96,7 @@ export const CardFooter = ({
 			{supportingContent}
 			<div css={flexEnd}>
 				<>{commentCount}</>
+				{signLanguage}
 			</div>
 		</footer>
 	);

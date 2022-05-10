@@ -17,5 +17,9 @@ type Props = {
 
 export const CardLink = ({ linkTo, dataLinkName = 'article' }: Props) => (
 	// eslint-disable-next-line -- we’ve got an empty link floating: see #4798
-	<a href={linkTo} css={fauxLinkStyles} data-link-name={dataLinkName} />
+	<a
+		href="/Article?url=https://www.theguardian.com/world/2022/mar/30/wednesday-briefing-johnson-partygate"
+		css={fauxLinkStyles}
+		data-link-name={dataLinkName}
+	/>
 );

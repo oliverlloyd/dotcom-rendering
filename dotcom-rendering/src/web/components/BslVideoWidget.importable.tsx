@@ -1,40 +1,51 @@
+import { brand, textSans } from '@guardian/source-foundations';
 import { css } from '@emotion/react';
 import { useEffect, useState } from 'react';
 import { getBSLVideo } from '../lib/getBSLVideo';
-import PlayButton from '../../static/icons/video-icon.svg';
+import HandsIcon from '../../static/icons/bsl-hands-icon.svg';
 
-const buttonStyle = css`
-	display: flex;
-	background-color: black;
-	color: white;
-	padding: 10px;
-	border-radius: 5px;
-	align-items: center;
-
-	div {
-		background-color: white;
-		padding: 5px;
-	}
+const buttonStyle = () => css`
+	display: inline-flex;
+	position: relative;
+	border: none;
+	background: none;
+	padding: 0 8px;
+	align-items: flex-end;
+	jusify-content: space-between;
 
 	span {
-		padding: 0 5px;
-	}
-`;
-
-const detailsStyle = css`
-	background-color: black;
-	border-radius: 5px;
-	color: white;
-
-	summary {
-		justify-content: space-between;
-		display: flex;
-		padding: 10px;
-		align-items: center;
+		background-color: ${brand[400]};
+		color: white;
+		${textSans.medium()};
+		padding: 0px 4px;
+		margin-left: 8px;
 	}
 
 	svg {
-		fill: white;
+		stroke: white;
+		height: auto;
+		width: 45px;
+	}
+`;
+
+const messageStyle = (padding?: boolean) => css`
+	${textSans.medium()};
+	font-weight: bold;
+	color: ${brand[300]};
+	${padding ? `padding: 0 8px;` : ''}
+
+	a {
+		color: ${brand[300]};
+	}
+`;
+
+const iframeHolderStyle = () => css`
+	padding: 8px 0;
+	position: relative;
+	width: 100%;
+
+	iframe: {
+		width: 100%;
 	}
 `;
 
@@ -44,21 +55,31 @@ interface Props {
 
 const YouTubeIframe = ({ embedCode }: { embedCode: string }) => {
 	return (
-		<iframe
-			width="560"
-			height="315"
-			src={embedCode}
-			title="YouTube video player"
-			frameBorder="0"
-			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-			allowFullScreen={true}
-		/>
+		<div css={iframeHolderStyle}>
+			<iframe
+				width="560"
+				height="315"
+				src={embedCode}
+				title="YouTube video player"
+				frameBorder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+				allowFullScreen={true}
+			/>
+		</div>
 	);
 };
+
+const SupportMessage = ({ padding }: { padding?: boolean }) => (
+	<span css={messageStyle(padding)}>
+		<a href="https://support.theguardian.com/uk/contribute">Support us</a>{' '}
+		to help fund more accessible, live journalism.
+	</span>
+);
 
 export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 	const videoDetails = getBSLVideo(CAPIArticle.pageId);
 	const [playerOpen, setPlayerOpen] = useState<boolean>(false);
+	const [playerHasShown, setPlayerHasShown] = useState<boolean>(false);
 	const [noJS, setNoJS] = useState(true);
 
 	useEffect(() => {
@@ -70,36 +91,44 @@ export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 		return null;
 	}
 
-	console.log({ playerOpen, noJS });
-
 	if (noJS) {
 		return (
-			<details css={detailsStyle}>
-				<summary>
-					<span>play BSL video</span>
-					<PlayButton />
-				</summary>
+			<>
+				<details>
+					<summary
+						css={buttonStyle()}
+						aria-label="show BSL video of article"
+					>
+						<HandsIcon />
+						<span>BSL</span>
+					</summary>
 
-				<YouTubeIframe embedCode={videoDetails.embedUrl} />
-			</details>
+					<YouTubeIframe embedCode={videoDetails.embedUrl} />
+				</details>
+				<SupportMessage padding={true} />
+			</>
 		);
 	}
 
 	return (
 		<>
-			<button
-				css={buttonStyle}
-				onClick={() => {
-					setPlayerOpen(!playerOpen);
-				}}
-			>
-				<span>play BSL video</span>
-				<div>
-					<PlayButton />
-				</div>
-			</button>
-			{playerOpen && (
-				<div>
+			<div style={{ display: 'flex', alignItems: 'center' }}>
+				<button
+					aria-label="show BSL video of article"
+					css={buttonStyle}
+					onClick={() => {
+						setPlayerOpen(!playerOpen);
+						setPlayerHasShown(true);
+					}}
+				>
+					<HandsIcon />
+					<span>BSL</span>
+				</button>
+				<SupportMessage padding={true} />
+			</div>
+
+			{playerHasShown && (
+				<div style={{ display: playerOpen ? 'block' : 'none' }}>
 					<YouTubeIframe embedCode={videoDetails.embedUrl} />
 				</div>
 			)}

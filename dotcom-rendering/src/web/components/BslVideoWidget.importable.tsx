@@ -12,6 +12,7 @@ const buttonStyle = () => css`
 	padding: 0 8px;
 	align-items: flex-end;
 	jusify-content: space-between;
+	cursor: pointer;
 
 	span {
 		background-color: ${brand[400]};
@@ -28,11 +29,13 @@ const buttonStyle = () => css`
 	}
 `;
 
-const messageStyle = (padding?: boolean) => css`
+const messageStyle = (sidePadding?: boolean) => css`
 	${textSans.medium()};
 	font-weight: bold;
+	display: inline-block;
 	color: ${brand[300]};
-	${padding ? `padding: 0 8px;` : ''}
+	padding: 0 ${sidePadding ? '8px' : '0'};
+	margin: 8px 0;
 
 	a {
 		color: ${brand[300]};
@@ -69,8 +72,8 @@ const YouTubeIframe = ({ embedCode }: { embedCode: string }) => {
 	);
 };
 
-const SupportMessage = ({ padding }: { padding?: boolean }) => (
-	<span css={messageStyle(padding)}>
+const SupportMessage = ({ sidePadding }: { sidePadding?: boolean }) => (
+	<span css={messageStyle(sidePadding)}>
 		<a href="https://support.theguardian.com/uk/contribute">Support us</a>{' '}
 		to help fund more accessible, live journalism.
 	</span>
@@ -105,7 +108,7 @@ export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 
 					<YouTubeIframe embedCode={videoDetails.embedUrl} />
 				</details>
-				<SupportMessage padding={true} />
+				<SupportMessage sidePadding={false} />
 			</>
 		);
 	}
@@ -124,9 +127,10 @@ export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 					<HandsIcon />
 					<span>BSL</span>
 				</button>
-				<SupportMessage padding={true} />
 			</div>
-
+			<div>
+				<SupportMessage sidePadding={false} />
+			</div>
 			{playerHasShown && (
 				<div style={{ display: playerOpen ? 'block' : 'none' }}>
 					<YouTubeIframe embedCode={videoDetails.embedUrl} />

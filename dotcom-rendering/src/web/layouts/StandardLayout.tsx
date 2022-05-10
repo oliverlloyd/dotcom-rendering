@@ -647,7 +647,10 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 								abTests={CAPIArticle.config.abTests}
 							>
 								<Island deferUntil="idle">
-									<BslVideoWidget CAPIArticle={CAPIArticle} />
+									<BslVideoWidget
+										CAPIArticle={CAPIArticle}
+										format={format}
+									/>
 								</Island>
 								<ArticleBody
 									format={format}

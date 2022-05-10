@@ -567,6 +567,7 @@ export const CommentLayout = ({
 									>
 										<BslVideoWidget
 											CAPIArticle={CAPIArticle}
+											format={format}
 										/>
 									</Island>
 									<ArticleBody

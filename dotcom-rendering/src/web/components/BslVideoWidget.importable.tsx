@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { useEffect, useState } from 'react';
 import { getBSLVideo } from '../lib/getBSLVideo';
 import HandsIcon from '../../static/icons/bsl-hands-icon.svg';
+import { YoutubeEmbedBlockComponent } from './YoutubeEmbedBlockComponent';
 
 const buttonStyle = () => css`
 	display: inline-flex;
@@ -46,22 +47,18 @@ const iframeHolderStyle = () => css`
 	padding: 8px 0;
 	position: relative;
 	width: 100%;
-
-	iframe: {
-		width: 100%;
-	}
 `;
 
 interface Props {
 	CAPIArticle: CAPIArticleType;
+	format: ArticleFormat;
 }
 
 const YouTubeIframe = ({ embedCode }: { embedCode: string }) => {
 	return (
 		<div css={iframeHolderStyle}>
 			<iframe
-				width="560"
-				height="315"
+				style={{ width: '100%', minHeight: '300px' }}
 				src={embedCode}
 				title="YouTube video player"
 				frameBorder="0"
@@ -79,7 +76,7 @@ const SupportMessage = ({ sidePadding }: { sidePadding?: boolean }) => (
 	</span>
 );
 
-export const BslVideoWidget = ({ CAPIArticle }: Props) => {
+export const BslVideoWidget = ({ CAPIArticle, format }: Props) => {
 	const videoDetails = getBSLVideo(CAPIArticle.pageId);
 	const [playerOpen, setPlayerOpen] = useState<boolean>(false);
 	const [playerHasShown, setPlayerHasShown] = useState<boolean>(false);
@@ -133,7 +130,16 @@ export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 			</div>
 			{playerHasShown && (
 				<div style={{ display: playerOpen ? 'block' : 'none' }}>
-					<YouTubeIframe embedCode={videoDetails.embedUrl} />
+					<YoutubeEmbedBlockComponent
+						embedUrl={`https://www.youtube-nocookie.com/embed/${videoDetails.id}?wmode=opaque&feature=oembed`}
+						format={format}
+						height={259}
+						width={460}
+						caption="BSL video"
+						credit=""
+						title="BSL video"
+						isMainMedia={false}
+					/>
 				</div>
 			)}
 		</>

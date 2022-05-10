@@ -399,7 +399,10 @@ export const ImmersiveLayout = ({
 								abTests={CAPIArticle.config.abTests}
 							>
 								<Island deferUntil="visible" clientOnly={false}>
-									<BslVideoWidget CAPIArticle={CAPIArticle} />
+									<BslVideoWidget
+										CAPIArticle={CAPIArticle}
+										format={format}
+									/>
 								</Island>
 								<ArticleBody
 									format={format}

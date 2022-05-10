@@ -529,6 +529,7 @@ export const InteractiveLayout = ({ CAPIArticle, NAV, format }: Props) => {
 									>
 										<BslVideoWidget
 											CAPIArticle={CAPIArticle}
+											format={format}
 										/>
 									</Island>
 									<ArticleBody

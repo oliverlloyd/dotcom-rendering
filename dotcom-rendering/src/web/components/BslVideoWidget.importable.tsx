@@ -21,9 +21,40 @@ const buttonStyle = css`
 	}
 `;
 
+const detailsStyle = css`
+	background-color: black;
+	border-radius: 5px;
+	color: white;
+
+	summary {
+		justify-content: space-between;
+		display: flex;
+		padding: 10px;
+		align-items: center;
+	}
+
+	svg {
+		fill: white;
+	}
+`;
+
 interface Props {
 	CAPIArticle: CAPIArticleType;
 }
+
+const YouTubeIframe = ({ embedCode }: { embedCode: string }) => {
+	return (
+		<iframe
+			width="560"
+			height="315"
+			src={embedCode}
+			title="YouTube video player"
+			frameBorder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			allowFullScreen={true}
+		/>
+	);
+};
 
 export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 	const videoUrl = getBSLVideo(CAPIArticle.pageId);
@@ -39,13 +70,26 @@ export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 		return null;
 	}
 
-	console.log({playerOpen, noJS})
+	console.log({ playerOpen, noJS });
+
+	if (noJS) {
+		return (
+			<details css={detailsStyle}>
+				<summary>
+					<span>play BSL video</span>
+					<PlayButton />
+				</summary>
+
+				<YouTubeIframe embedCode="https://www.youtube.com/embed/5Y7WdsuNlJY" />
+			</details>
+		);
+	}
+
 	return (
 		<>
 			<button
 				css={buttonStyle}
 				onClick={() => {
-					console.log('!!!!')
 					setPlayerOpen(!playerOpen);
 				}}
 			>
@@ -54,7 +98,12 @@ export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 				</div>
 				<span>BSL</span>
 			</button>
-			{playerOpen && <div>{videoUrl}</div>}
+			{playerOpen && (
+				<div>
+					{videoUrl}
+					<YouTubeIframe embedCode="https://www.youtube.com/embed/5Y7WdsuNlJY" />
+				</div>
+			)}
 		</>
 	);
 };

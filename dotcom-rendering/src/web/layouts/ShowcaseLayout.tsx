@@ -55,6 +55,7 @@ import { SlotBodyEnd } from '../components/SlotBodyEnd.importable';
 import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
 import { getContributionsServiceUrl } from '../lib/contributions';
 import { decidePalette } from '../lib/decidePalette';
+import { BslVideoWidget } from '../components/BslVideoWidget.importable';
 
 const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 	<div
@@ -530,6 +531,9 @@ export const ShowcaseLayout = ({
 								format={format}
 								abTests={CAPIArticle.config.abTests}
 							>
+								<Island deferUntil="visible" clientOnly={false}>
+									<BslVideoWidget CAPIArticle={CAPIArticle} />
+								</Island>
 								<ArticleBody
 									format={format}
 									blocks={CAPIArticle.blocks}

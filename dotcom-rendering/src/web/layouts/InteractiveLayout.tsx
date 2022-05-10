@@ -58,6 +58,7 @@ import { OnwardsUpper } from '../components/OnwardsUpper.importable';
 import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout';
 import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
 import { decidePalette } from '../lib/decidePalette';
+import { BslVideoWidget } from '../components/BslVideoWidget.importable';
 
 const InteractiveGrid = ({ children }: { children: React.ReactNode }) => (
 	<div
@@ -522,6 +523,14 @@ export const InteractiveLayout = ({ CAPIArticle, NAV, format }: Props) => {
 									format={format}
 									abTests={CAPIArticle.config.abTests}
 								>
+									<Island
+										deferUntil="visible"
+										clientOnly={false}
+									>
+										<BslVideoWidget
+											CAPIArticle={CAPIArticle}
+										/>
+									</Island>
 									<ArticleBody
 										format={format}
 										blocks={CAPIArticle.blocks}

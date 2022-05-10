@@ -65,6 +65,7 @@ import { StickyBottomBanner } from '../components/StickyBottomBanner.importable'
 import { getContributionsServiceUrl } from '../lib/contributions';
 import { decidePalette } from '../lib/decidePalette';
 import { getZIndex } from '../lib/getZIndex';
+import { BslVideoWidget } from '../components/BslVideoWidget.importable';
 
 const HeadlineGrid = ({ children }: { children: React.ReactNode }) => (
 	<div
@@ -851,6 +852,14 @@ export const LiveLayout = ({ CAPIArticle, NAV, format }: Props) => {
 													format={format}
 												/>
 											)}
+											<Island
+												deferUntil="visible"
+												clientOnly={false}
+											>
+												<BslVideoWidget
+													CAPIArticle={CAPIArticle}
+												/>
+											</Island>
 											<ArticleBody
 												format={format}
 												blocks={CAPIArticle.blocks}

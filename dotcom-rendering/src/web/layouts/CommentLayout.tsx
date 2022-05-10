@@ -48,6 +48,7 @@ import { StickyBottomBanner } from '../components/StickyBottomBanner.importable'
 import { getContributionsServiceUrl } from '../lib/contributions';
 import { decidePalette } from '../lib/decidePalette';
 import { Hide } from '../components/Hide';
+import { BslVideoWidget } from '../components/BslVideoWidget.importable';
 
 const StandardGrid = ({
 	children,
@@ -560,6 +561,14 @@ export const CommentLayout = ({
 								abTests={CAPIArticle.config.abTests}
 							>
 								<div css={maxWidth}>
+									<Island
+										deferUntil="visible"
+										clientOnly={false}
+									>
+										<BslVideoWidget
+											CAPIArticle={CAPIArticle}
+										/>
+									</Island>
 									<ArticleBody
 										format={format}
 										blocks={CAPIArticle.blocks}

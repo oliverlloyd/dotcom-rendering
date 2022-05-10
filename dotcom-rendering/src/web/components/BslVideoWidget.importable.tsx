@@ -35,6 +35,7 @@ const buttonContentStyle = () => css`
 	span {
 		color: white;
 		${textSans.medium()};
+		font-weight: bold;
 	}
 `;
 
@@ -44,7 +45,7 @@ const messageStyle = (sidePadding?: boolean) => css`
 	display: inline-block;
 	color: ${brand[300]};
 	padding: 0 ${sidePadding ? '8px' : '0'};
-	margin: 8px 0;
+	margin-top: 8px;
 
 	a {
 		color: ${brand[300]};
@@ -126,8 +127,20 @@ export const BslVideoWidget = ({ CAPIArticle, format }: Props) => {
 	// }
 
 	return (
-		<>
-			<div style={{ display: 'flex', alignItems: 'center' }}>
+		<section
+			style={{
+				paddingBottom: '16px',
+				borderBottom: '1px solid gray',
+				marginBottom: '16px',
+			}}
+		>
+			<div
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					marginBottom: '8px',
+				}}
+			>
 				<Button
 					onClick={() => {
 						setPlayerOpen(!playerOpen);
@@ -145,11 +158,13 @@ export const BslVideoWidget = ({ CAPIArticle, format }: Props) => {
 					</div>
 				</Button>
 			</div>
-			<div>
-				<SupportMessage sidePadding={false} />
-			</div>
+
 			{playerHasShown && (
-				<div style={{ display: playerOpen ? 'block' : 'none' }}>
+				<div
+					style={{
+						display: playerOpen ? 'block' : 'none',
+					}}
+				>
 					<YoutubeEmbedBlockComponent
 						embedUrl={`https://www.youtube-nocookie.com/embed/${videoDetails.id}?wmode=opaque&feature=oembed`}
 						format={format}
@@ -160,8 +175,11 @@ export const BslVideoWidget = ({ CAPIArticle, format }: Props) => {
 						title="BSL video"
 						isMainMedia={false}
 					/>
+					<div>
+						<SupportMessage sidePadding={false} />
+					</div>
 				</div>
 			)}
-		</>
+		</section>
 	);
 };

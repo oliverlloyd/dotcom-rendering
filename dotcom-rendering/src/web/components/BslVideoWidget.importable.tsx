@@ -57,7 +57,7 @@ const YouTubeIframe = ({ embedCode }: { embedCode: string }) => {
 };
 
 export const BslVideoWidget = ({ CAPIArticle }: Props) => {
-	const videoUrl = getBSLVideo(CAPIArticle.pageId);
+	const videoDetails = getBSLVideo(CAPIArticle.pageId);
 	const [playerOpen, setPlayerOpen] = useState<boolean>(false);
 	const [noJS, setNoJS] = useState(true);
 
@@ -66,7 +66,7 @@ export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 		setNoJS(false);
 	}, []);
 
-	if (!videoUrl) {
+	if (!videoDetails) {
 		return null;
 	}
 
@@ -80,7 +80,7 @@ export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 					<PlayButton />
 				</summary>
 
-				<YouTubeIframe embedCode="https://www.youtube.com/embed/5Y7WdsuNlJY" />
+				<YouTubeIframe embedCode={videoDetails.embedUrl} />
 			</details>
 		);
 	}
@@ -93,15 +93,14 @@ export const BslVideoWidget = ({ CAPIArticle }: Props) => {
 					setPlayerOpen(!playerOpen);
 				}}
 			>
+				<span>play BSL video</span>
 				<div>
 					<PlayButton />
 				</div>
-				<span>BSL</span>
 			</button>
 			{playerOpen && (
 				<div>
-					{videoUrl}
-					<YouTubeIframe embedCode="https://www.youtube.com/embed/5Y7WdsuNlJY" />
+					<YouTubeIframe embedCode={videoDetails.embedUrl} />
 				</div>
 			)}
 		</>

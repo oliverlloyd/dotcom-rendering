@@ -61,7 +61,7 @@ import { SlotBodyEnd } from '../components/SlotBodyEnd.importable';
 import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
 import { getContributionsServiceUrl } from '../lib/contributions';
 import { decidePalette } from '../lib/decidePalette';
-import { BSLWidget } from '../components/BSLVideoWidget';
+import { BslVideoWidget } from '../components/BslVideoWidget.importable';
 
 const StandardGrid = ({
 	children,
@@ -646,7 +646,9 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 								format={format}
 								abTests={CAPIArticle.config.abTests}
 							>
-								<BSLWidget CAPIArticle={CAPIArticle} />
+								<Island deferUntil="idle">
+									<BslVideoWidget CAPIArticle={CAPIArticle} />
+								</Island>
 								<ArticleBody
 									format={format}
 									blocks={CAPIArticle.blocks}

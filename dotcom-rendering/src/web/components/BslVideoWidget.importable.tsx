@@ -134,6 +134,9 @@ export const BslVideoWidget = ({ CAPIArticle, format }: Props) => {
 						setPlayerHasShown(true);
 					}}
 					size="default"
+					style={{
+						backgroundColor: 'black',
+					}}
 				>
 					<div css={buttonContentStyle()}>
 						<b>▶</b>

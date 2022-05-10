@@ -1,32 +1,40 @@
 import { brand, textSans } from '@guardian/source-foundations';
 import { css } from '@emotion/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Button } from '@guardian/source-react-components';
 import { getBSLVideo } from '../lib/getBSLVideo';
 import HandsIcon from '../../static/icons/bsl-hands-icon.svg';
 import { YoutubeEmbedBlockComponent } from './YoutubeEmbedBlockComponent';
 
-const buttonStyle = () => css`
+const buttonContentStyle = () => css`
 	display: inline-flex;
 	position: relative;
 	border: none;
 	background: none;
-	padding: 0 8px;
-	align-items: flex-end;
+	padding: 8px 0;
+	align-items: center;
 	jusify-content: space-between;
 	cursor: pointer;
 
-	span {
-		background-color: ${brand[400]};
+	b {
 		color: white;
-		${textSans.medium()};
-		padding: 0px 4px;
-		margin-left: 8px;
+		${textSans.xxlarge()};
 	}
 
 	svg {
+		padding: 0 16px;
 		stroke: white;
-		height: auto;
-		width: 45px;
+		height: 30px;
+		width: auto;
+
+		path {
+			fill: white;
+		}
+	}
+
+	span {
+		color: white;
+		${textSans.medium()};
 	}
 `;
 
@@ -43,31 +51,31 @@ const messageStyle = (sidePadding?: boolean) => css`
 	}
 `;
 
-const iframeHolderStyle = () => css`
-	padding: 8px 0;
-	position: relative;
-	width: 100%;
-`;
+// const iframeHolderStyle = () => css`
+// 	padding: 8px 0;
+// 	position: relative;
+// 	width: 100%;
+// `;
 
 interface Props {
 	CAPIArticle: CAPIArticleType;
 	format: ArticleFormat;
 }
 
-const YouTubeIframe = ({ embedCode }: { embedCode: string }) => {
-	return (
-		<div css={iframeHolderStyle}>
-			<iframe
-				style={{ width: '100%', minHeight: '300px' }}
-				src={embedCode}
-				title="YouTube video player"
-				frameBorder="0"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-				allowFullScreen={true}
-			/>
-		</div>
-	);
-};
+// const YouTubeIframe = ({ embedCode }: { embedCode: string }) => {
+// 	return (
+// 		<div css={iframeHolderStyle}>
+// 			<iframe
+// 				style={{ width: '100%', minHeight: '300px' }}
+// 				src={embedCode}
+// 				title="YouTube video player"
+// 				frameBorder="0"
+// 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+// 				allowFullScreen={true}
+// 			/>
+// 		</div>
+// 	);
+// };
 
 const SupportMessage = ({ sidePadding }: { sidePadding?: boolean }) => (
 	<span css={messageStyle(sidePadding)}>
@@ -80,50 +88,59 @@ export const BslVideoWidget = ({ CAPIArticle, format }: Props) => {
 	const videoDetails = getBSLVideo(CAPIArticle.pageId);
 	const [playerOpen, setPlayerOpen] = useState<boolean>(false);
 	const [playerHasShown, setPlayerHasShown] = useState<boolean>(false);
-	const [noJS, setNoJS] = useState(true);
+	// const [noJS, setNoJS] = useState(true);
 
-	useEffect(() => {
-		// If hook runs we know client-side JS is enabled
-		setNoJS(false);
-	}, []);
+	// useEffect(() => {
+	// 	// If hook runs we know client-side JS is enabled
+	// 	setNoJS(false);
+	// }, []);
 
 	if (!videoDetails) {
 		return null;
 	}
 
-	if (noJS) {
-		return (
-			<>
-				<details>
-					<summary
-						css={buttonStyle()}
-						aria-label="show BSL video of article"
-					>
-						<HandsIcon />
-						<span>BSL</span>
-					</summary>
+	// if (noJS) {
+	// 	return (
+	// 		<>
+	// 			<details>
+	// 				<summary aria-label="show BSL video of article">
+	// 					<div
+	// 						style={{
+	// 							display: 'inline-block',
+	// 							backgroundColor: brand[400],
+	// 						}}
+	// 					>
+	// 						<div css={buttonContentStyle()}>
+	// 							<b>▶</b>
+	// 							<HandsIcon />
+	// 							<span>BSL</span>
+	// 						</div>
+	// 					</div>
+	// 				</summary>
 
-					<YouTubeIframe embedCode={videoDetails.embedUrl} />
-				</details>
-				<SupportMessage sidePadding={false} />
-			</>
-		);
-	}
+	// 				<YouTubeIframe embedCode={videoDetails.embedUrl} />
+	// 			</details>
+	// 			<SupportMessage sidePadding={false} />
+	// 		</>
+	// 	);
+	// }
 
 	return (
 		<>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
-				<button
-					aria-label="show BSL video of article"
-					css={buttonStyle}
+				<Button
 					onClick={() => {
 						setPlayerOpen(!playerOpen);
 						setPlayerHasShown(true);
 					}}
+					size="default"
 				>
-					<HandsIcon />
-					<span>BSL</span>
-				</button>
+					<div css={buttonContentStyle()}>
+						<b>▶</b>
+						<HandsIcon />
+						<span>BSL</span>
+					</div>
+				</Button>
 			</div>
 			<div>
 				<SupportMessage sidePadding={false} />

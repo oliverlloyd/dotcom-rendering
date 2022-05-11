@@ -176,7 +176,7 @@ export const Card = ({
 	const positionFooterUnderContent = !moreThanTwoSubLinks && cardIsVertical;
 
 	/* Guess at the level of BSL support! */
-	const hasSignLanguage = Math.random() > 0.5;
+	const hasSignLanguage = Math.random() > 0.7;
 	const SignLanguage = (
 		<div
 			css={css`

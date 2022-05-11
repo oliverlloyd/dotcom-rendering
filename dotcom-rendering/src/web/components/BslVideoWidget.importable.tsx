@@ -13,7 +13,7 @@ const buttonContentStyle = () => css`
 	background: none;
 	padding: 8px 0;
 	align-items: center;
-	jusify-content: space-between;
+	justify-content: space-between;
 	cursor: pointer;
 
 	b {
@@ -88,7 +88,7 @@ const SupportMessage = ({ sidePadding }: { sidePadding?: boolean }) => (
 export const BslVideoWidget = ({ CAPIArticle, format }: Props) => {
 	const videoDetails = getBSLVideo(CAPIArticle.pageId);
 	const [playerOpen, setPlayerOpen] = useState<boolean>(false);
-	const [playerHasShown, setPlayerHasShown] = useState<boolean>(false);
+	// const [playerHasShown, setPlayerHasShown] = useState<boolean>(false);
 	// const [noJS, setNoJS] = useState(true);
 
 	// useEffect(() => {
@@ -143,8 +143,8 @@ export const BslVideoWidget = ({ CAPIArticle, format }: Props) => {
 			>
 				<Button
 					onClick={() => {
-						setPlayerOpen(!playerOpen);
-						setPlayerHasShown(true);
+						setPlayerOpen((p) => !p);
+						// setPlayerHasShown(true);
 					}}
 					size="default"
 					style={{
@@ -159,27 +159,29 @@ export const BslVideoWidget = ({ CAPIArticle, format }: Props) => {
 				</Button>
 			</div>
 
-			{playerHasShown && (
-				<div
-					style={{
-						display: playerOpen ? 'block' : 'none',
-					}}
-				>
-					<YoutubeEmbedBlockComponent
-						embedUrl={`https://www.youtube-nocookie.com/embed/${videoDetails.id}?wmode=opaque&feature=oembed`}
-						format={format}
-						height={259}
-						width={460}
-						caption="BSL video"
-						credit=""
-						title="BSL video"
-						isMainMedia={false}
-					/>
-					<div>
-						<SupportMessage sidePadding={false} />
-					</div>
+			<div
+				style={{
+					maxHeight: playerOpen ? 500 : 0,
+					overflowY: 'hidden',
+					transitionProperty: 'max-height',
+					transitionDuration: '0.3s',
+					transitionTimingFunction: 'ease-in-out',
+				}}
+			>
+				<YoutubeEmbedBlockComponent
+					embedUrl={`https://www.youtube-nocookie.com/embed/${videoDetails.id}?wmode=opaque&feature=oembed`}
+					format={format}
+					height={259}
+					width={460}
+					caption="BSL video"
+					credit=""
+					title="BSL video"
+					isMainMedia={false}
+				/>
+				<div>
+					<SupportMessage sidePadding={false} />
 				</div>
-			)}
+			</div>
 		</section>
 	);
 };

@@ -15,6 +15,7 @@ const BSL_VIDEOS: Record<string, YouTubeVideoDetails> = {
 	'politics/2019/jul/15/it-will-be-boris-johnson-and-it-will-certainly-be-a-disaster':
 		demoVideo,
 	'music/2018/aug/31/eminem-kamikaze-album-review': demoVideo,
+	'lifeandstyle/2022/may/11/pets-vegan-food-diet-meat': demoVideo,
 };
 
 export const getBSLVideo = (

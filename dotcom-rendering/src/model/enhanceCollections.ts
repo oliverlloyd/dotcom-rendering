@@ -71,7 +71,7 @@ const enhanceSupportingContent = (
 	});
 };
 
-const enhanceCards = (
+export const enhanceCards = (
 	collections: FEFrontCard[],
 	containerPalette?: DCRContainerPalette,
 ): DCRFrontCard[] =>

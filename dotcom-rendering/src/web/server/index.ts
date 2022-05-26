@@ -1,7 +1,11 @@
 import type express from 'express';
+import { showMoreTestData } from './showMoreTestData';
 import { Article as ExampleArticle } from '../../../fixtures/generated/articles/Article';
 import { enhanceBlocks } from '../../model/enhanceBlocks';
-import { enhanceCollections } from '../../model/enhanceCollections';
+import {
+	enhanceCards,
+	enhanceCollections,
+} from '../../model/enhanceCollections';
 import { enhanceStandfirst } from '../../model/enhanceStandfirst';
 import { extract as extractGA } from '../../model/extract-ga';
 import { extractNAV } from '../../model/extract-nav';
@@ -10,6 +14,7 @@ import { articleToHtml } from './articleToHtml';
 import { blocksToHtml } from './blocksToHtml';
 import { frontToHtml } from './frontToHtml';
 import { keyEventsToHtml } from './keyEventsToHtml';
+import { showMoreCardsToHtml } from './showMoretoHtml';
 
 function enhancePinnedPost(format: CAPIFormat, block?: Block) {
 	return block ? enhanceBlocks([block], format)[0] : block;
@@ -175,6 +180,30 @@ export const renderKeyEvents = (
 			keyEvents,
 			format,
 			filterKeyEvents,
+		});
+
+		res.status(200).send(html);
+	} catch (e) {
+		const message = e instanceof Error ? e.stack : 'Unknown Error';
+		res.status(500).send(`<pre>${message}</pre>`);
+	}
+};
+
+export const renderShowMoreCards = (
+	{ body }: { body: ShowMoreRequest },
+	res: express.Response,
+): void => {
+	console.log(body);
+	const exampleData: ShowMoreRequest = showMoreTestData as ShowMoreRequest;
+	try {
+		const { cards, startIndex, containerPalette } = exampleData;
+
+		const dcrTrails = enhanceCards(cards, containerPalette);
+
+		const html = showMoreCardsToHtml({
+			cards: dcrTrails,
+			startIndex,
+			containerPalette,
 		});
 
 		res.status(200).send(html);

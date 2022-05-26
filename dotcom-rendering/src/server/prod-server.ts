@@ -15,6 +15,7 @@ import {
 	renderFront,
 	renderInteractive,
 	renderKeyEvents,
+	renderShowMoreCards,
 } from '../web/server';
 import type { GuardianConfiguration } from './lib/aws/aws-parameters';
 import { getGuardianConfiguration } from './lib/aws/aws-parameters';
@@ -70,6 +71,7 @@ export const prodServer = () => {
 	app.post('/AMPInteractive', logRenderTime, renderAMPArticle);
 	app.post('/Blocks', logRenderTime, renderBlocks);
 	app.post('/KeyEvents', logRenderTime, renderKeyEvents);
+	app.post('/ShowMore', logRenderTime, renderShowMoreCards);
 	app.post('/Front', logRenderTime, renderFront);
 
 	// These GET's are for checking any given URL directly from PROD

@@ -1010,6 +1010,12 @@ interface BlocksRequest {
 	switches: { [key: string]: boolean };
 }
 
+interface ShowMoreRequest {
+	cards: FEFrontCard[];
+	startIndex: number;
+	containerPalette?: DCRContainerPalette;
+}
+
 /**
  * KeyEventsRequest is the expected body format for POST requests made to /KeyEvents
  */

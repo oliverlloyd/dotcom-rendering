@@ -1,5 +1,4 @@
 import type express from 'express';
-import { showMoreTestData } from './showMoreTestData';
 import { Article as ExampleArticle } from '../../../fixtures/generated/articles/Article';
 import { enhanceBlocks } from '../../model/enhanceBlocks';
 import {
@@ -14,6 +13,7 @@ import { articleToHtml } from './articleToHtml';
 import { blocksToHtml } from './blocksToHtml';
 import { frontToHtml } from './frontToHtml';
 import { keyEventsToHtml } from './keyEventsToHtml';
+import showMoreTestData from './showMoreTestData.json';
 import { showMoreCardsToHtml } from './showMoretoHtml';
 
 function enhancePinnedPost(format: CAPIFormat, block?: Block) {

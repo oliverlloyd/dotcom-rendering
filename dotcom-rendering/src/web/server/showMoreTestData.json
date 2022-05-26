@@ -1,7 +1,5 @@
-/* eslint-disable */
-
-export const showMoreTestData = {
-	cards: [
+{
+	"cards": [
     {
       "properties": {
         "isBreaking": false,
@@ -10665,6 +10663,6 @@ export const showMoreTestData = {
       "type": "CuratedContent"
     }
   ],
-  startIndex: 5,
-  containerPalette: "EventPalette",
+  "startIndex": 5,
+  "containerPalette": "EventPalette"
 }

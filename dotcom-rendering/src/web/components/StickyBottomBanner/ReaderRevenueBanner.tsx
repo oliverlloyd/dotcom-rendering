@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { css } from '@emotion/react';
 
 import { getCookie } from '@guardian/libs';
@@ -269,11 +269,25 @@ const RemoteBanner = ({
 	fetchEmail,
 }: RemoteBannerProps) => {
 	const [Banner, setBanner] = useState<React.FC>();
-
+	const [lastFocused, setLastFocused] = useState<Element | null>(null);
 	const [hasBeenSeen, setNode] = useHasBeenSeen({
 		threshold: 0,
 		debounce: true,
 	});
+
+	const bannerContainerRef = useCallback((node: HTMLDivElement) => {
+		if (node) {
+			setNode(node);
+			setLastFocused(document.activeElement);
+			node.focus();
+		}
+	}, []);
+
+	const onBannerClose = () => {
+		if (lastFocused instanceof HTMLElement) {
+			lastFocused.focus();
+		}
+	};
 
 	useOnce(() => {
 		if (module === undefined || meta === undefined) {
@@ -311,7 +325,8 @@ const RemoteBanner = ({
 		return (
 			// The css here is necessary to put the container div in view, so that we can track the view
 			<div
-				ref={setNode}
+				tabIndex={-1}
+				ref={bannerContainerRef}
 				css={css`
 					width: 100%;
 					${getZIndex('banner')}
@@ -323,6 +338,7 @@ const RemoteBanner = ({
 					// @ts-ignore
 					submitComponentEvent={submitComponentEvent}
 					fetchEmail={fetchEmail}
+					onBannerClose={onBannerClose}
 				/>
 				{/* eslint-enable react/jsx-props-no-spreading */}
 			</div>

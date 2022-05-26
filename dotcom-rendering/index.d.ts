@@ -127,6 +127,7 @@ type Palette = {
 		shareCountUntilDesktop: Colour;
 		cricketScoreboardLink: Colour;
 		keyEvent: Colour;
+		keyEventTime: Colour;
 	};
 	background: {
 		article: Colour;
@@ -153,6 +154,8 @@ type Palette = {
 		ageWarning: Colour;
 		keyEventBullet: Colour;
 		summaryEventBullet: Colour;
+		keyEvent: Colour;
+		keyEventFromDesktop: Colour;
 	};
 	fill: {
 		commentCount: Colour;
@@ -186,6 +189,7 @@ type Palette = {
 		cricketScoreboardTop: Colour;
 		cricketScoreboardDivider: Colour;
 		cardSupporting: Colour;
+		keyEvent: Colour;
 	};
 	topBar: {
 		card: Colour;
@@ -256,13 +260,13 @@ type CustomParams = {
 
 type AdTargeting =
 	| {
-			adUnit: string;
-			customParams: CustomParams;
-			disableAds?: false;
-	  }
+		adUnit: string;
+		customParams: CustomParams;
+		disableAds?: false;
+	}
 	| {
-			disableAds: true;
-	  };
+		disableAds: true;
+	};
 
 interface SectionNielsenAPI {
 	name: string;
@@ -367,6 +371,17 @@ interface AuthorType {
 	email?: string;
 }
 
+interface MembershipPlaceholder {
+	campaignCode?: string;
+}
+
+interface Attributes {
+	pinned: boolean;
+	summary: boolean;
+	keyEvent: boolean;
+	membershipPlaceholder?: MembershipPlaceholder;
+}
+
 interface BlockContributor {
 	name: string;
 	imageUrl?: string;
@@ -376,6 +391,7 @@ interface BlockContributor {
 interface Block {
 	id: string;
 	elements: CAPIElement[];
+	attributes: Attributes;
 	blockCreatedOn?: number;
 	blockCreatedOnDisplay?: string;
 	blockLastUpdated?: number;

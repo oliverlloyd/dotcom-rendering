@@ -1,6 +1,4 @@
 import { enhanceCards } from '../../model/enhanceCollections';
-// import showMoreTestData from '../server/showMoreTestData.json';
-// import { showMoreCardsToHtml } from '../server/showMoretoHtml';
 import { ShowMoreContainer } from './ShowMoreContainer';
 
 export default {
@@ -26,10 +24,8 @@ export const Test = () => {
 		return <ShowMoreContainer trails={dcrTrails} startIndex={startIndex} />;
 	} catch (e) {
 		const message = e instanceof Error ? e.stack : 'Unknown Error';
-		console.log(message);
-		// res.status(500).send(`<pre>${message}</pre>`);
+		return message;
 	}
-	console.log('test log!');
 };
 Test.story = { name: 'basic' };
 

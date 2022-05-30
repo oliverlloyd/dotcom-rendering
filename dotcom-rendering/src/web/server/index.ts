@@ -2,6 +2,7 @@ import type express from 'express';
 import { Article as ExampleArticle } from '../../../fixtures/generated/articles/Article';
 import { enhanceBlocks } from '../../model/enhanceBlocks';
 import {
+	enhanceCards,
 	// enhanceCards,
 	enhanceCollections,
 } from '../../model/enhanceCollections';
@@ -13,6 +14,7 @@ import { articleToHtml } from './articleToHtml';
 import { blocksToHtml } from './blocksToHtml';
 import { frontToHtml } from './frontToHtml';
 import { keyEventsToHtml } from './keyEventsToHtml';
+import { showMoreCardsToHtml } from './showMoretoHtml';
 // import showMoreTestData from './showMoreTestData.json';
 // import { showMoreCardsToHtml } from './showMoretoHtml';
 
@@ -189,29 +191,28 @@ export const renderKeyEvents = (
 	}
 };
 
-// export const renderShowMoreCards = (
-// 	{ body }: { body: ShowMoreRequest },
-// 	res: express.Response,
-// ): void => {
-// 	console.log(body);
-// 	const exampleData: ShowMoreRequest = showMoreTestData as ShowMoreRequest;
-// 	try {
-// 		const { cards, startIndex, containerPalette } = exampleData;
+export const renderShowMoreCards = (
+	{ body }: { body: ShowMoreRequest },
+	res: express.Response,
+): void => {
+	try {
+		const { cards, startIndex, containerPalette } = body;
 
-// 		const dcrTrails = enhanceCards(cards, containerPalette);
+		const dcrTrails = enhanceCards(cards, containerPalette);
 
-// 		const html = showMoreCardsToHtml({
-// 			cards: dcrTrails,
-// 			startIndex,
-// 			containerPalette,
-// 		});
+		const html = showMoreCardsToHtml({
+			cards: dcrTrails,
+			startIndex,
+			containerPalette,
+		});
 
-// 		res.status(200).send(html);
-// 	} catch (e) {
-// 		const message = e instanceof Error ? e.stack : 'Unknown Error';
-// 		res.status(500).send(`<pre>${message}</pre>`);
-// 	}
-// };
+		res.status(200).send(html);
+	} catch (e) {
+		// todo: need to replicate error-handling behaviour of existing component
+		const message = e instanceof Error ? e.stack : 'Unknown Error';
+		res.status(500).send(`<pre>${message}</pre>`);
+	}
+};
 
 export const renderFront = (
 	{ body }: express.Request,

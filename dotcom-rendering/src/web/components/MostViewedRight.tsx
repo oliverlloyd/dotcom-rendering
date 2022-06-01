@@ -1,11 +1,8 @@
 import { css } from '@emotion/react';
-
 import { headline } from '@guardian/source-foundations';
-import { Lines } from '@guardian/source-react-components-development-kitchen';
-
-import { useApi } from '../lib/useApi';
+import { StraightLines } from '@guardian/source-react-components-development-kitchen';
 import { decideTrail } from '../lib/decideTrail';
-
+import { useApi } from '../lib/useApi';
 import { MostViewedRightItem } from './MostViewedRightItem';
 
 const wrapperStyles = css`
@@ -47,8 +44,8 @@ export const MostViewedRight = ({
 
 	if (data) {
 		const trails: TrailType[] = data.trails
-			.map(decideTrail)
-			.slice(0, limitItems);
+			.slice(0, limitItems)
+			.map(decideTrail);
 		const stickToTop = adBlockerDetected || isAdFreeUser;
 		// Look I don't know why data-component is geo-most-popular either, but it is, ok? Ok.
 		return (
@@ -56,7 +53,12 @@ export const MostViewedRight = ({
 				css={[wrapperStyles, stickToTop && stickyStyles]}
 				data-component="geo-most-popular"
 			>
-				<Lines count={4} effect="straight" />
+				<StraightLines
+					cssOverrides={css`
+						display: block;
+					`}
+					count={4}
+				/>
 				<h3 css={headingStyles}>Most viewed</h3>
 				<ul data-link-name="Right hand most popular geo GB">
 					{trails.map((trail, index) => (

@@ -345,13 +345,12 @@ export const Quiz: CAPIArticleType = {
 						],
 					},
 					{
-						title: 'Coronavirus',
-						url: '/world/coronavirus-outbreak',
-						longTitle: 'Coronavirus',
-					},
-					{
 						title: 'Climate crisis',
 						url: '/environment/climate-crisis',
+					},
+					{
+						title: 'Newsletters',
+						url: '/email-newsletters',
 					},
 					{
 						title: 'Football',
@@ -388,6 +387,11 @@ export const Quiz: CAPIArticleType = {
 								longTitle: 'football/teams',
 							},
 						],
+					},
+					{
+						title: 'Coronavirus',
+						url: '/world/coronavirus-outbreak',
+						longTitle: 'Coronavirus',
 					},
 					{
 						title: 'Business',
@@ -1121,6 +1125,8 @@ export const Quiz: CAPIArticleType = {
 			id: 'profile/steven-pye',
 			type: 'Contributor',
 			title: 'Steven Pye',
+			bylineImageUrl:
+				'https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2013/3/1/1362132740458/Steven-Pye.jpg?width=300&quality=85&auto=format&fit=max&s=5157df1a9e8f0f416988733b4e400e8b',
 		},
 		{
 			id: 'tracking/commissioningdesk/uk-communities-and-social',
@@ -1574,7 +1580,7 @@ export const Quiz: CAPIArticleType = {
 					],
 				},
 			],
-			elementId: '3d939fda-3b0f-44ea-acca-ed76eb14b2dd',
+			elementId: 'a00b9fbc-478a-447f-94ea-b2b63c00d73e',
 		},
 	],
 	webPublicationDate: '2020-06-12T09:09:24.000Z',
@@ -2187,9 +2193,14 @@ export const Quiz: CAPIArticleType = {
 							minScore: 2,
 						},
 					],
-					elementId: '6cb35041-955a-499c-86a9-838e164b6872',
+					elementId: '1e0a69a1-ab5a-45c7-9cf0-46b77c6b5cd1',
 				},
 			],
+			attributes: {
+				pinned: false,
+				keyEvent: false,
+				summary: false,
+			},
 			blockCreatedOn: 1591866131000,
 			blockCreatedOnDisplay: '10.02 BST',
 			blockLastUpdated: 1591917260000,

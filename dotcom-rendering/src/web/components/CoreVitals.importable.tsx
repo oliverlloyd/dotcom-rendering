@@ -5,7 +5,6 @@ import {
 	initCoreWebVitals,
 } from '@guardian/libs';
 import { useAB } from '../lib/useAB';
-import { commercialGptLazyLoad } from '../experiments/tests/commercial-gpt-lazy-load';
 
 export const CoreVitals = () => {
 	const browserId = getCookie({ name: 'bwid', shouldMemoize: true });
@@ -17,16 +16,28 @@ export const CoreVitals = () => {
 		window.location.hostname === 'preview.gutools.co.uk';
 	const sampling = 1 / 100;
 
-	const testsToForceMetrics: ABTest[] = [
-		/* keep array multi-line */
-		commercialGptLazyLoad,
-	];
-
 	const ABTestAPI = useAB();
 
-	const userInTestToForceMetrics = testsToForceMetrics.some((test) =>
-		ABTestAPI?.runnableTest(test),
-	);
+	// For these tests switch off sampling and collect metrics for 100% of views
+	const clientSideTestsToForceMetrics: ABTest[] = [
+		/* keep array multi-line */
+	];
+
+	const userInClientSideTestToForceMetrics =
+		clientSideTestsToForceMetrics.some((test) =>
+			ABTestAPI?.runnableTest(test),
+		);
+
+	const serverSideTestsToForceMetrics: Array<keyof ServerSideTests> = [
+		/* linter, please keep this array multi-line */
+		'interactivesIdleLoadingVariant',
+		'interactivesIdleLoadingControl',
+	];
+
+	const userInServerSideTestToForceMetrics =
+		serverSideTestsToForceMetrics.some((test) =>
+			Object.keys(window.guardian.config.tests).includes(test),
+		);
 
 	/* eslint-disable @typescript-eslint/no-floating-promises -- they’re async methods */
 
@@ -41,7 +52,10 @@ export const CoreVitals = () => {
 	if (window.location.hostname === (process.env.HOSTNAME || 'localhost')) {
 		bypassCoreWebVitalsSampling('dotcom');
 	}
-	if (userInTestToForceMetrics) {
+	if (
+		userInClientSideTestToForceMetrics ||
+		userInServerSideTestToForceMetrics
+	) {
 		bypassCoreWebVitalsSampling('commercial');
 	}
 

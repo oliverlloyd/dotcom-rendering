@@ -1,63 +1,63 @@
 import { css } from '@emotion/react';
-
+import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
+import type { ArticleFormat } from '@guardian/libs';
 import {
-	neutral,
+	border,
 	brandAltBackground,
 	brandBackground,
 	brandBorder,
 	brandLine,
-	labs,
-	border,
 	from,
+	labs,
+	neutral,
 	until,
 } from '@guardian/source-foundations';
-import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
-import type { ArticleFormat } from '@guardian/libs';
-
-import { Lines } from '@guardian/source-react-components-development-kitchen';
-import { StarRating } from '../components/StarRating/StarRating';
-import { ArticleBody } from '../components/ArticleBody';
-import { RightColumn } from '../components/RightColumn';
-import { ArticleTitle } from '../components/ArticleTitle';
-import { ArticleContainer } from '../components/ArticleContainer';
-import { ArticleMeta } from '../components/ArticleMeta';
-import { SubMeta } from '../components/SubMeta';
-import { MainMedia } from '../components/MainMedia';
-import { ArticleHeadline } from '../components/ArticleHeadline';
-import { Standfirst } from '../components/Standfirst';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import { SubNav } from '../components/SubNav.importable';
-import { ElementContainer } from '../components/ElementContainer';
-import { HeaderAdSlot } from '../components/HeaderAdSlot';
-import { MobileStickyContainer, AdSlot } from '../components/AdSlot';
-import { Border } from '../components/Border';
-import { GridItem } from '../components/GridItem';
-import { DiscussionLayout } from '../components/DiscussionLayout';
-import { Nav } from '../components/Nav/Nav';
-import { LabsHeader } from '../components/LabsHeader.importable';
-import { GuardianLabsLines } from '../components/GuardianLabsLines';
-
+import {
+	Lines,
+	StraightLines,
+} from '@guardian/source-react-components-development-kitchen';
 import { buildAdTargeting } from '../../lib/ad-targeting';
 import { parse } from '../../lib/slot-machine-flags';
+import { AdSlot, MobileStickyContainer } from '../components/AdSlot';
+import { ArticleBody } from '../components/ArticleBody';
+import { ArticleContainer } from '../components/ArticleContainer';
+import { ArticleHeadline } from '../components/ArticleHeadline';
+import { ArticleMeta } from '../components/ArticleMeta';
+import { ArticleTitle } from '../components/ArticleTitle';
+import { Border } from '../components/Border';
+import { DiscussionLayout } from '../components/DiscussionLayout';
+import { ElementContainer } from '../components/ElementContainer';
+import { Footer } from '../components/Footer';
+import { GetMatchNav } from '../components/GetMatchNav.importable';
+import { GetMatchStats } from '../components/GetMatchStats.importable';
+import { GetMatchTabs } from '../components/GetMatchTabs.importable';
+import { GridItem } from '../components/GridItem';
+import { GuardianLabsLines } from '../components/GuardianLabsLines';
+import { Header } from '../components/Header';
+import { HeaderAdSlot } from '../components/HeaderAdSlot';
+import { Island } from '../components/Island';
+import { LabsHeader } from '../components/LabsHeader.importable';
+import { MainMedia } from '../components/MainMedia';
+import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout';
+import { MostViewedRightWrapper } from '../components/MostViewedRightWrapper.importable';
+import { Nav } from '../components/Nav/Nav';
+import { OnwardsLower } from '../components/OnwardsLower.importable';
+import { OnwardsUpper } from '../components/OnwardsUpper.importable';
+import { RightColumn } from '../components/RightColumn';
+import { SlotBodyEnd } from '../components/SlotBodyEnd.importable';
+import { Standfirst } from '../components/Standfirst';
+import { StarRating } from '../components/StarRating/StarRating';
+import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
+import { SubMeta } from '../components/SubMeta';
+import { SubNav } from '../components/SubNav.importable';
+import { getContributionsServiceUrl } from '../lib/contributions';
+import { decidePalette } from '../lib/decidePalette';
 import {
 	decideLineCount,
 	decideLineEffect,
 	getCurrentPillar,
 } from '../lib/layoutHelpers';
-import { Stuck, BannerWrapper } from './lib/stickiness';
-import { Island } from '../components/Island';
-import { MostViewedRightWrapper } from '../components/MostViewedRightWrapper.importable';
-import { GetMatchStats } from '../components/GetMatchStats.importable';
-import { OnwardsLower } from '../components/OnwardsLower.importable';
-import { OnwardsUpper } from '../components/OnwardsUpper.importable';
-import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout';
-import { GetMatchNav } from '../components/GetMatchNav.importable';
-import { GetMatchTabs } from '../components/GetMatchTabs.importable';
-import { SlotBodyEnd } from '../components/SlotBodyEnd.importable';
-import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
-import { getContributionsServiceUrl } from '../lib/contributions';
-import { decidePalette } from '../lib/decidePalette';
+import { BannerWrapper, Stuck } from './lib/stickiness';
 
 const StandardGrid = ({
 	children,
@@ -324,8 +324,11 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 
 	const showOnwardsLower = seriesTag && CAPIArticle.hasStoryPackage;
 
+	const footballMatchUrl =
+		CAPIArticle.matchType === 'FootballMatchType' && CAPIArticle.matchUrl;
+
 	const isMatchReport =
-		format.design === ArticleDesign.MatchReport && !!CAPIArticle.matchUrl;
+		format.design === ArticleDesign.MatchReport && !!footballMatchUrl;
 
 	const showComments = CAPIArticle.isCommentable;
 
@@ -381,10 +384,6 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 								discussionApiUrl={
 									CAPIArticle.config.discussionApiUrl
 								}
-								isAnniversary={
-									CAPIArticle.config.switches
-										.anniversaryHeaderSvg
-								}
 								urls={CAPIArticle.nav.readerRevenueLinks.header}
 								remoteHeader={
 									CAPIArticle.config.switches.remoteHeader
@@ -438,7 +437,12 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 									padded={false}
 									showTopBorder={false}
 								>
-									<Lines count={4} effect="straight" />
+									<StraightLines
+										count={4}
+										cssOverrides={css`
+											display: block;
+										`}
+									/>
 								</ElementContainer>
 							</>
 						)}
@@ -483,7 +487,7 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 								sectionUrl={CAPIArticle.sectionUrl}
 								guardianBaseURL={CAPIArticle.guardianBaseURL}
 								badge={CAPIArticle.badge}
-								isMatch={!!CAPIArticle.matchUrl}
+								isMatch={!!footballMatchUrl}
 							/>
 						</GridItem>
 						<GridItem area="border">
@@ -496,14 +500,14 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 						<GridItem area="matchNav" element="aside">
 							<div css={maxWidth}>
 								{format.design === ArticleDesign.MatchReport &&
-									CAPIArticle.matchUrl && (
+									footballMatchUrl && (
 										<Island
 											deferUntil="visible"
 											clientOnly={true}
 											placeholderHeight={230}
 										>
 											<GetMatchNav
-												matchUrl={CAPIArticle.matchUrl}
+												matchUrl={footballMatchUrl}
 												format={format}
 												headlineString={
 													CAPIArticle.headline
@@ -520,13 +524,13 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 						<GridItem area="matchtabs" element="aside">
 							<div css={maxWidth}>
 								{format.design === ArticleDesign.MatchReport &&
-									CAPIArticle.matchUrl && (
+									footballMatchUrl && (
 										<Island
 											clientOnly={true}
 											placeholderHeight={40}
 										>
 											<GetMatchTabs
-												matchUrl={CAPIArticle.matchUrl}
+												matchUrl={footballMatchUrl}
 												format={format}
 											/>
 										</Island>
@@ -590,6 +594,9 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 										<GuardianLabsLines />
 									) : (
 										<Lines
+											cssOverrides={css`
+												display: block;
+											`}
 											count={decideLineCount(
 												format.design,
 											)}
@@ -660,16 +667,17 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 									isPreview={CAPIArticle.config.isPreview}
 									idUrl={CAPIArticle.config.idUrl || ''}
 									isDev={!!CAPIArticle.config.isDev}
+									abTests={CAPIArticle.config.abTests}
 								/>
 								{format.design === ArticleDesign.MatchReport &&
-									!!CAPIArticle.matchUrl && (
+									!!footballMatchUrl && (
 										<Island
 											deferUntil="visible"
 											clientOnly={true}
 											placeholderHeight={800}
 										>
 											<GetMatchStats
-												matchUrl={CAPIArticle.matchUrl}
+												matchUrl={footballMatchUrl}
 												format={format}
 											/>
 										</Island>
@@ -713,10 +721,12 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 										/>
 									</Island>
 								)}
-								<Lines
+								<StraightLines
 									data-print-layout="hide"
 									count={4}
-									effect="straight"
+									cssOverrides={css`
+										display: block;
+									`}
 								/>
 								<SubMeta
 									format={format}
@@ -943,7 +953,12 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 						shouldHideReaderRevenue={
 							CAPIArticle.shouldHideReaderRevenue
 						}
-						switches={CAPIArticle.config.switches}
+						remoteBannerSwitch={
+							CAPIArticle.config.switches.remoteBanner
+						}
+						puzzleBannerSwitch={
+							CAPIArticle.config.switches.puzzlesBanner
+						}
 						tags={CAPIArticle.tags}
 					/>
 				</Island>

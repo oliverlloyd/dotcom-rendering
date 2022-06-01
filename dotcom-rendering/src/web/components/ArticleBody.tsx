@@ -1,11 +1,11 @@
-import { css, keyframes } from '@emotion/react';
-
-import { headline, body, between, space } from '@guardian/source-foundations';
+import { css } from '@emotion/react';
 import { ArticleDesign, ArticleDisplay } from '@guardian/libs';
 import type { ArticleFormat } from '@guardian/libs';
+import { between, body, headline, space } from '@guardian/source-foundations';
 import { ArticleRenderer } from '../lib/ArticleRenderer';
-import { LiveBlogRenderer } from '../lib/LiveBlogRenderer';
 import { decidePalette } from '../lib/decidePalette';
+import { LiveBlogRenderer } from '../lib/LiveBlogRenderer';
+import { revealStyles } from '../lib/revealStyles';
 
 type Props = {
 	format: ArticleFormat;
@@ -30,6 +30,7 @@ type Props = {
 	isSensitive: boolean;
 	isDev: boolean;
 	onFirstPage?: boolean;
+	abTests?: ServerSideTests;
 };
 
 const globalH2Styles = (display: ArticleDisplay) => css`
@@ -87,20 +88,6 @@ const globalLinkStyles = (palette: Palette) => css`
 	}
 `;
 
-const revealStyles = css`
-	/* We're using classnames here because we add and remove these classes
-	   using plain javascript */
-	.reveal {
-		animation: ${keyframes`
-			0% { opacity: 0; }
-			100% { opacity: 1; }
-		`} 4s ease-out;
-	}
-	.pending {
-		display: none;
-	}
-`;
-
 export const ArticleBody = ({
 	format,
 	blocks,
@@ -124,6 +111,7 @@ export const ArticleBody = ({
 	isSensitive,
 	isDev,
 	onFirstPage,
+	abTests,
 }: Props) => {
 	const isInteractive = format.design === ArticleDesign.Interactive;
 	const palette = decidePalette(format);
@@ -135,7 +123,6 @@ export const ArticleBody = ({
 		return (
 			<>
 				<div
-					// eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
 					tabIndex={0}
 					id="liveblog-body"
 					// This classname is used by Spacefinder as the container in which it'll attempt to insert inline ads
@@ -177,7 +164,6 @@ export const ArticleBody = ({
 	}
 	return (
 		<div
-			// eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
 			tabIndex={0}
 			id="maincontent"
 			css={[
@@ -207,6 +193,7 @@ export const ArticleBody = ({
 				isDev={isDev}
 				isAdFreeUser={isAdFreeUser}
 				isSensitive={isSensitive}
+				abTests={abTests}
 			/>
 		</div>
 	);

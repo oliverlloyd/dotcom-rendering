@@ -1,11 +1,22 @@
-import KeyEvents, {
-	KeyEvent,
-} from '@guardian/common-rendering/src/components/keyEvents';
+import type { KeyEvent } from '@guardian/common-rendering/src/components/keyEvents';
+import KeyEvents from '@guardian/common-rendering/src/components/keyEvents';
 
 type Props = {
 	keyEvents: Block[];
 	format: ArticleFormat;
 	filterKeyEvents: boolean;
+};
+
+type ValidBlock = Block & {
+	title: string;
+	blockFirstPublished: number;
+};
+
+const isValidKeyEvent = (keyEvent: Block): keyEvent is ValidBlock => {
+	return (
+		typeof keyEvent.title === 'string' &&
+		typeof keyEvent.blockFirstPublished === 'number'
+	);
 };
 
 export const KeyEventsContainer = ({
@@ -14,14 +25,12 @@ export const KeyEventsContainer = ({
 	filterKeyEvents,
 }: Props) => {
 	const transformedKeyEvents: KeyEvent[] = keyEvents
-		.filter((keyEvent) => {
-			return keyEvent.title && keyEvent.blockFirstPublished;
-		})
+		.filter(isValidKeyEvent)
 		.map((keyEvent) => {
 			return {
-				text: keyEvent.title || '', // We fallback to '' here purely to keep ts happy
+				text: keyEvent.title,
 				url: `?filterKeyEvents=${filterKeyEvents}&page=with:block-${keyEvent.id}#block-${keyEvent.id}`,
-				date: new Date(keyEvent.blockFirstPublished || ''), // We fallback to '' here purely to keep ts happy
+				date: new Date(keyEvent.blockFirstPublished),
 			};
 		});
 

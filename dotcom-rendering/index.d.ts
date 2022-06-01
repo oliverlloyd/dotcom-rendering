@@ -27,7 +27,9 @@ type CAPITheme = ThemePillar | ThemeSpecial;
 // https://github.com/guardian/content-api-scala-client/blob/master/client/src/main/scala/com.gu.contentapi.client/utils/format/Design.scala
 type CAPIDesign =
 	| 'ArticleDesign'
-	| 'MediaDesign'
+	| 'GalleryDesign'
+	| 'AudioDesign'
+	| 'VideoDesign'
 	| 'ReviewDesign'
 	| 'AnalysisDesign'
 	| 'CommentDesign'
@@ -44,7 +46,8 @@ type CAPIDesign =
 	| 'PhotoEssayDesign'
 	| 'PrintShopDesign'
 	| 'ObituaryDesign'
-	| 'FullPageInteractiveDesign';
+	| 'FullPageInteractiveDesign'
+	| 'NewsletterSignupDesign';
 
 // CAPIDisplay is the display information passed through from CAPI and dictates the displaystyle of the content e.g. Immersive
 // https://github.com/guardian/content-api-scala-client/blob/master/client/src/main/scala/com.gu.contentapi.client/utils/format/Display.scala
@@ -72,7 +75,7 @@ type ArticlePillar = ArticleTheme;
 // This is an object that allows you Type defaults of the designTypes.
 // The return type looks like: { Feature: any, Live: any, ...}
 // and can be used to add TypeSafety when needing to override a style in a designType
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 type DesignTypesObj = { [key in ArticleDesign]: any };
 
 type Colour = string;
@@ -82,7 +85,7 @@ type Palette = {
 		headline: Colour;
 		seriesTitle: Colour;
 		sectionTitle: Colour;
-		matchTitle: Colour;
+		seriesTitleWhenMatch: Colour;
 		byline: Colour;
 		twitterHandle: Colour;
 		twitterHandleBelowDesktop: Colour;
@@ -122,6 +125,9 @@ type Palette = {
 		overlayedCaption: Colour;
 		shareCount: Colour;
 		shareCountUntilDesktop: Colour;
+		cricketScoreboardLink: Colour;
+		keyEvent: Colour;
+		keyEventTime: Colour;
 	};
 	background: {
 		article: Colour;
@@ -146,6 +152,10 @@ type Palette = {
 		analysisUnderline: Colour;
 		matchStats: Colour;
 		ageWarning: Colour;
+		keyEventBullet: Colour;
+		summaryEventBullet: Colour;
+		keyEvent: Colour;
+		keyEventFromDesktop: Colour;
 	};
 	fill: {
 		commentCount: Colour;
@@ -176,15 +186,48 @@ type Palette = {
 		lines: Colour;
 		matchTab: Colour;
 		activeMatchTab: Colour;
+		cricketScoreboardTop: Colour;
+		cricketScoreboardDivider: Colour;
 		cardSupporting: Colour;
+		keyEvent: Colour;
 	};
 	topBar: {
 		card: Colour;
 	};
 	hover: {
 		headlineByline: Colour;
-
 		standfirstLink: Colour;
+		keyEventLink: Colour;
+		keyEventBullet: Colour;
+		summaryEventBullet: Colour;
+	};
+};
+
+type ContainerOverrides = {
+	text: {
+		cardHeadline: Colour;
+		cardStandfirst: Colour;
+		cardKicker: Colour;
+		cardByline: Colour;
+		cardFooter: Colour;
+		cardCommentCount: Colour;
+		dynamoHeadline: Colour;
+		dynamoKicker: Colour;
+		dynamoSublinkKicker: Colour;
+		dynamoMeta: Colour;
+		container: Colour;
+		containerToggle: Colour;
+	};
+	border: {
+		container: Colour;
+		lines: Colour;
+	};
+	background: {
+		container: Colour;
+		card: Colour;
+	};
+	topBar: {
+		card: Colour;
 	};
 };
 
@@ -328,14 +371,27 @@ interface AuthorType {
 	email?: string;
 }
 
+interface MembershipPlaceholder {
+	campaignCode?: string;
+}
+
+interface Attributes {
+	pinned: boolean;
+	summary: boolean;
+	keyEvent: boolean;
+	membershipPlaceholder?: MembershipPlaceholder;
+}
+
 interface BlockContributor {
 	name: string;
 	imageUrl?: string;
+	largeImageUrl?: string;
 }
 
 interface Block {
 	id: string;
 	elements: CAPIElement[];
+	attributes: Attributes;
 	blockCreatedOn?: number;
 	blockCreatedOnDisplay?: string;
 	blockLastUpdated?: number;
@@ -399,6 +455,36 @@ type PageTypeType = {
 	isPaidContent: boolean;
 	isPreview: boolean;
 	isSensitive: boolean;
+};
+
+type MatchType = 'CricketMatchType' | 'FootballMatchType';
+
+type CricketTeam = {
+	name: string;
+	home: boolean;
+};
+
+type FallOfWicket = {
+	order: number;
+};
+
+type CricketInnings = {
+	order: number;
+	battingTeam: string;
+	runsScored: string;
+	declared: boolean;
+	forfeited: boolean;
+	fallOfWicket: FallOfWicket[];
+	overs: string;
+};
+
+type CricketMatch = {
+	matchId: string;
+	competitionName: string;
+	venueName: string;
+	teams: CricketTeam[];
+	innings: CricketInnings[];
+	gameDate: string;
 };
 
 // Data types for the API request bodies from clients that require
@@ -507,6 +593,7 @@ interface CAPIArticleType {
 	pageType: PageTypeType;
 
 	matchUrl?: string;
+	matchType?: MatchType;
 	isSpecialReport: boolean;
 
 	// Interactives made on Frontend rather than DCR require special handling.
@@ -517,7 +604,6 @@ interface CAPIArticleType {
 
 	// Included on live and dead blogs. Used when polling
 	mostRecentBlockId?: string;
-	matchType?: string;
 }
 
 type StageType = 'DEV' | 'CODE' | 'PROD';
@@ -534,6 +620,7 @@ interface FEFrontType {
 	webURL: string;
 	config: FEFrontConfigType;
 	commercialProperties: Record<string, unknown>;
+	pageFooter: FooterType;
 }
 
 type DCRFrontType = {
@@ -542,6 +629,7 @@ type DCRFrontType = {
 	editionId: Edition;
 	webTitle: string;
 	config: FEFrontConfigType;
+	pageFooter: FooterType;
 };
 
 type FEPressedPageType = {
@@ -572,24 +660,25 @@ type FEFrontPropertiesType = {
 
 type FESupportingContent = {
 	properties: {
-		href: string;
+		href?: string;
 	};
 	header?: {
 		kicker?: {
-			item: {
+			item?: {
 				properties: {
 					kickerText: string;
 				};
 			};
 		};
 		headline: string;
+		url: string;
 	};
 	format?: CAPIFormat;
 };
 
 type DCRSupportingContent = {
 	headline: string;
-	url: string;
+	url?: string;
 	kickerText?: string;
 	format: ArticleFormat;
 };
@@ -618,7 +707,35 @@ type FEContainerType =
 	| 'nav/media-list'
 	| 'news/most-popular';
 
-// TODO: This may need to be declared differently than the front type in the future
+type FEContainerPalette =
+	| 'EventPalette'
+	| 'SombreAltPalette'
+	| 'EventAltPalette'
+	| 'InvestigationPalette'
+	| 'LongRunningAltPalette'
+	| 'LongRunningPalette'
+	| 'SombrePalette'
+	| 'Canonical'
+	| 'Dynamo'
+	| 'Special'
+	| 'DynamoLike'
+	| 'Special'
+	| 'Breaking'
+	| 'Podcast'
+	| 'Branded'
+	| 'BreakingPalette';
+
+type DCRContainerPalette =
+	| 'EventPalette'
+	| 'SombreAltPalette'
+	| 'EventAltPalette'
+	| 'InvestigationPalette'
+	| 'LongRunningAltPalette'
+	| 'LongRunningPalette'
+	| 'SombrePalette'
+	| 'BreakingPalette';
+
+// TODO: These may need to be declared differently than the front types in the future
 type DCRContainerType = FEContainerType;
 
 type FEFrontCard = {
@@ -635,7 +752,7 @@ type FEFrontCard = {
 						index: number;
 						fields: {
 							displayCredit?: string;
-							source: string;
+							source?: string;
 							photographer?: string;
 							isMaster?: string;
 							altText?: string;
@@ -741,10 +858,13 @@ type DCRFrontCard = {
 	format: ArticleFormat;
 	url: string;
 	headline: string;
-	standfirst?: string;
+	trailText?: string;
 	webPublicationDate?: string;
 	image?: string;
 	kickerText?: string;
+	/** @see JSX.IntrinsicAttributes["data-link-name"] */
+	dataLinkName: string;
+	discussionId?: string;
 };
 
 type FECollectionType = {
@@ -765,7 +885,7 @@ type FECollectionType = {
 	showLatestUpdate: boolean;
 	config: {
 		displayName: string;
-		metadata?: { type: string }[];
+		metadata?: { type: FEContainerPalette }[];
 		collectionType: FEContainerType;
 		href?: string;
 		groups?: string[];
@@ -787,6 +907,7 @@ type DCRCollectionType = {
 	id: string;
 	displayName: string;
 	collectionType: DCRContainerType;
+	containerPalette?: DCRContainerPalette;
 	curated: DCRFrontCard[];
 	backfill: DCRFrontCard[];
 	treats: DCRFrontCard[];
@@ -871,7 +992,7 @@ type FEFrontConfigType = {
 	idOAuthUrl: string;
 	isSensitive: boolean;
 	isDev: boolean;
-	thirdPartyAppsAccount: string;
+	thirdPartyAppsAccount?: string;
 	avatarImagesUrl: string;
 	fbAppId: string;
 };
@@ -883,6 +1004,7 @@ interface TagType {
 	twitterHandle?: string;
 	paidContentType?: string;
 	bylineImageUrl?: string;
+	bylineLargeImageUrl?: string;
 }
 
 /**
@@ -920,6 +1042,8 @@ interface BadgeType {
 }
 
 type ImagePositionType = 'left' | 'top' | 'right' | 'bottom' | 'none';
+
+type ImageSizeType = 'small' | 'medium' | 'large' | 'jumbo';
 
 type SmallHeadlineSize = 'tiny' | 'small' | 'medium' | 'large';
 
@@ -1082,7 +1206,7 @@ interface ConfigType extends CommercialConfigType {
 	videoDuration?: number;
 	edition: string;
 	section: string;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 	sharedAdTargeting: { [key: string]: any };
 	isPaidContent?: boolean;
 	keywordIds: string;
@@ -1156,6 +1280,9 @@ interface TrailType extends BaseTrailType {
 	format: ArticleFormat;
 	supportingContent?: DCRSupportingContent[];
 	trailText?: string;
+	/** @see JSX.IntrinsicAttributes["data-link-name"] */
+	dataLinkName: string;
+	discussionId?: string;
 }
 
 interface CAPITrailType extends BaseTrailType {
@@ -1226,21 +1353,18 @@ type AdSlotType =
 // ------------------------------
 // 3rd party type declarations //
 // ------------------------------
-/* eslint-disable @typescript-eslint/no-explicit-any */
-declare module 'dompurify' {
-	const createDOMPurify: any;
-	export default createDOMPurify;
-}
+
 declare module 'compose-function' {
 	const compose: any;
+	// eslint-disable-next-line import/no-default-export -- TODO: use type definition @types/compose-function
 	export default compose;
 }
 declare module 'minify-css-string' {
 	const minifyCSSString: any;
+	// eslint-disable-next-line import/no-default-export -- it’s that 6yo module works
 	export default minifyCSSString;
 }
 declare module 'chromatic/isChromatic';
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 declare module 'dynamic-import-polyfill' {
 	export const initialize: any;
@@ -1251,7 +1375,6 @@ declare module 'dynamic-import-polyfill' {
 // ------------------------------------- //
 
 declare namespace JSX {
-	/* eslint-disable @typescript-eslint/no-explicit-any */
 	interface IntrinsicElements {
 		'amp-state': any;
 		'amp-form': any;
@@ -1278,13 +1401,12 @@ declare namespace JSX {
 		'amp-audio': any;
 		'amp-embed': any;
 	}
-	/* eslint-enable @typescript-eslint/no-explicit-any */
 }
 
 // SVG handling
 declare module '*.svg' {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const content: any;
+	// eslint-disable-next-line import/no-default-export -- This is how we import SVGs
 	export default content;
 }
 
@@ -1305,5 +1427,39 @@ declare namespace JSX {
 			props: any;
 			children: React.ReactNode;
 		};
+	}
+
+	interface IntrinsicAttributes {
+		/**
+		 * **Rendered Components – Ophan**
+		 *
+		 * The Ophan client automatically tracks components on the page
+		 * that have the `data-component` attribute.
+		 * To avoid race conditions, it is best to add this attribute only
+		 * to server-rendered HTML.
+		 *
+		 * Add `data-component="component-name"` to the element you want
+		 * to track.
+		 *
+		 * The page views table will then contain `component-name` when the
+		 * element is present on the page.
+		 */
+		'data-component'?: string;
+		/**
+		 * **Component Clicks – Ophan**
+		 *
+		 * The Ophan client automatically tracks click interactions
+		 * on components that have the `data-link-name` attribute.
+		 * To avoid race conditions, it is best to add this attribute only
+		 * to server-rendered HTML.
+		 *
+		 * Add `data-component="component-name"` to the element you want
+		 * to track. Then `add data-link-name="link-name"` to the anchor for which
+		 * clicks will be tracked.
+		 *
+		 * The page views table will then contain `link-name` when the
+		 * link is clicked.
+		 */
+		'data-link-name'?: string;
 	}
 }

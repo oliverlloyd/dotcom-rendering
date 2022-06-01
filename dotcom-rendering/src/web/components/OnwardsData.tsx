@@ -1,8 +1,8 @@
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import { useEffect } from 'react';
-import { useApi } from '../lib/useApi';
-
 import { decideTrail } from '../lib/decideTrail';
+import { revealStyles } from '../lib/revealStyles';
+import { useApi } from '../lib/useApi';
 import { Placeholder } from './Placeholder';
 
 type Props = {
@@ -25,20 +25,6 @@ const minHeight = css`
 	min-height: 300px;
 `;
 
-const revealStyles = css`
-	/* We're using classnames here because we add and remove these classes
-	   using plain javascript */
-	.reveal {
-		animation: ${keyframes`
-			0% { opacity: 0; }
-			100% { opacity: 1; }
-		`} 2s ease-out;
-	}
-	.pending {
-		display: none;
-	}
-`;
-
 export const OnwardsData = ({
 	url,
 	limit,
@@ -58,10 +44,10 @@ export const OnwardsData = ({
 
 	useEffect(() => {
 		if (data) {
-			const pendingElements = document?.querySelectorAll<HTMLElement>(
+			const pendingElements = document.querySelectorAll<HTMLElement>(
 				'.onwards > .pending',
 			);
-			pendingElements?.forEach((element) => {
+			pendingElements.forEach((element) => {
 				element.classList.add('reveal');
 				element.classList.remove('pending');
 			});
@@ -70,7 +56,7 @@ export const OnwardsData = ({
 
 	if (error) {
 		// Send the error to Sentry and then prevent the element from rendering
-		window?.guardian?.modules?.sentry?.reportError(error, 'onwards-lower');
+		window.guardian.modules.sentry.reportError(error, 'onwards-lower');
 		return null;
 	}
 

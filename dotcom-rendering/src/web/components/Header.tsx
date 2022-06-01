@@ -1,11 +1,10 @@
 import { css } from '@emotion/react';
-
 import { brand } from '@guardian/source-foundations';
-import { Hide } from './Hide';
-import { Logo } from './Logo';
-import { Links } from './Links.importable';
-import { Island } from './Island';
 import { EditionDropdown } from './EditionDropdown.importable';
+import { Hide } from './Hide';
+import { Island } from './Island';
+import { Links } from './Links.importable';
+import { Logo } from './Logo';
 import { ReaderRevenueLinks } from './ReaderRevenueLinks.importable';
 
 const headerStyles = css`
@@ -20,7 +19,6 @@ type Props = {
 	edition: Edition;
 	idUrl?: string;
 	mmaUrl?: string;
-	isAnniversary?: boolean; // Temporary for G200 anniversary
 	supporterCTA: string;
 	discussionApiUrl: string;
 	urls: ReaderRevenueCategories;
@@ -32,7 +30,6 @@ export const Header = ({
 	edition,
 	idUrl,
 	mmaUrl,
-	isAnniversary,
 	supporterCTA,
 	discussionApiUrl,
 	urls,
@@ -48,7 +45,7 @@ export const Header = ({
 				/>
 			</Island>
 		</Hide>
-		<Logo isAnniversary={isAnniversary} edition={edition} />
+		<Logo />
 		<Island deferUntil="idle" clientOnly={true}>
 			<ReaderRevenueLinks
 				urls={urls}

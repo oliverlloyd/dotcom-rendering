@@ -22,6 +22,19 @@ import { Colour } from '.';
 
 // ----- Functions ----- //
 
+const adSlot = (format: ArticleFormat): Colour => {
+	switch (format.design) {
+		case ArticleDesign.Comment:
+		case ArticleDesign.Letter:
+		case ArticleDesign.Editorial:
+			return neutral[86];
+		default:
+			return neutral[97];
+	}
+};
+
+const adSlotDark = (_format: ArticleFormat) => neutral[20];
+
 const headline = (format: ArticleFormat): Colour => {
 	if (format.display === ArticleDisplay.Immersive) {
 		return neutral[7];
@@ -48,7 +61,11 @@ const headline = (format: ArticleFormat): Colour => {
 		format.design === ArticleDesign.Editorial
 	) {
 		return opinion[800];
-	} else if (format.design === ArticleDesign.Media) {
+	} else if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Audio ||
+		format.design === ArticleDesign.Video
+	) {
 		return neutral[10];
 	} else if (format.design === ArticleDesign.Interview) {
 		return neutral[0];
@@ -58,6 +75,8 @@ const headline = (format: ArticleFormat): Colour => {
 };
 
 const headlineByline = (_format: ArticleFormat): Colour => brandAlt[400];
+
+const headlineBylineDark = (_format: ArticleFormat): Colour => brandAlt[200];
 
 const headlineDark = (format: ArticleFormat): Colour => {
 	if (format.design === ArticleDesign.DeadBlog) {
@@ -77,8 +96,56 @@ const headlineDark = (format: ArticleFormat): Colour => {
 			default:
 				return news[200];
 		}
+	} else if (format.design === ArticleDesign.Interview) {
+		return neutral[20];
 	}
 	return neutral[10];
+};
+
+const richLink = (_format: ArticleFormat): Colour => {
+	return neutral[97];
+}
+
+const richLinkDark = (_format: ArticleFormat): Colour => {
+	return neutral[20];
+}
+
+const richLinkSvg = (format: ArticleFormat): Colour => {
+	switch (format.theme) {
+		case ArticlePillar.News:
+			return news[400];
+		case ArticlePillar.Lifestyle:
+			return lifestyle[400];
+		case ArticlePillar.Sport:
+			return sport[400];
+		case ArticlePillar.Culture:
+			return culture[400];
+		case ArticlePillar.Opinion:
+			return opinion[400];
+		case ArticleSpecial.Labs:
+			return labs[400];
+		case ArticleSpecial.SpecialReport:
+			return specialReport[400];
+	}
+};
+
+const richLinkSvgDark = (format: ArticleFormat): Colour => {
+	switch (format.theme) {
+		case ArticlePillar.News:
+			return news[500];
+		case ArticlePillar.Lifestyle:
+			return lifestyle[500];
+		case ArticlePillar.Sport:
+			return sport[500];
+		case ArticlePillar.Culture:
+			return culture[500];
+		case ArticlePillar.Opinion:
+			return opinion[500];
+		case ArticleSpecial.Labs:
+			return labs[300];
+		case ArticleSpecial.SpecialReport:
+			return specialReport[500];
+	}
 };
 
 const standfirst = ({ design, theme }: ArticleFormat): Colour => {
@@ -102,7 +169,11 @@ const standfirst = ({ design, theme }: ArticleFormat): Colour => {
 		}
 	}
 
-	if (design === ArticleDesign.Comment) {
+	if (
+		design === ArticleDesign.Comment ||
+		design === ArticleDesign.Letter ||
+		design === ArticleDesign.Editorial
+	) {
 		return opinion[800];
 	}
 
@@ -194,7 +265,14 @@ const avatar = (format: ArticleFormat): string => {
 };
 const keyEvents = (_format: ArticleFormat): Colour => neutral[100];
 
-const keyEventsWide = (_format: ArticleFormat): Colour => neutral[97];
+const keyEventsWide = (format: ArticleFormat): Colour => {
+	switch (format.theme) {
+		case ArticleSpecial.SpecialReport:
+			return specialReport[800];
+		default:
+			return neutral[97];
+	}
+};
 
 const keyEventsDark = (_format: ArticleFormat): Colour => neutral[10];
 
@@ -219,22 +297,39 @@ const headlineTag = (format: ArticleFormat): Colour => {
 	}
 };
 
+const supportBanner = (_format: ArticleFormat): Colour => {
+	return brandAlt[400];
+};
+
+const supportBannerDark = (_format: ArticleFormat): Colour => {
+	return brandAlt[200];
+};
+
 // ----- API ----- //
 
 const background = {
+	adSlot,
+	adSlotDark,
+	articleContentDark,
 	avatar,
+	bulletDark,
 	headline,
 	headlineByline,
+	headlineBylineDark,
 	headlineDark,
 	headlineTag,
 	keyEvents,
 	keyEventsWide,
 	keyEventsDark,
 	keyEventsWideDark,
+	richLink,
+	richLinkDark,
+	richLinkSvg,
+	richLinkSvgDark,
 	standfirst,
 	standfirstDark,
-	articleContentDark,
-	bulletDark,
+	supportBanner,
+	supportBannerDark,
 };
 
 // ----- Exports ----- //

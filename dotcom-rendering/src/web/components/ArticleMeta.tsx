@@ -1,4 +1,6 @@
 import { css } from '@emotion/react';
+import type { ArticleFormat } from '@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
 import {
 	between,
 	border,
@@ -6,21 +8,18 @@ import {
 	space,
 	until,
 } from '@guardian/source-foundations';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
-
-import { Lines } from '@guardian/source-react-components-development-kitchen';
-import { Contributor } from './Contributor';
-import { Avatar } from './Avatar';
-import { Counts } from './Counts';
-import { Branding } from './Branding.importable';
-import { ShareIcons } from './ShareIcons';
-import { Dateline } from './Dateline';
+import { StraightLines } from '@guardian/source-react-components-development-kitchen';
 import { interactiveLegacyClasses } from '../layouts/lib/interactiveLegacyStyling';
+import { decidePalette } from '../lib/decidePalette';
+import { Avatar } from './Avatar';
+import { Branding } from './Branding.importable';
 import { CommentCount } from './CommentCount.importable';
+import { Contributor } from './Contributor';
+import { Counts } from './Counts';
+import { Dateline } from './Dateline';
 import { Island } from './Island';
 import { ShareCount } from './ShareCount.importable';
-import { decidePalette } from '../lib/decidePalette';
+import { ShareIcons } from './ShareIcons';
 
 type Props = {
 	format: ArticleFormat;
@@ -84,6 +83,8 @@ const metaFlex = css`
 `;
 
 const stretchLines = css`
+	display: block;
+
 	${until.phablet} {
 		margin-left: -20px;
 		margin-right: -20px;
@@ -198,12 +199,12 @@ const metaContainer = (format: ArticleFormat) => {
 
 const getBylineImageUrl = (tags: TagType[]) => {
 	const contributorTag = tags.find((tag) => tag.type === 'Contributor');
-	return contributorTag && contributorTag.bylineImageUrl;
+	return contributorTag?.bylineLargeImageUrl;
 };
 
 const getAuthorName = (tags: TagType[]) => {
 	const contributorTag = tags.find((tag) => tag.type === 'Contributor');
-	return contributorTag && contributorTag.title;
+	return contributorTag?.title;
 };
 
 const shouldShowAvatar = (format: ArticleFormat) => {
@@ -350,10 +351,10 @@ export const ArticleMeta = ({
 					</Island>
 				)}
 				{format.theme === ArticleSpecial.Labs ? (
-					<div css={stretchLines}>
-						<Lines
+					<div>
+						<StraightLines
+							cssOverrides={stretchLines}
 							count={1}
-							effect="straight"
 							color={border.primary}
 						/>
 						<div
@@ -372,7 +373,7 @@ export const ArticleMeta = ({
 								<Avatar
 									imageSrc={bylineImageUrl}
 									imageAlt={authorName || 'Author image'}
-									palette={palette}
+									format={format}
 								/>
 							</AvatarContainer>
 						)}

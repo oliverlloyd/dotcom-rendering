@@ -1,52 +1,49 @@
 import { css } from '@emotion/react';
-
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
+import type { ArticleFormat } from '@guardian/libs';
 import {
-	neutral,
-	brandBorder,
 	brandBackground,
+	brandBorder,
 	brandLine,
 	from,
+	neutral,
 	until,
 } from '@guardian/source-foundations';
-import { ArticleDisplay, ArticleDesign, ArticleSpecial } from '@guardian/libs';
-import type { ArticleFormat } from '@guardian/libs';
-
-import { Lines } from '@guardian/source-react-components-development-kitchen';
-
-import { ArticleBody } from '../components/ArticleBody';
-import { RightColumn } from '../components/RightColumn';
-import { ArticleTitle } from '../components/ArticleTitle';
-import { ArticleContainer } from '../components/ArticleContainer';
-import { SlotBodyEnd } from '../components/SlotBodyEnd.importable';
-import { ArticleMeta } from '../components/ArticleMeta';
-import { SubMeta } from '../components/SubMeta';
-import { MainMedia } from '../components/MainMedia';
-import { ArticleHeadline } from '../components/ArticleHeadline';
-import { ContributorAvatar } from '../components/ContributorAvatar';
-import { Standfirst } from '../components/Standfirst';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import { SubNav } from '../components/SubNav.importable';
-import { ElementContainer } from '../components/ElementContainer';
-import { Nav } from '../components/Nav/Nav';
-import { HeaderAdSlot } from '../components/HeaderAdSlot';
-import { MobileStickyContainer, AdSlot } from '../components/AdSlot';
-import { Border } from '../components/Border';
-import { GridItem } from '../components/GridItem';
-import { DiscussionLayout } from '../components/DiscussionLayout';
-
+import { StraightLines } from '@guardian/source-react-components-development-kitchen';
 import { buildAdTargeting } from '../../lib/ad-targeting';
 import { parse } from '../../lib/slot-machine-flags';
-import { getCurrentPillar } from '../lib/layoutHelpers';
-import { Stuck, SendToBack, BannerWrapper } from './lib/stickiness';
+import { AdSlot, MobileStickyContainer } from '../components/AdSlot';
+import { ArticleBody } from '../components/ArticleBody';
+import { ArticleContainer } from '../components/ArticleContainer';
+import { ArticleHeadline } from '../components/ArticleHeadline';
+import { ArticleMeta } from '../components/ArticleMeta';
+import { ArticleTitle } from '../components/ArticleTitle';
+import { Border } from '../components/Border';
+import { ContributorAvatar } from '../components/ContributorAvatar';
+import { DiscussionLayout } from '../components/DiscussionLayout';
+import { ElementContainer } from '../components/ElementContainer';
+import { Footer } from '../components/Footer';
+import { GridItem } from '../components/GridItem';
+import { Header } from '../components/Header';
+import { HeaderAdSlot } from '../components/HeaderAdSlot';
+import { Hide } from '../components/Hide';
 import { Island } from '../components/Island';
-import { MostViewedRightWrapper } from '../components/MostViewedRightWrapper.importable';
-import { OnwardsUpper } from '../components/OnwardsUpper.importable';
-import { OnwardsLower } from '../components/OnwardsLower.importable';
+import { MainMedia } from '../components/MainMedia';
 import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout';
+import { MostViewedRightWrapper } from '../components/MostViewedRightWrapper.importable';
+import { Nav } from '../components/Nav/Nav';
+import { OnwardsLower } from '../components/OnwardsLower.importable';
+import { OnwardsUpper } from '../components/OnwardsUpper.importable';
+import { RightColumn } from '../components/RightColumn';
+import { SlotBodyEnd } from '../components/SlotBodyEnd.importable';
+import { Standfirst } from '../components/Standfirst';
 import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
+import { SubMeta } from '../components/SubMeta';
+import { SubNav } from '../components/SubNav.importable';
 import { getContributionsServiceUrl } from '../lib/contributions';
 import { decidePalette } from '../lib/decidePalette';
+import { getCurrentPillar } from '../lib/layoutHelpers';
+import { BannerWrapper, SendToBack, Stuck } from './lib/stickiness';
 
 const StandardGrid = ({
 	children,
@@ -211,6 +208,7 @@ const avatarPositionStyles = css`
 	display: flex;
 	justify-content: flex-end;
 	overflow: hidden;
+	position: relative;
 	margin-bottom: -29px;
 	margin-top: -50px;
 	pointer-events: none;
@@ -296,7 +294,7 @@ export const CommentLayout = ({
 	const contributorTag = CAPIArticle.tags.find(
 		(tag) => tag.type === 'Contributor',
 	);
-	const avatarUrl = contributorTag && contributorTag.bylineImageUrl;
+	const avatarUrl = contributorTag && contributorTag.bylineLargeImageUrl;
 	const onlyOneContributor: boolean =
 		CAPIArticle.tags.filter((tag) => tag.type === 'Contributor').length ===
 		1;
@@ -346,10 +344,6 @@ export const CommentLayout = ({
 								}
 								discussionApiUrl={
 									CAPIArticle.config.discussionApiUrl
-								}
-								isAnniversary={
-									CAPIArticle.config.switches
-										.anniversaryHeaderSvg
 								}
 								urls={CAPIArticle.nav.readerRevenueLinks.header}
 								remoteHeader={
@@ -405,7 +399,12 @@ export const CommentLayout = ({
 						padded={false}
 						showTopBorder={false}
 					>
-						<Lines count={4} effect="straight" />
+						<StraightLines
+							count={4}
+							cssOverrides={css`
+								display: block;
+							`}
+						/>
 					</ElementContainer>
 				</SendToBack>
 			</div>
@@ -466,14 +465,26 @@ export const CommentLayout = ({
 												/>
 											</div>
 										)}
-										<Lines count={8} effect="straight" />
+										<StraightLines
+											count={8}
+											cssOverrides={css`
+												display: block;
+											`}
+										/>
 									</div>
 								</div>
 							</div>
 						</GridItem>
 						<GridItem area="lines">
 							<div css={pushToBottom}>
-								<Lines count={8} effect="straight" />
+								<Hide when="below" breakpoint="desktop">
+									<StraightLines
+										count={8}
+										cssOverrides={css`
+											display: block;
+										`}
+									/>
+								</Hide>
 							</div>
 						</GridItem>
 						<GridItem area="standfirst">
@@ -573,6 +584,7 @@ export const CommentLayout = ({
 										isPreview={CAPIArticle.config.isPreview}
 										idUrl={CAPIArticle.config.idUrl || ''}
 										isDev={!!CAPIArticle.config.isDev}
+										abTests={CAPIArticle.config.abTests}
 									/>
 									{showBodyEndSlot && (
 										<Island clientOnly={true}>
@@ -613,7 +625,12 @@ export const CommentLayout = ({
 											/>
 										</Island>
 									)}
-									<Lines count={4} effect="straight" />
+									<StraightLines
+										count={4}
+										cssOverrides={css`
+											display: block;
+										`}
+									/>
 									<SubMeta
 										format={format}
 										subMetaKeywordLinks={
@@ -828,7 +845,12 @@ export const CommentLayout = ({
 						shouldHideReaderRevenue={
 							CAPIArticle.shouldHideReaderRevenue
 						}
-						switches={CAPIArticle.config.switches}
+						remoteBannerSwitch={
+							CAPIArticle.config.switches.remoteBanner
+						}
+						puzzleBannerSwitch={
+							CAPIArticle.config.switches.puzzlesBanner
+						}
 						tags={CAPIArticle.tags}
 					/>
 				</Island>

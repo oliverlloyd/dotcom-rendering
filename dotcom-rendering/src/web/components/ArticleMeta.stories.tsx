@@ -1,16 +1,15 @@
 import { css } from '@emotion/react';
-
 import {
-	ArticleDisplay,
 	ArticleDesign,
+	ArticleDisplay,
 	ArticlePillar,
 	ArticleSpecial,
 } from '@guardian/libs';
-import { ArticleMeta } from './ArticleMeta';
 import {
 	getAllThemes,
 	getThemeNameAsString,
 } from '../../../../common-rendering/src/fixtures/article';
+import { ArticleMeta } from './ArticleMeta';
 
 const Container = ({ children }: { children: React.ReactNode }) => (
 	<div
@@ -23,7 +22,7 @@ const Container = ({ children }: { children: React.ReactNode }) => (
 	</div>
 );
 
-const tagsWithBylineImage = [
+const tagsWithLargeBylineImage = [
 	{
 		id: 'profile/lanre-bakare',
 		type: 'Contributor',
@@ -31,6 +30,18 @@ const tagsWithBylineImage = [
 		twitterHandle: 'lanre_bakare',
 		bylineImageUrl:
 			'https://i.guim.co.uk/img/uploads/2017/10/06/Lanre-Bakare,-L.png?width=300&quality=85&auto=format&fit=max&s=afa36cd9b80bea5e98f10280aea4d0e4',
+		bylineLargeImageUrl:
+			'https://i.guim.co.uk/img/uploads/2017/10/06/Lanre-Bakare,-L.png?width=300&quality=85&auto=format&fit=max&s=afa36cd9b80bea5e98f10280aea4d0e4',
+	},
+];
+
+const tagsWithSmallBylineImage = [
+	{
+		id: 'profile/nicola-slawson',
+		type: 'Contributor',
+		title: 'Nicola Slawson',
+		bylineImageUrl:
+			'https://i.guim.co.uk/img/uploads/2016/11/01/Nicola_Slawson.jpg?width=140&height=140&quality=85&auto=format&fit=max&s=a1490a494f98d261b6300f865cb60d79',
 	},
 ];
 
@@ -41,6 +52,8 @@ const tagsWithByTwoContributors = [
 		title: 'Lanre Bakare',
 		twitterHandle: 'lanre_bakare',
 		bylineImageUrl:
+			'https://i.guim.co.uk/img/uploads/2017/10/06/Lanre-Bakare,-L.png?width=300&quality=85&auto=format&fit=max&s=afa36cd9b80bea5e98f10280aea4d0e4',
+		bylineLargeImageUrl:
 			'https://i.guim.co.uk/img/uploads/2017/10/06/Lanre-Bakare,-L.png?width=300&quality=85&auto=format&fit=max&s=afa36cd9b80bea5e98f10280aea4d0e4',
 	},
 	{
@@ -70,7 +83,7 @@ export const ArticleStory = () => {
 					byline: 'Lanre Bakare',
 					twitterHandle: 'lanre_bakare',
 				}}
-				tags={tagsWithBylineImage}
+				tags={tagsWithLargeBylineImage}
 				primaryDateline="Sun 12 Jan 2020 18.00 GMT"
 				secondaryDateline="Last modified on Sun 12 Jan 2020 21.00 GMT"
 				isCommentable={false}
@@ -115,7 +128,7 @@ export const BrandingStory = () => {
 					byline: 'Lanre Bakare',
 					twitterHandle: 'lanre_bakare',
 				}}
-				tags={tagsWithBylineImage}
+				tags={tagsWithLargeBylineImage}
 				primaryDateline="Sun 12 Jan 2020 18.00 GMT"
 				secondaryDateline="Last modified on Sun 12 Jan 2020 21.00 GMT"
 				isCommentable={false}
@@ -145,7 +158,7 @@ export const FeatureStory = () => {
 					byline: 'Lanre Bakare',
 					twitterHandle: 'lanre_bakare',
 				}}
-				tags={tagsWithBylineImage}
+				tags={tagsWithLargeBylineImage}
 				primaryDateline="Sun 12 Jan 2020 18.00 GMT"
 				secondaryDateline="Last modified on Sun 12 Jan 2020 21.00 GMT"
 				isCommentable={false}
@@ -158,6 +171,36 @@ export const FeatureStory = () => {
 	);
 };
 FeatureStory.story = { name: 'Feature' };
+
+export const FeatureStoryWithSmallBylineImage = () => {
+	return (
+		<Container>
+			<ArticleMeta
+				format={{
+					display: ArticleDisplay.Standard,
+					design: ArticleDesign.Feature,
+					theme: ArticlePillar.Culture,
+				}}
+				pageId=""
+				webTitle=""
+				author={{
+					byline: 'Nicola Slawson',
+				}}
+				tags={tagsWithSmallBylineImage}
+				primaryDateline="Sun 12 Jan 2020 18.00 GMT"
+				secondaryDateline="Last modified on Sun 12 Jan 2020 21.00 GMT"
+				isCommentable={false}
+				discussionApiUrl=""
+				shortUrlId=""
+				ajaxUrl=""
+				showShareCount={true}
+			/>
+		</Container>
+	);
+};
+FeatureStoryWithSmallBylineImage.story = {
+	name: 'Feature with Small Byline Image',
+};
 
 export const SpecialReportStory = () => {
 	return (
@@ -174,7 +217,7 @@ export const SpecialReportStory = () => {
 					byline: 'Lanre Bakare',
 					twitterHandle: 'lanre_bakare',
 				}}
-				tags={tagsWithBylineImage}
+				tags={tagsWithLargeBylineImage}
 				primaryDateline="Sun 12 Jan 2020 18.00 GMT"
 				secondaryDateline="Last modified on Sun 12 Jan 2020 21.00 GMT"
 				isCommentable={false}
@@ -203,7 +246,7 @@ export const CommentStory = () => {
 					byline: 'Lanre Bakare',
 					twitterHandle: 'lanre_bakare',
 				}}
-				tags={tagsWithBylineImage}
+				tags={tagsWithLargeBylineImage}
 				primaryDateline="Sun 12 Jan 2020 18.00 GMT"
 				secondaryDateline="Last modified on Sun 12 Jan 2020 21.00 GMT"
 				isCommentable={false}
@@ -232,7 +275,7 @@ export const InterviewStory = () => {
 					byline: 'Lanre Bakare',
 					twitterHandle: 'lanre_bakare',
 				}}
-				tags={tagsWithBylineImage}
+				tags={tagsWithLargeBylineImage}
 				primaryDateline="Sun 12 Jan 2020 18.00 GMT"
 				secondaryDateline="Last modified on Sun 12 Jan 2020 21.00 GMT"
 				isCommentable={false}
@@ -261,7 +304,7 @@ export const ImmersiveStory = () => {
 					byline: 'Lanre Bakare',
 					twitterHandle: 'lanre_bakare',
 				}}
-				tags={tagsWithBylineImage}
+				tags={tagsWithLargeBylineImage}
 				primaryDateline="Sun 12 Jan 2020 18.00 GMT"
 				secondaryDateline="Last modified on Sun 12 Jan 2020 21.00 GMT"
 				isCommentable={false}
@@ -352,7 +395,7 @@ export const Dateline = () => {
 					byline: 'Lanre Bakare',
 					twitterHandle: 'lanre_bakare',
 				}}
-				tags={tagsWithBylineImage}
+				tags={tagsWithLargeBylineImage}
 				primaryDateline="Sun 12 Jan 2020 18.00 GMT"
 				secondaryDateline=""
 				isCommentable={false}

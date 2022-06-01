@@ -1,14 +1,19 @@
 import { ArticleDesign } from '@guardian/libs';
-
 import { Card } from './Card/Card';
-import { UL } from './Card/components/UL';
 import { LI } from './Card/components/LI';
+import { UL } from './Card/components/UL';
 
 type Props = {
 	trails: TrailType[];
+	containerPalette?: DCRContainerPalette;
+	showAge?: boolean;
 };
 
-export const FixedLargeSlowXIV = ({ trails }: Props) => {
+export const FixedLargeSlowXIV = ({
+	trails,
+	containerPalette,
+	showAge,
+}: Props) => {
 	const primary = trails[0];
 	const secondary = trails[1];
 	const groups = [
@@ -22,6 +27,8 @@ export const FixedLargeSlowXIV = ({ trails }: Props) => {
 			<UL direction="row" padBottom={true}>
 				<LI padSides={true} percentage="75%">
 					<Card
+						containerPalette={containerPalette}
+						showAge={showAge}
 						linkTo={primary.url}
 						format={primary.format}
 						headlineText={primary.headline}
@@ -46,9 +53,9 @@ export const FixedLargeSlowXIV = ({ trails }: Props) => {
 						imageSize="large"
 						mediaType={primary.mediaType}
 						mediaDuration={primary.mediaDuration}
-						commentCount={primary.commentCount}
 						starRating={primary.starRating}
 						branding={primary.branding}
+						discussionId={primary.discussionId}
 					/>
 				</LI>
 				<LI
@@ -58,6 +65,8 @@ export const FixedLargeSlowXIV = ({ trails }: Props) => {
 					percentage="25%"
 				>
 					<Card
+						containerPalette={containerPalette}
+						showAge={showAge}
 						linkTo={secondary.url}
 						format={secondary.format}
 						headlineText={secondary.headline}
@@ -78,9 +87,9 @@ export const FixedLargeSlowXIV = ({ trails }: Props) => {
 						imageUrl={secondary.image}
 						mediaType={secondary.mediaType}
 						mediaDuration={secondary.mediaDuration}
-						commentCount={secondary.commentCount}
 						starRating={secondary.starRating}
 						branding={secondary.branding}
+						discussionId={secondary.discussionId}
 					/>
 				</LI>
 			</UL>
@@ -95,6 +104,8 @@ export const FixedLargeSlowXIV = ({ trails }: Props) => {
 									showDivider={cardIndex !== 0}
 								>
 									<Card
+										containerPalette={containerPalette}
+										showAge={showAge}
 										linkTo={card.url}
 										format={card.format}
 										headlineText={card.headline}
@@ -125,9 +136,10 @@ export const FixedLargeSlowXIV = ({ trails }: Props) => {
 										showClock={false}
 										mediaType={card.mediaType}
 										mediaDuration={card.mediaDuration}
-										commentCount={card.commentCount}
 										starRating={card.starRating}
 										branding={card.branding}
+										discussionId={card.discussionId}
+										dataLinkName={card.dataLinkName}
 									/>
 								</LI>
 							);

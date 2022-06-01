@@ -1,14 +1,14 @@
-/* eslint-disable react/jsx-props-no-spreading */
+import { css } from '@emotion/react';
 import {
 	ArticleDesign,
-	ArticlePillar,
 	ArticleDisplay,
+	ArticlePillar,
 	ArticleSpecial,
 } from '@guardian/libs';
-import { css } from '@emotion/react';
 import { breakpoints } from '@guardian/source-foundations';
+import type { Props as CardProps } from './Card/Card';
+import { Card } from './Card/Card';
 import { SupportingContent } from './SupportingContent';
-import { Card, Props as CardProps } from './Card/Card';
 
 export default {
 	component: SupportingContent,
@@ -34,7 +34,7 @@ const basicCardProps: CardProps = {
 
 const aBasicLink = {
 	headline: 'Headline',
-	url: '',
+	url: 'https://www.theguardian.com',
 	format: {
 		display: ArticleDisplay.Standard,
 		design: ArticleDesign.Standard,
@@ -46,7 +46,7 @@ export const Default = () => {
 	return (
 		<SupportingContent
 			supportingContent={[aBasicLink]}
-			imagePosition="top"
+			alignment="horizontal"
 		/>
 	);
 };
@@ -55,7 +55,7 @@ export const WithKicker = () => {
 	return (
 		<SupportingContent
 			supportingContent={[{ ...aBasicLink, kickerText: 'Kicket text' }]}
-			imagePosition="top"
+			alignment="horizontal"
 		/>
 	);
 };
@@ -200,6 +200,7 @@ export const Horizontal = () => {
 					},
 				]}
 				imagePosition="right"
+				imageSize="large"
 				format={{
 					display: ArticleDisplay.Standard,
 					design: ArticleDesign.Standard,
@@ -288,6 +289,7 @@ export const LongText = () => {
 					},
 				]}
 				imagePosition="left"
+				imageSize="large"
 				format={{
 					display: ArticleDisplay.Standard,
 					design: ArticleDesign.Standard,
@@ -337,6 +339,7 @@ export const MoreThanThree = () => {
 					},
 				]}
 				imagePosition="left"
+				imageSize="large"
 				format={{
 					display: ArticleDisplay.Standard,
 					design: ArticleDesign.Standard,
@@ -366,6 +369,7 @@ export const OneSublink = () => {
 					},
 				]}
 				imagePosition="left"
+				imageSize="large"
 				trailText="When the image is positioned horizontally and there is only one sublink, it appears under the headline"
 				format={{
 					display: ArticleDisplay.Standard,
@@ -401,6 +405,7 @@ export const TwoSublinks = () => {
 					},
 				]}
 				imagePosition="left"
+				imageSize="large"
 				trailText="When there are only two sublinks they appear under the headline vertically stacked"
 				format={{
 					display: ArticleDisplay.Standard,

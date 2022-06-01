@@ -1,18 +1,11 @@
-import { Octokit } from "https://cdn.skypack.dev/octokit?dts";
+import { octokit } from './github.ts';
 
-const token = Deno.env.get("GITHUB_TOKEN");
-if (!token) {
-	console.warn("Missing GITHUB_TOKEN");
-	Deno.exit(1);
-}
-const octokit = new Octokit({ auth: token });
-
-type Platform = "frontend" | "dcr";
-type OphanAttribute = "data-link-name" | "data-component";
+type Platform = 'frontend' | 'dcr';
+type OphanAttribute = 'data-link-name' | 'data-component';
 
 const URLS: Record<Platform, string> = {
-	frontend: "https://www.theguardian.com/international?dcr=false",
-	dcr: "https://www.theguardian.com/international?dcr=true",
+	frontend: 'https://www.theguardian.com/international?dcr=false',
+	dcr: 'https://www.theguardian.com/international?dcr=true',
 };
 
 const html: Record<Platform, string> = {
@@ -23,22 +16,22 @@ const html: Record<Platform, string> = {
 const regexLinkName = /<([a-zA-Z]+)[^>]+?\bdata-link-name="(.+?)"/gi;
 const regexComponent = /<([a-zA-Z]+)[^>]+?\bdata-component="(.+?)"/gi;
 const tagMatch = (attribute: OphanAttribute) =>
-	attribute === "data-link-name" ? regexLinkName : regexComponent;
+	attribute === 'data-link-name' ? regexLinkName : regexComponent;
 
 type TagPair = [name: string, tag: string];
 const getOphanComponents = (html: string, tag: OphanAttribute): TagPair[] =>
 	[...html.matchAll(tagMatch(tag))].map((match) => [match[2], match[1]]);
 
 const issues: Record<OphanAttribute, number> = {
-	"data-link-name": 4692,
-	"data-component": 4698,
+	'data-link-name': 4692,
+	'data-component': 4698,
 };
 
 const updateIssue = async (attribute: OphanAttribute) => {
 	const frontend = getOphanComponents(html.frontend, attribute);
 	const dcr = getOphanComponents(html.dcr, attribute);
 
-	type ExistsOnDcr = "identical" | "tag-mismatch" | "missing";
+	type ExistsOnDcr = 'identical' | 'tag-mismatch' | 'missing';
 	type OphanComponent<T extends ExistsOnDcr = ExistsOnDcr> = {
 		name: string;
 		tag: string;
@@ -54,13 +47,13 @@ const updateIssue = async (attribute: OphanAttribute) => {
 				set.add(name);
 				return [set, array];
 			},
-			[new Set(), []]
+			[new Set(), []],
 		)[1]
 		.map(([name, tag]) => {
 			const fullMatch = dcr.find(
-				([nameDcr, tagDcr]) => nameDcr === name && tagDcr === tag
+				([nameDcr, tagDcr]) => nameDcr === name && tagDcr === tag,
 			);
-			if (fullMatch) return { name, tag, existsOnDcr: "identical" };
+			if (fullMatch) return { name, tag, existsOnDcr: 'identical' };
 
 			const partialMatch = dcr.find(([nameDcr]) => nameDcr === name);
 
@@ -69,11 +62,11 @@ const updateIssue = async (attribute: OphanAttribute) => {
 					name,
 					tag,
 					dcrTag: partialMatch[1],
-					existsOnDcr: "tag-mismatch",
+					existsOnDcr: 'tag-mismatch',
 				};
 			}
 
-			return { name, tag, existsOnDcr: "missing" };
+			return { name, tag, existsOnDcr: 'missing' };
 		});
 
 	const isIssueType =
@@ -81,9 +74,9 @@ const updateIssue = async (attribute: OphanAttribute) => {
 		(issue: OphanComponent): issue is OphanComponent<T> =>
 			issue.existsOnDcr === existsOnDcr;
 
-	const missing = components.filter(isIssueType("missing"));
-	const mismatches = components.filter(isIssueType("tag-mismatch"));
-	const identical = components.filter(isIssueType("identical"));
+	const missing = components.filter(isIssueType('missing'));
+	const mismatches = components.filter(isIssueType('tag-mismatch'));
+	const identical = components.filter(isIssueType('identical'));
 
 	const body = `
 ## Remaining Front components mismatches
@@ -100,10 +93,10 @@ ${
 		? missing
 				.map(
 					({ tag, name }) =>
-						`- [ ] **\`${name}\`** &rarr; \`<${tag}/>\``
+						`- [ ] **\`${name}\`** &rarr; \`<${tag}/>\``,
 				)
-				.join("\n")
-		: "No missing component in DCR 🎉"
+				.join('\n')
+		: 'No missing component in DCR 🎉'
 }
 
 ### Tag mismatch (${mismatches.length} / ${components.length})
@@ -113,10 +106,10 @@ ${
 		? mismatches
 				.map(
 					({ tag, name, dcrTag }) =>
-						`- [X] **\`${name}\`** : \`<${dcrTag} />\` &cross; should be &rarr; \`<${tag}/>\``
+						`- [X] **\`${name}\`** : \`<${dcrTag} />\` &cross; should be &rarr; \`<${tag}/>\``,
 				)
-				.join("\n")
-		: "No tag mismatches"
+				.join('\n')
+		: 'No tag mismatches'
 }
 
 ---
@@ -128,27 +121,38 @@ ${
 		? identical
 				.map(
 					({ tag, name }) =>
-						`- [X] **\`${name}\`** &rarr; \`<${tag}/>\``
+						`- [X] **\`${name}\`** &rarr; \`<${tag}/>\``,
 				)
-				.join("\n")
-		: "No identical match"
+				.join('\n')
+		: 'No identical match'
 }
 `;
 
 	const issue_number = issues[attribute];
 
-	await octokit.request("PATCH /repos/{owner}/{repo}/issues/{issue_number}", {
-		owner: "guardian",
-		repo: "dotcom-rendering",
+	const {
+		data: { body: previousBody },
+	} = await octokit.rest.issues.get({
+		owner: 'guardian',
+		repo: 'dotcom-rendering',
+		issue_number,
+	});
+
+	const {
+		data: { body: newBody, html_url },
+	} = await octokit.rest.issues.update({
+		owner: 'guardian',
+		repo: 'dotcom-rendering',
 		issue_number,
 		body,
 	});
 
-	console.info(`Updated dotcom-rendering#${issue_number} ${attribute}`);
-	console.info(
-		`https://github.com/guardian/dotcom-rendering/issues/${issue_number}`
-	);
+	const change: string =
+		previousBody === newBody ? '[no change]' : `[some changes]`;
+
+	console.info(`PR dotcom-rendering#${issue_number} ${attribute} ${change}`);
+	console.info(html_url);
 };
 
-await updateIssue("data-component");
-await updateIssue("data-link-name");
+await updateIssue('data-component');
+await updateIssue('data-link-name');

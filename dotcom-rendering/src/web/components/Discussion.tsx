@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { css, keyframes } from '@emotion/react';
-
+import { css } from '@emotion/react';
+import { App as Comments } from '@guardian/discussion-rendering';
 import { joinUrl } from '@guardian/libs';
 import { neutral, space } from '@guardian/source-foundations';
-import { App as Comments } from '@guardian/discussion-rendering';
-import { EditorialButton } from '@guardian/source-react-components-development-kitchen';
 import { SvgPlus } from '@guardian/source-react-components';
-import { SignedInAs } from './SignedInAs';
-import { Hide } from './Hide';
-import { getCommentContext } from '../lib/getCommentContext';
-import { useDiscussion } from '../lib/useDiscussion';
+import { EditorialButton } from '@guardian/source-react-components-development-kitchen';
+import { useEffect, useState } from 'react';
 import { decidePalette } from '../lib/decidePalette';
+import { getCommentContext } from '../lib/getCommentContext';
+import { revealStyles } from '../lib/revealStyles';
+import { useDiscussion } from '../lib/useDiscussion';
+import { Hide } from './Hide';
+import { SignedInAs } from './SignedInAs';
 
 export type Props = {
 	format: ArticleFormat;
@@ -35,20 +35,6 @@ const overlayStyles = css`
 	right: 0;
 	width: 100%;
 	display: block;
-`;
-
-const revealStyles = css`
-	/* We're using classnames here because we add and remove these classes
-   using plain javascript */
-	.reveal {
-		animation: ${keyframes`
-		0% { opacity: 0; }
-		100% { opacity: 1; }
-	`} 2s ease-out;
-	}
-	.pending {
-		display: none;
-	}
 `;
 
 const fixHeight = css`
@@ -133,10 +119,10 @@ export const Discussion = ({
 	}, [hasCommentsHash]);
 
 	useEffect(() => {
-		const pendingElements = document?.querySelectorAll<HTMLElement>(
+		const pendingElements = document.querySelectorAll<HTMLElement>(
 			'.discussion > .pending',
 		);
-		pendingElements?.forEach((element) => {
+		pendingElements.forEach((element) => {
 			element.classList.add('reveal');
 			element.classList.remove('pending');
 		});

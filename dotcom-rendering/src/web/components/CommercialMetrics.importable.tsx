@@ -4,12 +4,11 @@ import {
 	bypassCommercialMetricsSampling as switchOffSampling,
 } from '@guardian/commercial-core';
 import { getCookie } from '@guardian/libs';
+import { tests } from '../experiments/ab-tests';
+import { prebidPriceGranularity } from '../experiments/tests/prebid-price-granularity';
+import { useAB } from '../lib/useAB';
 import { useAdBlockInUse } from '../lib/useAdBlockInUse';
 import { useOnce } from '../lib/useOnce';
-import { tests } from '../experiments/ab-tests';
-import { commercialLazyLoadMargin } from '../experiments/tests/commercial-lazy-load-margin';
-import { useAB } from '../lib/useAB';
-import { prebidPriceGranularity } from '../experiments/tests/prebid-price-granularity';
 
 type Props = {
 	enabled: boolean;
@@ -21,19 +20,33 @@ export const CommercialMetrics = ({ enabled }: Props) => {
 
 	useOnce(() => {
 		const browserId = getCookie({ name: 'bwid', shouldMemoize: true });
-		const pageViewId = window.guardian?.config?.ophan?.pageViewId;
+		const pageViewId = window.guardian.config.ophan.pageViewId;
 
 		// Only send metrics if the switch is enabled
 		if (!enabled) return;
 
-		const testsToForceMetrics: ABTest[] = [
+		// For these tests switch off sampling and collect metrics for 100% of views
+		const clientSideTestsToForceMetrics: ABTest[] = [
 			/* keep array multi-line */
-			commercialLazyLoadMargin,
 			prebidPriceGranularity,
 		];
-		const shouldForceMetrics = ABTestAPI?.allRunnableTests(tests).some(
-			(test) => testsToForceMetrics.map((t) => t.id).includes(test.id),
+
+		const userInClientSideTestToForceMetrics = ABTestAPI?.allRunnableTests(
+			tests,
+		).some((test) =>
+			clientSideTestsToForceMetrics.map((t) => t.id).includes(test.id),
 		);
+
+		const serverSideTestsToForceMetrics: Array<keyof ServerSideTests> = [
+			/* keep array multi-line */
+			'interactivesIdleLoadingVariant',
+			'interactivesIdleLoadingControl',
+		];
+
+		const userInServerSideTestToForceMetrics =
+			serverSideTestsToForceMetrics.some((test) =>
+				Object.keys(window.guardian.config.tests).includes(test),
+			);
 
 		const isDev =
 			window.guardian.config.page.isDev ||
@@ -46,12 +59,20 @@ export const CommercialMetrics = ({ enabled }: Props) => {
 			browserId: browserId || undefined,
 			isDev,
 			adBlockerInUse,
-		});
+		})
+			.then(() => {
+				if (
+					userInClientSideTestToForceMetrics ||
+					userInServerSideTestToForceMetrics
+				) {
+					// TODO: rename this in commercial-core and update here
 
-		if (shouldForceMetrics) {
-			// TODO: rename this in commercial-core and update here
-			switchOffSampling();
-		}
+					void switchOffSampling();
+				}
+			})
+			.catch((e) =>
+				console.error(`Error initialising commercial metrics: ${e}`),
+			);
 	}, [ABTestAPI, adBlockerInUse, enabled]);
 
 	// We don’t render anything

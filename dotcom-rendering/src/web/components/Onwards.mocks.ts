@@ -1,10 +1,9 @@
 import {
-	ArticlePillar,
 	ArticleDesign,
 	ArticleDisplay,
+	ArticlePillar,
 	ArticleSpecial,
 } from '@guardian/libs';
-
 import { decideFormat } from '../lib/decideFormat';
 
 const CAPITrails: CAPITrailType[] = [
@@ -33,7 +32,7 @@ const CAPITrails: CAPITrailType[] = [
 		webPublicationDate: '2019-12-02T09:45:30.000Z',
 		format: {
 			theme: 'NewsPillar',
-			design: 'MediaDesign',
+			design: 'VideoDesign',
 			display: 'StandardDisplay',
 		},
 		pillar: 'news',
@@ -137,7 +136,7 @@ const CAPITrails: CAPITrailType[] = [
 	},
 ];
 
-const trails: TrailType[] = CAPITrails.map((thisTrail) => {
+const trails: TrailType[] = CAPITrails.map((thisTrail, index) => {
 	const format = decideFormat(thisTrail.format);
 	return {
 		url: thisTrail.url,
@@ -149,6 +148,7 @@ const trails: TrailType[] = CAPITrails.map((thisTrail) => {
 		mediaType: thisTrail.mediaType,
 		mediaDuration: thisTrail.mediaDuration,
 		format,
+		dataLinkName: `news | group-0 | card-@${index + 1}`,
 	};
 });
 

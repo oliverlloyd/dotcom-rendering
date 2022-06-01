@@ -1,15 +1,13 @@
 import { css } from '@emotion/react';
-
-import { border, from, Breakpoint } from '@guardian/source-foundations';
-
+import type { Breakpoint } from '@guardian/source-foundations';
+import { border, from } from '@guardian/source-foundations';
+import { joinUrl } from '../../lib/joinUrl';
+import { abTestTest } from '../experiments/tests/ab-test-test';
+import { decideTrail } from '../lib/decideTrail';
 import { useAB } from '../lib/useAB';
 import { useApi } from '../lib/useApi';
-import { joinUrl } from '../../lib/joinUrl';
-import { decideTrail } from '../lib/decideTrail';
-
 import { MostViewedFooterGrid } from './MostViewedFooterGrid';
 import { MostViewedFooterSecondTierItem } from './MostViewedFooterSecondTierItem';
-import { abTestTest } from '../experiments/tests/ab-test-test';
 
 interface Props {
 	sectionName?: string;
@@ -102,14 +100,12 @@ export const MostViewedFooterData = ({
 						<MostViewedFooterSecondTierItem
 							trail={decideTrail(data.mostCommented)}
 							title="Most commented"
-							dataLinkName="comment | group-0 | card-@1" // To match Frontend
 							showRightBorder={true}
 						/>
 					)}
 					{'mostShared' in data && (
 						<MostViewedFooterSecondTierItem
 							trail={decideTrail(data.mostShared)}
-							dataLinkName="news | group-0 | card-@1" // To match Frontend
 							title="Most shared"
 						/>
 					)}

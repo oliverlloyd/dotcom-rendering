@@ -1,16 +1,18 @@
 import { css } from '@emotion/react';
-
 import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
-import { headline, textSans, until, space } from '@guardian/source-foundations';
-
-import { QuoteIcon } from './QuoteIcon';
-import { Kicker } from './Kicker';
-import { Byline } from './Byline';
+import { headline, space, textSans, until } from '@guardian/source-foundations';
+import { Link } from '@guardian/source-react-components';
+import React from 'react';
 import { decidePalette } from '../lib/decidePalette';
+import { getZIndex } from '../lib/getZIndex';
+import { Byline } from './Byline';
+import { Kicker } from './Kicker';
+import { QuoteIcon } from './QuoteIcon';
 
 type Props = {
 	headlineText: string; // The text shown
 	format: ArticleFormat; // Used to decide when to add type specific styles
+	containerPalette?: DCRContainerPalette;
 	kickerText?: string;
 	showPulsingDot?: boolean;
 	showSlash?: boolean;
@@ -19,6 +21,7 @@ type Props = {
 	byline?: string;
 	showByline?: boolean;
 	showLine?: boolean; // If true a short line is displayed above, used for sublinks
+	linkTo?: string; // If provided, the headline is wrapped in a link
 };
 
 const fontStyles = (size: SmallHeadlineSize) => {
@@ -121,6 +124,7 @@ const underlinedStyles = (size: SmallHeadlineSize, colour: string) => {
 };
 
 const lineStyles = (palette: Palette) => css`
+	padding-top: 1px;
 	:before {
 		display: block;
 		position: absolute;
@@ -132,9 +136,49 @@ const lineStyles = (palette: Palette) => css`
 	}
 `;
 
+const WithLink = ({
+	linkTo,
+	children,
+}: {
+	linkTo?: string;
+	children: React.ReactNode;
+}) => {
+	if (linkTo) {
+		return (
+			<Link
+				href={linkTo}
+				subdued={true}
+				cssOverrides={css`
+					/* See: https://css-tricks.com/nested-links/ */
+					${getZIndex('card-nested-link')};
+					/* The following styles turn off those provided by Link */
+					color: inherit;
+					/* stylelint-disable-next-line property-disallowed-list */
+					font-family: inherit;
+					font-size: inherit;
+					line-height: inherit;
+					/* This css is used to remove any underline from the kicker but still
+					   have it applied to the headline when the kicker is hovered */
+					:hover {
+						color: inherit;
+						text-decoration: none;
+						.show-underline {
+							text-decoration: underline;
+						}
+					}
+				`}
+			>
+				{children}
+			</Link>
+		);
+	}
+	return <>{children}</>;
+};
+
 export const CardHeadline = ({
 	headlineText,
 	format,
+	containerPalette,
 	showQuotes,
 	kickerText,
 	showPulsingDot,
@@ -143,8 +187,9 @@ export const CardHeadline = ({
 	byline,
 	showByline,
 	showLine,
+	linkTo,
 }: Props) => {
-	const palette = decidePalette(format);
+	const palette = decidePalette(format, containerPalette);
 	return (
 		<>
 			<h4
@@ -158,9 +203,13 @@ export const CardHeadline = ({
 							palette.background.analysisUnderline,
 						),
 					showLine && lineStyles(palette),
+					containerPalette &&
+						css`
+							font-weight: bold;
+						`,
 				]}
 			>
-				<span>
+				<WithLink linkTo={linkTo}>
 					{kickerText && (
 						<Kicker
 							text={kickerText}
@@ -178,15 +227,17 @@ export const CardHeadline = ({
 						css={css`
 							color: ${palette.text.cardHeadline};
 						`}
+						className="show-underline"
 					>
 						{headlineText}
 					</span>
-				</span>
+				</WithLink>
 			</h4>
 			{byline && showByline && (
 				<Byline
 					text={byline}
 					format={format}
+					containerPalette={containerPalette}
 					size={size}
 					isCard={true}
 				/>

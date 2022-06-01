@@ -22,6 +22,17 @@ import { Colour } from '.';
 
 // ----- Functions ----- //
 
+const adLabel = (_format: ArticleFormat): Colour => {
+	return neutral[20];
+};
+
+const adLabelDark = (_format: ArticleFormat): Colour => {
+	return neutral[60];
+};
+
+const adSlot = (_format: ArticleFormat): Colour => {
+	return neutral[20];
+};
 const branding = (_format: ArticleFormat): Colour => {
 	return neutral[20];
 };
@@ -71,7 +82,9 @@ const dropCapDark = (format: ArticleFormat): Colour => {
 const headline = (format: ArticleFormat): Colour => {
 	if (
 		format.display === ArticleDisplay.Immersive ||
-		format.design === ArticleDesign.Media ||
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Audio ||
+		format.design === ArticleDesign.Video ||
 		format.design === ArticleDesign.LiveBlog
 	) {
 		return neutral[100];
@@ -166,7 +179,7 @@ const bylineLeftColumn = (format: ArticleFormat): Colour => {
 				case ArticlePillar.Culture:
 					return culture[400];
 				case ArticlePillar.Opinion:
-					return opinion[400];
+					return opinion[300];
 				case ArticleSpecial.Labs:
 					return labs[400];
 				case ArticleSpecial.SpecialReport:
@@ -360,7 +373,9 @@ const standfirst = ({ design }: ArticleFormat): Colour => {
 	switch (design) {
 		case ArticleDesign.LiveBlog:
 			return neutral[100];
-		case ArticleDesign.Media:
+		case ArticleDesign.Gallery:
+		case ArticleDesign.Audio:
+		case ArticleDesign.Video:
 			return neutral[86];
 		default:
 			return neutral[7];
@@ -398,7 +413,9 @@ const standfirstLink = (format: ArticleFormat): Colour => {
 				case ArticleSpecial.SpecialReport:
 					return specialReport[300];
 			}
-		case ArticleDesign.Media:
+		case ArticleDesign.Gallery:
+		case ArticleDesign.Audio:
+		case ArticleDesign.Video:
 			switch (format.theme) {
 				case ArticlePillar.News:
 					return news[500];
@@ -441,7 +458,9 @@ const standfirstLinkDark = (format: ArticleFormat): Colour => {
 		case ArticleDesign.LiveBlog:
 		case ArticleDesign.DeadBlog:
 			return neutral[100];
-		case ArticleDesign.Media:
+		case ArticleDesign.Gallery:
+		case ArticleDesign.Audio:
+		case ArticleDesign.Video:
 			switch (format.theme) {
 				case ArticlePillar.News:
 					return news[500];
@@ -493,7 +512,9 @@ const kicker = (format: ArticleFormat): Colour => {
 				default:
 					return neutral[0];
 			}
-		case ArticleDesign.Media:
+		case ArticleDesign.Gallery:
+		case ArticleDesign.Audio:
+		case ArticleDesign.Video:
 			switch (format.theme) {
 				case ArticlePillar.News:
 					return news[600];
@@ -586,6 +607,37 @@ const seriesTitle = (format: ArticleFormat): Colour => {
 	}
 };
 
+const richLink = (format: ArticleFormat): Colour => {
+	switch (format.theme) {
+		case ArticlePillar.News:
+			return news[400];
+		case ArticlePillar.Lifestyle:
+			return lifestyle[400];
+		case ArticlePillar.Sport:
+			return sport[400];
+		case ArticlePillar.Culture:
+			return culture[400];
+		case ArticlePillar.Opinion:
+			return opinion[400];
+		case ArticleSpecial.Labs:
+			return labs[400];
+		case ArticleSpecial.SpecialReport:
+			return specialReport[500];
+	}
+};
+
+const richLinkDark = (_format: ArticleFormat): Colour => {
+	return neutral[86];
+}
+
+const richLinkAnchor = (_format: ArticleFormat): Colour => {
+	return neutral[7];
+}
+
+const richLinkAnchorDark = (_format: ArticleFormat): Colour => {
+	return neutral[60];
+}
+
 const seriesTitleDark = (format: ArticleFormat): Colour => {
 	switch (format.theme) {
 		case ArticlePillar.News:
@@ -627,6 +679,9 @@ const pagination = (format: ArticleFormat): Colour => {
 // ----- API ----- //
 
 const text = {
+	adLabel,
+	adLabelDark,
+	adSlot,
 	articleLink,
 	branding,
 	brandingDark,
@@ -644,6 +699,10 @@ const text = {
 	keyEventsLeftColumn,
 	kicker,
 	linkDark,
+	richLink,
+	richLinkAnchor,
+	richLinkAnchorDark,
+	richLinkDark,
 	standfirst,
 	standfirstDark,
 	standfirstLink,

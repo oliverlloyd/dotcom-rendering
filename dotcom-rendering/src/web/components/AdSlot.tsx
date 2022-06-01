@@ -1,18 +1,17 @@
 import { css } from '@emotion/react';
-
+import { adSizes, sizeMappings } from '@guardian/commercial-core';
+import { ArticleDisplay } from '@guardian/libs';
 import {
 	border,
+	from,
 	neutral,
+	space,
 	text,
 	textSans,
-	from,
 	until,
-	space,
 } from '@guardian/source-foundations';
-import { ArticleDisplay } from '@guardian/libs';
-import { adSizes } from '@guardian/commercial-core';
-import { TopRightAdSlot } from './TopRightAdSlot.importable';
 import { Island } from './Island';
+import { TopRightAdSlot } from './TopRightAdSlot.importable';
 
 type Props = {
 	display: ArticleDisplay;
@@ -227,14 +226,7 @@ export const AdSlot: React.FC<Props> = ({
 							data-link-name="ad slot right"
 							data-name="right"
 							// mark: 01303e88-ef1f-462d-9b6e-242419435cec
-							data-mobile={[
-								adSizes.outOfPage,
-								adSizes.empty,
-								adSizes.mpu,
-								adSizes.googleCard,
-								adSizes.halfPage,
-								adSizes.fluid,
-							]
+							data-mobile={(sizeMappings.right.mobile || [])
 								.map((size) => size.toString())
 								.join('|')}
 							aria-hidden="true"
@@ -285,36 +277,13 @@ export const AdSlot: React.FC<Props> = ({
 						]}
 						data-link-name="ad slot comments"
 						data-name="comments"
-						data-mobile={[
-							adSizes.outOfPage,
-							adSizes.empty,
-							adSizes.halfPage,
-							adSizes.outstreamMobile,
-							adSizes.mpu,
-							adSizes.googleCard,
-							adSizes.fluid,
-						]
+						data-mobile={(sizeMappings.comments.mobile || [])
 							.map((size) => size.toString())
 							.join('|')}
-						data-desktop={[
-							adSizes.outOfPage,
-							adSizes.empty,
-							adSizes.mpu,
-							adSizes.googleCard,
-							adSizes.fluid,
-							adSizes.halfPage,
-							adSizes.skyscraper,
-						]
+						data-desktop={(sizeMappings.comments.desktop || [])
 							.map((size) => size.toString())
 							.join('|')}
-						data-phablet={[
-							adSizes.outOfPage,
-							adSizes.empty,
-							adSizes.outstreamMobile,
-							adSizes.mpu,
-							adSizes.googleCard,
-							adSizes.fluid,
-						]
+						data-phablet={(sizeMappings.comments.phablet || [])
 							.map((size) => size.toString())
 							.join('|')}
 						aria-hidden="true"
@@ -349,25 +318,14 @@ export const AdSlot: React.FC<Props> = ({
 						// The sizes here come from two places in the frontend code
 						// 1. file mark: 432b3a46-90c1-4573-90d3-2400b51af8d0
 						// 2. file mark: c66fae4e-1d29-467a-a081-caad7a90cacd
-						data-tablet={[
-							adSizes.outOfPage,
-							adSizes.empty,
-							adSizes.fabric,
-							adSizes.fluid,
-							adSizes.leaderboard,
-						]
+						data-tablet={(
+							sizeMappings['top-above-nav'].tablet || []
+						)
 							.map((size) => size.toString())
 							.join('|')}
-						data-desktop={[
-							adSizes.outOfPage,
-							adSizes.empty,
-							adSizes.leaderboard,
-							`940,230`,
-							`900,250`,
-							adSizes.billboard,
-							adSizes.fabric,
-							adSizes.fluid,
-						]
+						data-desktop={(
+							sizeMappings['top-above-nav'].desktop || []
+						)
 							.map((size) => size.toString())
 							.join('|')}
 						// Values from file mark: c66fae4e-1d29-467a-a081-caad7a90cacd
@@ -396,45 +354,16 @@ export const AdSlot: React.FC<Props> = ({
 					data-link-name="ad slot mostpop"
 					data-name="mostpop"
 					// mirror frontend file mark: 432b3a46-90c1-4573-90d3-2400b51af8d0
-					data-mobile={[
-						adSizes.outOfPage,
-						adSizes.empty,
-						adSizes.mpu,
-						adSizes.googleCard,
-						adSizes.fluid,
-					]
+					data-mobile={(sizeMappings.mostpop.mobile || [])
 						.map((size) => size.toString())
 						.join('|')}
-					data-tablet={[
-						adSizes.outOfPage,
-						adSizes.empty,
-						adSizes.mpu,
-						adSizes.googleCard,
-						adSizes.halfPage,
-						adSizes.leaderboard,
-						adSizes.fluid,
-					]
+					data-tablet={(sizeMappings.mostpop.tablet || [])
 						.map((size) => size.toString())
 						.join('|')}
-					data-phablet={[
-						adSizes.outOfPage,
-						adSizes.empty,
-						adSizes.outstreamMobile,
-						adSizes.mpu,
-						adSizes.googleCard,
-						adSizes.halfPage,
-						adSizes.fluid,
-					]
+					data-phablet={(sizeMappings.mostpop.phablet || [])
 						.map((size) => size.toString())
 						.join('|')}
-					data-desktop={[
-						adSizes.outOfPage,
-						adSizes.empty,
-						adSizes.mpu,
-						adSizes.googleCard,
-						adSizes.halfPage,
-						adSizes.fluid,
-					]
+					data-desktop={(sizeMappings.mostpop.desktop || [])
 						.map((size) => size.toString())
 						.join('|')}
 					aria-hidden="true"
@@ -460,12 +389,9 @@ export const AdSlot: React.FC<Props> = ({
 					data-link-name="ad slot merchandising-high"
 					data-name="merchandising-high"
 					// mirror frontend file mark: 432b3a46-90c1-4573-90d3-2400b51af8d0
-					data-mobile={[
-						adSizes.outOfPage,
-						adSizes.empty,
-						adSizes.merchandisingHigh,
-						adSizes.fluid,
-					]
+					data-mobile={(
+						sizeMappings['merchandising-high'].mobile || []
+					)
 						.map((size) => size.toString())
 						.join('|')}
 					aria-hidden="true"
@@ -491,12 +417,7 @@ export const AdSlot: React.FC<Props> = ({
 					data-link-name="ad slot merchandising"
 					data-name="merchandising"
 					// mirror frontend file mark: 432b3a46-90c1-4573-90d3-2400b51af8d0
-					data-mobile={[
-						adSizes.outOfPage,
-						adSizes.empty,
-						adSizes.merchandising,
-						adSizes.fluid,
-					]
+					data-mobile={(sizeMappings.merchandising.mobile || [])
 						.map((size) => size.toString())
 						.join('|')}
 					aria-hidden="true"
@@ -518,7 +439,7 @@ export const AdSlot: React.FC<Props> = ({
 					data-label="false"
 					data-refresh="false"
 					data-out-of-page="true"
-					data-desktop={[adSizes.outOfPage]
+					data-desktop={(sizeMappings.survey.desktop || [])
 						.map((size) => size.toString())
 						.join('|')}
 					aria-hidden="true"

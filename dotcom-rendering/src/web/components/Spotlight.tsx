@@ -1,15 +1,15 @@
-/* eslint-disable react/jsx-props-no-spreading */
-
 import { ArticleDesign } from '@guardian/libs';
-
 import { Card } from './Card/Card';
 
 type Props = {
 	content: TrailType[];
+	containerPalette?: DCRContainerPalette;
 };
 
-export const Spotlight = ({ content }: Props) => (
+export const Spotlight = ({ content, containerPalette }: Props) => (
 	<Card
+		containerPalette={containerPalette}
+		showAge={true}
 		linkTo={content[0].url}
 		format={content[0].format}
 		headlineText={content[0].headline}
@@ -28,8 +28,8 @@ export const Spotlight = ({ content }: Props) => (
 		imageUrl={content[0].image}
 		mediaType={content[0].mediaType}
 		mediaDuration={content[0].mediaDuration}
-		commentCount={content[0].commentCount}
 		imagePosition="right"
 		imageSize="jumbo"
+		discussionId={content[0].discussionId}
 	/>
 );

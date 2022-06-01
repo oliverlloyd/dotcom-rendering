@@ -1,14 +1,15 @@
 import { ArticleDesign } from '@guardian/libs';
-
 import { Card } from './Card/Card';
-import { UL } from './Card/components/UL';
 import { LI } from './Card/components/LI';
+import { UL } from './Card/components/UL';
 
 type Props = {
 	trails: TrailType[];
+	containerPalette?: DCRContainerPalette;
+	showAge?: boolean;
 };
 
-export const DynamicFast = ({ trails }: Props) => {
+export const DynamicFast = ({ trails, containerPalette, showAge }: Props) => {
 	const primary = trails[0];
 	const secondary = trails[1];
 	const bigCards = trails.slice(2, 4);
@@ -19,6 +20,8 @@ export const DynamicFast = ({ trails }: Props) => {
 			<UL direction="row" padBottom={true}>
 				<LI padSides={true} percentage="75%">
 					<Card
+						containerPalette={containerPalette}
+						showAge={showAge}
 						linkTo={primary.url}
 						format={primary.format}
 						headlineText={primary.headline}
@@ -43,10 +46,11 @@ export const DynamicFast = ({ trails }: Props) => {
 						imageSize="large"
 						mediaType={primary.mediaType}
 						mediaDuration={primary.mediaDuration}
-						commentCount={primary.commentCount}
 						starRating={primary.starRating}
 						branding={primary.branding}
 						supportingContent={primary.supportingContent}
+						dataLinkName={primary.dataLinkName}
+						discussionId={primary.discussionId}
 					/>
 				</LI>
 				<LI
@@ -56,6 +60,8 @@ export const DynamicFast = ({ trails }: Props) => {
 					percentage="25%"
 				>
 					<Card
+						containerPalette={containerPalette}
+						showAge={showAge}
 						linkTo={secondary.url}
 						format={secondary.format}
 						headlineText={secondary.headline}
@@ -76,10 +82,11 @@ export const DynamicFast = ({ trails }: Props) => {
 						imageUrl={secondary.image}
 						mediaType={secondary.mediaType}
 						mediaDuration={secondary.mediaDuration}
-						commentCount={secondary.commentCount}
 						starRating={secondary.starRating}
 						branding={secondary.branding}
 						supportingContent={secondary.supportingContent}
+						dataLinkName={secondary.dataLinkName}
+						discussionId={secondary.discussionId}
 					/>
 				</LI>
 			</UL>
@@ -94,6 +101,8 @@ export const DynamicFast = ({ trails }: Props) => {
 							showDivider={cardIndex > 0}
 						>
 							<Card
+								containerPalette={containerPalette}
+								showAge={showAge}
 								linkTo={card.url}
 								format={card.format}
 								headlineText={card.headline}
@@ -116,10 +125,11 @@ export const DynamicFast = ({ trails }: Props) => {
 								imageUrl={card.image}
 								mediaType={card.mediaType}
 								mediaDuration={card.mediaDuration}
-								commentCount={card.commentCount}
 								starRating={card.starRating}
 								branding={card.branding}
 								supportingContent={card.supportingContent}
+								dataLinkName={card.dataLinkName}
+								discussionId={card.discussionId}
 							/>
 						</LI>
 					);
@@ -141,6 +151,8 @@ export const DynamicFast = ({ trails }: Props) => {
 									}
 								>
 									<Card
+										containerPalette={containerPalette}
+										showAge={showAge}
 										linkTo={card.url}
 										format={card.format}
 										headlineText={card.headline}
@@ -165,12 +177,13 @@ export const DynamicFast = ({ trails }: Props) => {
 										showClock={false}
 										mediaType={card.mediaType}
 										mediaDuration={card.mediaDuration}
-										commentCount={card.commentCount}
 										starRating={card.starRating}
 										branding={card.branding}
 										supportingContent={
 											card.supportingContent
 										}
+										dataLinkName={card.dataLinkName}
+										discussionId={card.discussionId}
 									/>
 								</LI>
 							);

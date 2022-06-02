@@ -1,11 +1,11 @@
 import type express from 'express';
+import { enhanceCards } from 'src/model/enhanceCards';
 import { Article as ExampleArticle } from '../../../fixtures/generated/articles/Article';
 import { enhanceBlocks } from '../../model/enhanceBlocks';
 import {
-	enhanceCards,
-	// enhanceCards,
 	enhanceCollections,
 } from '../../model/enhanceCollections';
+
 import { enhanceStandfirst } from '../../model/enhanceStandfirst';
 import { extract as extractGA } from '../../model/extract-ga';
 import { extractNAV } from '../../model/extract-nav';
@@ -191,8 +191,8 @@ export const renderKeyEvents = (
 	}
 };
 
-export const renderShowMoreCards = (
-	{ body }: { body: ShowMoreRequest },
+export const renderCards = (
+	{ body }: { body: CardsRequest },
 	res: express.Response,
 ): void => {
 	try {

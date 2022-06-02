@@ -1027,7 +1027,7 @@ interface BlocksRequest {
 	switches: { [key: string]: boolean };
 }
 
-interface ShowMoreRequest {
+interface CardsRequest {
 	cards: FEFrontCard[];
 	startIndex: number;
 	containerPalette?: DCRContainerPalette;

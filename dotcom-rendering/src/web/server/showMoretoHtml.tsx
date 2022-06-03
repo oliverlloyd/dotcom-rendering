@@ -1,9 +1,8 @@
 import { renderToString } from 'react-dom/server';
-import { ShowMoreContainer } from '../components/ShowMoreContainer';
+import { ExtraCardsContainer } from '../components/ExtraCardsContainer';
 
 interface DCRShowMoreContainer {
 	cards: DCRFrontCard[];
-	startIndex: number;
 	containerPalette?: DCRContainerPalette;
 }
 /**
@@ -15,14 +14,11 @@ interface DCRShowMoreContainer {
 
 export const showMoreCardsToHtml = ({
 	cards,
-	startIndex,
 	containerPalette,
 }: DCRShowMoreContainer): string => {
-	console.log(cards, startIndex, containerPalette);
 	const html = renderToString(
-		<ShowMoreContainer
+		<ExtraCardsContainer
 			trails={cards}
-			startIndex={startIndex}
 			containerPalette={containerPalette}
 		/>,
 	);

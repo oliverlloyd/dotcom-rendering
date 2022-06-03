@@ -1,11 +1,8 @@
 import type express from 'express';
-import { enhanceCards } from 'src/model/enhanceCards';
 import { Article as ExampleArticle } from '../../../fixtures/generated/articles/Article';
 import { enhanceBlocks } from '../../model/enhanceBlocks';
-import {
-	enhanceCollections,
-} from '../../model/enhanceCollections';
-
+import { enhanceCards } from '../../model/enhanceCards';
+import { enhanceCollections } from '../../model/enhanceCollections';
 import { enhanceStandfirst } from '../../model/enhanceStandfirst';
 import { extract as extractGA } from '../../model/extract-ga';
 import { extractNAV } from '../../model/extract-nav';
@@ -15,8 +12,6 @@ import { blocksToHtml } from './blocksToHtml';
 import { frontToHtml } from './frontToHtml';
 import { keyEventsToHtml } from './keyEventsToHtml';
 import { showMoreCardsToHtml } from './showMoretoHtml';
-// import showMoreTestData from './showMoreTestData.json';
-// import { showMoreCardsToHtml } from './showMoretoHtml';
 
 function enhancePinnedPost(format: CAPIFormat, block?: Block) {
 	return block ? enhanceBlocks([block], format)[0] : block;
@@ -198,11 +193,10 @@ export const renderCards = (
 	try {
 		const { cards, startIndex, containerPalette } = body;
 
-		const dcrTrails = enhanceCards(cards, containerPalette);
+		const dcrTrails = enhanceCards(cards, containerPalette, startIndex);
 
 		const html = showMoreCardsToHtml({
 			cards: dcrTrails,
-			startIndex,
 			containerPalette,
 		});
 

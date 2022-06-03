@@ -25,14 +25,16 @@ const decideLayout = (trails: TrailType[]) => {
 
 type Props = {
 	trails: TrailType[];
-	// containerPalette?: DCRContainerPalette;
-	// showAge?: boolean;
+	containerPalette?: DCRContainerPalette;
+	showAge?: boolean;
 };
 
 export const ExtraCardsContainer = ({
 	trails,
-}: // containerPalette,
-// showAge,
+	/* eslint-disable -- temporarily ignore for dev */
+	containerPalette = undefined,
+	showAge = undefined,
+}: /* eslint-enable */
 Props) => {
 	return <>{decideLayout(trails)}</>;
 };

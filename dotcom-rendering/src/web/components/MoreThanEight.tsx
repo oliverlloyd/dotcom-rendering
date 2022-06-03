@@ -5,17 +5,20 @@ type Props = {
 	containerPalette?: DCRContainerPalette;
 };
 
-function chunk<T>(arr: T[], chunkSize: number): T[][] {
-	if (arr.length === 0) return [];
-	const chunkedArray = [];
-	for (let i = 0; i <= arr.length; i += chunkSize) {
-		chunkedArray.push(arr.slice(i, i + chunkSize));
+function getCardRows(
+	allCards: TrailType[],
+	maxRowLength: number,
+): TrailType[][] {
+	if (allCards.length === 0) return [];
+	const rows = [];
+	for (let i = 0; i <= allCards.length; i += maxRowLength) {
+		rows.push(allCards.slice(i, i + maxRowLength));
 	}
-	return chunkedArray;
+	return rows;
 }
 
 export const MoreThanEight = ({ content, containerPalette }: Props) => {
-	const rows = chunk(content, 4);
+	const rows = getCardRows(content, 4);
 	return (
 		<>
 			{rows.map((row) => (

@@ -65,6 +65,7 @@ const adStyles = css`
 	.ad-slot-container {
 		max-width: 300px;
 	}
+
 	.ad-slot--fluid {
 		width: 100%;
 	}
@@ -89,7 +90,6 @@ const adStyles = css`
 
 			${from.tablet} {
 				width: 100%;
-				padding-bottom: ${space[6]}px;
 
 				& > div:not(.ad-slot__label) {
 					width: 300px;
@@ -102,6 +102,13 @@ const adStyles = css`
 		&.ad-slot--fluid {
 			background-color: green;
 			width: 100%;
+		}
+		&.ad-slot-container {
+			max-width: 300px;
+
+			${from.tablet} {
+				max-width: 700px;
+			}
 		}
 	}
 	/** ad-slot-offset-right is only added to inline2+ slots */

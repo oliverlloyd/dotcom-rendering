@@ -399,6 +399,12 @@
         },
         "mostRecentBlockId": {
             "type": "string"
+        },
+        "topics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/TopicType"
+            }
         }
     },
     "required": [
@@ -4249,6 +4255,36 @@
             "enum": [
                 "CricketMatchType",
                 "FootballMatchType"
+            ],
+            "type": "string"
+        },
+        "TopicType": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/Topic"
+                },
+                "count": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "count",
+                "name",
+                "type"
+            ]
+        },
+        "Topic": {
+            "enum": [
+                "GPE",
+                "LOC",
+                "ORG",
+                "PERSON",
+                "PRODUCT",
+                "WORK_OF_ART"
             ],
             "type": "string"
         }

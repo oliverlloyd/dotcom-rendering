@@ -14,6 +14,7 @@ import type { ArticleCounts } from '../../../lib/article-count';
 import { trackNonClickInteraction } from '../../browser/ga/ga';
 import { submitComponentEvent } from '../../browser/ophan/ophan';
 import {
+	getPurchaseInfo,
 	hasCmpConsentForBrowserId,
 	hasOptedOutOfArticleCount,
 	lazyFetchEmailWithTimeout,
@@ -130,6 +131,10 @@ const buildPayload = async ({
 			browserId: (await hasCmpConsentForBrowserId())
 				? browserId || undefined
 				: undefined,
+			// eslint-disable-next-line -- because i do what i like
+			// @ts-ignore
+			purchaseInfo: getPurchaseInfo(),
+			isSignedIn,
 		},
 	};
 };
@@ -156,23 +161,23 @@ export const canShowRRBanner: CanShowFunctionType<BannerProps> = async ({
 }) => {
 	if (!remoteBannerConfig) return { show: false };
 
-	if (
-		shouldHideReaderRevenue ||
-		isPaidContent ||
-		isPreview ||
-		signInGateWillShow
-	) {
-		// We never serve Reader Revenue banners in this case
-		return { show: false };
-	}
+	// if (
+	// 	shouldHideReaderRevenue ||
+	// 	isPaidContent ||
+	// 	isPreview ||
+	// 	signInGateWillShow
+	// ) {
+	// 	// We never serve Reader Revenue banners in this case
+	// 	return { show: false };
+	// }
 
-	if (
-		engagementBannerLastClosedAt &&
-		subscriptionBannerLastClosedAt &&
-		withinLocalNoBannerCachePeriod()
-	) {
-		return { show: false };
-	}
+	// if (
+	// 	engagementBannerLastClosedAt &&
+	// 	subscriptionBannerLastClosedAt &&
+	// 	withinLocalNoBannerCachePeriod()
+	// ) {
+	// 	return { show: false };
+	// }
 
 	const countryCode = await asyncCountryCode;
 	const optedOutOfArticleCount = await hasOptedOutOfArticleCount();

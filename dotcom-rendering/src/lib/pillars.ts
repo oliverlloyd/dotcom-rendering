@@ -57,8 +57,8 @@ type LabsPalette = {
 	800: ColourType;
 };
 
-// pillarPalette_DO_NOT_USE should no longer be used. Use palette from  decidePalette instead
-// eslint-disable-next-line @typescript-eslint/naming-convention
+/** @deprecated pillarPalette_DO_NOT_USE should no longer be used. Use palette from decidePalette instead */
+// eslint-disable-next-line @typescript-eslint/naming-convention -- we’re making it explicit it’s deprecated
 export const pillarPalette_DO_NOT_USE: Record<
 	ArticleTheme,
 	PillarPalette | SpecialPalette | LabsPalette

@@ -1,0 +1,50 @@
+{
+  "name": "@guardian/braze-components",
+  "version": "7.3.0",
+  "description": "React components to render messages from Braze",
+  "repository": "https://github.com/guardian/braze-components",
+  "author": "The Guardian",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "watch": "rollup -cw",
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c",
+    "postbuild": "tsc --project tsconfig.types.json",
+    "test": "jest",
+    "tsc": "tsc  --noEmit",
+    "prerelease": "yarn build",
+    "release": "np",
+    "storybook": "./bin/storybook",
+    "build-storybook": "build-storybook",
+    "lint": "eslint . --ext .ts,.tsx",
+    "upload-artifact": "node-riffraff-artifact"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.1.2",
+    "@guardian/libs": "^3.1.0",
+    "@guardian/source-foundations": "^4.0.3",
+    "@guardian/source-react-components": "^4.0.2",
+    "@guardian/source-react-components-development-kitchen": "^0.0.33",
+    "react": "17.0.2"
+  },
+  "dependencies": {},
+  "np": {
+    "branch": "main"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "immer": "9.0.6",
+    "minimist": "1.2.6"
+  },
+  "yalcSig": "dd13bf13e9b957b6456eb359933c6e4b"
+}

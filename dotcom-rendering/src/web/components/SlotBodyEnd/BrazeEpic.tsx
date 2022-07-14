@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import type { CommonEndOfArticleComponentProps } from '@guardian/braze-components/end-of-article';
 import type {
 	BrazeArticleContext,
 	BrazeMessagesInterface,
-} from '@guardian/braze-components/logic';
+	CommonEndOfArticleComponentProps,
+} from '@guardian/braze-components';
 import { useEffect, useRef, useState } from 'react';
 import { submitComponentEvent } from '../../browser/ophan/ophan';
 import { getBrazeMetaFromUrlFragment } from '../../lib/braze/forceBrazeMessage';
@@ -149,7 +149,7 @@ export const MaybeBrazeEpic = ({ meta, countryCode, idApiUrl }: EpicConfig) => {
 
 	useEffect(() => {
 		import(
-			/* webpackChunkName: "guardian-braze-components-end-of-article" */ '@guardian/braze-components/end-of-article'
+			/* webpackChunkName: "guardian-braze-components-vite" */ '@guardian/braze-components'
 		)
 			.then((module) => {
 				setBrazeComponent(() => module.BrazeEndOfArticleComponent);

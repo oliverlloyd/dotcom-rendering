@@ -1,5 +1,5 @@
 import type { BrazeMessagesInterface } from '@guardian/braze-components';
-import { NullBrazeMessages } from '@guardian/braze-components/logic';
+import { NullBrazeMessages } from '@guardian/braze-components';
 import useSWRImmutable from 'swr/immutable';
 import { buildBrazeMessages } from './braze/buildBrazeMessages';
 

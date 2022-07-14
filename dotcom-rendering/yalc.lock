@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "packages": {
+    "@guardian/braze-components": {
+      "version": "7.3.0",
+      "signature": "dd13bf13e9b957b6456eb359933c6e4b",
+      "file": true,
+      "replaced": "^7.2.0"
+    }
+  }
+}

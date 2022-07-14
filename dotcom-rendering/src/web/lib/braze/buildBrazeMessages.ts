@@ -1,9 +1,9 @@
-import type { BrazeMessagesInterface } from '@guardian/braze-components/logic';
+import type { BrazeMessagesInterface } from '@guardian/braze-components';
 import {
 	BrazeMessages,
 	LocalMessageCache,
 	NullBrazeMessages,
-} from '@guardian/braze-components/logic';
+} from '@guardian/braze-components';
 import { getCookie, log, storage } from '@guardian/libs';
 import { initPerf } from '../../browser/initPerf';
 import { record } from '../../browser/ophan/ophan';

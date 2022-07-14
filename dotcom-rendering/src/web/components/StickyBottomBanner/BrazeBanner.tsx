@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import type { CommonBannerComponentProps } from '@guardian/braze-components/banner';
 import type {
 	BrazeArticleContext,
 	BrazeMessagesInterface,
-} from '@guardian/braze-components/logic';
+	CommonBannerComponentProps,
+} from '@guardian/braze-components';
 import { useEffect, useState } from 'react';
 import { submitComponentEvent } from '../../browser/ophan/ophan';
 import { getBrazeMetaFromUrlFragment } from '../../lib/braze/forceBrazeMessage';
@@ -124,7 +124,7 @@ export const BrazeBanner = ({ meta }: Props) => {
 
 	useEffect(() => {
 		import(
-			/* webpackChunkName: "guardian-braze-components-banner" */ '@guardian/braze-components/banner'
+			/* webpackChunkName: "guardian-braze-components-banner" */ '@guardian/braze-components'
 		)
 			.then((module) => {
 				setBrazeComponent(() => module.BrazeBannerComponent);

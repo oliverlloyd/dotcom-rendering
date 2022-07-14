@@ -1,7 +1,7 @@
 import type {
 	BrazeArticleContext,
 	BrazeMessagesInterface,
-} from '@guardian/braze-components/logic';
+} from '@guardian/braze-components';
 import { cmp } from '@guardian/consent-management-platform';
 import { getCookie } from '@guardian/libs';
 import { useEffect, useState } from 'react';

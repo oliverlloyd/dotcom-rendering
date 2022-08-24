@@ -1677,17 +1677,6 @@ export const NewsletterSignup: CAPIArticleType = {
 					elementId: 'bb71e4dc-2937-4662-8a37-447253865062',
 				},
 				{
-					_type: 'model.dotcomrendering.pageElements.EmbedBlockElement',
-					html: '<iframe id="moving-the-goalposts" name="moving-the-goalposts" src="https://www.theguardian.com/email/form/plaintone/moving-the-goalposts" scrolling="no" seamless="" class="iframed--overflow-hidden email-sub__iframe" height="52px" frameborder="0" data-component="email-embed--moving-the-goalposts"></iframe>',
-					safe: true,
-					alt: 'Sign up to Moving the Goalposts',
-					isMandatory: true,
-					isThirdPartyTracking: false,
-					source: 'The Guardian',
-					sourceDomain: 'theguardian.com',
-					elementId: 'a5312565-2180-4449-abba-c3c5fb7f344c',
-				},
-				{
 					_type: 'model.dotcomrendering.pageElements.TextBlockElement',
 					html: '<ul> \n <li><p>Try our other sports emails: as well as the occasionally funny football email <a href="https://www.theguardian.com/info/2016/jan/05/the-fiver-email-sign-up">The Fiver </a>from Monday to Friday, there are weekly catch-ups for cricket in <a href="https://www.theguardian.com/sport/2016/aug/18/sign-up-to-the-spin">The Spin</a> and rugby union in <a href="https://www.theguardian.com/sport/2016/aug/18/sign-up-to-the-breakdown">The Breakdown</a>, and our seven-day roundup of the best of our sports journalism in <a href="https://www.theguardian.com/sport/2017/may/15/the-recap-sign-up-for-the-best-of-the-guardians-sport-coverage">The Recap</a>.</p></li> \n <li><p>Living in Australia? Try the <a href="https://www.theguardian.com/info/2015/jun/05/guardian-australia-sport-newsletter-subscribe-by-email">Guardian Australia’s daily sports newsletter</a></p></li> \n</ul>',
 					elementId: '7650fe03-4960-4a1e-9383-b47e54bb4b25',

@@ -38,6 +38,7 @@ import { NewsletterBadge } from '../components/NewsletterBadge';
 import { NewsletterDetail } from '../components/NewsletterDetail';
 import { NewsletterFrequency } from '../components/NewsletterFrequency';
 import { NewsletterPrivacyMessage } from '../components/NewsletterPrivacyMessage';
+import { NewsletterPromotedSection } from '../components/NewsletterPromotedSection';
 import { OnwardsUpper } from '../components/OnwardsUpper.importable';
 import { Section } from '../components/Section';
 import { SecureSignup } from '../components/SecureSignup';
@@ -180,11 +181,7 @@ const getMainMediaCaptions = (
 			: undefined,
 	);
 
-export const NewsletterSignupLayout: React.FC<Props> = ({
-	CAPIArticle,
-	NAV,
-	format,
-}) => {
+export const NewsletterSignupLayout = ({ CAPIArticle, NAV, format }: Props) => {
 	const {
 		config: { host },
 	} = CAPIArticle;
@@ -465,6 +462,8 @@ export const NewsletterSignupLayout: React.FC<Props> = ({
 						<NewsletterPrivacyMessage />
 					</div>
 				</Section>
+
+				<NewsletterPromotedSection />
 
 				{CAPIArticle.onwards ? (
 					<DecideOnwards

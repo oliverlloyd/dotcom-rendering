@@ -132,6 +132,7 @@ const renderBody = (item: Item, request: RenderingRequest): EmotionCritical =>
 	emotionServer.extractCritical(
 		renderToString(
 			<CacheProvider value={emotionCache}>
+				<p>{JSON.stringify(request.promotedNewsletter)}</p>
 				<Layout item={item} shouldHideAds={shouldHideAds(request)} />
 			</CacheProvider>,
 		),

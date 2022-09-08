@@ -1,5 +1,5 @@
-import { getBylineComponentsFromTokens } from '../../../lib/byline';
-import { bylineTokens } from '../../lib/byline-tokens';
+import { getBylineComponentsFromTokens } from '../../../lib/byline.ts';
+import { bylineTokens } from '../../lib/byline-tokens.ts';
 
 type Props = {
 	byline?: string;

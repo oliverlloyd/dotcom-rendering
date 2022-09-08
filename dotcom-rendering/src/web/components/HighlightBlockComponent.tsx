@@ -1,7 +1,7 @@
-import { ClassNames } from '@emotion/react';
-import { background, body } from '@guardian/source-foundations';
-import { unwrapHtml } from '../../model/unwrapHtml';
-import { RewrappedComponent } from './RewrappedComponent';
+import { ClassNames } from 'npm:@emotion/react';
+import { background, body } from 'npm:@guardian/source-foundations';
+import { unwrapHtml } from '../../model/unwrapHtml.ts';
+import { RewrappedComponent } from './RewrappedComponent.ts';
 
 type Props = {
 	html: string;

@@ -1,4 +1,4 @@
-import type { Participations } from '@guardian/ab-core';
+import type { Participations } from 'npm:@guardian/ab-core';
 
 export const getForcedParticipationsFromUrl = (
 	windowHash: string,

@@ -1,19 +1,19 @@
-import { ClassNames } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
+import { ClassNames } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	body,
 	from,
 	neutral,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import type { IOptions } from 'sanitize-html';
 import sanitise from 'sanitize-html';
-import { unwrapHtml } from '../../model/unwrapHtml';
-import { decidePalette } from '../lib/decidePalette';
-import { DropCap } from './DropCap';
-import { RewrappedComponent } from './RewrappedComponent';
+import { unwrapHtml } from '../../model/unwrapHtml.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { DropCap } from './DropCap.ts';
+import { RewrappedComponent } from './RewrappedComponent.ts';
 
 type Props = {
 	html: string;

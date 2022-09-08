@@ -1,5 +1,5 @@
 import os from 'os';
-import { BytesMetric, collectAndSendAWSMetrics } from './aws-metrics';
+import { BytesMetric, collectAndSendAWSMetrics } from './aws-metrics.ts';
 
 const stage =
 	typeof process.env.GU_STAGE === 'string'

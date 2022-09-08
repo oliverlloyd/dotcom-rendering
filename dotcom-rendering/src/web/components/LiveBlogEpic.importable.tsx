@@ -1,22 +1,22 @@
-import { css } from '@emotion/react';
-import { onConsentChange } from '@guardian/consent-management-platform';
-import type { ConsentState } from '@guardian/consent-management-platform/dist/types';
-import type { CountryCode } from '@guardian/libs';
-import { getCookie, joinUrl, log, storage } from '@guardian/libs';
-import { space } from '@guardian/source-foundations';
-import type { ModuleDataResponse } from '@guardian/support-dotcom-components';
-import React, { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { submitComponentEvent } from '../browser/ophan/ophan';
+import { css } from 'npm:@emotion/react';
+import { onConsentChange } from 'npm:@guardian/consent-management-platform';
+import type { ConsentState } from 'npm:@guardian/consent-management-platform/dist/types';
+import type { CountryCode } from 'npm:@guardian/libs';
+import { getCookie, joinUrl, log, storage } from 'npm:@guardian/libs';
+import { space } from 'npm:@guardian/source-foundations';
+import type { ModuleDataResponse } from 'npm:@guardian/support-dotcom-components';
+import React, { useEffect, useState } from 'npm:react';
+import { createPortal } from 'npm:react-dom';
+import { submitComponentEvent } from '../browser/ophan/ophan.ts';
 import {
 	getLastOneOffContributionTimestamp,
 	isRecurringContributor,
 	REQUIRED_CONSENTS_FOR_ARTICLE_COUNT,
 	shouldHideSupportMessaging,
-} from '../lib/contributions';
-import { getLocaleCode } from '../lib/getCountryCode';
-import { setAutomat } from '../lib/setAutomat';
-import { useApi } from '../lib/useApi';
+} from '../lib/contributions.ts';
+import { getLocaleCode } from '../lib/getCountryCode.ts';
+import { setAutomat } from '../lib/setAutomat.ts';
+import { useApi } from '../lib/useApi.tsx';
 
 type Props = {
 	section: string;

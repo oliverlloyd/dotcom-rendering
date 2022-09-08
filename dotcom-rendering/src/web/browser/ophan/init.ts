@@ -1,6 +1,6 @@
 import '../webpackPublicPath';
-import { startup } from '../startup';
-import { recordPerformance, sendOphanPlatformRecord } from './ophan';
+import { startup } from '../startup.ts';
+import { recordPerformance, sendOphanPlatformRecord } from './ophan.ts';
 
 // side effect only
 import 'ophan-tracker-js';

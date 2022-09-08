@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { LinkButton } from '@guardian/source-react-components';
-import { ClickToView } from './ClickToView';
+import { css } from 'npm:@emotion/react';
+import { LinkButton } from 'npm:@guardian/source-react-components';
+import { ClickToView } from './ClickToView.ts';
 
 const widthOverride = css`
 	iframe {

@@ -3,67 +3,67 @@ import {
 	InteractiveAtom,
 	InteractiveLayoutAtom,
 	VideoAtom,
-} from '@guardian/atoms-rendering';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign } from '@guardian/libs';
-import { getSharingUrls } from '../../lib/sharing-urls';
-import type { ServerSideTests, Switches } from '../../types/config';
-import { AudioAtomWrapper } from '../components/AudioAtomWrapper.importable';
-import { BlockquoteBlockComponent } from '../components/BlockquoteBlockComponent';
-import { CalloutBlockComponent } from '../components/CalloutBlockComponent.importable';
-import { CaptionBlockComponent } from '../components/CaptionBlockComponent';
-import { ChartAtomWrapper } from '../components/ChartAtomWrapper.importable';
-import { CodeBlockComponent } from '../components/CodeBlockComponent';
-import { CommentBlockComponent } from '../components/CommentBlockComponent';
-import { DisclaimerBlockComponent } from '../components/DisclaimerBlockComponent';
-import { DividerBlockComponent } from '../components/DividerBlockComponent';
-import { DocumentBlockComponent } from '../components/DocumentBlockComponent.importable';
-import { EmailSignup } from '../components/EmailSignup';
-import { EmbedBlockComponent } from '../components/EmbedBlockComponent.importable';
-import { Figure } from '../components/Figure';
-import { GuideAtomWrapper } from '../components/GuideAtomWrapper.importable';
-import { GuVideoBlockComponent } from '../components/GuVideoBlockComponent';
-import { HighlightBlockComponent } from '../components/HighlightBlockComponent';
-import { ImageBlockComponent } from '../components/ImageBlockComponent';
-import { InstagramBlockComponent } from '../components/InstagramBlockComponent.importable';
-import { InteractiveBlockComponent } from '../components/InteractiveBlockComponent.importable';
-import { InteractiveContentsBlockComponent } from '../components/InteractiveContentsBlockComponent';
-import { Island } from '../components/Island';
-import { ItemLinkBlockElement } from '../components/ItemLinkBlockElement';
-import { KnowledgeQuizAtomWrapper } from '../components/KnowledgeQuizAtomWrapper.importable';
-import { MainMediaEmbedBlockComponent } from '../components/MainMediaEmbedBlockComponent';
-import { MapEmbedBlockComponent } from '../components/MapEmbedBlockComponent.importable';
-import { MultiImageBlockComponent } from '../components/MultiImageBlockComponent';
-import { NumberedTitleBlockComponent } from '../components/NumberedTitleBlockComponent';
-import { PersonalityQuizAtomWrapper } from '../components/PersonalityQuizAtomWrapper.importable';
-import { ProfileAtomWrapper } from '../components/ProfileAtomWrapper.importable';
-import { PullQuoteBlockComponent } from '../components/PullQuoteBlockComponent';
-import { QandaAtomWrapper } from '../components/QandaAtomWrapper.importable';
-import { RichLinkComponent } from '../components/RichLinkComponent.importable';
-import { SoundcloudBlockComponent } from '../components/SoundcloudBlockComponent';
-import { SpotifyBlockComponent } from '../components/SpotifyBlockComponent.importable';
-import { StarRatingBlockComponent } from '../components/StarRatingBlockComponent';
-import { SubheadingBlockComponent } from '../components/SubheadingBlockComponent';
-import { TableBlockComponent } from '../components/TableBlockComponent';
-import { TextBlockComponent } from '../components/TextBlockComponent';
-import { TimelineAtomWrapper } from '../components/TimelineAtomWrapper.importable';
-import { TweetBlockComponent } from '../components/TweetBlockComponent.importable';
-import { UnsafeEmbedBlockComponent } from '../components/UnsafeEmbedBlockComponent.importable';
-import { VideoFacebookBlockComponent } from '../components/VideoFacebookBlockComponent.importable';
-import { VimeoBlockComponent } from '../components/VimeoBlockComponent';
-import { VineBlockComponent } from '../components/VineBlockComponent.importable';
+} from 'npm:@guardian/atoms-rendering';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { getSharingUrls } from '../../lib/sharing-urls.ts';
+import type { ServerSideTests, Switches } from '../../types/config.ts';
+import { AudioAtomWrapper } from '../components/AudioAtomWrapper.importable.ts';
+import { BlockquoteBlockComponent } from '../components/BlockquoteBlockComponent.ts';
+import { CalloutBlockComponent } from '../components/CalloutBlockComponent.importable.ts';
+import { CaptionBlockComponent } from '../components/CaptionBlockComponent.ts';
+import { ChartAtomWrapper } from '../components/ChartAtomWrapper.importable.ts';
+import { CodeBlockComponent } from '../components/CodeBlockComponent.ts';
+import { CommentBlockComponent } from '../components/CommentBlockComponent.ts';
+import { DisclaimerBlockComponent } from '../components/DisclaimerBlockComponent.ts';
+import { DividerBlockComponent } from '../components/DividerBlockComponent.ts';
+import { DocumentBlockComponent } from '../components/DocumentBlockComponent.importable.ts';
+import { EmailSignup } from '../components/EmailSignup.ts';
+import { EmbedBlockComponent } from '../components/EmbedBlockComponent.importable.ts';
+import { Figure } from '../components/Figure.ts';
+import { GuideAtomWrapper } from '../components/GuideAtomWrapper.importable.ts';
+import { GuVideoBlockComponent } from '../components/GuVideoBlockComponent.ts';
+import { HighlightBlockComponent } from '../components/HighlightBlockComponent.ts';
+import { ImageBlockComponent } from '../components/ImageBlockComponent.ts';
+import { InstagramBlockComponent } from '../components/InstagramBlockComponent.importable.ts';
+import { InteractiveBlockComponent } from '../components/InteractiveBlockComponent.importable.ts';
+import { InteractiveContentsBlockComponent } from '../components/InteractiveContentsBlockComponent.ts';
+import { Island } from '../components/Island.ts';
+import { ItemLinkBlockElement } from '../components/ItemLinkBlockElement.ts';
+import { KnowledgeQuizAtomWrapper } from '../components/KnowledgeQuizAtomWrapper.importable.ts';
+import { MainMediaEmbedBlockComponent } from '../components/MainMediaEmbedBlockComponent.ts';
+import { MapEmbedBlockComponent } from '../components/MapEmbedBlockComponent.importable.ts';
+import { MultiImageBlockComponent } from '../components/MultiImageBlockComponent.ts';
+import { NumberedTitleBlockComponent } from '../components/NumberedTitleBlockComponent.ts';
+import { PersonalityQuizAtomWrapper } from '../components/PersonalityQuizAtomWrapper.importable.ts';
+import { ProfileAtomWrapper } from '../components/ProfileAtomWrapper.importable.ts';
+import { PullQuoteBlockComponent } from '../components/PullQuoteBlockComponent.ts';
+import { QandaAtomWrapper } from '../components/QandaAtomWrapper.importable.ts';
+import { RichLinkComponent } from '../components/RichLinkComponent.importable.ts';
+import { SoundcloudBlockComponent } from '../components/SoundcloudBlockComponent.ts';
+import { SpotifyBlockComponent } from '../components/SpotifyBlockComponent.importable.ts';
+import { StarRatingBlockComponent } from '../components/StarRatingBlockComponent.ts';
+import { SubheadingBlockComponent } from '../components/SubheadingBlockComponent.ts';
+import { TableBlockComponent } from '../components/TableBlockComponent.ts';
+import { TextBlockComponent } from '../components/TextBlockComponent.ts';
+import { TimelineAtomWrapper } from '../components/TimelineAtomWrapper.importable.ts';
+import { TweetBlockComponent } from '../components/TweetBlockComponent.importable.ts';
+import { UnsafeEmbedBlockComponent } from '../components/UnsafeEmbedBlockComponent.importable.ts';
+import { VideoFacebookBlockComponent } from '../components/VideoFacebookBlockComponent.importable.ts';
+import { VimeoBlockComponent } from '../components/VimeoBlockComponent.ts';
+import { VineBlockComponent } from '../components/VineBlockComponent.importable.ts';
 import {
 	WitnessImageBlockComponent,
 	WitnessTextBlockComponent,
 	WitnessVideoBlockComponent,
-} from '../components/WitnessBlockComponent';
-import { YoutubeBlockComponent } from '../components/YoutubeBlockComponent.importable';
-import { YoutubeEmbedBlockComponent } from '../components/YoutubeEmbedBlockComponent';
+} from '../components/WitnessBlockComponent.ts';
+import { YoutubeBlockComponent } from '../components/YoutubeBlockComponent.importable.ts';
+import { YoutubeEmbedBlockComponent } from '../components/YoutubeEmbedBlockComponent.ts';
 import {
 	interactiveLegacyFigureClasses,
 	isInteractive,
-} from '../layouts/lib/interactiveLegacyStyling';
-import { decidePalette } from './decidePalette';
+} from '../layouts/lib/interactiveLegacyStyling.ts';
+import { decidePalette } from './decidePalette.ts';
 
 type Props = {
 	format: ArticleFormat;

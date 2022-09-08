@@ -1,15 +1,15 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
-import { from, until } from '@guardian/source-foundations';
-import EmailIcon from '../../static/icons/email.svg';
-import FacebookIcon from '../../static/icons/facebook.svg';
-import LinkedInIcon from '../../static/icons/linked-in.svg';
-import MessengerIcon from '../../static/icons/messenger.svg';
-import TwitterIconPadded from '../../static/icons/twitter-padded.svg';
-import WhatsAppIcon from '../../static/icons/whatsapp.svg';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { Hide } from './Hide';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { from, until } from 'npm:@guardian/source-foundations';
+import EmailIcon from '../../static/icons/email.svg.ts';
+import FacebookIcon from '../../static/icons/facebook.svg.ts';
+import LinkedInIcon from '../../static/icons/linked-in.svg.ts';
+import MessengerIcon from '../../static/icons/messenger.svg.ts';
+import TwitterIconPadded from '../../static/icons/twitter-padded.svg.ts';
+import WhatsAppIcon from '../../static/icons/whatsapp.svg.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Hide } from './Hide.ts';
 
 type Context = 'ArticleMeta' | 'LiveBlock' | 'SubMeta';
 type ShareIconSize = 'small' | 'medium';

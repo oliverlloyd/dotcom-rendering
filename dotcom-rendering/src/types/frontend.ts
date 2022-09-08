@@ -1,10 +1,10 @@
-import type { BadgeType } from './badge';
-import type { CommercialProperties } from './commercial';
-import type { ConfigType } from './config';
-import type { EditionId } from './edition';
-import type { FooterType } from './footer';
-import type { CAPIOnwards } from './onwards';
-import type { CAPITrailType } from './trails';
+import type { BadgeType } from './badge.ts';
+import type { CommercialProperties } from './commercial.ts';
+import type { ConfigType } from './config.ts';
+import type { EditionId } from './edition.ts';
+import type { FooterType } from './footer.ts';
+import type { CAPIOnwards } from './onwards.ts';
+import type { CAPITrailType } from './trails.ts';
 
 /**
  * WARNING: run `gen-schema` task if changing this to update the associated JSON

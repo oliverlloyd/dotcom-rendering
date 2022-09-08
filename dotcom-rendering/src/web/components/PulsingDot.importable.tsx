@@ -1,5 +1,5 @@
-import { css, keyframes } from '@emotion/react';
-import { storage } from '@guardian/libs';
+import { css, keyframes } from 'npm:@emotion/react';
+import { storage } from 'npm:@guardian/libs';
 import { useEffect, useState } from 'react';
 
 const dotStyles = (colour?: string) => css`

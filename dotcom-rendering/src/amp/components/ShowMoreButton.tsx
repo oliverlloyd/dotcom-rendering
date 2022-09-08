@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { neutral, textSans } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { neutral, textSans } from 'npm:@guardian/source-foundations';
 import React from 'react';
-import PlusIcon from '../../static/icons/plus.svg';
+import PlusIcon from '../../static/icons/plus.svg.ts';
 
 const showMore = css`
 	color: ${neutral[7]};

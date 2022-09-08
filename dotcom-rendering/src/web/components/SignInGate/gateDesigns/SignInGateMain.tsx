@@ -1,7 +1,7 @@
-import { cmp } from '@guardian/consent-management-platform';
-import { Button, Link, LinkButton } from '@guardian/source-react-components';
-import { trackLink } from '../componentEventTracking';
-import type { SignInGateProps } from '../types';
+import { cmp } from 'npm:@guardian/consent-management-platform';
+import { Button, Link, LinkButton } from 'npm:@guardian/source-react-components';
+import { trackLink } from '../componentEventTracking.ts';
+import type { SignInGateProps } from '../types.ts';
 import {
 	actionButtons,
 	bodyBold,
@@ -17,7 +17,7 @@ import {
 	signInGateContainer,
 	signInHeader,
 	signInLink,
-} from './shared';
+} from './shared.ts';
 
 export const SignInGateMain = ({
 	signInUrl,

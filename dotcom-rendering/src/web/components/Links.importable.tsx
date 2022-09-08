@@ -1,26 +1,26 @@
-import { css } from '@emotion/react';
-import { getCookie, joinUrl } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { getCookie, joinUrl } from 'npm:@guardian/libs';
 import {
 	brand,
 	brandAlt,
 	brandText,
 	from,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import { useEffect, useState } from 'react';
-import { createAuthenticationEventParams } from '../../lib/identity-component-event';
+import { createAuthenticationEventParams } from '../../lib/identity-component-event.ts';
 import ProfileIcon from '../../static/icons/profile.svg';
 import SearchIcon from '../../static/icons/search.svg';
-import { getZIndex } from '../lib/getZIndex';
+import { getZIndex } from '../lib/getZIndex.ts';
 import {
 	addNotificationsToDropdownLinks,
 	mapBrazeCardsToNotifications,
-} from '../lib/notification';
-import type { Notification } from '../lib/notification';
-import { useApi } from '../lib/useApi';
-import { useBraze } from '../lib/useBraze';
-import type { DropdownLinkType } from './Dropdown';
-import { Dropdown } from './Dropdown';
+} from '../lib/notification.ts';
+import type { Notification } from '../lib/notification.ts';
+import { useApi } from '../lib/useApi.tsx';
+import { useBraze } from '../lib/useBraze.ts';
+import type { DropdownLinkType } from './Dropdown.tsx';
+import { Dropdown } from './Dropdown.tsx';
 
 type Props = {
 	supporterCTA: string;

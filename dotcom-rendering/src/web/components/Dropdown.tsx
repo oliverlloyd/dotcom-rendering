@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	border,
 	brandAlt,
@@ -11,10 +11,10 @@ import {
 	textSans,
 	until,
 	visuallyHidden,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import { useEffect, useState } from 'react';
-import { getZIndex } from '../lib/getZIndex';
-import { linkNotificationCount } from '../lib/linkNotificationCount';
+import { getZIndex } from '../lib/getZIndex.ts';
+import { linkNotificationCount } from '../lib/linkNotificationCount.ts';
 
 export interface DropdownLinkType {
 	id: string;

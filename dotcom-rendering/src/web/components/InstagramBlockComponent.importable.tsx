@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { updateIframeHeight } from '../browser/updateIframeHeight';
-import { ClickToView } from './ClickToView';
+import { css } from 'npm:@emotion/react';
+import { updateIframeHeight } from '../browser/updateIframeHeight.ts';
+import { ClickToView } from './ClickToView.ts';
 
 const fullWidthStyles = css`
 	width: 100%;

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { Byline } from './Byline';
+import { Byline } from './Byline.ts';
 
 describe('Byline', () => {
 	const guardianBaseURL = 'https://theguardian.com';

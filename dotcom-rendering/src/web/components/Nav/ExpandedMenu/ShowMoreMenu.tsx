@@ -1,14 +1,14 @@
-import { css } from '@emotion/react';
-import { ArticleDisplay } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDisplay } from 'npm:@guardian/libs';
 import {
 	brandAlt,
 	brandText,
 	from,
 	headline,
 	visuallyHidden,
-} from '@guardian/source-foundations';
-import { SvgChevronDownSingle } from '@guardian/source-react-components';
-import { navInputCheckboxId, showMoreButtonId } from '../config';
+} from 'npm:@guardian/source-foundations';
+import { SvgChevronDownSingle } from 'npm:@guardian/source-react-components';
+import { navInputCheckboxId, showMoreButtonId } from '../config.ts';
 
 const screenReadable = css`
 	${visuallyHidden};

@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticlePillar } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticlePillar } from 'npm:@guardian/libs';
 import {
 	DottedLines,
 	StraightLines,
-} from '@guardian/source-react-components-development-kitchen';
+} from 'npm:@guardian/source-react-components-development-kitchen';
 
 type Props = {
 	format: ArticleFormat;

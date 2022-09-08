@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
-import type { ArticleFormat } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleSpecial } from 'npm:@guardian/libs';
+import type { ArticleFormat } from 'npm:@guardian/libs';
 import {
 	brandBackground,
 	brandBorder,
@@ -8,45 +8,45 @@ import {
 	neutral,
 	space,
 	until,
-} from '@guardian/source-foundations';
-import { StraightLines } from '@guardian/source-react-components-development-kitchen';
-import { buildAdTargeting } from '../../lib/ad-targeting';
-import { parse } from '../../lib/slot-machine-flags';
-import type { NavType } from '../../model/extract-nav';
-import type { CAPIArticleType } from '../../types/frontend';
-import { AdSlot, MobileStickyContainer } from '../components/AdSlot';
-import { ArticleBody } from '../components/ArticleBody';
-import { ArticleContainer } from '../components/ArticleContainer';
-import { ArticleHeadline } from '../components/ArticleHeadline';
-import { ArticleMeta } from '../components/ArticleMeta';
-import { ArticleTitle } from '../components/ArticleTitle';
-import { Border } from '../components/Border';
-import { Caption } from '../components/Caption';
-import { Carousel } from '../components/Carousel.importable';
-import { DecideLines } from '../components/DecideLines';
-import { DecideOnwards } from '../components/DecideOnwards';
-import { DiscussionLayout } from '../components/DiscussionLayout';
-import { Footer } from '../components/Footer';
-import { GridItem } from '../components/GridItem';
-import { GuardianLabsLines } from '../components/GuardianLabsLines';
-import { HeadlineByline } from '../components/HeadlineByline';
-import { Hide } from '../components/Hide';
-import { Island } from '../components/Island';
-import { MostViewedFooterData } from '../components/MostViewedFooterData.importable';
-import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout';
-import { OnwardsUpper } from '../components/OnwardsUpper.importable';
-import { RightColumn } from '../components/RightColumn';
-import { Section } from '../components/Section';
-import { SlotBodyEnd } from '../components/SlotBodyEnd.importable';
-import { Standfirst } from '../components/Standfirst';
-import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
-import { SubMeta } from '../components/SubMeta';
-import { SubNav } from '../components/SubNav.importable';
-import { getContributionsServiceUrl } from '../lib/contributions';
-import { decidePalette } from '../lib/decidePalette';
-import { decideTrail } from '../lib/decideTrail';
-import { ImmersiveHeader } from './headers/ImmersiveHeader';
-import { BannerWrapper } from './lib/stickiness';
+} from 'npm:@guardian/source-foundations';
+import { StraightLines } from 'npm:@guardian/source-react-components-development-kitchen';
+import { buildAdTargeting } from '../../lib/ad-targeting.ts';
+import { parse } from '../../lib/slot-machine-flags.ts';
+import type { NavType } from '../../model/extract-nav.ts';
+import type { CAPIArticleType } from '../../types/frontend.ts';
+import { AdSlot, MobileStickyContainer } from '../components/AdSlot.ts';
+import { ArticleBody } from '../components/ArticleBody.ts';
+import { ArticleContainer } from '../components/ArticleContainer.ts';
+import { ArticleHeadline } from '../components/ArticleHeadline.ts';
+import { ArticleMeta } from '../components/ArticleMeta.ts';
+import { ArticleTitle } from '../components/ArticleTitle.ts';
+import { Border } from '../components/Border.ts';
+import { Caption } from '../components/Caption.ts';
+import { Carousel } from '../components/Carousel.importable.ts';
+import { DecideLines } from '../components/DecideLines.ts';
+import { DecideOnwards } from '../components/DecideOnwards.ts';
+import { DiscussionLayout } from '../components/DiscussionLayout.ts';
+import { Footer } from '../components/Footer.ts';
+import { GridItem } from '../components/GridItem.ts';
+import { GuardianLabsLines } from '../components/GuardianLabsLines.ts';
+import { HeadlineByline } from '../components/HeadlineByline.ts';
+import { Hide } from '../components/Hide.ts';
+import { Island } from '../components/Island.ts';
+import { MostViewedFooterData } from '../components/MostViewedFooterData.importable.ts';
+import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout.ts';
+import { OnwardsUpper } from '../components/OnwardsUpper.importable.ts';
+import { RightColumn } from '../components/RightColumn.ts';
+import { Section } from '../components/Section.ts';
+import { SlotBodyEnd } from '../components/SlotBodyEnd.importable.ts';
+import { Standfirst } from '../components/Standfirst.ts';
+import { StickyBottomBanner } from '../components/StickyBottomBanner.importable.ts';
+import { SubMeta } from '../components/SubMeta.ts';
+import { SubNav } from '../components/SubNav.importable.ts';
+import { getContributionsServiceUrl } from '../lib/contributions.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { decideTrail } from '../lib/decideTrail.ts';
+import { ImmersiveHeader } from './headers/ImmersiveHeader.ts';
+import { BannerWrapper } from './lib/stickiness.ts';
 
 const ImmersiveGrid = ({ children }: { children: React.ReactNode }) => (
 	<div

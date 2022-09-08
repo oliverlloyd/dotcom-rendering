@@ -1,11 +1,11 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
-import { from } from '@guardian/source-foundations';
-import type { SWRConfiguration } from 'swr';
-import { useApi } from '../lib/useApi';
-import { ArticleHeadline } from './ArticleHeadline';
-import { MatchNav } from './MatchNav';
-import { Placeholder } from './Placeholder';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { from } from 'npm:@guardian/source-foundations';
+import type { SWRConfiguration } from 'npm:swr';
+import { useApi } from '../lib/useApi.tsx';
+import { ArticleHeadline } from './ArticleHeadline.tsx';
+import { MatchNav } from './MatchNav.tsx';
+import { Placeholder } from './Placeholder.tsx';
 
 type Props = {
 	matchUrl: string;

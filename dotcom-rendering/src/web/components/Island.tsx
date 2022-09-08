@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-import { Placeholder } from './Placeholder';
+import { Placeholder } from './Placeholder.tsx';
 
 type When = 'idle' | 'visible';
 

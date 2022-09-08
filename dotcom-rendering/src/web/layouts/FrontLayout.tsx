@@ -1,28 +1,28 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay, ArticlePillar } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay, ArticlePillar } from 'npm:@guardian/libs';
 import {
 	brandBackground,
 	brandBorder,
 	brandLine,
 	neutral,
-} from '@guardian/source-foundations';
-import { StraightLines } from '@guardian/source-react-components-development-kitchen';
-import type { NavType } from '../../model/extract-nav';
-import type { DCRFrontType } from '../../types/front';
-import { AdSlot } from '../components/AdSlot';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { HeaderAdSlot } from '../components/HeaderAdSlot';
-import { Island } from '../components/Island';
-import { MostViewedFooter } from '../components/MostViewedFooter';
-import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout';
-import { Nav } from '../components/Nav/Nav';
-import { Section } from '../components/Section';
-import { Snap } from '../components/Snap';
-import { SubNav } from '../components/SubNav.importable';
-import { DecideContainer } from '../lib/DecideContainer';
-import { decidePalette } from '../lib/decidePalette';
-import { Stuck } from './lib/stickiness';
+} from 'npm:@guardian/source-foundations';
+import { StraightLines } from 'npm:@guardian/source-react-components-development-kitchen';
+import type { NavType } from '../../model/extract-nav.ts';
+import type { DCRFrontType } from '../../types/front.ts';
+import { AdSlot } from '../components/AdSlot.tsx';
+import { Footer } from '../components/Footer.tsx';
+import { Header } from '../components/Header.tsx';
+import { HeaderAdSlot } from '../components/HeaderAdSlot.tsx';
+import { Island } from '../components/Island.tsx';
+import { MostViewedFooter } from '../components/MostViewedFooter.tsx';
+import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout.tsx';
+import { Nav } from '../components/Nav/Nav.tsx';
+import { Section } from '../components/Section.tsx';
+import { Snap } from '../components/Snap.tsx';
+import { SubNav } from '../components/SubNav.importable.tsx';
+import { DecideContainer } from '../lib/DecideContainer.tsx';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Stuck } from './lib/stickiness.tsx';
 
 interface Props {
 	front: DCRFrontType;

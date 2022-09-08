@@ -1,6 +1,6 @@
 import React from 'react';
-import { constructQuery } from '../../../lib/querystring';
-import { Caption } from '../Caption';
+import { constructQuery } from '../../../lib/querystring.ts';
+import { Caption } from '../Caption.ts';
 
 type EmbedConfig = {
 	adsConfig:

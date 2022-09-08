@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	body,
 	border,
@@ -9,14 +9,14 @@ import {
 	headline,
 	neutral,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
 import {
 	MoustacheSection,
 	MoustacheTemplate,
 	moustacheVariable,
 	MoustacheVariable,
-} from './moustache';
+} from './moustache.ts';
 
 export const epicChoiceCardCss = `
 	.epicChoiceCard {

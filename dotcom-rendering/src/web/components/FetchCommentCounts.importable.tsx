@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { renderToString } from 'react-dom/server';
-import type { DCRContainerPalette } from '../../types/front';
-import { formatCount } from '../lib/formatCount';
-import { useApi } from '../lib/useApi';
-import { CardCommentCount } from './CardCommentCount';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import { formatCount } from '../lib/formatCount.ts';
+import { useApi } from '../lib/useApi.ts';
+import { CardCommentCount } from './CardCommentCount.ts';
 
 type Props = {
 	repeat?: boolean;

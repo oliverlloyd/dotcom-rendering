@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { border, from } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { border, from } from 'npm:@guardian/source-foundations';
 
 export const verticalDivider = css`
 	${from.tablet} {

@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { between, textSans } from '@guardian/source-foundations';
-import CommentIcon from '../../static/icons/comment.svg';
-import type { DCRContainerPalette } from '../../types/front';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+import { css } from 'npm:@emotion/react';
+import { between, textSans } from 'npm:@guardian/source-foundations';
+import CommentIcon from '../../static/icons/comment.svg.ts';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 type Props = {
 	containerPalette?: DCRContainerPalette;

@@ -1,12 +1,12 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	brandAltBackground,
 	brandAltText,
 	from,
 	textSans,
 	visuallyHidden,
-} from '@guardian/source-foundations';
-import ClockIcon from '../../static/icons/clock.svg';
+} from 'npm:@guardian/source-foundations';
+import ClockIcon from '../../static/icons/clock.svg.ts';
 
 type Props = {
 	age: string;

@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	brandAltBackground,
 	from,
@@ -8,14 +8,14 @@ import {
 	neutral,
 	text,
 	textSans,
-} from '@guardian/source-foundations';
-import ArrowInCircle from '../../static/icons/arrow-in-circle.svg';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { Avatar } from './Avatar';
-import { Hide } from './Hide';
-import { QuoteIcon } from './QuoteIcon';
-import { StarRating } from './StarRating/StarRating';
+} from 'npm:@guardian/source-foundations';
+import ArrowInCircle from '../../static/icons/arrow-in-circle.svg.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Avatar } from './Avatar.ts';
+import { Hide } from './Hide.ts';
+import { QuoteIcon } from './QuoteIcon.ts';
+import { StarRating } from './StarRating/StarRating.ts';
 
 interface Props {
 	richLinkIndex: number;

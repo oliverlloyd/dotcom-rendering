@@ -1,18 +1,18 @@
-import { css } from '@emotion/react';
-import { getCookie } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { getCookie } from 'npm:@guardian/libs';
 import {
 	getBanner,
 	getPuzzlesBanner,
-} from '@guardian/support-dotcom-components';
+} from 'npm:@guardian/support-dotcom-components';
 import type {
 	BannerPayload,
 	ModuleData,
 	ModuleDataResponse,
-} from '@guardian/support-dotcom-components/dist/dotcom/src/types';
+} from 'npm:@guardian/support-dotcom-components/dist/dotcom/src/types';
 import { useState } from 'react';
-import type { ArticleCounts } from '../../../lib/article-count';
-import { trackNonClickInteraction } from '../../browser/ga/ga';
-import { submitComponentEvent } from '../../browser/ophan/ophan';
+import type { ArticleCounts } from '../../../lib/article-count.ts';
+import { trackNonClickInteraction } from '../../browser/ga/ga.ts';
+import { submitComponentEvent } from '../../browser/ophan/ophan.ts';
 import {
 	getPurchaseInfo,
 	hasCmpConsentForBrowserId,
@@ -22,13 +22,13 @@ import {
 	setLocalNoBannerCachePeriod,
 	shouldHideSupportMessaging,
 	withinLocalNoBannerCachePeriod,
-} from '../../lib/contributions';
-import { getToday } from '../../lib/dailyArticleCount';
-import { getZIndex } from '../../lib/getZIndex';
-import type { CanShowResult } from '../../lib/messagePicker';
-import { setAutomat } from '../../lib/setAutomat';
-import { useIsInView } from '../../lib/useIsInView';
-import { useOnce } from '../../lib/useOnce';
+} from '../../lib/contributions.ts';
+import { getToday } from '../../lib/dailyArticleCount.ts';
+import { getZIndex } from '../../lib/getZIndex.ts';
+import type { CanShowResult } from '../../lib/messagePicker.ts';
+import { setAutomat } from '../../lib/setAutomat.ts';
+import { useIsInView } from '../../lib/useIsInView.ts';
+import { useOnce } from '../../lib/useOnce.ts';
 
 type BaseProps = {
 	isSignedIn: boolean;

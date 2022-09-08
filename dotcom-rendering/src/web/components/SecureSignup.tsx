@@ -1,11 +1,11 @@
 import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
+import { CacheProvider } from 'npm:@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import { renderToString } from 'react-dom/server';
-import { Island } from './Island';
-import { NewsletterPrivacyMessage } from './NewsletterPrivacyMessage';
-import { NewsletterSignupForm } from './NewsletterSignupForm';
-import { SecureSignupIframe } from './SecureSignupIframe.importable';
+import { Island } from './Island.ts';
+import { NewsletterPrivacyMessage } from './NewsletterPrivacyMessage.ts';
+import { NewsletterSignupForm } from './NewsletterSignupForm.ts';
+import { SecureSignupIframe } from './SecureSignupIframe.importable.ts';
 
 export type Props = {
 	newsletterId: string;

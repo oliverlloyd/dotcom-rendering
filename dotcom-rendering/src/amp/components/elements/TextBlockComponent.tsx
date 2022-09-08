@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { ArticleSpecial } from '@guardian/libs';
-import { body, neutral, textSans } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { ArticleSpecial } from 'npm:@guardian/libs';
+import { body, neutral, textSans } from 'npm:@guardian/source-foundations';
 import React from 'react';
 import sanitise from 'sanitize-html';
-import { neutralBorder, pillarPalette_DO_NOT_USE } from '../../../lib/pillars';
+import { neutralBorder, pillarPalette_DO_NOT_USE } from '../../../lib/pillars.ts';
 
 // Note, this should only apply basic text styling. It is a case where we want
 // to re-use styling, but generally we should avoid this as it couples

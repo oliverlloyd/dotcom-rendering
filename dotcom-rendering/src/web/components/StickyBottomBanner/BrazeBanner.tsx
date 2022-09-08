@@ -1,14 +1,14 @@
-import { css } from '@emotion/react';
-import type { CommonBannerComponentProps } from '@guardian/braze-components/banner';
+import { css } from 'npm:@emotion/react';
+import type { CommonBannerComponentProps } from 'npm:@guardian/braze-components/banner';
 import type {
 	BrazeArticleContext,
 	BrazeMessagesInterface,
-} from '@guardian/braze-components/logic';
+} from 'npm:@guardian/braze-components/logic';
 import { useEffect, useState } from 'react';
-import { submitComponentEvent } from '../../browser/ophan/ophan';
-import { getBrazeMetaFromUrlFragment } from '../../lib/braze/forceBrazeMessage';
-import { getZIndex } from '../../lib/getZIndex';
-import type { CanShowResult } from '../../lib/messagePicker';
+import { submitComponentEvent } from '../../browser/ophan/ophan.ts';
+import { getBrazeMetaFromUrlFragment } from '../../lib/braze/forceBrazeMessage.ts';
+import { getZIndex } from '../../lib/getZIndex.ts';
+import type { CanShowResult } from '../../lib/messagePicker.ts';
 
 type Meta = {
 	dataFromBraze: { [key: string]: string };

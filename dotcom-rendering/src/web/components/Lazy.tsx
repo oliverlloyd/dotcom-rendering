@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { useIsInView } from '../lib/useIsInView';
+import { css } from 'npm:@emotion/react';
+import { useIsInView } from '../lib/useIsInView.ts';
 
 type Props = {
 	// eslint-disable-next-line @typescript-eslint/ban-types -- we want to coerce children

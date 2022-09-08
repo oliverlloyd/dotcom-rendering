@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 // eslint-disable-next-line import/no-extraneous-dependencies -- it’s a yarn workspace
-import LiveBlockContainer from '@guardian/common-rendering/src/components/liveBlockContainer';
-import type { Switches } from '../../types/config';
-import { RenderArticleElement } from '../lib/renderElement';
-import { LastUpdated } from './LastUpdated';
-import { ShareIcons } from './ShareIcons';
+import LiveBlockContainer from 'npm:@guardian/common-rendering/src/components/liveBlockContainer';
+import type { Switches } from '../../types/config.ts';
+import { RenderArticleElement } from '../lib/renderElement.tsx';
+import { LastUpdated } from './LastUpdated.tsx';
+import { ShareIcons } from './ShareIcons.tsx';
 
 type Props = {
 	format: ArticleFormat;

@@ -1,9 +1,9 @@
-import { ArticleDesign } from '@guardian/libs';
+import { ArticleDesign } from 'npm:@guardian/libs';
 import {
 	getBylineComponentsFromTokens,
 	getSoleContributor,
 	isContributor,
-} from '../../lib/byline';
+} from '../../lib/byline.ts';
 
 type Props = {
 	byline: string;

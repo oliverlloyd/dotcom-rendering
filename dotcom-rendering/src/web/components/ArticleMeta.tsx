@@ -1,28 +1,28 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	between,
 	border,
 	from,
 	space,
 	until,
-} from '@guardian/source-foundations';
-import { StraightLines } from '@guardian/source-react-components-development-kitchen';
-import { getSoleContributor } from '../../lib/byline';
-import type { Branding as BrandingType } from '../../types/branding';
-import type { Palette } from '../../types/palette';
-import { interactiveLegacyClasses } from '../layouts/lib/interactiveLegacyStyling';
-import { decidePalette } from '../lib/decidePalette';
-import { Avatar } from './Avatar';
-import { Branding } from './Branding.importable';
-import { CommentCount } from './CommentCount.importable';
-import { Contributor } from './Contributor';
-import { Counts } from './Counts';
-import { Dateline } from './Dateline';
-import { Island } from './Island';
-import { ShareCount } from './ShareCount.importable';
-import { ShareIcons } from './ShareIcons';
+} from 'npm:@guardian/source-foundations';
+import { StraightLines } from 'npm:@guardian/source-react-components-development-kitchen';
+import { getSoleContributor } from '../../lib/byline.ts';
+import type { Branding as BrandingType } from '../../types/branding.ts';
+import type { Palette } from '../../types/palette.ts';
+import { interactiveLegacyClasses } from '../layouts/lib/interactiveLegacyStyling.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Avatar } from './Avatar.ts';
+import { Branding } from './Branding.importable.ts';
+import { CommentCount } from './CommentCount.importable.ts';
+import { Contributor } from './Contributor.ts';
+import { Counts } from './Counts.ts';
+import { Dateline } from './Dateline.ts';
+import { Island } from './Island.ts';
+import { ShareCount } from './ShareCount.importable.ts';
+import { ShareIcons } from './ShareIcons.ts';
 
 type Props = {
 	format: ArticleFormat;

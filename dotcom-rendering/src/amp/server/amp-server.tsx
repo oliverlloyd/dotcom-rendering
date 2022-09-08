@@ -1,15 +1,15 @@
 import type express from 'express';
-import { Standard as ExampleArticle } from '../../../fixtures/generated/articles/Standard';
-import { NotRenderableInDCR } from '../../lib/errors/not-renderable-in-dcr';
-import { findBySubsection } from '../../model/article-sections';
-import { extractNAV } from '../../model/extract-nav';
-import { validateAsCAPIType } from '../../model/validate';
-import type { AnalyticsModel } from '../components/Analytics';
-import { generatePermutivePayload } from '../lib/permutive';
-import { extractScripts } from '../lib/scripts';
-import { Article } from '../pages/Article';
-import { getAmpExperimentCache } from './ampExperimentCache';
-import { document } from './document';
+import { Standard as ExampleArticle } from '../../../fixtures/generated/articles/Standard.ts';
+import { NotRenderableInDCR } from '../../lib/errors/not-renderable-in-dcr.ts';
+import { findBySubsection } from '../../model/article-sections.ts';
+import { extractNAV } from '../../model/extract-nav.ts';
+import { validateAsCAPIType } from '../../model/validate.ts';
+import type { AnalyticsModel } from '../components/Analytics.ts';
+import { generatePermutivePayload } from '../lib/permutive.ts';
+import { extractScripts } from '../lib/scripts.ts';
+import { Article } from '../pages/Article.ts';
+import { getAmpExperimentCache } from './ampExperimentCache.ts';
+import { document } from './document.ts';
 
 export const render = ({ body }: express.Request, res: express.Response) => {
 	try {

@@ -1,4 +1,4 @@
-import { isAdBlockInUse } from '@guardian/commercial-core';
+import { isAdBlockInUse } from 'npm:@guardian/commercial-core';
 import { useEffect, useState } from 'react';
 
 /**

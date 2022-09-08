@@ -1,4 +1,4 @@
-import { abTestPayload } from './ophan';
+import { abTestPayload } from './ophan.ts';
 
 describe('abTestPayload', () => {
 	test('constructs payload correctly from config test data', () => {

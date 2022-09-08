@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { timeAgo } from '@guardian/libs';
-import { from, space, textSans } from '@guardian/source-foundations';
-import { Link } from '@guardian/source-react-components';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+import { css } from 'npm:@emotion/react';
+import { timeAgo } from 'npm:@guardian/libs';
+import { from, space, textSans } from 'npm:@guardian/source-foundations';
+import { Link } from 'npm:@guardian/source-react-components';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 interface Props {
 	id: string;

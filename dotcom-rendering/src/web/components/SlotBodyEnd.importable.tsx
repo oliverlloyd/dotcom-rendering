@@ -1,29 +1,29 @@
 import type {
 	BrazeArticleContext,
 	BrazeMessagesInterface,
-} from '@guardian/braze-components/logic';
-import { getCookie } from '@guardian/libs';
-import type { WeeklyArticleHistory } from '@guardian/support-dotcom-components/dist/dotcom/src/types';
+} from 'npm:@guardian/braze-components/logic';
+import { getCookie } from 'npm:@guardian/libs';
+import type { WeeklyArticleHistory } from 'npm:@guardian/support-dotcom-components/dist/dotcom/src/types';
 import { useEffect, useState } from 'react';
-import { getArticleCounts } from '../../lib/article-count';
-import { getLocaleCode } from '../lib/getCountryCode';
+import { getArticleCounts } from '../../lib/article-count.ts';
+import { getLocaleCode } from '../lib/getCountryCode.ts';
 import type {
 	CandidateConfig,
 	MaybeFC,
 	SlotConfig,
-} from '../lib/messagePicker';
-import { pickMessage } from '../lib/messagePicker';
-import { useBraze } from '../lib/useBraze';
-import { useOnce } from '../lib/useOnce';
-import { canShowBrazeEpic, MaybeBrazeEpic } from './SlotBodyEnd/BrazeEpic';
+} from '../lib/messagePicker.ts';
+import { pickMessage } from '../lib/messagePicker.ts';
+import { useBraze } from '../lib/useBraze.ts';
+import { useOnce } from '../lib/useOnce.ts';
+import { canShowBrazeEpic, MaybeBrazeEpic } from './SlotBodyEnd/BrazeEpic.ts';
 import {
 	canShowReaderRevenueEpic,
 	ReaderRevenueEpic,
-} from './SlotBodyEnd/ReaderRevenueEpic';
+} from './SlotBodyEnd/ReaderRevenueEpic.ts';
 import type {
 	CanShowData as RRCanShowData,
 	EpicConfig as RREpicConfig,
-} from './SlotBodyEnd/ReaderRevenueEpic';
+} from './SlotBodyEnd/ReaderRevenueEpic.ts';
 
 type Props = {
 	contentType: string;

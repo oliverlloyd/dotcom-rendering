@@ -1,15 +1,15 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
 import {
 	from,
 	headline,
 	neutral,
 	text,
 	until,
-} from '@guardian/source-foundations';
-import { unescapeData } from '../../lib/escapeData';
-import type { Palette } from '../../types/palette';
-import { QuoteIcon } from './QuoteIcon';
+} from 'npm:@guardian/source-foundations';
+import { unescapeData } from '../../lib/escapeData.ts';
+import type { Palette } from '../../types/palette.ts';
+import { QuoteIcon } from './QuoteIcon.ts';
 
 const partiallyLeft = css`
 	width: 220px;

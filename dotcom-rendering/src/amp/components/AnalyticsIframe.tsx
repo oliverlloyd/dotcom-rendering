@@ -1,4 +1,4 @@
-import { ClassNames } from '@emotion/react';
+import { ClassNames } from 'npm:@emotion/react';
 import React from 'react';
 
 const prebidImg =

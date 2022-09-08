@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { ReaderRevenueDevUtils } from '../lib/readerRevenueDevUtils';
+import type { ReaderRevenueDevUtils } from '../lib/readerRevenueDevUtils.ts';
 
 type Props = {
 	shouldHideReaderRevenue: boolean;

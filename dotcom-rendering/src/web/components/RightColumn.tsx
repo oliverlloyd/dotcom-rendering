@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { from, until } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { from, until } from 'npm:@guardian/source-foundations';
 
 const hideBelowDesktop = css`
 	${until.desktop} {

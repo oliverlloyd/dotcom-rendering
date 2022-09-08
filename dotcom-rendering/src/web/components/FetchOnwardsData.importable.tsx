@@ -1,12 +1,12 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import { useEffect } from 'react';
-import type { OnwardsSource } from '../../types/onwards';
-import type { CAPITrailType, TrailType } from '../../types/trails';
-import { decideTrail } from '../lib/decideTrail';
-import { revealStyles } from '../lib/revealStyles';
-import { useApi } from '../lib/useApi';
-import { Carousel } from './Carousel.importable';
-import { Placeholder } from './Placeholder';
+import type { OnwardsSource } from '../../types/onwards.ts';
+import type { CAPITrailType, TrailType } from '../../types/trails.ts';
+import { decideTrail } from '../lib/decideTrail.ts';
+import { revealStyles } from '../lib/revealStyles.ts';
+import { useApi } from '../lib/useApi.ts';
+import { Carousel } from './Carousel.importable.ts';
+import { Placeholder } from './Placeholder.ts';
 
 type Props = {
 	url: string;

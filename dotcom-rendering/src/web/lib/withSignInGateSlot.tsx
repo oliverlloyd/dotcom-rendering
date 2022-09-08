@@ -2,9 +2,9 @@
 // if the SignInGateSelector determines a gate should be rendered.
 
 import React from 'react';
-import type { Switches } from '../../types/config';
-import { Island } from '../components/Island';
-import { SignInGateSelector } from '../components/SignInGateSelector.importable';
+import type { Switches } from '../../types/config.ts';
+import { Island } from '../components/Island.ts';
+import { SignInGateSelector } from '../components/SignInGateSelector.importable.ts';
 
 type Props = {
 	// eslint-disable-next-line @typescript-eslint/ban-types -- we want to coerce children

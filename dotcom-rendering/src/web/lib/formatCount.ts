@@ -1,4 +1,4 @@
-import { integerCommas } from '../../lib/formatters';
+import { integerCommas } from '../../lib/formatters.ts';
 
 export const formatCount = (
 	count?: number,

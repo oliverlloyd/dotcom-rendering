@@ -1,15 +1,15 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	from,
 	neutral,
 	news,
 	text,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import { useEffect, useRef, useState } from 'react';
-import type { SubNavType } from '../../model/extract-nav';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+import type { SubNavType } from '../../model/extract-nav.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 type Props = {
 	subNavSections: SubNavType;

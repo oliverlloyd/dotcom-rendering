@@ -1,10 +1,10 @@
-import type { ArticleFormat } from '@guardian/libs';
+import type { ArticleFormat } from 'npm:@guardian/libs';
 import {
 	ArticleDesign,
 	ArticleDisplay,
 	ArticlePillar,
 	ArticleSpecial,
-} from '@guardian/libs';
+} from 'npm:@guardian/libs';
 import {
 	border,
 	brand,
@@ -19,13 +19,13 @@ import {
 	specialReport,
 	sport,
 	text,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 // Here is the one place where we use `pillarPalette`
-import { pillarPalette_DO_NOT_USE as pillarPalette } from '../../lib/pillars';
-import type { DCRContainerPalette } from '../../types/front';
-import type { Palette } from '../../types/palette';
-import { decideContainerOverrides } from './decideContainerOverrides';
-import { transparentColour } from './transparentColour';
+import { pillarPalette_DO_NOT_USE as pillarPalette } from '../../lib/pillars.ts';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decideContainerOverrides } from './decideContainerOverrides.ts';
+import { transparentColour } from './transparentColour.ts';
 
 const WHITE = neutral[100];
 const BLACK = neutral[7];

@@ -1,15 +1,15 @@
-import { css } from '@emotion/react';
-import { ArticleSpecial } from '@guardian/libs';
-import { body, space, textSans } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { ArticleSpecial } from 'npm:@guardian/libs';
+import { body, space, textSans } from 'npm:@guardian/source-foundations';
 import libDebounce from 'lodash.debounce';
 import { useRef, useState } from 'react';
-import type { Palette } from '../../types/palette';
-import { interactiveLegacyFigureClasses } from '../layouts/lib/interactiveLegacyStyling';
-import { decidePalette } from '../lib/decidePalette';
-import { useOnce } from '../lib/useOnce';
-import { Caption } from './Caption';
-import { defaultRoleStyles } from './Figure';
-import { Placeholder } from './Placeholder';
+import type { Palette } from '../../types/palette.ts';
+import { interactiveLegacyFigureClasses } from '../layouts/lib/interactiveLegacyStyling.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { useOnce } from '../lib/useOnce.ts';
+import { Caption } from './Caption.ts';
+import { defaultRoleStyles } from './Figure.ts';
+import { Placeholder } from './Placeholder.ts';
 
 type Props = {
 	url?: string;

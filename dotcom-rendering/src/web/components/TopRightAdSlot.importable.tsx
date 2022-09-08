@@ -1,8 +1,8 @@
-import type { SerializedStyles } from '@emotion/react';
-import { css } from '@emotion/react';
-import { getCookie } from '@guardian/libs';
-import { useAdBlockInUse } from '../lib/useAdBlockInUse';
-import { ShadyPie } from './ShadyPie';
+import type { SerializedStyles } from 'npm:@emotion/react';
+import { css } from 'npm:@emotion/react';
+import { getCookie } from 'npm:@guardian/libs';
+import { useAdBlockInUse } from '../lib/useAdBlockInUse.ts';
+import { ShadyPie } from './ShadyPie.ts';
 
 const isServer = typeof window === 'undefined';
 const MOSTVIEWED_STICKY_HEIGHT = 1059;

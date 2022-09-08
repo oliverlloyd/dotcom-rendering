@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
-import { ArticlePillar } from '@guardian/libs';
-import { joinUrl } from '../../lib/joinUrl';
-import type { EditionId } from '../../types/edition';
-import type { OnwardsSource } from '../../types/onwards';
-import { FetchOnwardsData } from './FetchOnwardsData.importable';
-import { Section } from './Section';
+import { css } from 'npm:@emotion/react';
+import { ArticlePillar } from 'npm:@guardian/libs';
+import { joinUrl } from '../../lib/joinUrl.ts';
+import type { EditionId } from '../../types/edition.ts';
+import type { OnwardsSource } from '../../types/onwards.ts';
+import { FetchOnwardsData } from './FetchOnwardsData.importable.ts';
+import { Section } from './Section.ts';
 
 type PillarForContainer =
 	| 'headlines'

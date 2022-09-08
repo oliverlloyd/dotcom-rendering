@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { body, neutral } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { body, neutral } from 'npm:@guardian/source-foundations';
 import React from 'react';
-import { pillarPalette_DO_NOT_USE } from '../../../lib/pillars';
-import Quote from '../../../static/icons/quote.svg';
+import { pillarPalette_DO_NOT_USE } from '../../../lib/pillars.ts';
+import Quote from '../../../static/icons/quote.svg.ts';
 
 const styles = (pillar: ArticleTheme) => css`
 	background-color: ${neutral[97]};

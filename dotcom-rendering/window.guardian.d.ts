@@ -3,12 +3,12 @@ import type {
 	CMP,
 	ConsentState,
 	VendorName,
-} from '@guardian/consent-management-platform/dist/types';
-import type { WeeklyArticleHistory } from '@guardian/support-dotcom-components/dist/dotcom/src/types';
-import type { WindowGuardianConfig } from './src/model/window-guardian';
-import type { OphanRecordFunction } from './src/web/browser/ophan/ophan';
-import type { DailyArticleHistory } from './src/web/lib/dailyArticleCount';
-import type { ReaderRevenueDevUtils } from './src/web/lib/readerRevenueDevUtils';
+} from 'npm:@guardian/consent-management-platform/dist/types';
+import type { WeeklyArticleHistory } from 'npm:@guardian/support-dotcom-components/dist/dotcom/src/types';
+import type { WindowGuardianConfig } from './src/model/window-guardian.ts';
+import type { OphanRecordFunction } from './src/web/browser/ophan/ophan.ts';
+import type { DailyArticleHistory } from './src/web/lib/dailyArticleCount.ts';
+import type { ReaderRevenueDevUtils } from './src/web/lib/readerRevenueDevUtils.ts';
 
 declare global {
 	/* ~ Here, declare things that go in the global namespace, or augment

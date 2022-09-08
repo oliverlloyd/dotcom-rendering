@@ -1,4 +1,4 @@
-import { parseURL } from './get-content-from-url';
+import { parseURL } from './get-content-from-url.ts';
 
 describe('URL parser', () => {
 	test('parse DEV URL when one query is present', async () => {

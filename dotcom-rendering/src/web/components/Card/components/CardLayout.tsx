@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { until } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { until } from 'npm:@guardian/source-foundations';
 
 type Props = {
 	children: React.ReactNode;

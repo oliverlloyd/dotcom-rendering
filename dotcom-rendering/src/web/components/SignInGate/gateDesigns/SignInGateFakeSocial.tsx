@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { cmp } from '@guardian/consent-management-platform';
+import { css } from 'npm:@emotion/react';
+import { cmp } from 'npm:@guardian/consent-management-platform';
 import {
 	from,
 	headline,
@@ -7,10 +7,10 @@ import {
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import { Button, Link, LinkButton } from '@guardian/source-react-components';
-import { trackLink } from '../componentEventTracking';
-import type { SignInGateProps } from '../types';
+} from 'npm:@guardian/source-foundations';
+import { Button, Link, LinkButton } from 'npm:@guardian/source-react-components';
+import { trackLink } from '../componentEventTracking.ts';
+import type { SignInGateProps } from '../types.ts';
 import {
 	actionButtons,
 	bodyBold,
@@ -24,7 +24,7 @@ import {
 	registerButton,
 	signInGateContainer,
 	signInLink,
-} from './shared';
+} from './shared.ts';
 
 const heading = css`
 	${headline.small({ fontWeight: 'bold' })};

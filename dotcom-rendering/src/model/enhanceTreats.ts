@@ -1,6 +1,6 @@
-import { ArticlePillar } from '@guardian/libs';
-import type { EditionId } from '../types/edition';
-import type { FEFrontCard, TreatType } from '../types/front';
+import { ArticlePillar } from 'npm:@guardian/libs';
+import type { EditionId } from '../types/edition.ts';
+import type { FEFrontCard, TreatType } from '../types/front.ts';
 
 /**
  * PLATFORM_TREATS

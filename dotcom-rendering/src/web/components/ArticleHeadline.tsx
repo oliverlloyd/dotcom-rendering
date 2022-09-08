@@ -1,21 +1,21 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	from,
 	headline,
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import { getAgeWarning } from '../../lib/age-warning';
-import type { Palette } from '../../types/palette';
-import { interactiveLegacyClasses } from '../layouts/lib/interactiveLegacyStyling';
-import { decidePalette } from '../lib/decidePalette';
-import { getZIndex } from '../lib/getZIndex';
-import { AgeWarning } from './AgeWarning';
-import { DesignTag } from './DesignTag';
-import { HeadlineByline } from './HeadlineByline';
+} from 'npm:@guardian/source-foundations';
+import { getAgeWarning } from '../../lib/age-warning.ts';
+import type { Palette } from '../../types/palette.ts';
+import { interactiveLegacyClasses } from '../layouts/lib/interactiveLegacyStyling.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { getZIndex } from '../lib/getZIndex.ts';
+import { AgeWarning } from './AgeWarning.ts';
+import { DesignTag } from './DesignTag.ts';
+import { HeadlineByline } from './HeadlineByline.ts';
 
 type Props = {
 	headlineString: string;

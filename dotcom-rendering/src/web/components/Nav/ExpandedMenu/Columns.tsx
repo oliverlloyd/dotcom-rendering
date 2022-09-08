@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDisplay } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDisplay } from 'npm:@guardian/libs';
 import {
 	brand,
 	brandAlt,
@@ -8,11 +8,11 @@ import {
 	from,
 	headline,
 	textSans,
-} from '@guardian/source-foundations';
-import type { NavType } from '../../../../model/extract-nav';
-import { Column } from './Column';
-import { MoreColumn } from './MoreColumn';
-import { ReaderRevenueLinks } from './ReaderRevenueLinks';
+} from 'npm:@guardian/source-foundations';
+import type { NavType } from '../../../../model/extract-nav.ts';
+import { Column } from './Column.ts';
+import { MoreColumn } from './MoreColumn.ts';
+import { ReaderRevenueLinks } from './ReaderRevenueLinks.ts';
 
 const columnsStyle = (display: ArticleDisplay) => css`
 	box-sizing: border-box;

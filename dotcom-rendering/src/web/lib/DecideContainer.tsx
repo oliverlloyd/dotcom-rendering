@@ -3,20 +3,20 @@ import type {
 	DCRContainerType,
 	DCRFrontCard,
 	DCRGroupedTrails,
-} from '../../types/front';
-import { DynamicFast } from '../components/DynamicFast';
-import { DynamicPackage } from '../components/DynamicPackage';
-import { DynamicSlow } from '../components/DynamicSlow';
-import { DynamicSlowMPU } from '../components/DynamicSlowMPU';
-import { FixedLargeSlowXIV } from '../components/FixedLargeSlowXIV';
-import { FixedMediumSlowVI } from '../components/FixedMediumSlowVI';
-import { FixedMediumSlowVII } from '../components/FixedMediumSlowVII';
-import { FixedMediumSlowXIIMPU } from '../components/FixedMediumSlowXIIMPU';
-import { FixedSmallSlowI } from '../components/FixedSmallSlowI';
-import { FixedSmallSlowIII } from '../components/FixedSmallSlowIII';
-import { FixedSmallSlowIV } from '../components/FixedSmallSlowIV';
-import { FixedSmallSlowVMPU } from '../components/FixedSmallSlowVMPU';
-import { FixedSmallSlowVThird } from '../components/FixedSmallSlowVThird';
+} from '../../types/front.ts';
+import { DynamicFast } from '../components/DynamicFast.ts';
+import { DynamicPackage } from '../components/DynamicPackage.ts';
+import { DynamicSlow } from '../components/DynamicSlow.ts';
+import { DynamicSlowMPU } from '../components/DynamicSlowMPU.ts';
+import { FixedLargeSlowXIV } from '../components/FixedLargeSlowXIV.ts';
+import { FixedMediumSlowVI } from '../components/FixedMediumSlowVI.ts';
+import { FixedMediumSlowVII } from '../components/FixedMediumSlowVII.ts';
+import { FixedMediumSlowXIIMPU } from '../components/FixedMediumSlowXIIMPU.ts';
+import { FixedSmallSlowI } from '../components/FixedSmallSlowI.ts';
+import { FixedSmallSlowIII } from '../components/FixedSmallSlowIII.ts';
+import { FixedSmallSlowIV } from '../components/FixedSmallSlowIV.ts';
+import { FixedSmallSlowVMPU } from '../components/FixedSmallSlowVMPU.ts';
+import { FixedSmallSlowVThird } from '../components/FixedSmallSlowVThird.ts';
 
 type Props = {
 	trails: DCRFrontCard[];

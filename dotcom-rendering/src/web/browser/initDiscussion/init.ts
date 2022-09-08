@@ -1,7 +1,7 @@
 import '../webpackPublicPath';
-import { doHydration } from '../islands/doHydration';
-import { getProps } from '../islands/getProps';
-import { startup } from '../startup';
+import { doHydration } from '../islands/doHydration.ts';
+import { getProps } from '../islands/getProps.ts';
+import { startup } from '../startup.ts';
 
 function forceHydration() {
 	try {

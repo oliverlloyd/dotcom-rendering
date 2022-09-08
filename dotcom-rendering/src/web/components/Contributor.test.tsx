@@ -1,7 +1,7 @@
-import { ArticleDesign, ArticleDisplay, ArticlePillar } from '@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticlePillar } from 'npm:@guardian/libs';
 import { render } from '@testing-library/react';
-import { interactiveLegacyClasses } from '../layouts/lib/interactiveLegacyStyling';
-import { Contributor } from './Contributor';
+import { interactiveLegacyClasses } from '../layouts/lib/interactiveLegacyStyling.ts';
+import { Contributor } from './Contributor.ts';
 
 describe('Contributor', () => {
 	it('It should contain legacy class names to support customised styling in interactives', () => {

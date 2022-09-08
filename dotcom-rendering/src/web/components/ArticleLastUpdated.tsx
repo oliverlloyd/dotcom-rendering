@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, timeAgo } from '@guardian/libs';
-import { textSans } from '@guardian/source-foundations';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { Island } from './Island';
-import { PulsingDot } from './PulsingDot.importable';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, timeAgo } from 'npm:@guardian/libs';
+import { textSans } from 'npm:@guardian/source-foundations';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Island } from './Island.ts';
+import { PulsingDot } from './PulsingDot.importable.ts';
 
 const lastUpdatedStyles = (palette: Palette) => css`
 	${textSans.small()}

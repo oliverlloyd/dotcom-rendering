@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { adSizes } from '@guardian/commercial-core';
-import type { SlotName } from '@guardian/commercial-core';
-import { ArticleDisplay } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { adSizes } from 'npm:@guardian/commercial-core';
+import type { SlotName } from 'npm:@guardian/commercial-core';
+import { ArticleDisplay } from 'npm:@guardian/libs';
 import {
 	border,
 	from,
@@ -10,9 +10,9 @@ import {
 	text,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import { Island } from './Island';
-import { TopRightAdSlot } from './TopRightAdSlot.importable';
+} from 'npm:@guardian/source-foundations';
+import { Island } from './Island.ts';
+import { TopRightAdSlot } from './TopRightAdSlot.importable.ts';
 
 type InlineProps = {
 	display?: ArticleDisplay;

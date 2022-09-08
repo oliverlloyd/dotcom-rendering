@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import type { OphanABTestMeta, OphanComponentEvent } from '@guardian/libs';
-import { getCookie } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import type { OphanABTestMeta, OphanComponentEvent } from 'npm:@guardian/libs';
+import { getCookie } from 'npm:@guardian/libs';
 import {
 	brandAlt,
 	brandText,
@@ -10,33 +10,33 @@ import {
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import { getHeader } from '@guardian/support-dotcom-components';
+} from 'npm:@guardian/source-foundations';
+import { getHeader } from 'npm:@guardian/support-dotcom-components';
 import type {
 	HeaderPayload,
 	ModuleData,
 	ModuleDataResponse,
-} from '@guardian/support-dotcom-components/dist/dotcom/src/types';
-import { useEffect, useState } from 'react';
-import ArrowRightIcon from '../../static/icons/arrow-right.svg';
-import type { EditionId } from '../../types/edition';
-import type { OphanRecordFunction } from '../browser/ophan/ophan';
+} from 'npm:@guardian/support-dotcom-components/dist/dotcom/src/types';
+import { useEffect, useState } from 'npm:react';
+// import ArrowRightIcon from '../../static/icons/arrow-right.svg';
+import type { EditionId } from '../../types/edition.ts';
+import type { OphanRecordFunction } from '../browser/ophan/ophan.ts';
 import {
 	getOphanRecordFunction,
 	sendOphanComponentEvent,
 	submitComponentEvent,
-} from '../browser/ophan/ophan';
-import { addTrackingCodesToUrl } from '../lib/acquisitions';
+} from '../browser/ophan/ophan.ts';
+import { addTrackingCodesToUrl } from '../lib/acquisitions.ts';
 import {
 	getLastOneOffContributionDate,
 	getPurchaseInfo,
 	MODULES_VERSION,
 	shouldHideSupportMessaging,
-} from '../lib/contributions';
-import { getLocaleCode } from '../lib/getCountryCode';
-import { setAutomat } from '../lib/setAutomat';
-import { useIsInView } from '../lib/useIsInView';
-import { useOnce } from '../lib/useOnce';
+} from '../lib/contributions.ts';
+import { getLocaleCode } from '../lib/getCountryCode.ts';
+import { setAutomat } from '../lib/setAutomat.ts';
+import { useIsInView } from '../lib/useIsInView.ts';
+import { useOnce } from '../lib/useOnce.ts';
 
 type Props = {
 	editionId: EditionId;

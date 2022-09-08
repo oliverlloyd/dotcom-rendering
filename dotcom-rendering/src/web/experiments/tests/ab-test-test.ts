@@ -1,4 +1,4 @@
-import type { ABTest } from '@guardian/ab-core';
+import type { ABTest } from 'npm:@guardian/ab-core';
 
 export const abTestTest: ABTest = {
 	id: 'AbTestTest',

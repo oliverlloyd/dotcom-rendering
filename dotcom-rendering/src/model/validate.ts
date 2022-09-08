@@ -1,11 +1,11 @@
-import { isObject, isString } from '@guardian/libs';
-import type { Options } from 'ajv';
-import Ajv from 'ajv';
-import addFormats from 'ajv-formats';
-import type { FEFrontType } from '../../src/types/front';
-import type { CAPIArticleType } from '../types/frontend';
-import articleSchema from './article-schema.json';
-import frontSchema from './front-schema.json';
+import { isObject, isString } from 'npm:@guardian/libs';
+import type { Options } from 'npm:ajv';
+import Ajv from 'npm:ajv';
+import addFormats from 'npm:ajv-formats';
+import type { FEFrontType } from '../../src/types/front.ts';
+import type { CAPIArticleType } from '../types/frontend.ts';
+import articleSchema from './article-schema.json' assert { type: 'json' };
+import frontSchema from './front-schema.json' assert { type: 'json' };
 
 const options: Options = {
 	verbose: false,

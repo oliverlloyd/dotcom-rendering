@@ -1,4 +1,4 @@
-import * as emotionReact from '@emotion/react';
+import * as emotionReact from 'npm:@emotion/react';
 import * as emotionReactJsxRuntime from '@emotion/react/jsx-runtime';
 import React from 'react';
 

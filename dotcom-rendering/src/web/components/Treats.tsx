@@ -1,16 +1,16 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay } from 'npm:@guardian/libs';
 import {
 	border,
 	headline,
 	neutral,
 	space,
 	textSans,
-} from '@guardian/source-foundations';
-import { Link } from '@guardian/source-react-components';
-import type { TreatType } from '../../types/front';
-import { decidePalette } from '../lib/decidePalette';
-import { SvgCrossword } from './SvgCrossword';
+} from 'npm:@guardian/source-foundations';
+import { Link } from 'npm:@guardian/source-react-components';
+import type { TreatType } from '../../types/front.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { SvgCrossword } from './SvgCrossword.tsx';
 
 const TextTreat = ({
 	text,

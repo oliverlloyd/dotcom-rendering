@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { from, headline, space, textSans } from '@guardian/source-foundations';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { FilterButton } from './FilterButton.importable';
+import { css } from 'npm:@emotion/react';
+import { from, headline, space, textSans } from 'npm:@guardian/source-foundations';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { FilterButton } from './FilterButton.importable.tsx';
 
 type Props = {
 	availableTopics: Topic[];

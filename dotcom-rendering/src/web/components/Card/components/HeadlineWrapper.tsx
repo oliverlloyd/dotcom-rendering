@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 
 type Props = {
 	children: React.ReactNode;

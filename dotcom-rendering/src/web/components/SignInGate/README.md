@@ -81,7 +81,7 @@ When running dotcom-rendering locally for development, it is useful to have fron
 Once the switch is set up, you'll need to add a test definition to the `src/web/experiments/tests` folder. Here's an example of a test definition.
 
 ```ts
-import { ABTest } from '@guardian/ab-core';
+import { ABTest } from 'npm:@guardian/ab-core';
 
 export const signInGatePatientia: ABTest = {
     id: 'SignInGatePatientia',

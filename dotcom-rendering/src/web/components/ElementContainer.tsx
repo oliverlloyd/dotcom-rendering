@@ -1,8 +1,8 @@
-import { ClassNames, css as emoCss } from '@emotion/react';
-import { border, from, space } from '@guardian/source-foundations';
+import { ClassNames, css as emoCss } from 'npm:@emotion/react';
+import { border, from, space } from 'npm:@guardian/source-foundations';
 // @ts-expect-error
 import { jsx as _jsx } from 'react/jsx-runtime';
-import { center } from '../lib/center';
+import { center } from '../lib/center.ts';
 
 const sidePadding = emoCss`
 	padding-left: 10px;

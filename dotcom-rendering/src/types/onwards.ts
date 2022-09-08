@@ -1,4 +1,4 @@
-import type { CAPITrailType } from './trails';
+import type { CAPITrailType } from './trails.ts';
 
 /**
  * Onwards

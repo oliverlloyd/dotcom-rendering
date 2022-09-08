@@ -1,4 +1,4 @@
-import { enhance } from './enhance';
+import { enhance } from './enhance.ts';
 
 const getData = (): InteractiveAtomBlockElement => ({
 	_type: 'model.dotcomrendering.pageElements.InteractiveAtomBlockElement',

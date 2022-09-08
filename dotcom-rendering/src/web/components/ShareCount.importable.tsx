@@ -1,11 +1,11 @@
-import { css } from '@emotion/react';
-import { between, textSans, until } from '@guardian/source-foundations';
-import { joinUrl } from '../../lib/joinUrl';
-import ShareIcon from '../../static/icons/share.svg';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { formatCount } from '../lib/formatCount';
-import { useApi } from '../lib/useApi';
+import { css } from 'npm:@emotion/react';
+import { between, textSans, until } from 'npm:@guardian/source-foundations';
+import { joinUrl } from '../../lib/joinUrl.ts';
+import ShareIcon from '../../static/icons/share.svg.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { formatCount } from '../lib/formatCount.ts';
+import { useApi } from '../lib/useApi.ts';
 
 type Props = {
 	ajaxUrl: string;

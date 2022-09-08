@@ -1,11 +1,11 @@
 // use the dailyArticleCount from the local storage to see how many articles the user has viewed in a day
-import { onConsent } from '@guardian/consent-management-platform';
-import type { ConsentState } from '@guardian/consent-management-platform/dist/types';
-import { getLocale } from '@guardian/libs';
-import type { DailyArticle } from '../../lib/dailyArticleCount';
-import { getDailyArticleCount } from '../../lib/dailyArticleCount';
-import { hasUserDismissedGateMoreThanCount } from './dismissGate';
-import type { CanShowGateProps } from './types';
+import { onConsent } from 'npm:@guardian/consent-management-platform';
+import type { ConsentState } from 'npm:@guardian/consent-management-platform/dist/types';
+import { getLocale } from 'npm:@guardian/libs';
+import type { DailyArticle } from '../../lib/dailyArticleCount.ts';
+import { getDailyArticleCount } from '../../lib/dailyArticleCount.ts';
+import { hasUserDismissedGateMoreThanCount } from './dismissGate.ts';
+import type { CanShowGateProps } from './types.ts';
 
 // in our case if this is the n-numbered article or higher the user has viewed then set the gate
 export const isNPageOrHigherPageView = (n = 2): boolean => {

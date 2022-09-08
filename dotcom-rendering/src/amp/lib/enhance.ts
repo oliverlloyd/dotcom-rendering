@@ -1,5 +1,5 @@
 import { minify } from 'html-minifier';
-import { sanitiseHTML } from '../../model/sanitise';
+import { sanitiseHTML } from '../../model/sanitise.ts';
 
 // We don't represent lists in InCopy, so things will just come across with bullet characters.
 // These may also be used for emphasis, so bullet characters don't mean list.

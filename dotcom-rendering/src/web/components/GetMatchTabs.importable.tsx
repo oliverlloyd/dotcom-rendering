@@ -1,6 +1,6 @@
-import { useApi } from '../lib/useApi';
-import { MatchTabs } from './MatchTabs';
-import { Placeholder } from './Placeholder';
+import { useApi } from '../lib/useApi.ts';
+import { MatchTabs } from './MatchTabs.ts';
+import { Placeholder } from './Placeholder.ts';
 
 type Props = {
 	matchUrl: string;

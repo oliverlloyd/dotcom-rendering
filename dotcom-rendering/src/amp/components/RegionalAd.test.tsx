@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import { ContentABTestProvider } from './ContentABTest';
-import { RegionalAd } from './RegionalAd';
+import { ContentABTestProvider } from './ContentABTest.ts';
+import { RegionalAd } from './RegionalAd.ts';
 
 describe('RegionalAd', () => {
 	const permutiveURL =

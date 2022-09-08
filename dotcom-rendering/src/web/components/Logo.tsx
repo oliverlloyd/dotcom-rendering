@@ -1,12 +1,12 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	brandAlt,
 	brandText,
 	from,
 	visuallyHidden,
-} from '@guardian/source-foundations';
-import { SvgGuardianBestWebsiteLogo } from '@guardian/source-react-components';
-import { getZIndex } from '../lib/getZIndex';
+} from 'npm:@guardian/source-foundations';
+import { SvgGuardianBestWebsiteLogo } from 'npm:@guardian/source-react-components';
+import { getZIndex } from '../lib/getZIndex.tsx';
 
 const linkStyles = css`
 	float: right;

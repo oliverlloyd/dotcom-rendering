@@ -1,15 +1,15 @@
-import { joinUrl } from '../../lib/joinUrl';
+import { joinUrl } from '../../lib/joinUrl.ts';
 import type {
 	CAPITrailTabType,
 	CAPITrailType,
 	TrailTabType,
-} from '../../types/trails';
-import { abTestTest } from '../experiments/tests/ab-test-test';
-import { decidePalette } from '../lib/decidePalette';
-import { decideTrail } from '../lib/decideTrail';
-import { useAB } from '../lib/useAB';
-import { useApi } from '../lib/useApi';
-import { MostViewedFooter } from './MostViewedFooter';
+} from '../../types/trails.ts';
+import { abTestTest } from '../experiments/tests/ab-test-test.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { decideTrail } from '../lib/decideTrail.ts';
+import { useAB } from '../lib/useAB.ts';
+import { useApi } from '../lib/useApi.ts';
+import { MostViewedFooter } from './MostViewedFooter.ts';
 
 interface Props {
 	sectionName?: string;

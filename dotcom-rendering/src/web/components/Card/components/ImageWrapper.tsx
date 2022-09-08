@@ -1,6 +1,6 @@
-import type { SerializedStyles } from '@emotion/react';
-import { css } from '@emotion/react';
-import { between, from, until } from '@guardian/source-foundations';
+import type { SerializedStyles } from 'npm:@emotion/react';
+import { css } from 'npm:@emotion/react';
+import { between, from, until } from 'npm:@guardian/source-foundations';
 
 type Props = {
 	children: React.ReactNode;

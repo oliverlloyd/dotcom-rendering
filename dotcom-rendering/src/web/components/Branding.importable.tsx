@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
-import { neutral, textSans, until } from '@guardian/source-foundations';
-import type { Branding as BrandingType } from '../../types/branding';
-import type { Palette } from '../../types/palette';
-import { trackSponsorLogoLinkClick } from '../browser/ga/ga';
-import { Hide } from './Hide';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { neutral, textSans, until } from 'npm:@guardian/source-foundations';
+import type { Branding as BrandingType } from '../../types/branding.ts';
+import type { Palette } from '../../types/palette.ts';
+import { trackSponsorLogoLinkClick } from '../browser/ga/ga.ts';
+import { Hide } from './Hide.ts';
 
 const brandingStyle = css`
 	padding-bottom: 10px;

@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { Star } from '../../../static/icons/Star';
+import { css } from 'npm:@emotion/react';
+import { Star } from '../../../static/icons/Star.ts';
 
 const starWrapper = css`
 	display: inline-block;

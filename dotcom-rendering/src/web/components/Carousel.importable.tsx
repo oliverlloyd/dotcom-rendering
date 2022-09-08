@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
 import {
 	brandAlt,
 	from,
@@ -8,21 +8,21 @@ import {
 	space,
 	text,
 	until,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import libDebounce from 'lodash.debounce';
 import { useEffect, useRef, useState } from 'react';
-import type { Branding } from '../../types/branding';
-import type { OnwardsSource } from '../../types/onwards';
-import type { Palette } from '../../types/palette';
-import type { TrailType } from '../../types/trails';
-import { decidePalette } from '../lib/decidePalette';
-import { formatAttrString } from '../lib/formatAttrString';
-import { getZIndex } from '../lib/getZIndex';
-import { Card } from './Card/Card';
-import { LI } from './Card/components/LI';
-import { FetchCommentCounts } from './FetchCommentCounts.importable';
-import { Hide } from './Hide';
-import { LeftColumn } from './LeftColumn';
+import type { Branding } from '../../types/branding.ts';
+import type { OnwardsSource } from '../../types/onwards.ts';
+import type { Palette } from '../../types/palette.ts';
+import type { TrailType } from '../../types/trails.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { formatAttrString } from '../lib/formatAttrString.ts';
+import { getZIndex } from '../lib/getZIndex.ts';
+import { Card } from './Card/Card.ts';
+import { LI } from './Card/components/LI.ts';
+import { FetchCommentCounts } from './FetchCommentCounts.importable.ts';
+import { Hide } from './Hide.ts';
+import { LeftColumn } from './LeftColumn.ts';
 
 type Props = {
 	heading: string;

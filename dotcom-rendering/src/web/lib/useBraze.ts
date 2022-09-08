@@ -1,13 +1,13 @@
 import type {
 	BrazeCardsInterface,
 	BrazeMessagesInterface,
-} from '@guardian/braze-components/logic';
+} from 'npm:@guardian/braze-components/logic';
 import {
 	NullBrazeCards,
 	NullBrazeMessages,
-} from '@guardian/braze-components/logic';
+} from 'npm:@guardian/braze-components/logic';
 import useSWRImmutable from 'swr/immutable';
-import { buildBrazeMessaging } from './braze/buildBrazeMessaging';
+import { buildBrazeMessaging } from './braze/buildBrazeMessaging.ts';
 
 /**
  * Returns brazeMessaging as BrazeMessagesInterface and BrazeCardsInterface

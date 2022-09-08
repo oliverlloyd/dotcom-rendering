@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import { useApi as useApi_ } from '../lib/useApi';
-import { mockTab1 } from './MostViewed.mocks';
-import { MostViewedRight } from './MostViewedRight';
+import { useApi as useApi_ } from '../lib/useApi.ts';
+import { mockTab1 } from './MostViewed.mocks.ts';
+import { MostViewedRight } from './MostViewedRight.ts';
 
 const response = { data: mockTab1 };
 const useApi: { [key: string]: any } = useApi_;

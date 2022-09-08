@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	border,
 	from,
@@ -6,10 +6,10 @@ import {
 	neutral,
 	until,
 	visuallyHidden,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import { useState } from 'react';
-import type { TrailTabType, TrailType } from '../../types/trails';
-import { MostViewedFooterItem } from './MostViewedFooterItem';
+import type { TrailTabType, TrailType } from '../../types/trails.ts';
+import { MostViewedFooterItem } from './MostViewedFooterItem.ts';
 
 const thinGreySolid = `1px solid ${border.secondary}`;
 

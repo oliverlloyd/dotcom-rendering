@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	brand,
 	brandAlt,
@@ -6,10 +6,10 @@ import {
 	from,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import type { LinkType } from '../../../../model/extract-nav';
-import FacebookIcon from '../../../../static/icons/facebook.svg';
-import TwitterIconPadded from '../../../../static/icons/twitter-padded.svg';
+} from 'npm:@guardian/source-foundations';
+import type { LinkType } from '../../../../model/extract-nav.ts';
+import FacebookIcon from '../../../../static/icons/facebook.svg.ts';
+import TwitterIconPadded from '../../../../static/icons/twitter-padded.svg.ts';
 
 const pillarHeight = 42;
 

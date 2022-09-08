@@ -1,7 +1,7 @@
-import { text, textSans } from '@guardian/source-foundations';
-import { getRTCParameters } from '../lib/real-time-config';
-import type { BaseAdProps } from './Ad';
-import { Ad } from './Ad';
+import { text, textSans } from 'npm:@guardian/source-foundations';
+import { getRTCParameters } from '../lib/real-time-config.ts';
+import type { BaseAdProps } from './Ad.ts';
+import { Ad } from './Ad.ts';
 
 // This CSS should be imported and added to global styles in amp/server/document.tsx to add the Advertisement label to the sticky
 export const stickyAdLabelCss = `

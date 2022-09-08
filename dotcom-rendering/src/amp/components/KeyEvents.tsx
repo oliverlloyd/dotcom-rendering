@@ -1,13 +1,13 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	headline,
 	neutral,
 	sport,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
-import DownArrow from '../../static/icons/down-arrow.svg';
-import { blockLink } from '../lib/block-link';
+import DownArrow from '../../static/icons/down-arrow.svg.ts';
+import { blockLink } from '../lib/block-link.ts';
 
 const headingStyle = css`
 	${headline.xxsmall()};

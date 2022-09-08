@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { from, space, until } from '@guardian/source-foundations';
-import { Caption } from './Caption';
-import { GridItem } from './GridItem';
-import { ImageComponent } from './ImageComponent';
+import { css } from 'npm:@emotion/react';
+import { from, space, until } from 'npm:@guardian/source-foundations';
+import { Caption } from './Caption.ts';
+import { GridItem } from './GridItem.ts';
+import { ImageComponent } from './ImageComponent.ts';
 
 type Props = {
 	images: ImageBlockElement[];

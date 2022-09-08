@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { neutral, space, until } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { neutral, space, until } from 'npm:@guardian/source-foundations';
 import {
 	Button,
 	InlineError,
@@ -7,15 +7,15 @@ import {
 	Link,
 	SvgReload,
 	SvgSpinner,
-} from '@guardian/source-react-components';
+} from 'npm:@guardian/source-react-components';
 import type { ReactEventHandler } from 'react';
 import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import type { OphanAction } from '../browser/ophan/ophan';
+import type { OphanAction } from '../browser/ophan/ophan.ts';
 import {
 	getOphanRecordFunction,
 	submitComponentEvent,
-} from '../browser/ophan/ophan';
+} from '../browser/ophan/ophan.ts';
 
 const isServer = typeof window === 'undefined';
 

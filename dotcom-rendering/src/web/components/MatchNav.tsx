@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	background,
 	brandAlt,
@@ -6,8 +6,8 @@ import {
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import { Score } from './Score';
+} from 'npm:@guardian/source-foundations';
+import { Score } from './Score.ts';
 
 type Props = {
 	homeTeam: TeamType;

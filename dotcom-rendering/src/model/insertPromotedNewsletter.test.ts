@@ -1,7 +1,7 @@
-import { Live as exampleLiveBlog } from '../../fixtures/generated/articles/Live';
-import { Quiz as exampleQuiz } from '../../fixtures/generated/articles/Quiz';
-import { Standard as exampleStandard } from '../../fixtures/generated/articles/Standard';
-import { insertPromotedNewsletter } from './insertPromotedNewsletter';
+import { Live as exampleLiveBlog } from '../../fixtures/generated/articles/Live.ts';
+import { Quiz as exampleQuiz } from '../../fixtures/generated/articles/Quiz.ts';
+import { Standard as exampleStandard } from '../../fixtures/generated/articles/Standard.ts';
+import { insertPromotedNewsletter } from './insertPromotedNewsletter.ts';
 
 const NEWSLETTER: Newsletter = {
 	listId: 123,

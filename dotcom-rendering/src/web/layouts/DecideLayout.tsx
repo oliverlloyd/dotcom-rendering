@@ -1,14 +1,14 @@
-import { ArticleDesign, ArticleDisplay } from '@guardian/libs';
-import type { ArticleFormat } from '@guardian/libs';
-import type { NavType } from '../../model/extract-nav';
-import type { CAPIArticleType } from '../../types/frontend';
-import { CommentLayout } from './CommentLayout';
-import { FullPageInteractiveLayout } from './FullPageInteractiveLayout';
-import { ImmersiveLayout } from './ImmersiveLayout';
-import { InteractiveLayout } from './InteractiveLayout';
-import { LiveLayout } from './LiveLayout';
-import { ShowcaseLayout } from './ShowcaseLayout';
-import { StandardLayout } from './StandardLayout';
+import { ArticleDesign, ArticleDisplay } from 'npm:@guardian/libs';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import type { NavType } from '../../model/extract-nav.ts';
+import type { CAPIArticleType } from '../../types/frontend.ts';
+import { CommentLayout } from './CommentLayout.tsx';
+import { FullPageInteractiveLayout } from './FullPageInteractiveLayout.tsx';
+import { ImmersiveLayout } from './ImmersiveLayout.tsx';
+import { InteractiveLayout } from './InteractiveLayout.tsx';
+import { LiveLayout } from './LiveLayout.tsx';
+import { ShowcaseLayout } from './ShowcaseLayout.tsx';
+import { StandardLayout } from './StandardLayout.tsx';
 
 type Props = {
 	CAPIArticle: CAPIArticleType;

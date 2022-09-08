@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	brandAlt,
 	brandBackground,
 	brandText,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 
 const iconHeight = '42px';
 

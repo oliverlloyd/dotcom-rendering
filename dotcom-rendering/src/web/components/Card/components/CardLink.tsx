@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { focusHalo } from '@guardian/source-foundations';
-import type { DCRContainerPalette } from '../../../../types/front';
-import { getZIndex } from '../../../lib/getZIndex';
+import { css } from 'npm:@emotion/react';
+import { focusHalo } from 'npm:@guardian/source-foundations';
+import type { DCRContainerPalette } from '../../../../types/front.ts';
+import { getZIndex } from '../../../lib/getZIndex.ts';
 
 const fauxLinkStyles = css`
 	position: absolute;

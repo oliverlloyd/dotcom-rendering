@@ -1,5 +1,5 @@
-import type { Branding } from './branding';
-import type { EditionId } from './edition';
+import type { Branding } from './branding.ts';
+import type { EditionId } from './edition.ts';
 
 export interface EditionCommercialProperties {
 	adTargeting: AdTargetParam[];

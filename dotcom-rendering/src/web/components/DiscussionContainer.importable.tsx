@@ -1,7 +1,7 @@
-import { getCookie } from '@guardian/libs';
-import type { Props as DiscussionProps } from './Discussion';
-import { Discussion } from './Discussion';
-import { DiscussionWhenSignedIn } from './DiscussionWhenSignedIn';
+import { getCookie } from 'npm:@guardian/libs';
+import type { Props as DiscussionProps } from './Discussion.ts';
+import { Discussion } from './Discussion.ts';
+import { DiscussionWhenSignedIn } from './DiscussionWhenSignedIn.ts';
 
 /**
  * DiscussionContainer

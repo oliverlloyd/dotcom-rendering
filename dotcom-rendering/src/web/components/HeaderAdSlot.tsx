@@ -1,9 +1,9 @@
-import { css, Global } from '@emotion/react';
-import { TOP_ABOVE_NAV_HEIGHT } from '@guardian/commercial-core/dist/esm/constants';
-import type { ArticleDisplay } from '@guardian/libs';
-import { border, neutral, space } from '@guardian/source-foundations';
-import { AdSlot, labelHeight } from './AdSlot';
-import { Hide } from './Hide';
+import { css, Global } from 'npm:@emotion/react';
+import { TOP_ABOVE_NAV_HEIGHT } from 'npm:@guardian/commercial-core/dist/esm/constants';
+import type { ArticleDisplay } from 'npm:@guardian/libs';
+import { border, neutral, space } from 'npm:@guardian/source-foundations';
+import { AdSlot, labelHeight } from './AdSlot.tsx';
+import { Hide } from './Hide.tsx';
 
 type Props = {
 	display: ArticleDisplay;

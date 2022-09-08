@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAdBlockInUse } from '../lib/useAdBlockInUse';
+import { useAdBlockInUse } from '../lib/useAdBlockInUse.ts';
 
 type Props = {
 	children: React.ReactNode;

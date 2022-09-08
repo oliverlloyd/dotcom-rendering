@@ -1,7 +1,7 @@
-import { ArticleDesign, ArticleDisplay, ArticlePillar } from '@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticlePillar } from 'npm:@guardian/libs';
 import { render } from '@testing-library/react';
-import { getContributorTagsForToken } from '../../lib/byline';
-import { bylineAsTokens, BylineLink } from './BylineLink';
+import { getContributorTagsForToken } from '../../lib/byline.ts';
+import { bylineAsTokens, BylineLink } from './BylineLink.ts';
 
 describe('bylineAsTokens', () => {
 	it('Correctly performs the standard one contributor case', () => {

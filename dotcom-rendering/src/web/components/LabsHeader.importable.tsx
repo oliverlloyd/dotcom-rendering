@@ -1,18 +1,18 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	border,
 	from,
 	labs,
 	space,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import {
 	Link,
 	LinkButton,
 	SvgArrowRightStraight,
-} from '@guardian/source-react-components';
-import LabsLogo from '../../static/logos/the-guardian-labs.svg';
-import { Dropdown } from './Dropdown';
+} from 'npm:@guardian/source-react-components';
+import LabsLogo from '../../static/logos/the-guardian-labs.svg.ts';
+import { Dropdown } from './Dropdown.ts';
 
 const FlexWrapper = ({ children }: { children: React.ReactNode }) => (
 	<div

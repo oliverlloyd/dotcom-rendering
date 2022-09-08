@@ -1,4 +1,4 @@
-import type { AdRegion } from './region-classes';
+import type { AdRegion } from './region-classes.ts';
 
 /**
  * Type of AMP ad

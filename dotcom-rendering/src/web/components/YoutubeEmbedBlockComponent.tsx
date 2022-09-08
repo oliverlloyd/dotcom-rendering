@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { Caption } from './Caption';
-import { MaintainAspectRatio } from './MaintainAspectRatio';
+import { css } from 'npm:@emotion/react';
+import { Caption } from './Caption.ts';
+import { MaintainAspectRatio } from './MaintainAspectRatio.ts';
 
 type Props = {
 	format: ArticleFormat;

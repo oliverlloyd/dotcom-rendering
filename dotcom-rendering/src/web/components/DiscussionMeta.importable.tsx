@@ -1,8 +1,8 @@
-import { joinUrl } from '@guardian/libs';
-import { decidePalette } from '../lib/decidePalette';
-import { useApi } from '../lib/useApi';
-import { useDiscussion } from '../lib/useDiscussion';
-import { SignedInAs } from './SignedInAs';
+import { joinUrl } from 'npm:@guardian/libs';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { useApi } from '../lib/useApi.ts';
+import { useDiscussion } from '../lib/useDiscussion.ts';
+import { SignedInAs } from './SignedInAs.ts';
 
 export type Props = {
 	format: ArticleFormat;

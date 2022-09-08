@@ -1,4 +1,4 @@
-import { buildIdentityLinks } from './Links.importable';
+import { buildIdentityLinks } from './Links.importable.ts';
 
 describe('buildIdentityLinks', () => {
 	it('contains a unique ID for every item', () => {

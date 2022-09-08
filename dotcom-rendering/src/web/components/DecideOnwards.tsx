@@ -1,9 +1,9 @@
-import type { CAPIOnwards } from '../../types/onwards';
-import { decideTrail } from '../lib/decideTrail';
-import { Carousel } from './Carousel.importable';
-import { FetchOnwardsData } from './FetchOnwardsData.importable';
-import { Island } from './Island';
-import { Section } from './Section';
+import type { CAPIOnwards } from '../../types/onwards.ts';
+import { decideTrail } from '../lib/decideTrail.ts';
+import { Carousel } from './Carousel.importable.ts';
+import { FetchOnwardsData } from './FetchOnwardsData.importable.ts';
+import { Island } from './Island.ts';
+import { Section } from './Section.ts';
 
 export const DecideOnwards = ({
 	onwards,

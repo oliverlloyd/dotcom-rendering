@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import type { RefObject } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { useAdBlockInUse } from '../lib/useAdBlockInUse';
-import { MostViewedRight } from './MostViewedRight';
+import { useAdBlockInUse } from '../lib/useAdBlockInUse.ts';
+import { MostViewedRight } from './MostViewedRight.ts';
 
 type Props = {
 	limitItems?: number;

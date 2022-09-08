@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
-import type { ArticleFormat } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
+import type { ArticleFormat } from 'npm:@guardian/libs';
 import {
 	brandBackground,
 	brandBorder,
@@ -8,48 +8,48 @@ import {
 	from,
 	neutral,
 	until,
-} from '@guardian/source-foundations';
-import { StraightLines } from '@guardian/source-react-components-development-kitchen';
-import { buildAdTargeting } from '../../lib/ad-targeting';
-import { getSoleContributor } from '../../lib/byline';
-import { parse } from '../../lib/slot-machine-flags';
-import type { NavType } from '../../model/extract-nav';
-import type { CAPIArticleType } from '../../types/frontend';
-import { AdSlot, MobileStickyContainer } from '../components/AdSlot';
-import { ArticleBody } from '../components/ArticleBody';
-import { ArticleContainer } from '../components/ArticleContainer';
-import { ArticleHeadline } from '../components/ArticleHeadline';
-import { ArticleMeta } from '../components/ArticleMeta';
-import { ArticleTitle } from '../components/ArticleTitle';
-import { Border } from '../components/Border';
-import { Carousel } from '../components/Carousel.importable';
-import { ContributorAvatar } from '../components/ContributorAvatar';
-import { DecideOnwards } from '../components/DecideOnwards';
-import { DiscussionLayout } from '../components/DiscussionLayout';
-import { Footer } from '../components/Footer';
-import { GridItem } from '../components/GridItem';
-import { Header } from '../components/Header';
-import { HeaderAdSlot } from '../components/HeaderAdSlot';
-import { Hide } from '../components/Hide';
-import { Island } from '../components/Island';
-import { MainMedia } from '../components/MainMedia';
-import { MostViewedFooterData } from '../components/MostViewedFooterData.importable';
-import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout';
-import { MostViewedRightWrapper } from '../components/MostViewedRightWrapper.importable';
-import { Nav } from '../components/Nav/Nav';
-import { OnwardsUpper } from '../components/OnwardsUpper.importable';
-import { RightColumn } from '../components/RightColumn';
-import { Section } from '../components/Section';
-import { SlotBodyEnd } from '../components/SlotBodyEnd.importable';
-import { Standfirst } from '../components/Standfirst';
-import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
-import { SubMeta } from '../components/SubMeta';
-import { SubNav } from '../components/SubNav.importable';
-import { getContributionsServiceUrl } from '../lib/contributions';
-import { decidePalette } from '../lib/decidePalette';
-import { decideTrail } from '../lib/decideTrail';
-import { getCurrentPillar } from '../lib/layoutHelpers';
-import { BannerWrapper, SendToBack, Stuck } from './lib/stickiness';
+} from 'npm:@guardian/source-foundations';
+import { StraightLines } from 'npm:@guardian/source-react-components-development-kitchen';
+import { buildAdTargeting } from '../../lib/ad-targeting.ts';
+import { getSoleContributor } from '../../lib/byline.ts';
+import { parse } from '../../lib/slot-machine-flags.ts';
+import type { NavType } from '../../model/extract-nav.ts';
+import type { CAPIArticleType } from '../../types/frontend.ts';
+import { AdSlot, MobileStickyContainer } from '../components/AdSlot.tsx';
+import { ArticleBody } from '../components/ArticleBody.tsx';
+import { ArticleContainer } from '../components/ArticleContainer.tsx';
+import { ArticleHeadline } from '../components/ArticleHeadline.tsx';
+import { ArticleMeta } from '../components/ArticleMeta.tsx';
+import { ArticleTitle } from '../components/ArticleTitle.tsx';
+import { Border } from '../components/Border.tsx';
+import { Carousel } from '../components/Carousel.importable.tsx';
+import { ContributorAvatar } from '../components/ContributorAvatar.tsx';
+import { DecideOnwards } from '../components/DecideOnwards.tsx';
+import { DiscussionLayout } from '../components/DiscussionLayout.tsx';
+import { Footer } from '../components/Footer.tsx';
+import { GridItem } from '../components/GridItem.tsx';
+import { Header } from '../components/Header.tsx';
+import { HeaderAdSlot } from '../components/HeaderAdSlot.tsx';
+import { Hide } from '../components/Hide.tsx';
+import { Island } from '../components/Island.tsx';
+import { MainMedia } from '../components/MainMedia.tsx';
+import { MostViewedFooterData } from '../components/MostViewedFooterData.importable.tsx';
+import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout.tsx';
+import { MostViewedRightWrapper } from '../components/MostViewedRightWrapper.importable.tsx';
+import { Nav } from '../components/Nav/Nav.tsx';
+import { OnwardsUpper } from '../components/OnwardsUpper.importable.tsx';
+import { RightColumn } from '../components/RightColumn.tsx';
+import { Section } from '../components/Section.tsx';
+import { SlotBodyEnd } from '../components/SlotBodyEnd.importable.tsx';
+import { Standfirst } from '../components/Standfirst.tsx';
+import { StickyBottomBanner } from '../components/StickyBottomBanner.importable.tsx';
+import { SubMeta } from '../components/SubMeta.tsx';
+import { SubNav } from '../components/SubNav.importable.tsx';
+import { getContributionsServiceUrl } from '../lib/contributions.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { decideTrail } from '../lib/decideTrail.ts';
+import { getCurrentPillar } from '../lib/layoutHelpers.ts';
+import { BannerWrapper, SendToBack, Stuck } from './lib/stickiness.tsx';
 
 const StandardGrid = ({
 	children,

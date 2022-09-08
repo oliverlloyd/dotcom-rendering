@@ -1,5 +1,5 @@
-import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
-import { getSoleContributor } from '../lib/byline';
+import { ArticleDesign, ArticleSpecial } from 'npm:@guardian/libs';
+import { getSoleContributor } from '../lib/byline.ts';
 import type {
 	DCRContainerPalette,
 	DCRFrontCard,
@@ -7,10 +7,10 @@ import type {
 	FEFrontCard,
 	FESupportingContent,
 	FETagType,
-} from '../types/front';
-import { decideFormat } from '../web/lib/decideFormat';
-import { getDataLinkNameCard } from '../web/lib/getDataLinkName';
-import { enhanceSnaps } from './enhanceSnaps';
+} from '../types/front.ts';
+import { decideFormat } from '../web/lib/decideFormat.ts';
+import { getDataLinkNameCard } from '../web/lib/getDataLinkName.ts';
+import { enhanceSnaps } from './enhanceSnaps.ts';
 
 /**
  *

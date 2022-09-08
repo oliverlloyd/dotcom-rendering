@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { ArticleSpecial } from '@guardian/libs';
-import { headline, textSans, until } from '@guardian/source-foundations';
-import type { DCRContainerPalette } from '../../types/front';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+import { css } from 'npm:@emotion/react';
+import { ArticleSpecial } from 'npm:@guardian/libs';
+import { headline, textSans, until } from 'npm:@guardian/source-foundations';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 type Props = {
 	text: string;

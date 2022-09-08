@@ -1,4 +1,4 @@
-import { decideAssetOrigin } from './assets';
+import { decideAssetOrigin } from './assets.ts';
 
 describe('decideAssetOrigin for stage', () => {
 	it('PROD', () => {

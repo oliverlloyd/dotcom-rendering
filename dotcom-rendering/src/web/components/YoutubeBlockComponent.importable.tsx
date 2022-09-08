@@ -1,12 +1,12 @@
-import { css } from '@emotion/react';
-import { YoutubeAtom } from '@guardian/atoms-rendering';
-import type { ConsentState } from '@guardian/consent-management-platform/dist/types';
-import { body, neutral, space } from '@guardian/source-foundations';
-import { SvgAlertRound } from '@guardian/source-react-components';
+import { css } from 'npm:@emotion/react';
+import { YoutubeAtom } from 'npm:@guardian/atoms-rendering';
+import type { ConsentState } from 'npm:@guardian/consent-management-platform/dist/types';
+import { body, neutral, space } from 'npm:@guardian/source-foundations';
+import { SvgAlertRound } from 'npm:@guardian/source-react-components';
 import { useEffect, useState } from 'react';
-import { trackVideoInteraction } from '../browser/ga/ga';
-import { record } from '../browser/ophan/ophan';
-import { Caption } from './Caption';
+import { trackVideoInteraction } from '../browser/ga/ga.ts';
+import { record } from '../browser/ophan/ophan.ts';
+import { Caption } from './Caption.ts';
 
 type Props = {
 	id: string;

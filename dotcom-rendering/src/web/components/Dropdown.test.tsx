@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import { Dropdown } from './Dropdown';
+import { Dropdown } from './Dropdown.ts';
 
 const links = [
 	{

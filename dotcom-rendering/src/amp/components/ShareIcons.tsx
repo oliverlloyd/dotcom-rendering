@@ -1,17 +1,17 @@
-import { css } from '@emotion/react';
-import { visuallyHidden } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { visuallyHidden } from 'npm:@guardian/source-foundations';
 import React from 'react';
 import {
 	neutralBorder,
 	pillarMap,
 	pillarPalette_DO_NOT_USE,
-} from '../../lib/pillars';
-import EmailIcon from '../../static/icons/email.svg';
-import FacebookIcon from '../../static/icons/facebook.svg';
-import LinkedInIcon from '../../static/icons/linked-in.svg';
-import MessengerIcon from '../../static/icons/messenger.svg';
-import TwitterIconPadded from '../../static/icons/twitter-padded.svg';
-import WhatsAppIcon from '../../static/icons/whatsapp.svg';
+} from '../../lib/pillars.ts';
+import EmailIcon from '../../static/icons/email.svg.ts';
+import FacebookIcon from '../../static/icons/facebook.svg.ts';
+import LinkedInIcon from '../../static/icons/linked-in.svg.ts';
+import MessengerIcon from '../../static/icons/messenger.svg.ts';
+import TwitterIconPadded from '../../static/icons/twitter-padded.svg.ts';
+import WhatsAppIcon from '../../static/icons/whatsapp.svg.ts';
 
 const pillarFill = pillarMap(
 	(pillar) =>

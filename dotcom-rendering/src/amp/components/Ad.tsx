@@ -1,9 +1,9 @@
-import type { CommercialProperties } from '../../types/commercial';
-import type { EditionId } from '../../types/edition';
-import { adJson, stringify } from '../lib/ad-json';
-import type { RTCParameters } from '../lib/real-time-config';
-import { realTimeConfig } from '../lib/real-time-config';
-import { useContentABTestGroup } from './ContentABTest';
+import type { CommercialProperties } from '../../types/commercial.ts';
+import type { EditionId } from '../../types/edition.ts';
+import { adJson, stringify } from '../lib/ad-json.ts';
+import type { RTCParameters } from '../lib/real-time-config.ts';
+import { realTimeConfig } from '../lib/real-time-config.ts';
+import { useContentABTestGroup } from './ContentABTest.ts';
 
 // Largest size first
 const inlineSizes = [

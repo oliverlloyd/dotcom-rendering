@@ -1,13 +1,13 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	brandAlt,
 	neutral,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
-import type { NavType } from '../../model/extract-nav';
-import ArrowRight from '../../static/icons/arrow-right.svg';
+import type { NavType } from '../../model/extract-nav.ts';
+import ArrowRight from '../../static/icons/arrow-right.svg.ts';
 
 const supportStyles = css`
 	align-self: flex-start;

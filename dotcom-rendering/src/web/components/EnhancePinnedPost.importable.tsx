@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { initPerf } from '../browser/initPerf';
-import { submitComponentEvent } from '../browser/ophan/ophan';
-import { useIsInView } from '../lib/useIsInView';
+import { initPerf } from '../browser/initPerf.ts';
+import { submitComponentEvent } from '../browser/ophan/ophan.ts';
+import { useIsInView } from '../lib/useIsInView.ts';
 
 const isServer = typeof window === 'undefined';
 

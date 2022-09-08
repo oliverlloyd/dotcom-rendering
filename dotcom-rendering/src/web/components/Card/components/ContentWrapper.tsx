@@ -1,6 +1,6 @@
-import type { SerializedStyles } from '@emotion/react';
-import { css } from '@emotion/react';
-import { between, from } from '@guardian/source-foundations';
+import type { SerializedStyles } from 'npm:@emotion/react';
+import { css } from 'npm:@emotion/react';
+import { between, from } from 'npm:@guardian/source-foundations';
 
 const sizingStyles = css`
 	display: flex;

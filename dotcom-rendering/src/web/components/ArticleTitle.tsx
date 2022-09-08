@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay } from '@guardian/libs';
-import { from, until } from '@guardian/source-foundations';
-import type { BadgeType } from '../../types/badge';
-import { Badge } from './Badge';
-import { SeriesSectionLink } from './SeriesSectionLink';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay } from 'npm:@guardian/libs';
+import { from, until } from 'npm:@guardian/source-foundations';
+import type { BadgeType } from '../../types/badge.ts';
+import { Badge } from './Badge.ts';
+import { SeriesSectionLink } from './SeriesSectionLink.ts';
 
 type Props = {
 	format: ArticleFormat;

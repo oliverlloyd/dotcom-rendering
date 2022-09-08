@@ -4,7 +4,7 @@ import {
 	findBlockAdSlots,
 	getElementLength,
 	SMALL_PARA_CHARS,
-} from './find-adslots';
+} from './find-adslots.ts';
 
 const getTextBlockElement = (length: number): TextBlockElement => {
 	return {

@@ -1,13 +1,13 @@
 import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
+import { CacheProvider } from 'npm:@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
-import { resets } from '@guardian/source-foundations';
+import { resets } from 'npm:@guardian/source-foundations';
 import he from 'he';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { getFontsCss } from '../../lib/fonts-css';
-import { epicChoiceCardCss } from '../components/Epic';
-import { stickyAdLabelCss } from '../components/StickyAd';
+import { getFontsCss } from '../../lib/fonts-css.ts';
+import { epicChoiceCardCss } from '../components/Epic.ts';
+import { stickyAdLabelCss } from '../components/StickyAd.ts';
 
 interface RenderToStringResult {
 	html: string;

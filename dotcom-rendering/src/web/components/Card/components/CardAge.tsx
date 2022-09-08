@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, timeAgo } from '@guardian/libs';
-import { textSans, until } from '@guardian/source-foundations';
-import ClockIcon from '../../../../static/icons/clock.svg';
-import type { DCRContainerPalette } from '../../../../types/front';
-import type { Palette } from '../../../../types/palette';
-import { decidePalette } from '../../../lib/decidePalette';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, timeAgo } from 'npm:@guardian/libs';
+import { textSans, until } from 'npm:@guardian/source-foundations';
+import ClockIcon from '../../../../static/icons/clock.svg.ts';
+import type { DCRContainerPalette } from '../../../../types/front.ts';
+import type { Palette } from '../../../../types/palette.ts';
+import { decidePalette } from '../../../lib/decidePalette.ts';
 
 type Props = {
 	format: ArticleFormat;

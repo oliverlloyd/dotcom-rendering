@@ -1,14 +1,14 @@
-import Number0 from './0.svg';
-import Number1 from './1.svg';
-import Number10 from './10.svg';
-import Number2 from './2.svg';
-import Number3 from './3.svg';
-import Number4 from './4.svg';
-import Number5 from './5.svg';
-import Number6 from './6.svg';
-import Number7 from './7.svg';
-import Number8 from './8.svg';
-import Number9 from './9.svg';
+import Number0 from './0.svg.ts';
+import Number1 from './1.svg.ts';
+import Number10 from './10.svg.ts';
+import Number2 from './2.svg.ts';
+import Number3 from './3.svg.ts';
+import Number4 from './4.svg.ts';
+import Number5 from './5.svg.ts';
+import Number6 from './6.svg.ts';
+import Number7 from './7.svg.ts';
+import Number8 from './8.svg.ts';
+import Number9 from './9.svg.ts';
 
 // This file contains an array of elements, but only exposes one.
 

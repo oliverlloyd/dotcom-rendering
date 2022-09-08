@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention -- because underscores work here*/
-import type { DCRContainerPalette } from '../../types/front';
-import type { TrailType } from '../../types/trails';
-import { LI } from '../components/Card/components/LI';
-import { UL } from '../components/Card/components/UL';
-import { FrontCard } from '../components/FrontCard';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { TrailType } from '../../types/trails.ts';
+import { LI } from '../components/Card/components/LI.ts';
+import { UL } from '../components/Card/components/UL.ts';
+import { FrontCard } from '../components/FrontCard.ts';
 
 /**
  * A place for shared slices which are used across multiple dynamic/ containers

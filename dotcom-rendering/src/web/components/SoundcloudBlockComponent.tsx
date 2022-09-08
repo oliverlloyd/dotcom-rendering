@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { unescapeData } from '../../lib/escapeData';
+import { css } from 'npm:@emotion/react';
+import { unescapeData } from '../../lib/escapeData.ts';
 
 const widthOverride = css`
 	iframe {

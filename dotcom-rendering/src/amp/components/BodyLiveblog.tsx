@@ -1,22 +1,22 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	headline,
 	neutral,
 	news,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
-import { buildAdTargeting } from '../../lib/ad-targeting';
-import { getSharingUrls } from '../../lib/sharing-urls';
-import RefreshIcon from '../../static/icons/refresh.svg';
-import type { ConfigType } from '../../types/config';
-import { decideTheme } from '../../web/lib/decideTheme';
-import type { ArticleModel } from '../types/ArticleModel';
-import { Blocks } from './Blocks';
-import { KeyEvents } from './KeyEvents';
-import { Pagination } from './Pagination';
-import { SubMeta } from './SubMeta';
-import { TopMetaLiveblog } from './topMeta/TopMetaLiveblog';
+import { buildAdTargeting } from '../../lib/ad-targeting.ts';
+import { getSharingUrls } from '../../lib/sharing-urls.ts';
+import RefreshIcon from '../../static/icons/refresh.svg.ts';
+import type { ConfigType } from '../../types/config.ts';
+import { decideTheme } from '../../web/lib/decideTheme.ts';
+import type { ArticleModel } from '../types/ArticleModel.ts';
+import { Blocks } from './Blocks.ts';
+import { KeyEvents } from './KeyEvents.ts';
+import { Pagination } from './Pagination.ts';
+import { SubMeta } from './SubMeta.ts';
+import { TopMetaLiveblog } from './topMeta/TopMetaLiveblog.ts';
 
 // TODO check if liveblog background colours are more complex - like regular
 // article is

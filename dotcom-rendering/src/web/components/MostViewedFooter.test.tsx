@@ -1,8 +1,8 @@
-import { ArticleDesign, ArticleDisplay, ArticlePillar } from '@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticlePillar } from 'npm:@guardian/libs';
 import { fireEvent, render } from '@testing-library/react';
-import { useApi as useApi_ } from '../lib/useApi';
-import { responseWithOneTab, responseWithTwoTabs } from './MostViewed.mocks';
-import { MostViewedFooterData } from './MostViewedFooterData.importable';
+import { useApi as useApi_ } from '../lib/useApi.ts';
+import { responseWithOneTab, responseWithTwoTabs } from './MostViewed.mocks.ts';
+import { MostViewedFooterData } from './MostViewedFooterData.importable.ts';
 
 const useApi: { [key: string]: any } = useApi_;
 

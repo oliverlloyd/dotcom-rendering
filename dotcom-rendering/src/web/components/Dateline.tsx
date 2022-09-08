@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
-import { text, textSans, until } from '@guardian/source-foundations';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { text, textSans, until } from 'npm:@guardian/source-foundations';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 const captionFont = css`
 	${textSans.xxsmall()};

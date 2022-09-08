@@ -1,4 +1,4 @@
-import { secondsToDuration } from './MediaMeta';
+import { secondsToDuration } from './MediaMeta.ts';
 
 describe(`MediaText`, () => {
 	it(`converts from a number of seconds to a duration string`, () => {

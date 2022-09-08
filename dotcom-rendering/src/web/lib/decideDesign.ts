@@ -1,4 +1,4 @@
-import { ArticleDesign } from '@guardian/libs';
+import { ArticleDesign } from 'npm:@guardian/libs';
 
 /**
  * NOTE: Immersive Opinion pieces are not supported,

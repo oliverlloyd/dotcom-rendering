@@ -1,5 +1,5 @@
 import React from 'react';
-import { JsonScript } from './JsonScript';
+import { JsonScript } from './JsonScript.ts';
 
 const sourcepointDomain = 'sourcepoint.theguardian.com';
 

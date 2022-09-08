@@ -1,13 +1,13 @@
-import { css } from '@emotion/react';
-import { textSans } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { textSans } from 'npm:@guardian/source-foundations';
 import {
 	SvgAudio,
 	SvgCamera,
 	SvgVideo,
-} from '@guardian/source-react-components';
-import type { DCRContainerPalette } from '../../types/front';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+} from 'npm:@guardian/source-react-components';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 type Props = {
 	mediaType: MediaType;

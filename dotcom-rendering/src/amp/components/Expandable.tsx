@@ -1,14 +1,14 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	body,
 	headline,
 	neutral,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
-import { neutralBorder, pillarPalette_DO_NOT_USE } from '../../lib/pillars';
-import InfoIcon from '../../static/icons/info.svg';
-import PlusIcon from '../../static/icons/plus.svg';
+import { neutralBorder, pillarPalette_DO_NOT_USE } from '../../lib/pillars.ts';
+import InfoIcon from '../../static/icons/info.svg.ts';
+import PlusIcon from '../../static/icons/plus.svg.ts';
 
 const ListStyle = (iconColour: string) => css`
 	li {

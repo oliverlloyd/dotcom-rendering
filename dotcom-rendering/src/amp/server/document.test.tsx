@@ -1,9 +1,9 @@
 import validator from 'amphtml-validator';
-import { Standard as ExampleArticle } from '../../../fixtures/generated/articles/Standard';
-import { extractNAV } from '../../model/extract-nav';
-import type { AnalyticsModel } from '../components/Analytics';
-import { Article } from '../pages/Article';
-import { document } from './document';
+import { Standard as ExampleArticle } from '../../../fixtures/generated/articles/Standard.ts';
+import { extractNAV } from '../../model/extract-nav.ts';
+import type { AnalyticsModel } from '../components/Analytics.ts';
+import { Article } from '../pages/Article.ts';
+import { document } from './document.ts';
 
 test('rejects invalid AMP doc (to test validator)', async () => {
 	const v = await validator.getInstance();

@@ -1,4 +1,4 @@
-import { isString } from '@guardian/libs';
+import { isString } from 'npm:@guardian/libs';
 
 // TODO: this function already exists in commercial-core, consider exporting it to avoid duplication
 const getUrlKeywords = (url: string): string[] => {

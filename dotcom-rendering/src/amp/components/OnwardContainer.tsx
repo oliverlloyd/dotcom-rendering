@@ -1,17 +1,17 @@
-import { css } from '@emotion/react';
-import { headline, neutral, textSans } from '@guardian/source-foundations';
-import Camera from '../../static/icons/camera.svg';
-import Clock from '../../static/icons/clock.svg';
-import Quote from '../../static/icons/quote.svg';
-import VideoIcon from '../../static/icons/video-icon.svg';
-import VolumeHigh from '../../static/icons/volume-high.svg';
+import { css } from 'npm:@emotion/react';
+import { headline, neutral, textSans } from 'npm:@guardian/source-foundations';
+import Camera from '../../static/icons/camera.svg.ts';
+import Clock from '../../static/icons/clock.svg.ts';
+import Quote from '../../static/icons/quote.svg.ts';
+import VideoIcon from '../../static/icons/video-icon.svg.ts';
+import VolumeHigh from '../../static/icons/volume-high.svg.ts';
 import {
 	MoustacheSection,
 	MoustacheTemplate,
 	moustacheVariable,
 	MoustacheVariable,
-} from './moustache';
-import { ShowMoreButton } from './ShowMoreButton';
+} from './moustache.ts';
+import { ShowMoreButton } from './ShowMoreButton.ts';
 
 const inner = css`
 	padding-top: 3px;

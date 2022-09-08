@@ -1,4 +1,4 @@
-import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
+import { ArticleDesign, ArticleSpecial } from 'npm:@guardian/libs';
 
 /**
  * TODO: missing "podcast" and "external"

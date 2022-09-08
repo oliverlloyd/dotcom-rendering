@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { ArticleDisplay } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDisplay } from 'npm:@guardian/libs';
 import {
 	between,
 	brand,
@@ -11,19 +11,19 @@ import {
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import {
 	LinkButton,
 	SvgArrowRightStraight,
-} from '@guardian/source-react-components';
-import { clearFix } from '../../lib/mixins';
-import type { PillarType } from '../../model/extract-nav';
-import type { EditionId } from '../../types/edition';
-import type { FooterType } from '../../types/footer';
-import { BackToTop } from './BackToTop';
-import { Island } from './Island';
-import { Pillars } from './Pillars';
-import { ReaderRevenueLinks } from './ReaderRevenueLinks.importable';
+} from 'npm:@guardian/source-react-components';
+import { clearFix } from '../../lib/mixins.ts';
+import type { PillarType } from '../../model/extract-nav.ts';
+import type { EditionId } from '../../types/edition.ts';
+import type { FooterType } from '../../types/footer.ts';
+import { BackToTop } from './BackToTop.ts';
+import { Island } from './Island.ts';
+import { Pillars } from './Pillars.ts';
+import { ReaderRevenueLinks } from './ReaderRevenueLinks.importable.ts';
 
 // CSS vars
 const footerBorders = `1px solid ${brand[600]}`;

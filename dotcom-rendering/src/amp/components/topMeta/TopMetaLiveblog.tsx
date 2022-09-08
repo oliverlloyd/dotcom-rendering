@@ -1,15 +1,15 @@
-import { css } from '@emotion/react';
-import { headline, neutral } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { headline, neutral } from 'npm:@guardian/source-foundations';
 import { string as curly } from 'curlyquotes';
 import React from 'react';
-import { getAgeWarning } from '../../../lib/age-warning';
-import { getSoleContributor } from '../../../lib/byline';
-import { neutralBorder, pillarPalette_DO_NOT_USE } from '../../../lib/pillars';
-import { getSharingUrls } from '../../../lib/sharing-urls';
-import type { ArticleModel } from '../../types/ArticleModel';
-import { MainMedia } from '../MainMedia';
-import { Byline } from './Byline';
-import { TopMetaExtras } from './TopMetaExtras';
+import { getAgeWarning } from '../../../lib/age-warning.ts';
+import { getSoleContributor } from '../../../lib/byline.ts';
+import { neutralBorder, pillarPalette_DO_NOT_USE } from '../../../lib/pillars.ts';
+import { getSharingUrls } from '../../../lib/sharing-urls.ts';
+import type { ArticleModel } from '../../types/ArticleModel.ts';
+import { MainMedia } from '../MainMedia.ts';
+import { Byline } from './Byline.ts';
+import { TopMetaExtras } from './TopMetaExtras.ts';
 
 const ListStyle = (iconColour: string) => css`
 	li {

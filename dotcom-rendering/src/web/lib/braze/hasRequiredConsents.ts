@@ -1,7 +1,7 @@
 import {
 	getConsentFor,
 	onConsentChange,
-} from '@guardian/consent-management-platform';
+} from 'npm:@guardian/consent-management-platform';
 
 const hasRequiredConsents = (): Promise<boolean> =>
 	new Promise((resolve, reject) => {

@@ -1,9 +1,9 @@
-import { ArticleDesign } from '@guardian/libs';
-import type { DCRContainerPalette } from '../../types/front';
-import type { TrailType } from '../../types/trails';
-import { Card } from './Card/Card';
-import { LI } from './Card/components/LI';
-import { UL } from './Card/components/UL';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { TrailType } from '../../types/trails.ts';
+import { Card } from './Card/Card.ts';
+import { LI } from './Card/components/LI.ts';
+import { UL } from './Card/components/UL.ts';
 
 type Props = {
 	trails: TrailType[];

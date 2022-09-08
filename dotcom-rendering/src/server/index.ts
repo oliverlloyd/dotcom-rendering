@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
-import { devServer } from './dev-server';
-import { prodServer } from './prod-server';
+import { devServer } from './dev-server.ts';
+import { prodServer } from './prod-server.ts';
 
 // this export is expected by webpack-hot-server-middleware
 // not used in prod

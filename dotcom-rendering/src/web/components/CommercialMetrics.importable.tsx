@@ -1,14 +1,14 @@
-import type { ABTest } from '@guardian/ab-core';
+import type { ABTest } from 'npm:@guardian/ab-core';
 import {
 	initCommercialMetrics,
 	bypassCommercialMetricsSampling as switchOffSampling,
-} from '@guardian/commercial-core';
-import { getCookie } from '@guardian/libs';
-import type { ServerSideTestNames } from '../../types/config';
-import { tests } from '../experiments/ab-tests';
-import { useAB } from '../lib/useAB';
-import { useAdBlockInUse } from '../lib/useAdBlockInUse';
-import { useOnce } from '../lib/useOnce';
+} from 'npm:@guardian/commercial-core';
+import { getCookie } from 'npm:@guardian/libs';
+import type { ServerSideTestNames } from '../../types/config.ts';
+import { tests } from '../experiments/ab-tests.ts';
+import { useAB } from '../lib/useAB.ts';
+import { useAdBlockInUse } from '../lib/useAdBlockInUse.ts';
+import { useOnce } from '../lib/useOnce.ts';
 
 type Props = {
 	enabled: boolean;

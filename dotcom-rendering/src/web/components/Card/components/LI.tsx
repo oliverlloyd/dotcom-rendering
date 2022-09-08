@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { from, until } from '@guardian/source-foundations';
-import { verticalDivider } from '../../../lib/verticalDivider';
-import { verticalDividerWithBottomOffset } from '../../../lib/verticalDividerWithBottomOffset';
+import { css } from 'npm:@emotion/react';
+import { from, until } from 'npm:@guardian/source-foundations';
+import { verticalDivider } from '../../../lib/verticalDivider.ts';
+import { verticalDividerWithBottomOffset } from '../../../lib/verticalDividerWithBottomOffset.ts';
 
 const liStyles = css`
 	/* This position relative is needed to contain the vertical divider */

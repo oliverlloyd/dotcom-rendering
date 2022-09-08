@@ -1,11 +1,11 @@
-import type { ABTest } from '@guardian/ab-core';
+import type { ABTest } from 'npm:@guardian/ab-core';
 import {
 	bypassCoreWebVitalsSampling,
 	getCookie,
 	initCoreWebVitals,
-} from '@guardian/libs';
-import type { ServerSideTestNames } from '../../types/config';
-import { useAB } from '../lib/useAB';
+} from 'npm:@guardian/libs';
+import type { ServerSideTestNames } from '../../types/config.ts';
+import { useAB } from '../lib/useAB.ts';
 
 export const CoreVitals = () => {
 	const browserId = getCookie({ name: 'bwid', shouldMemoize: true });

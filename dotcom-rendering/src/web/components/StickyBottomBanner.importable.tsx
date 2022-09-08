@@ -1,37 +1,37 @@
 import type {
 	BrazeArticleContext,
 	BrazeMessagesInterface,
-} from '@guardian/braze-components/logic';
-import { cmp } from '@guardian/consent-management-platform';
-import { getCookie } from '@guardian/libs';
+} from 'npm:@guardian/braze-components/logic';
+import { cmp } from 'npm:@guardian/consent-management-platform';
+import { getCookie } from 'npm:@guardian/libs';
 import { useEffect, useState } from 'react';
-import type { ArticleCounts } from '../../lib/article-count';
-import { getArticleCounts } from '../../lib/article-count';
-import { getAlreadyVisitedCount } from '../lib/alreadyVisited';
-import { getLocaleCode } from '../lib/getCountryCode';
+import type { ArticleCounts } from '../../lib/article-count.ts';
+import { getArticleCounts } from '../../lib/article-count.ts';
+import { getAlreadyVisitedCount } from '../lib/alreadyVisited.ts';
+import { getLocaleCode } from '../lib/getCountryCode.ts';
 import type {
 	CandidateConfig,
 	MaybeFC,
 	SlotConfig,
-} from '../lib/messagePicker';
-import { pickMessage } from '../lib/messagePicker';
-import { useBraze } from '../lib/useBraze';
-import { useOnce } from '../lib/useOnce';
-import { useSignInGateWillShow } from '../lib/useSignInGateWillShow';
+} from '../lib/messagePicker.ts';
+import { pickMessage } from '../lib/messagePicker.ts';
+import { useBraze } from '../lib/useBraze.ts';
+import { useOnce } from '../lib/useOnce.ts';
+import { useSignInGateWillShow } from '../lib/useSignInGateWillShow.ts';
 import {
 	BrazeBanner,
 	canShowBrazeBanner,
-} from './StickyBottomBanner/BrazeBanner';
+} from './StickyBottomBanner/BrazeBanner.ts';
 import {
 	canShowPuzzlesBanner,
 	canShowRRBanner,
 	PuzzlesBanner,
 	ReaderRevenueBanner,
-} from './StickyBottomBanner/ReaderRevenueBanner';
+} from './StickyBottomBanner/ReaderRevenueBanner.ts';
 import type {
 	BannerProps,
 	CanShowFunctionType,
-} from './StickyBottomBanner/ReaderRevenueBanner';
+} from './StickyBottomBanner/ReaderRevenueBanner.ts';
 
 type Props = {
 	contentType: string;

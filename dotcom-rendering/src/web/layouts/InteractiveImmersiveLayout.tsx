@@ -1,44 +1,44 @@
-import { css, Global } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
+import { css, Global } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	brandBackground,
 	brandBorder,
 	from,
 	neutral,
 	until,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
-import type { NavType } from '../../model/extract-nav';
-import type { Switches } from '../../types/config';
-import type { CAPIArticleType } from '../../types/frontend';
-import type { Palette } from '../../types/palette';
+import type { NavType } from '../../model/extract-nav.ts';
+import type { Switches } from '../../types/config.ts';
+import type { CAPIArticleType } from '../../types/frontend.ts';
+import type { Palette } from '../../types/palette.ts';
 import {
 	adCollapseStyles,
 	labelStyles as adLabelStyles,
 	AdSlot,
 	MobileStickyContainer,
-} from '../components/AdSlot';
-import { ArticleHeadline } from '../components/ArticleHeadline';
-import { ArticleMeta } from '../components/ArticleMeta';
-import { ArticleTitle } from '../components/ArticleTitle';
-import { Border } from '../components/Border';
-import { Caption } from '../components/Caption';
-import { DecideLines } from '../components/DecideLines';
-import { Footer } from '../components/Footer';
-import { GridItem } from '../components/GridItem';
-import { GuardianLabsLines } from '../components/GuardianLabsLines';
-import { HeadlineByline } from '../components/HeadlineByline';
-import { Hide } from '../components/Hide';
-import { Island } from '../components/Island';
-import { Section } from '../components/Section';
-import { Standfirst } from '../components/Standfirst';
-import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
-import { SubNav } from '../components/SubNav.importable';
-import { renderElement } from '../lib/renderElement';
-import { ImmersiveHeader } from './headers/ImmersiveHeader';
-import { interactiveGlobalStyles } from './lib/interactiveLegacyStyling';
-import { BannerWrapper } from './lib/stickiness';
+} from '../components/AdSlot.ts';
+import { ArticleHeadline } from '../components/ArticleHeadline.ts';
+import { ArticleMeta } from '../components/ArticleMeta.ts';
+import { ArticleTitle } from '../components/ArticleTitle.ts';
+import { Border } from '../components/Border.ts';
+import { Caption } from '../components/Caption.ts';
+import { DecideLines } from '../components/DecideLines.ts';
+import { Footer } from '../components/Footer.ts';
+import { GridItem } from '../components/GridItem.ts';
+import { GuardianLabsLines } from '../components/GuardianLabsLines.ts';
+import { HeadlineByline } from '../components/HeadlineByline.ts';
+import { Hide } from '../components/Hide.ts';
+import { Island } from '../components/Island.ts';
+import { Section } from '../components/Section.ts';
+import { Standfirst } from '../components/Standfirst.ts';
+import { StickyBottomBanner } from '../components/StickyBottomBanner.importable.ts';
+import { SubNav } from '../components/SubNav.importable.ts';
+import { renderElement } from '../lib/renderElement.ts';
+import { ImmersiveHeader } from './headers/ImmersiveHeader.ts';
+import { interactiveGlobalStyles } from './lib/interactiveLegacyStyling.ts';
+import { BannerWrapper } from './lib/stickiness.ts';
 
 const InteractiveImmersiveGrid = ({
 	children,

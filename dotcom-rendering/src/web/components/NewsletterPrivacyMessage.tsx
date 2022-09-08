@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { neutral, text, textSans } from '@guardian/source-foundations';
-import { Link } from '@guardian/source-react-components';
+import { css } from 'npm:@emotion/react';
+import { neutral, text, textSans } from 'npm:@guardian/source-foundations';
+import { Link } from 'npm:@guardian/source-react-components';
 
 const GUARDIAN_PRIVACY_POLICY =
 	'https://www.theguardian.com/help/privacy-policy';

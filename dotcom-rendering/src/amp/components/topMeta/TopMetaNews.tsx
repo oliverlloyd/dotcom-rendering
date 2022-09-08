@@ -1,19 +1,19 @@
-import { css } from '@emotion/react';
-import { headline, neutral } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { headline, neutral } from 'npm:@guardian/source-foundations';
 import { string as curly } from 'curlyquotes';
 import React from 'react';
-import { getAgeWarning } from '../../../lib/age-warning';
-import { getSoleContributor } from '../../../lib/byline';
-import { pillarPalette_DO_NOT_USE } from '../../../lib/pillars';
-import { getSharingUrls } from '../../../lib/sharing-urls';
-import type { ArticleModel } from '../../types/ArticleModel';
-import { MainMedia } from '../MainMedia';
-import { StarRating } from '../StarRating';
-import { Branding, BrandingRegionContainer } from './Branding';
-import { Byline } from './Byline';
-import { SeriesLink } from './SeriesLink';
-import { Standfirst } from './Standfirst';
-import { TopMetaExtras } from './TopMetaExtras';
+import { getAgeWarning } from '../../../lib/age-warning.ts';
+import { getSoleContributor } from '../../../lib/byline.ts';
+import { pillarPalette_DO_NOT_USE } from '../../../lib/pillars.ts';
+import { getSharingUrls } from '../../../lib/sharing-urls.ts';
+import type { ArticleModel } from '../../types/ArticleModel.ts';
+import { MainMedia } from '../MainMedia.ts';
+import { StarRating } from '../StarRating.ts';
+import { Branding, BrandingRegionContainer } from './Branding.ts';
+import { Byline } from './Byline.ts';
+import { SeriesLink } from './SeriesLink.ts';
+import { Standfirst } from './Standfirst.ts';
+import { TopMetaExtras } from './TopMetaExtras.ts';
 
 const headerStyle = css`
 	${headline.small()};

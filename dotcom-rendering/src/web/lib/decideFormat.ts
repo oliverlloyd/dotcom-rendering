@@ -1,6 +1,6 @@
-import { decideDesign } from './decideDesign';
-import { decideDisplay } from './decideDisplay';
-import { decideTheme } from './decideTheme';
+import { decideDesign } from './decideDesign.ts';
+import { decideDisplay } from './decideDisplay.ts';
+import { decideTheme } from './decideTheme.ts';
 
 export const decideFormat = (format: Partial<CAPIFormat>): ArticleFormat => ({
 	display: decideDisplay(format),

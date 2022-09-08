@@ -1,9 +1,9 @@
-import { ClassNames } from '@emotion/react';
+import { ClassNames } from 'npm:@emotion/react';
 // @ts-expect-error -- we’re actually using preact
 import { jsx as _jsx } from 'react/jsx-runtime';
-import { unescapeData } from '../../lib/escapeData';
-import type { HTMLTag } from '../../model/unwrapHtml';
-import { logger } from '../../server/lib/logging';
+import { unescapeData } from '../../lib/escapeData.ts';
+import type { HTMLTag } from '../../model/unwrapHtml.ts';
+import { logger } from '../../server/lib/logging.ts';
 
 /**
  * React requires a wrapping element for `dangerouslySetInnerHTML` so we

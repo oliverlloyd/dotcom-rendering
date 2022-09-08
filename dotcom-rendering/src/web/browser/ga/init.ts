@@ -1,6 +1,6 @@
 import '../webpackPublicPath';
-import { startup } from '../startup';
-import { init as initGa, sendPageView } from './ga';
+import { startup } from '../startup.ts';
+import { init as initGa, sendPageView } from './ga.ts';
 
 const init = (): Promise<void> => {
 	initGa();

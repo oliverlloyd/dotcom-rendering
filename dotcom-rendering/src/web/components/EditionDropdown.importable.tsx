@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { brand, from } from '@guardian/source-foundations';
-import type { EditionId } from '../../types/edition';
-import { getZIndex } from '../lib/getZIndex';
-import { Dropdown } from './Dropdown';
+import { css } from 'npm:@emotion/react';
+import { brand, from } from 'npm:@guardian/source-foundations';
+import type { EditionId } from '../../types/edition.ts';
+import { getZIndex } from '../lib/getZIndex.ts';
+import { Dropdown } from './Dropdown.ts';
 
 const editionDropdown = css`
 	display: flex;

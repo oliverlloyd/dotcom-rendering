@@ -1,4 +1,4 @@
-import { initPerf } from './initPerf';
+import { initPerf } from './initPerf.ts';
 
 export interface Reporter {
 	report: (err: Error, tags: { [key: string]: string }) => void;

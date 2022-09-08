@@ -1,21 +1,21 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	body,
 	brand,
 	brandAlt,
 	neutral,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
-import type { Link } from '../../lib/footer-links';
+import type { Link } from '../../lib/footer-links.ts';
 import {
 	footerLinksNew,
 	isOnPlatform,
 	LinkPlatform,
-} from '../../lib/footer-links';
-import type { NavType } from '../../model/extract-nav';
-import { useContentABTestGroup } from './ContentABTest';
-import { ReaderRevenueButton } from './ReaderRevenueButton';
+} from '../../lib/footer-links.ts';
+import type { NavType } from '../../model/extract-nav.ts';
+import { useContentABTestGroup } from './ContentABTest.ts';
+import { ReaderRevenueButton } from './ReaderRevenueButton.ts';
 
 const innerContainerStyles = css`
 	padding-left: 10px;

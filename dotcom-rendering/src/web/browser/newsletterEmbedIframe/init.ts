@@ -1,6 +1,6 @@
 import '../webpackPublicPath';
-import { isObject } from '@guardian/libs';
-import { startup } from '../startup';
+import { isObject } from 'npm:@guardian/libs';
+import { startup } from '../startup.ts';
 
 // No trailing slash!
 const allowedOrigins = ['https://www.theguardian.com'];

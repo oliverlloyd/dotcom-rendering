@@ -1,5 +1,5 @@
-import { getBrazeUuid } from './getBrazeUuid';
-import { getIdapiUserIdentifiers } from './getIdapiUserData';
+import { getBrazeUuid } from './getBrazeUuid.ts';
+import { getIdapiUserIdentifiers } from './getIdapiUserData.ts';
 
 const userIdentifiers = {
 	id: 'idValue',

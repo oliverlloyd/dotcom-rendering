@@ -1,14 +1,14 @@
-import { css } from '@emotion/react';
-import { neutral, text, textSans } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { neutral, text, textSans } from 'npm:@guardian/source-foundations';
 import React from 'react';
-import { pillarPalette_DO_NOT_USE } from '../../lib/pillars';
-import type { CommercialProperties } from '../../types/commercial';
-import type { Switches } from '../../types/config';
-import type { EditionId } from '../../types/edition';
-import { blockLink } from '../lib/block-link';
-import { findBlockAdSlots } from '../lib/find-adslots';
-import { Elements } from './Elements';
-import { RegionalAd } from './RegionalAd';
+import { pillarPalette_DO_NOT_USE } from '../../lib/pillars.ts';
+import type { CommercialProperties } from '../../types/commercial.ts';
+import type { Switches } from '../../types/config.ts';
+import type { EditionId } from '../../types/edition.ts';
+import { blockLink } from '../lib/block-link.ts';
+import { findBlockAdSlots } from '../lib/find-adslots.ts';
+import { Elements } from './Elements.ts';
+import { RegionalAd } from './RegionalAd.ts';
 
 const adStyle = css`
 	background: ${neutral[93]};

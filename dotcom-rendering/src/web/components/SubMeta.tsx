@@ -1,19 +1,19 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	from,
 	headline,
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import { LinkButton } from '@guardian/source-react-components';
-import type { BaseLinkType } from '../../model/extract-nav';
-import type { BadgeType } from '../../types/badge';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { Badge } from './Badge';
-import { ShareIcons } from './ShareIcons';
+} from 'npm:@guardian/source-foundations';
+import { LinkButton } from 'npm:@guardian/source-react-components';
+import type { BaseLinkType } from '../../model/extract-nav.ts';
+import type { BadgeType } from '../../types/badge.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Badge } from './Badge.ts';
+import { ShareIcons } from './ShareIcons.ts';
 
 const labelStyles = (palette: Palette) => css`
 	${textSans.xxsmall()};

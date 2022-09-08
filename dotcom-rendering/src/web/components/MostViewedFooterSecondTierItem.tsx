@@ -1,16 +1,16 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	border,
 	from,
 	headline,
 	neutral,
 	text,
-} from '@guardian/source-foundations';
-import type { TrailType } from '../../types/trails';
-import { AgeWarning } from './AgeWarning';
-import { Avatar } from './Avatar';
-import { Flex } from './Flex';
-import { LinkHeadline } from './LinkHeadline';
+} from 'npm:@guardian/source-foundations';
+import type { TrailType } from '../../types/trails.ts';
+import { AgeWarning } from './AgeWarning.ts';
+import { Avatar } from './Avatar.ts';
+import { Flex } from './Flex.ts';
+import { LinkHeadline } from './LinkHeadline.ts';
 
 const itemStyles = (showRightBorder?: boolean) => css`
 	position: relative;

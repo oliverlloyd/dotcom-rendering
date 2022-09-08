@@ -1,6 +1,6 @@
-import type { SerializedStyles } from '@emotion/react';
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
+import type { SerializedStyles } from 'npm:@emotion/react';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
 import {
 	brandAlt,
 	brandBackground,
@@ -10,7 +10,7 @@ import {
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import {
 	Column,
 	Columns,
@@ -19,37 +19,37 @@ import {
 	LinkButton,
 	SvgEye,
 	SvgGuardianLogo,
-} from '@guardian/source-react-components';
-import { StraightLines } from '@guardian/source-react-components-development-kitchen';
-import { buildAdTargeting } from '../../lib/ad-targeting';
-import type { NavType } from '../../model/extract-nav';
-import type { CAPIArticleType } from '../../types/frontend';
-import { AdSlot, MobileStickyContainer } from '../components/AdSlot';
-import { ArticleHeadline } from '../components/ArticleHeadline';
-import { Carousel } from '../components/Carousel.importable';
-import { DecideOnwards } from '../components/DecideOnwards';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { HeaderAdSlot } from '../components/HeaderAdSlot';
-import { Island } from '../components/Island';
-import { MainMedia } from '../components/MainMedia';
-import { Nav } from '../components/Nav/Nav';
-import { NewsletterBadge } from '../components/NewsletterBadge';
-import { NewsletterDetail } from '../components/NewsletterDetail';
-import { NewsletterFrequency } from '../components/NewsletterFrequency';
-import { NewsletterPrivacyMessage } from '../components/NewsletterPrivacyMessage';
-import { OnwardsUpper } from '../components/OnwardsUpper.importable';
-import { Section } from '../components/Section';
-import { SecureSignup } from '../components/SecureSignup';
-import { ShareIcons } from '../components/ShareIcons';
-import { Standfirst } from '../components/Standfirst';
-import { SubNav } from '../components/SubNav.importable';
-import { getContributionsServiceUrl } from '../lib/contributions';
-import { decidePalette } from '../lib/decidePalette';
-import { decideTrail } from '../lib/decideTrail';
-import { isValidUrl } from '../lib/isValidUrl';
-import { getCurrentPillar } from '../lib/layoutHelpers';
-import { BannerWrapper, Stuck } from './lib/stickiness';
+} from 'npm:@guardian/source-react-components';
+import { StraightLines } from 'npm:@guardian/source-react-components-development-kitchen';
+import { buildAdTargeting } from '../../lib/ad-targeting.ts';
+import type { NavType } from '../../model/extract-nav.ts';
+import type { CAPIArticleType } from '../../types/frontend.ts';
+import { AdSlot, MobileStickyContainer } from '../components/AdSlot.ts';
+import { ArticleHeadline } from '../components/ArticleHeadline.ts';
+import { Carousel } from '../components/Carousel.importable.ts';
+import { DecideOnwards } from '../components/DecideOnwards.ts';
+import { Footer } from '../components/Footer.ts';
+import { Header } from '../components/Header.ts';
+import { HeaderAdSlot } from '../components/HeaderAdSlot.ts';
+import { Island } from '../components/Island.ts';
+import { MainMedia } from '../components/MainMedia.ts';
+import { Nav } from '../components/Nav/Nav.ts';
+import { NewsletterBadge } from '../components/NewsletterBadge.ts';
+import { NewsletterDetail } from '../components/NewsletterDetail.ts';
+import { NewsletterFrequency } from '../components/NewsletterFrequency.ts';
+import { NewsletterPrivacyMessage } from '../components/NewsletterPrivacyMessage.ts';
+import { OnwardsUpper } from '../components/OnwardsUpper.importable.ts';
+import { Section } from '../components/Section.ts';
+import { SecureSignup } from '../components/SecureSignup.ts';
+import { ShareIcons } from '../components/ShareIcons.ts';
+import { Standfirst } from '../components/Standfirst.ts';
+import { SubNav } from '../components/SubNav.importable.ts';
+import { getContributionsServiceUrl } from '../lib/contributions.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { decideTrail } from '../lib/decideTrail.ts';
+import { isValidUrl } from '../lib/isValidUrl.ts';
+import { getCurrentPillar } from '../lib/layoutHelpers.ts';
+import { BannerWrapper, Stuck } from './lib/stickiness.ts';
 
 // This Layout is not currently in use.
 // It is an outline of a design for articles with the ArticleDesign.NewsletterSignup

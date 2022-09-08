@@ -1,24 +1,24 @@
 import type {
 	BrazeCardsInterface,
 	BrazeMessagesInterface,
-} from '@guardian/braze-components/logic';
+} from 'npm:@guardian/braze-components/logic';
 import {
 	BrazeCards,
 	BrazeMessages,
 	LocalMessageCache,
 	NullBrazeCards,
 	NullBrazeMessages,
-} from '@guardian/braze-components/logic';
-import { getCookie, log, storage } from '@guardian/libs';
-import { initPerf } from '../../browser/initPerf';
-import { record } from '../../browser/ophan/ophan';
+} from 'npm:@guardian/braze-components/logic';
+import { getCookie, log, storage } from 'npm:@guardian/libs';
+import { initPerf } from '../../browser/initPerf.ts';
+import { record } from '../../browser/ophan/ophan.ts';
 import {
 	clearHasCurrentBrazeUser,
 	hasCurrentBrazeUser,
 	setHasCurrentBrazeUser,
-} from '../hasCurrentBrazeUser';
-import { checkBrazeDependencies } from './checkBrazeDependencies';
-import { getInitialisedAppboy } from './initialiseAppboy';
+} from '../hasCurrentBrazeUser.ts';
+import { checkBrazeDependencies } from './checkBrazeDependencies.ts';
+import { getInitialisedAppboy } from './initialiseAppboy.ts';
 
 const maybeWipeUserData = async (
 	apiKey?: string,

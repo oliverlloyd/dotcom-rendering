@@ -11,7 +11,7 @@
  *    gen-fixtures.ts directly.
  */
 
-import type { CAPIArticleType } from '../../../src/types/frontend';
+import type { CAPIArticleType } from '../../../src/types/frontend.ts';
 
 export const Dead: CAPIArticleType = {
 	slotMachineFlags: '',

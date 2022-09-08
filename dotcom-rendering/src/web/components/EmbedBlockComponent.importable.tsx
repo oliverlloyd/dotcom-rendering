@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { from, space, text, textSans } from '@guardian/source-foundations';
-import { unescapeData } from '../../lib/escapeData';
-import { ClickToView } from './ClickToView';
+import { css } from 'npm:@emotion/react';
+import { from, space, text, textSans } from 'npm:@guardian/source-foundations';
+import { unescapeData } from '../../lib/escapeData.ts';
+import { ClickToView } from './ClickToView.ts';
 
 type Props = {
 	html: string;

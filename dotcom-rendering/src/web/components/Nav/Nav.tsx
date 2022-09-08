@@ -1,19 +1,19 @@
-import { css, ThemeProvider } from '@emotion/react';
-import { ArticleDisplay, ArticleSpecial } from '@guardian/libs';
-import { space, until, visuallyHidden } from '@guardian/source-foundations';
+import { css, ThemeProvider } from 'npm:@emotion/react';
+import { ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
+import { space, until, visuallyHidden } from 'npm:@guardian/source-foundations';
 import {
 	buttonThemeReaderRevenue,
 	LinkButton,
 	SvgArrowRightStraight,
-} from '@guardian/source-react-components';
-import { clearFix } from '../../../lib/mixins';
-import type { NavType } from '../../../model/extract-nav';
-import type { EditionId } from '../../../types/edition';
-import { GuardianRoundel } from '../GuardianRoundel';
-import { Hide } from '../Hide';
-import { Pillars } from '../Pillars';
-import { navInputCheckboxId, showMoreButtonId, veggieBurgerId } from './config';
-import { ExpandedMenu } from './ExpandedMenu/ExpandedMenu';
+} from 'npm:@guardian/source-react-components';
+import { clearFix } from '../../../lib/mixins.ts';
+import type { NavType } from '../../../model/extract-nav.ts';
+import type { EditionId } from '../../../types/edition.ts';
+import { GuardianRoundel } from '../GuardianRoundel.ts';
+import { Hide } from '../Hide.ts';
+import { Pillars } from '../Pillars.ts';
+import { navInputCheckboxId, showMoreButtonId, veggieBurgerId } from './config.ts';
+import { ExpandedMenu } from './ExpandedMenu/ExpandedMenu.ts';
 
 type Props = {
 	format: ArticleFormat;

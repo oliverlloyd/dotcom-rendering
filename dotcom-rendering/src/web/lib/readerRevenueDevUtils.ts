@@ -1,14 +1,14 @@
-import type { CountryCode } from '@guardian/libs';
-import { getCookie, removeCookie, setCookie } from '@guardian/libs';
-import { setAlreadyVisited } from './alreadyVisited';
+import type { CountryCode } from 'npm:@guardian/libs';
+import { getCookie, removeCookie, setCookie } from 'npm:@guardian/libs';
+import { setAlreadyVisited } from './alreadyVisited.ts';
 import {
 	HIDE_SUPPORT_MESSAGING_COOKIE,
 	RECURRING_CONTRIBUTOR_COOKIE,
 	SUPPORT_ONE_OFF_CONTRIBUTION_COOKIE,
 	SUPPORT_RECURRING_CONTRIBUTOR_ANNUAL_COOKIE,
 	SUPPORT_RECURRING_CONTRIBUTOR_MONTHLY_COOKIE,
-} from './contributions';
-import { getLocaleCode, overrideCountryCode } from './getCountryCode';
+} from './contributions.ts';
+import { getLocaleCode, overrideCountryCode } from './getCountryCode.ts';
 
 const readerRevenueCookies = [
 	HIDE_SUPPORT_MESSAGING_COOKIE,

@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	brandAltBackground,
 	space,
 	textSans,
-} from '@guardian/source-foundations';
-import { SvgNewsletter } from './SvgNewsletter';
+} from 'npm:@guardian/source-foundations';
+import { SvgNewsletter } from './SvgNewsletter.ts';
 // TO DO replace SvgNewsletter import when this project is updated to use @guardian/eslint-plugin-source-react-components 6.0.0
 
 type Props = {

@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { body, headline, neutral, space } from '@guardian/source-foundations';
-import type { Palette } from '../../types/palette';
+import { css } from 'npm:@emotion/react';
+import { body, headline, neutral, space } from 'npm:@guardian/source-foundations';
+import type { Palette } from '../../types/palette.ts';
 
 // Wrapper Styles
 const wrapperStyles = css`

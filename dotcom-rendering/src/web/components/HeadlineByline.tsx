@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	brandAltBackground,
 	headline,
@@ -8,11 +8,11 @@ import {
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import { getSoleContributor } from '../../lib/byline';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { BylineLink } from './BylineLink';
+} from 'npm:@guardian/source-foundations';
+import { getSoleContributor } from '../../lib/byline.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { BylineLink } from './BylineLink.ts';
 
 const wrapperStyles = css`
 	margin-left: 6px;

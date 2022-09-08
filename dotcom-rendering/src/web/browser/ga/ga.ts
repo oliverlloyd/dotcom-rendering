@@ -1,4 +1,4 @@
-import { getCookie } from '@guardian/libs';
+import { getCookie } from 'npm:@guardian/libs';
 import { getCLS, getFID, getLCP } from 'web-vitals';
 
 interface TrackerConfig {

@@ -1,5 +1,5 @@
-import { ArticlePillar, ArticleSpecial } from '@guardian/libs';
-import { findPillar } from './find-pillar';
+import { ArticlePillar, ArticleSpecial } from 'npm:@guardian/libs';
+import { findPillar } from './find-pillar.ts';
 
 jest.mock('../lib/pillars', () => ({
 	pillarNames: ['news', 'opinion', 'sport', 'culture', 'lifestyle', 'labs'],

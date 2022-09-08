@@ -1,17 +1,17 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
 import {
 	brandBackground,
 	from,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import type { NavType } from '../../../../model/extract-nav';
-import { getZIndex } from '../../../lib/getZIndex';
-import { navInputCheckboxId } from '../config';
-import { Columns } from './Columns';
-import { ShowMoreMenu } from './ShowMoreMenu';
-import { VeggieBurgerMenu } from './VeggieBurgerMenu';
+} from 'npm:@guardian/source-foundations';
+import type { NavType } from '../../../../model/extract-nav.ts';
+import { getZIndex } from '../../../lib/getZIndex.ts';
+import { navInputCheckboxId } from '../config.ts';
+import { Columns } from './Columns.ts';
+import { ShowMoreMenu } from './ShowMoreMenu.ts';
+import { VeggieBurgerMenu } from './VeggieBurgerMenu.ts';
 
 const wrapperMainMenuStyles = css`
 	background-color: rgba(0, 0, 0, 0.5);

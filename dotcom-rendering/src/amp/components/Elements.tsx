@@ -1,25 +1,25 @@
-import { NotRenderableInDCR } from '../../lib/errors/not-renderable-in-dcr';
-import { enhance } from '../lib/enhance';
-import { AudioAtomBlockComponent } from './elements/AudioAtomBlockComponent';
-import { CommentBlockComponent } from './elements/CommentBlockComponent';
-import { ContentAtomBlockComponent } from './elements/ContentAtomBlockComponent';
-import { DisclaimerBlockComponent } from './elements/DisclaimerBlockComponent';
-import { EmbedBlockComponentAMP } from './elements/EmbedBlockComponentAMP';
-import { GuVideoBlockComponent } from './elements/GuVideoBlockComponent';
-import { ImageBlockComponent } from './elements/ImageBlockComponent';
-import { InteractiveAtomBlockComponent } from './elements/InteractiveAtomBlockComponent';
-import { InteractiveBlockComponentAMP } from './elements/InteractiveBlockComponentAMP';
-import { PullquoteBlockComponent } from './elements/PullquoteBlockComponent';
-import { RichLinkBlockComponent } from './elements/RichLinkBlockComponent';
-import { SoundcloudBlockComponent } from './elements/SoundcloudBlockComponent';
-import { SubheadingBlockComponent } from './elements/SubheadingBlockComponent';
-import { TextBlockComponent } from './elements/TextBlockComponent';
-import { TimelineBlockComponent } from './elements/TimelineBlockComponent';
-import { TwitterBlockComponent } from './elements/TwitterBlockComponent';
-import { VideoVimeoBlockComponent } from './elements/VideoVimeoBlockComponent';
-import { VideoYoutubeBlockComponent } from './elements/VideoYoutubeBlockComponent';
-import { YoutubeBlockComponentAMP } from './elements/YoutubeBlockComponentAMP';
-import { Expandable } from './Expandable';
+import { NotRenderableInDCR } from '../../lib/errors/not-renderable-in-dcr.ts';
+import { enhance } from '../lib/enhance.ts';
+import { AudioAtomBlockComponent } from './elements/AudioAtomBlockComponent.ts';
+import { CommentBlockComponent } from './elements/CommentBlockComponent.ts';
+import { ContentAtomBlockComponent } from './elements/ContentAtomBlockComponent.ts';
+import { DisclaimerBlockComponent } from './elements/DisclaimerBlockComponent.ts';
+import { EmbedBlockComponentAMP } from './elements/EmbedBlockComponentAMP.ts';
+import { GuVideoBlockComponent } from './elements/GuVideoBlockComponent.ts';
+import { ImageBlockComponent } from './elements/ImageBlockComponent.ts';
+import { InteractiveAtomBlockComponent } from './elements/InteractiveAtomBlockComponent.ts';
+import { InteractiveBlockComponentAMP } from './elements/InteractiveBlockComponentAMP.ts';
+import { PullquoteBlockComponent } from './elements/PullquoteBlockComponent.ts';
+import { RichLinkBlockComponent } from './elements/RichLinkBlockComponent.ts';
+import { SoundcloudBlockComponent } from './elements/SoundcloudBlockComponent.ts';
+import { SubheadingBlockComponent } from './elements/SubheadingBlockComponent.ts';
+import { TextBlockComponent } from './elements/TextBlockComponent.ts';
+import { TimelineBlockComponent } from './elements/TimelineBlockComponent.ts';
+import { TwitterBlockComponent } from './elements/TwitterBlockComponent.ts';
+import { VideoVimeoBlockComponent } from './elements/VideoVimeoBlockComponent.ts';
+import { VideoYoutubeBlockComponent } from './elements/VideoYoutubeBlockComponent.ts';
+import { YoutubeBlockComponentAMP } from './elements/YoutubeBlockComponentAMP.ts';
+import { Expandable } from './Expandable.ts';
 
 export const Elements = (
 	elements: CAPIElement[],

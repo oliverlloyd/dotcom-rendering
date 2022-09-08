@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { from, until } from '@guardian/source-foundations';
-import { verticalDivider } from '../../../lib/verticalDivider';
+import { css } from 'npm:@emotion/react';
+import { from, until } from 'npm:@guardian/source-foundations';
+import { verticalDivider } from '../../../lib/verticalDivider.ts';
 
 type Direction = 'row' | 'column' | 'row-reverse';
 

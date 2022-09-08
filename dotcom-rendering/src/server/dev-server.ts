@@ -1,5 +1,5 @@
-import type { NextFunction, Request, Response } from 'express';
-import { render as renderAMPArticle } from '../amp/server';
+import type { NextFunction, Request, Response } from 'npm:express';
+import { render as renderAMPArticle } from '../amp/server/amp-server.tsx';
 import {
 	renderArticle,
 	renderArticleJson,
@@ -9,7 +9,7 @@ import {
 	renderInteractive,
 	renderKeyEvents,
 	renderOnwards,
-} from '../web/server';
+} from '../web/server/web-server.ts';
 
 // see https://www.npmjs.com/package/webpack-hot-server-middleware
 // for more info

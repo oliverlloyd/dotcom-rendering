@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 
 // Array of possible ad regions
 export const adRegions = ['UK', 'US', 'AU', 'INT'] as const;

@@ -1,14 +1,14 @@
-import { ClassNames } from '@emotion/react';
+import { ClassNames } from 'npm:@emotion/react';
 import {
 	brand,
 	brandAlt,
 	headline,
 	neutral,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
-import { createAuthenticationEventParams } from '../../lib/identity-component-event';
-import type { NavType } from '../../model/extract-nav';
+import { createAuthenticationEventParams } from '../../lib/identity-component-event.ts';
+import type { NavType } from '../../model/extract-nav.ts';
 
 export const Sidebar: React.FC<{ nav: NavType }> = () => {
 	// this next line is necessary cos react has a 'template' object with no 'type' property.

@@ -3,7 +3,7 @@ import {
 	ContentABTestProvider,
 	getGroup,
 	useContentABTestGroup,
-} from './ContentABTest';
+} from './ContentABTest.ts';
 
 describe('getGroup', () => {
 	// The follow groups were computed by the SQL query used at the analysis stage

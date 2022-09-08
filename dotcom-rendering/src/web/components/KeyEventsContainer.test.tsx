@@ -1,6 +1,6 @@
-import { ArticleDesign, ArticleDisplay, ArticlePillar } from '@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticlePillar } from 'npm:@guardian/libs';
 import { render } from '@testing-library/react';
-import { KeyEventsContainer } from './KeyEventsContainer';
+import { KeyEventsContainer } from './KeyEventsContainer.ts';
 
 const baseProperties = {
 	id: '123',

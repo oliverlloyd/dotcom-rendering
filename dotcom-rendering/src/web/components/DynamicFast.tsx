@@ -1,11 +1,11 @@
-import { css } from '@emotion/react';
-import { until } from '@guardian/source-foundations';
-import type { DCRContainerPalette, DCRGroupedTrails } from '../../types/front';
-import type { TrailType } from '../../types/trails';
-import { shouldPadWrappableRows } from '../lib/dynamicSlices';
-import { LI } from './Card/components/LI';
-import { UL } from './Card/components/UL';
-import { FrontCard } from './FrontCard';
+import { css } from 'npm:@emotion/react';
+import { until } from 'npm:@guardian/source-foundations';
+import type { DCRContainerPalette, DCRGroupedTrails } from '../../types/front.ts';
+import type { TrailType } from '../../types/trails.ts';
+import { shouldPadWrappableRows } from '../lib/dynamicSlices.ts';
+import { LI } from './Card/components/LI.ts';
+import { UL } from './Card/components/UL.ts';
+import { FrontCard } from './FrontCard.ts';
 
 /**
  * Not sure where to start? This PR documents a lot of the key features

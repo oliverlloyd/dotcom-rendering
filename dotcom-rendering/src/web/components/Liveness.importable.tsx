@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { initHydration } from '../browser/islands/initHydration';
-import { updateTimeElement } from '../browser/relativeTime/updateTimeElements';
-import { useApi } from '../lib/useApi';
-import { Toast } from './Toast';
+import { initHydration } from '../browser/islands/initHydration.ts';
+import { updateTimeElement } from '../browser/relativeTime/updateTimeElements.ts';
+import { useApi } from '../lib/useApi.ts';
+import { Toast } from './Toast.ts';
 
 type Props = {
 	pageId: string;

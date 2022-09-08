@@ -1,17 +1,17 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	between,
 	from,
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import CameraSvg from '../../static/icons/camera.svg';
-import VideoSvg from '../../static/icons/video-icon.svg';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+} from 'npm:@guardian/source-foundations';
+import CameraSvg from '../../static/icons/camera.svg.ts';
+import VideoSvg from '../../static/icons/video-icon.svg.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 type Props = {
 	captionText?: string;

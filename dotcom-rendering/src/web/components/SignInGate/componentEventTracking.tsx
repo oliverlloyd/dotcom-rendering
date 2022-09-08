@@ -1,5 +1,5 @@
-import type { OphanComponent, OphanComponentEvent } from '@guardian/libs';
-import type { CurrentSignInGateABTest } from './types';
+import type { OphanComponent, OphanComponentEvent } from 'npm:@guardian/libs';
+import type { CurrentSignInGateABTest } from './types.ts';
 
 type ABTestVariant = {
 	name: string;

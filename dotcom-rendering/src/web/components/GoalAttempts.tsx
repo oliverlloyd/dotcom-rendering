@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { headline, text, textSans } from '@guardian/source-foundations';
-import { decidePalette } from '../lib/decidePalette';
-import { isLight } from '../lib/isLight';
+import { css } from 'npm:@emotion/react';
+import { headline, text, textSans } from 'npm:@guardian/source-foundations';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { isLight } from '../lib/isLight.ts';
 
 type Props = {
 	left: SectionType;

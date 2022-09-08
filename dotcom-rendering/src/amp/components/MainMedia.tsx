@@ -1,14 +1,14 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	neutral,
 	textSans,
 	visuallyHidden,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
-import InfoIcon from '../../static/icons/info.svg';
-import { bestFitImage, heightEstimate } from '../lib/image-fit';
-import { scrsetStringFromImagesSources } from '../lib/srcset-utils';
-import { YoutubeBlockComponentAMP } from './elements/YoutubeBlockComponentAMP';
+import InfoIcon from '../../static/icons/info.svg.ts';
+import { bestFitImage, heightEstimate } from '../lib/image-fit.ts';
+import { scrsetStringFromImagesSources } from '../lib/srcset-utils.ts';
+import { YoutubeBlockComponentAMP } from './elements/YoutubeBlockComponentAMP.ts';
 
 const figureStyle = css`
 	margin: 0 0;

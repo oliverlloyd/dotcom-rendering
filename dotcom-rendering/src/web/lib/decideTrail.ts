@@ -1,6 +1,6 @@
-import type { CAPITrailType, TrailType } from '../../types/trails';
-import { decideFormat } from './decideFormat';
-import { getDataLinkNameCard } from './getDataLinkName';
+import type { CAPITrailType, TrailType } from '../../types/trails.ts';
+import { decideFormat } from './decideFormat.ts';
+import { getDataLinkNameCard } from './getDataLinkName.ts';
 
 export const decideTrail = (trail: CAPITrailType, index = 0): TrailType => {
 	const format: ArticleFormat = decideFormat(trail.format);

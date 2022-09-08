@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay } from '@guardian/libs';
-import { until } from '@guardian/source-foundations';
-import type { Switches } from '../../types/config';
-import { getZIndex } from '../lib/getZIndex';
-import { RenderArticleElement } from '../lib/renderElement';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay } from 'npm:@guardian/libs';
+import { until } from 'npm:@guardian/source-foundations';
+import type { Switches } from '../../types/config.ts';
+import { getZIndex } from '../lib/getZIndex.tsx';
+import { RenderArticleElement } from '../lib/renderElement.tsx';
 
 const mainMedia = css`
 	height: 100%;

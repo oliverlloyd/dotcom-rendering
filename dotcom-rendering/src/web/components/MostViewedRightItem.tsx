@@ -1,11 +1,11 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
-import { border, headline, neutral, text } from '@guardian/source-foundations';
-import type { TrailType } from '../../types/trails';
-import { useHover } from '../lib/useHover';
-import { AgeWarning } from './AgeWarning';
-import { Avatar } from './Avatar';
-import { LinkHeadline } from './LinkHeadline';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { border, headline, neutral, text } from 'npm:@guardian/source-foundations';
+import type { TrailType } from '../../types/trails.ts';
+import { useHover } from '../lib/useHover.ts';
+import { AgeWarning } from './AgeWarning.ts';
+import { Avatar } from './Avatar.ts';
+import { LinkHeadline } from './LinkHeadline.ts';
 
 const listItemStyles = css`
 	list-style: none;

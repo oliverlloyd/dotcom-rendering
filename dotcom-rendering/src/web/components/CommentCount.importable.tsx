@@ -1,11 +1,11 @@
-import { css } from '@emotion/react';
-import { joinUrl } from '@guardian/libs';
-import { between, textSans, until } from '@guardian/source-foundations';
-import CommentIcon from '../../static/icons/comment.svg';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { formatCount } from '../lib/formatCount';
-import { useDiscussion } from '../lib/useDiscussion';
+import { css } from 'npm:@emotion/react';
+import { joinUrl } from 'npm:@guardian/libs';
+import { between, textSans, until } from 'npm:@guardian/source-foundations';
+import CommentIcon from '../../static/icons/comment.svg.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { formatCount } from '../lib/formatCount.ts';
+import { useDiscussion } from '../lib/useDiscussion.ts';
 
 type Props = {
 	format: ArticleFormat;

@@ -1,8 +1,8 @@
-import { ClassNames } from '@emotion/react';
-import { getRTCParameters } from '../lib/real-time-config';
-import { adRegions, regionClasses } from '../lib/region-classes';
-import type { BaseAdProps } from './Ad';
-import { Ad } from './Ad';
+import { ClassNames } from 'npm:@emotion/react';
+import { getRTCParameters } from '../lib/real-time-config.ts';
+import { adRegions, regionClasses } from '../lib/region-classes.ts';
+import type { BaseAdProps } from './Ad.ts';
+import { Ad } from './Ad.ts';
 
 /**
  * Ad slot component whose config differs based on region.

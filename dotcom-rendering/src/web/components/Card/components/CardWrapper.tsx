@@ -1,13 +1,13 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
-import { from, neutral } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign, ArticleSpecial } from 'npm:@guardian/libs';
+import { from, neutral } from 'npm:@guardian/source-foundations';
 import type {
 	DCRContainerPalette,
 	DCRContainerType,
-} from '../../../../types/front';
-import type { Palette } from '../../../../types/palette';
-import { decidePalette } from '../../../lib/decidePalette';
+} from '../../../../types/front.ts';
+import type { Palette } from '../../../../types/palette.ts';
+import { decidePalette } from '../../../lib/decidePalette.ts';
 
 type Props = {
 	children: React.ReactNode;

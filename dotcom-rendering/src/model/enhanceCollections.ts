@@ -1,9 +1,9 @@
-import type { EditionId } from '../types/edition';
-import type { DCRCollectionType, FECollectionType } from '../types/front';
-import { decideContainerPalette } from './decideContainerPalette';
-import { enhanceCards } from './enhanceCards';
-import { enhanceTreats } from './enhanceTreats';
-import { groupCards } from './groupCards';
+import type { EditionId } from '../types/edition.ts';
+import type { DCRCollectionType, FECollectionType } from '../types/front.ts';
+import { decideContainerPalette } from './decideContainerPalette.ts';
+import { enhanceCards } from './enhanceCards.ts';
+import { enhanceTreats } from './enhanceTreats.ts';
+import { groupCards } from './groupCards.ts';
 
 const FORBIDDEN_CONTAINERS = [
 	'Palette styles new do not delete',

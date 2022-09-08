@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import type { DCRContainerPalette } from '../../types/front';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+import { css } from 'npm:@emotion/react';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 const contributorImage = css`
 	border-radius: 100%;

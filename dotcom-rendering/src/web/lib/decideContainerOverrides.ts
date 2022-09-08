@@ -1,5 +1,5 @@
-import type { DCRContainerPalette } from '../../types/front';
-import type { ContainerOverrides } from '../../types/palette';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { ContainerOverrides } from '../../types/palette.ts';
 
 const textCardHeadline = (containerPalette: DCRContainerPalette): string => {
 	switch (containerPalette) {

@@ -1,4 +1,4 @@
-import { logger } from '../server/lib/logging';
+import { logger } from '../server/lib/logging.ts';
 
 type PlaceInArticle = {
 	position: number;

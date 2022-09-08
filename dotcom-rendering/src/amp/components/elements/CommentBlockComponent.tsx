@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { neutral, news, textSans } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { neutral, news, textSans } from 'npm:@guardian/source-foundations';
 import React from 'react';
 
 const wrapper = css`

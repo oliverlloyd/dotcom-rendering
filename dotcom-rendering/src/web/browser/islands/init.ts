@@ -1,7 +1,7 @@
 import '../webpackPublicPath';
 
-import { startup } from '../startup';
-import { initHydration } from './initHydration';
+import { startup } from '../startup.ts';
+import { initHydration } from './initHydration.ts';
 
 const init = () => {
 	const elements = document.querySelectorAll('gu-island');

@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 
 export const hiddenStyles = css`
 	&.hidden {

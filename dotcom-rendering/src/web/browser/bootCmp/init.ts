@@ -2,14 +2,14 @@ import {
 	cmp,
 	getConsentFor,
 	onConsentChange,
-} from '@guardian/consent-management-platform';
-import type { ConsentState } from '@guardian/consent-management-platform/dist/types';
-import { getCookie, loadScript, log } from '@guardian/libs';
-import { getLocaleCode } from '../../lib/getCountryCode';
-import { injectPrivacySettingsLink } from '../../lib/injectPrivacySettingsLink';
-import type { OphanAction, OphanComponentType } from '../ophan/ophan';
-import { submitComponentEvent } from '../ophan/ophan';
-import { startup } from '../startup';
+} from 'npm:@guardian/consent-management-platform';
+import type { ConsentState } from 'npm:@guardian/consent-management-platform/dist/types';
+import { getCookie, loadScript, log } from 'npm:@guardian/libs';
+import { getLocaleCode } from '../../lib/getCountryCode.ts';
+import { injectPrivacySettingsLink } from '../../lib/injectPrivacySettingsLink.ts';
+import type { OphanAction, OphanComponentType } from '../ophan/ophan.ts';
+import { submitComponentEvent } from '../ophan/ophan.ts';
+import { startup } from '../startup.ts';
 
 const trackPerformance = (
 	timingCategory: string,

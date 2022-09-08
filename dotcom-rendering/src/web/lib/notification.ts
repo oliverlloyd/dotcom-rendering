@@ -1,5 +1,5 @@
-import type { BrazeCard } from '@guardian/braze-components';
-import type { DropdownLinkType } from '../components/Dropdown';
+import type { BrazeCard } from 'npm:@guardian/braze-components';
+import type { DropdownLinkType } from '../components/Dropdown.ts';
 
 export interface Notification {
 	target: string;

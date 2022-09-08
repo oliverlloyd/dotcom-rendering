@@ -1,10 +1,10 @@
-import { ArticleDesign, ArticleSpecial } from '@guardian/libs';
+import { ArticleDesign, ArticleSpecial } from 'npm:@guardian/libs';
 import React from 'react';
-import type { ArticleModel } from '../../types/ArticleModel';
-import { TopMetaAnalysis } from './TopMetaAnalysis';
-import { TopMetaNews } from './TopMetaNews';
-import { TopMetaOpinion } from './TopMetaOpinion';
-import { TopMetaPaidContent } from './TopMetaPaidContent';
+import type { ArticleModel } from '../../types/ArticleModel.ts';
+import { TopMetaAnalysis } from './TopMetaAnalysis.ts';
+import { TopMetaNews } from './TopMetaNews.ts';
+import { TopMetaOpinion } from './TopMetaOpinion.ts';
+import { TopMetaPaidContent } from './TopMetaPaidContent.ts';
 
 export const TopMeta: React.FunctionComponent<{
 	data: ArticleModel;

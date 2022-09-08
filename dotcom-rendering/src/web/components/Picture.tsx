@@ -1,7 +1,7 @@
 import { createHash } from 'crypto';
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay } from '@guardian/libs';
-import { breakpoints } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay } from 'npm:@guardian/libs';
+import { breakpoints } from 'npm:@guardian/source-foundations';
 import React from 'react';
 
 /**

@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	brand,
 	brandAlt,
@@ -7,9 +7,9 @@ import {
 	textSans,
 	until,
 	visuallyHidden,
-} from '@guardian/source-foundations';
-import type { PillarType } from '../../../../model/extract-nav';
-import { CollapseColumnButton } from './CollapseColumnButton';
+} from 'npm:@guardian/source-foundations';
+import type { PillarType } from '../../../../model/extract-nav.ts';
+import { CollapseColumnButton } from './CollapseColumnButton.ts';
 
 // CSS
 export const hideDesktop = css`

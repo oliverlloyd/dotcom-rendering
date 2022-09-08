@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { from, neutral, remSpace, until } from '@guardian/source-foundations';
-import { ToggleSwitch } from '@guardian/source-react-components-development-kitchen';
+import { css } from 'npm:@emotion/react';
+import { from, neutral, remSpace, until } from 'npm:@guardian/source-foundations';
+import { ToggleSwitch } from 'npm:@guardian/source-react-components-development-kitchen';
 import { useState } from 'react';
 
 const cssOverrides = css`

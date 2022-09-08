@@ -1,5 +1,5 @@
 import type appboy from '@braze/web-sdk-core';
-import { log } from '@guardian/libs';
+import { log } from 'npm:@guardian/libs';
 
 const SDK_OPTIONS: appboy.InitializationOptions = {
 	enableLogging: true,

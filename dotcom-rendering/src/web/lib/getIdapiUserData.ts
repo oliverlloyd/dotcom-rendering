@@ -1,4 +1,4 @@
-import { joinUrl } from '../../lib/joinUrl';
+import { joinUrl } from '../../lib/joinUrl.ts';
 
 export interface IdApiUserData {
 	user?: {

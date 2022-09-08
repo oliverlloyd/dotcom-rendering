@@ -1,12 +1,12 @@
-import { css } from '@emotion/react';
-import { brand } from '@guardian/source-foundations';
-import type { EditionId } from '../../types/edition';
-import { EditionDropdown } from './EditionDropdown.importable';
-import { Hide } from './Hide';
-import { Island } from './Island';
-import { Links } from './Links.importable';
-import { Logo } from './Logo';
-import { ReaderRevenueLinks } from './ReaderRevenueLinks.importable';
+import { css } from 'npm:@emotion/react';
+import { brand } from 'npm:@guardian/source-foundations';
+import type { EditionId } from '../../types/edition.ts';
+import { EditionDropdown } from './EditionDropdown.importable.tsx';
+import { Hide } from './Hide.tsx';
+import { Island } from './Island.tsx';
+import { Links } from './Links.importable.tsx';
+import { Logo } from './Logo.tsx';
+import { ReaderRevenueLinks } from './ReaderRevenueLinks.importable.tsx';
 
 const headerStyles = css`
 	/* Ensure header height contains it's children */

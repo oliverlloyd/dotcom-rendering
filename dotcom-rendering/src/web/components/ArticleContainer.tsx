@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { adSizes } from '@guardian/commercial-core';
-import { ArticleDesign } from '@guardian/libs';
-import { from, neutral, space, until } from '@guardian/source-foundations';
-import { carrotAdStyles, labelHeight, labelStyles } from './AdSlot';
+import { css } from 'npm:@emotion/react';
+import { adSizes } from 'npm:@guardian/commercial-core';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { from, neutral, space, until } from 'npm:@guardian/source-foundations';
+import { carrotAdStyles, labelHeight, labelStyles } from './AdSlot.ts';
 
 type Props = {
 	format: ArticleFormat;

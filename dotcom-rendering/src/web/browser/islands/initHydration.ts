@@ -1,8 +1,8 @@
-import { doHydration } from './doHydration';
-import { getName } from './getName';
-import { getProps } from './getProps';
-import { whenIdle } from './whenIdle';
-import { whenVisible } from './whenVisible';
+import { doHydration } from './doHydration.ts';
+import { getName } from './getName.ts';
+import { getProps } from './getProps.ts';
+import { whenIdle } from './whenIdle.ts';
+import { whenVisible } from './whenVisible.ts';
 
 export const initHydration = (elements: NodeListOf<Element>): void => {
 	/**

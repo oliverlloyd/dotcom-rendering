@@ -1,20 +1,20 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	from,
 	headline,
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import type { BadgeType } from '../../types/badge';
-import type { Palette } from '../../types/palette';
-import { interactiveLegacyClasses } from '../layouts/lib/interactiveLegacyStyling';
-import { decidePalette } from '../lib/decidePalette';
-import { Badge } from './Badge';
-import { Hide } from './Hide';
-import { Island } from './Island';
-import { PulsingDot } from './PulsingDot.importable';
+} from 'npm:@guardian/source-foundations';
+import type { BadgeType } from '../../types/badge.ts';
+import type { Palette } from '../../types/palette.ts';
+import { interactiveLegacyClasses } from '../layouts/lib/interactiveLegacyStyling.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Badge } from './Badge.ts';
+import { Hide } from './Hide.ts';
+import { Island } from './Island.ts';
+import { PulsingDot } from './PulsingDot.importable.ts';
 
 type Props = {
 	format: ArticleFormat;

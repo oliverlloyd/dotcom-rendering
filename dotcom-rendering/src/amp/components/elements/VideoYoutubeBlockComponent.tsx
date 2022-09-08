@@ -1,6 +1,6 @@
 import React from 'react';
-import { getIdFromUrl } from '../../lib/get-video-id';
-import { Caption } from '../Caption';
+import { getIdFromUrl } from '../../lib/get-video-id.ts';
+import { Caption } from '../Caption.ts';
 
 export const VideoYoutubeBlockComponent: React.FC<{
 	element: VideoYoutubeBlockElement;

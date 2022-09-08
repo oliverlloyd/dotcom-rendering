@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	between,
 	from,
@@ -7,12 +7,12 @@ import {
 	space,
 	text,
 	until,
-} from '@guardian/source-foundations';
-import type { EditionId } from '../../types/edition';
-import type { DCRContainerPalette } from '../../types/front';
-import type { Colour } from '../../types/palette';
-import { decideContainerOverrides } from '../lib/decideContainerOverrides';
-import { getEditionFromId } from '../lib/edition';
+} from 'npm:@guardian/source-foundations';
+import type { EditionId } from '../../types/edition.ts';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { Colour } from '../../types/palette.ts';
+import { decideContainerOverrides } from '../lib/decideContainerOverrides.ts';
+import { getEditionFromId } from '../lib/edition.ts';
 
 type Props = {
 	title?: string;

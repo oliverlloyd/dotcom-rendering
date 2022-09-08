@@ -1,11 +1,11 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	background,
 	border,
 	space,
 	textSans,
-} from '@guardian/source-foundations';
-import { Button, SvgCheckmark } from '@guardian/source-react-components';
+} from 'npm:@guardian/source-foundations';
+import { Button, SvgCheckmark } from 'npm:@guardian/source-react-components';
 import { useState } from 'react';
 
 type Props = {

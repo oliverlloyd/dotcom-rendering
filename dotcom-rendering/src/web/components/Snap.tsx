@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import type { DCRSnapType } from '../../types/front';
+import { css } from 'npm:@emotion/react';
+import type { DCRSnapType } from '../../types/front.ts';
 
 const snapStyles = css`
 	overflow-y: hidden;

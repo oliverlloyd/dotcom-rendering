@@ -1,4 +1,4 @@
-import type { Edition, EditionId } from '../../types/edition';
+import type { Edition, EditionId } from '../../types/edition.ts';
 
 const UkEdition: Edition = {
 	id: 'UK',

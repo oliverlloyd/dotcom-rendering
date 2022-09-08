@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { from, until } from '@guardian/source-foundations';
-import type { DCRSupportingContent } from '../../types/front';
-import { CardHeadline } from './CardHeadline';
+import { css } from 'npm:@emotion/react';
+import { from, until } from 'npm:@guardian/source-foundations';
+import type { DCRSupportingContent } from '../../types/front.ts';
+import { CardHeadline } from './CardHeadline.ts';
 
 type Alignment = 'vertical' | 'horizontal';
 

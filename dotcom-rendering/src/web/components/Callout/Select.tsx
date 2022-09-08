@@ -1,4 +1,4 @@
-import { FieldLabel } from './FieldLabel';
+import { FieldLabel } from './FieldLabel.ts';
 
 type Props = {
 	formField: CampaignFieldSelect;

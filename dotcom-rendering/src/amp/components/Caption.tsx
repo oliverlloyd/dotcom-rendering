@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { text, textSans } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { text, textSans } from 'npm:@guardian/source-foundations';
 import React from 'react';
-import { pillarPalette_DO_NOT_USE } from '../../lib/pillars';
-import TriangleIcon from '../../static/icons/triangle.svg';
+import { pillarPalette_DO_NOT_USE } from '../../lib/pillars.ts';
+import TriangleIcon from '../../static/icons/triangle.svg.ts';
 
 const figureStyle = css`
 	margin-bottom: 8px;

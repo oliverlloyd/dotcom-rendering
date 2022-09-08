@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	border,
 	from,
@@ -6,10 +6,10 @@ import {
 	neutral,
 	space,
 	until,
-} from '@guardian/source-foundations';
-import { SvgChevronDownSingle } from '@guardian/source-react-components';
+} from 'npm:@guardian/source-foundations';
+import { SvgChevronDownSingle } from 'npm:@guardian/source-react-components';
 import { useCallback, useEffect, useState } from 'react';
-import { getZIndex } from '../lib/getZIndex';
+import { getZIndex } from '../lib/getZIndex.ts';
 
 const liStyles = css`
 	border-top: 1px solid ${neutral[86]};

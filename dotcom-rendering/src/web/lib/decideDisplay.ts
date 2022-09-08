@@ -1,4 +1,4 @@
-import { ArticleDisplay } from '@guardian/libs';
+import { ArticleDisplay } from 'npm:@guardian/libs';
 
 export const decideDisplay = ({
 	display,

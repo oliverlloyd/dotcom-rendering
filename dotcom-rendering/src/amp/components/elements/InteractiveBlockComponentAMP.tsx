@@ -1,7 +1,7 @@
-import { ClassNames } from '@emotion/react';
+import { ClassNames } from 'npm:@emotion/react';
 import React from 'react';
-import { NotRenderableInDCR } from '../../../lib/errors/not-renderable-in-dcr';
-import { ShowMoreButton } from '../ShowMoreButton';
+import { NotRenderableInDCR } from '../../../lib/errors/not-renderable-in-dcr.ts';
+import { ShowMoreButton } from '../ShowMoreButton.ts';
 
 export const InteractiveBlockComponentAMP: React.FunctionComponent<{
 	url?: string;

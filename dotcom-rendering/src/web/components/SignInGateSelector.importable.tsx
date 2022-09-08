@@ -1,22 +1,22 @@
-import { ArticleDesign, getCookie } from '@guardian/libs';
+import { ArticleDesign, getCookie } from 'npm:@guardian/libs';
 import { useEffect, useState } from 'react';
-import { constructQuery } from '../../lib/querystring';
-import { useOnce } from '../lib/useOnce';
-import { useSignInGateSelector } from '../lib/useSignInGateSelector';
-import type { ComponentEventParams } from './SignInGate/componentEventTracking';
+import { constructQuery } from '../../lib/querystring.ts';
+import { useOnce } from '../lib/useOnce.ts';
+import { useSignInGateSelector } from '../lib/useSignInGateSelector.ts';
+import type { ComponentEventParams } from './SignInGate/componentEventTracking.ts';
 import {
 	submitViewEventTracking,
 	withComponentId,
-} from './SignInGate/componentEventTracking';
+} from './SignInGate/componentEventTracking.ts';
 import {
 	incrementUserDismissedGateCount,
 	setUserDismissedGate,
-} from './SignInGate/dismissGate';
-import { signInGateTestIdToComponentId } from './SignInGate/signInGate';
+} from './SignInGate/dismissGate.ts';
+import { signInGateTestIdToComponentId } from './SignInGate/signInGate.ts';
 import type {
 	CurrentSignInGateABTest,
 	SignInGateComponent,
-} from './SignInGate/types';
+} from './SignInGate/types.ts';
 
 type Props = {
 	format: ArticleFormat;

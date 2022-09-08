@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import type { Breakpoint } from '@guardian/source-foundations';
-import { between, from } from '@guardian/source-foundations';
-import { AdSlot } from './AdSlot';
+import { css } from 'npm:@emotion/react';
+import type { Breakpoint } from 'npm:@guardian/source-foundations';
+import { between, from } from 'npm:@guardian/source-foundations';
+import { AdSlot } from './AdSlot.tsx';
 
 type Props = {
 	children: React.ReactNode;

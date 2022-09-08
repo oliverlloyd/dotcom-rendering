@@ -1,30 +1,30 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	ArticleDesign as Design,
 	ArticleSpecial as Special,
-} from '@guardian/libs';
+} from 'npm:@guardian/libs';
 import {
 	neutral,
 	opinion,
 	text,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import React from 'react';
-import { buildAdTargeting } from '../../lib/ad-targeting';
-import { pillarPalette_DO_NOT_USE } from '../../lib/pillars';
-import { getSharingUrls } from '../../lib/sharing-urls';
-import type { ConfigType } from '../../types/config';
-import { decideDesign } from '../../web/lib/decideDesign';
-import { decideTheme } from '../../web/lib/decideTheme';
-import { findAdSlots } from '../lib/find-adslots';
-import type { ArticleModel } from '../types/ArticleModel';
-import { Elements } from './Elements';
-import { Epic } from './Epic';
-import { RegionalAd } from './RegionalAd';
-import { StickyAd } from './StickyAd';
-import { SubMeta } from './SubMeta';
-import { TopMeta } from './topMeta/TopMeta';
+import { buildAdTargeting } from '../../lib/ad-targeting.ts';
+import { pillarPalette_DO_NOT_USE } from '../../lib/pillars.ts';
+import { getSharingUrls } from '../../lib/sharing-urls.ts';
+import type { ConfigType } from '../../types/config.ts';
+import { decideDesign } from '../../web/lib/decideDesign.ts';
+import { decideTheme } from '../../web/lib/decideTheme.ts';
+import { findAdSlots } from '../lib/find-adslots.ts';
+import type { ArticleModel } from '../types/ArticleModel.ts';
+import { Elements } from './Elements.ts';
+import { Epic } from './Epic.ts';
+import { RegionalAd } from './RegionalAd.ts';
+import { StickyAd } from './StickyAd.ts';
+import { SubMeta } from './SubMeta.ts';
+import { TopMeta } from './topMeta/TopMeta.ts';
 
 const innerContainerStyles = css`
 	padding-left: 10px;

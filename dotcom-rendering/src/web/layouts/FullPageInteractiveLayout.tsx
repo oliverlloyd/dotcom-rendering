@@ -1,6 +1,6 @@
-import { css, Global } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDisplay, ArticleSpecial } from '@guardian/libs';
+import { css, Global } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
 import {
 	border,
 	brandBackground,
@@ -10,30 +10,30 @@ import {
 	labs,
 	neutral,
 	until,
-} from '@guardian/source-foundations';
-import type { NavType } from '../../model/extract-nav';
-import type { Switches } from '../../types/config';
-import type { CAPIArticleType } from '../../types/frontend';
+} from 'npm:@guardian/source-foundations';
+import type { NavType } from '../../model/extract-nav.ts';
+import type { Switches } from '../../types/config.ts';
+import type { CAPIArticleType } from '../../types/frontend.ts';
 import {
 	adCollapseStyles,
 	labelStyles as adLabelStyles,
 	MobileStickyContainer,
-} from '../components/AdSlot';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { HeaderAdSlot } from '../components/HeaderAdSlot';
-import { Island } from '../components/Island';
-import { LabsHeader } from '../components/LabsHeader.importable';
-import { Nav } from '../components/Nav/Nav';
-import { Section } from '../components/Section';
-import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
-import { SubNav } from '../components/SubNav.importable';
-import { decidePalette } from '../lib/decidePalette';
-import { getZIndex } from '../lib/getZIndex';
-import { getCurrentPillar } from '../lib/layoutHelpers';
-import { renderElement } from '../lib/renderElement';
-import { interactiveGlobalStyles } from './lib/interactiveLegacyStyling';
-import { BannerWrapper, Stuck } from './lib/stickiness';
+} from '../components/AdSlot.ts';
+import { Footer } from '../components/Footer.ts';
+import { Header } from '../components/Header.ts';
+import { HeaderAdSlot } from '../components/HeaderAdSlot.ts';
+import { Island } from '../components/Island.ts';
+import { LabsHeader } from '../components/LabsHeader.importable.ts';
+import { Nav } from '../components/Nav/Nav.ts';
+import { Section } from '../components/Section.ts';
+import { StickyBottomBanner } from '../components/StickyBottomBanner.importable.ts';
+import { SubNav } from '../components/SubNav.importable.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { getZIndex } from '../lib/getZIndex.ts';
+import { getCurrentPillar } from '../lib/layoutHelpers.ts';
+import { renderElement } from '../lib/renderElement.ts';
+import { interactiveGlobalStyles } from './lib/interactiveLegacyStyling.ts';
+import { BannerWrapper, Stuck } from './lib/stickiness.ts';
 
 interface Props {
 	CAPIArticle: CAPIArticleType;

@@ -1,17 +1,17 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { from, headline, space } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { from, headline, space } from 'npm:@guardian/source-foundations';
 import {
 	Button,
 	buttonThemeBrandAlt,
 	Hide,
 	SvgChevronLeftSingle,
 	SvgChevronRightSingle,
-} from '@guardian/source-react-components';
+} from 'npm:@guardian/source-react-components';
 import { useRef } from 'react';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { KeyEventCard } from './KeyEventCard';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { KeyEventCard } from './KeyEventCard.ts';
 
 interface Props {
 	keyEvents: Block[];

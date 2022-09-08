@@ -1,8 +1,8 @@
-import type { DCRContainerPalette } from '../../types/front';
-import type { TrailType } from '../../types/trails';
-import { LI } from './Card/components/LI';
-import { UL } from './Card/components/UL';
-import { FrontCard } from './FrontCard';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { TrailType } from '../../types/trails.ts';
+import { LI } from './Card/components/LI.ts';
+import { UL } from './Card/components/UL.ts';
+import { FrontCard } from './FrontCard.ts';
 
 type Props = {
 	trails: TrailType[];

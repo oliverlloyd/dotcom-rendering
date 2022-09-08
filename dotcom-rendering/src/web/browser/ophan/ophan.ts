@@ -7,8 +7,8 @@ import type {
 	OphanComponentEvent,
 	OphanComponentType,
 	OphanProduct,
-} from '@guardian/libs';
-import { log } from '@guardian/libs';
+} from 'npm:@guardian/libs';
+import { log } from 'npm:@guardian/libs';
 
 export type OphanRecordFunction = (
 	event: { [key: string]: any },

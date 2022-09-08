@@ -1,13 +1,13 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay } from '@guardian/libs';
-import type { ArticleFormat } from '@guardian/libs';
-import { between, body, headline, space } from '@guardian/source-foundations';
-import type { ServerSideTests, Switches } from '../../types/config';
-import type { Palette } from '../../types/palette';
-import { ArticleRenderer } from '../lib/ArticleRenderer';
-import { decidePalette } from '../lib/decidePalette';
-import { LiveBlogRenderer } from '../lib/LiveBlogRenderer';
-import { revealStyles } from '../lib/revealStyles';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay } from 'npm:@guardian/libs';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { between, body, headline, space } from 'npm:@guardian/source-foundations';
+import type { ServerSideTests, Switches } from '../../types/config.ts';
+import type { Palette } from '../../types/palette.ts';
+import { ArticleRenderer } from '../lib/ArticleRenderer.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { LiveBlogRenderer } from '../lib/LiveBlogRenderer.ts';
+import { revealStyles } from '../lib/revealStyles.ts';
 
 type Props = {
 	format: ArticleFormat;

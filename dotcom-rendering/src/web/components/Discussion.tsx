@@ -1,16 +1,16 @@
-import { css } from '@emotion/react';
-import { App as Comments } from '@guardian/discussion-rendering';
-import { joinUrl } from '@guardian/libs';
-import { neutral, space } from '@guardian/source-foundations';
-import { SvgPlus } from '@guardian/source-react-components';
-import { EditorialButton } from '@guardian/source-react-components-development-kitchen';
+import { css } from 'npm:@emotion/react';
+import { App as Comments } from 'npm:@guardian/discussion-rendering';
+import { joinUrl } from 'npm:@guardian/libs';
+import { neutral, space } from 'npm:@guardian/source-foundations';
+import { SvgPlus } from 'npm:@guardian/source-react-components';
+import { EditorialButton } from 'npm:@guardian/source-react-components-development-kitchen';
 import { useEffect, useState } from 'react';
-import { decidePalette } from '../lib/decidePalette';
-import { getCommentContext } from '../lib/getCommentContext';
-import { revealStyles } from '../lib/revealStyles';
-import { useDiscussion } from '../lib/useDiscussion';
-import { Hide } from './Hide';
-import { SignedInAs } from './SignedInAs';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { getCommentContext } from '../lib/getCommentContext.ts';
+import { revealStyles } from '../lib/revealStyles.ts';
+import { useDiscussion } from '../lib/useDiscussion.ts';
+import { Hide } from './Hide.ts';
+import { SignedInAs } from './SignedInAs.ts';
 
 export type Props = {
 	format: ArticleFormat;

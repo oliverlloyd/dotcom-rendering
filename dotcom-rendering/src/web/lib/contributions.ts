@@ -1,9 +1,9 @@
-import { onConsentChange } from '@guardian/consent-management-platform';
-import { getCookie } from '@guardian/libs';
-import type { HeaderPayload } from '@guardian/support-dotcom-components/dist/dotcom/src/types';
-import type { CAPIArticleType } from '../../types/frontend';
-import type { IdApiUserData } from './getIdapiUserData';
-import { getIdApiUserData } from './getIdapiUserData';
+import { onConsentChange } from 'npm:@guardian/consent-management-platform';
+import { getCookie } from 'npm:@guardian/libs';
+import type { HeaderPayload } from 'npm:@guardian/support-dotcom-components/dist/dotcom/src/types';
+import type { CAPIArticleType } from '../../types/frontend.ts';
+import type { IdApiUserData } from './getIdapiUserData.ts';
+import { getIdApiUserData } from './getIdapiUserData.ts';
 
 // User Atributes API cookies (dropped on sign-in)
 export const HIDE_SUPPORT_MESSAGING_COOKIE = 'gu_hide_support_messaging';

@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
-import { headline, space, until } from '@guardian/source-foundations';
-import { LinkButton } from '@guardian/source-react-components';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { headline, space, until } from 'npm:@guardian/source-foundations';
+import { LinkButton } from 'npm:@guardian/source-react-components';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 const tagStyles = (palette: Palette) => css`
 	background-color: ${palette.background.designTag};

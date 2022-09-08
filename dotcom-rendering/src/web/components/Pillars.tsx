@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay } from 'npm:@guardian/libs';
 import {
 	brand,
 	brandAlt,
@@ -7,11 +7,11 @@ import {
 	from,
 	headline,
 	until,
-} from '@guardian/source-foundations';
-import type { PillarType } from '../../model/extract-nav';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { navInputCheckboxId } from './Nav/config';
+} from 'npm:@guardian/source-foundations';
+import type { PillarType } from '../../model/extract-nav.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { navInputCheckboxId } from './Nav/config.ts';
 
 // CSS Vars
 

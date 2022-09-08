@@ -1,7 +1,7 @@
-import { ArticleDesign } from '@guardian/libs';
-import type { TrailType } from '../../types/trails';
-import type { Props as CardProps } from './Card/Card';
-import { Card } from './Card/Card';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import type { TrailType } from '../../types/trails.ts';
+import type { Props as CardProps } from './Card/Card.ts';
+import { Card } from './Card/Card.ts';
 
 type Props = {
 	trail: TrailType;

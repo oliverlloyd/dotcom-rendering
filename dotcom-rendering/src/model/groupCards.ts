@@ -3,8 +3,8 @@ import type {
 	DCRContainerType,
 	DCRGroupedTrails,
 	FEFrontCard,
-} from '../types/front';
-import { enhanceCards } from './enhanceCards';
+} from '../types/front.ts';
+import { enhanceCards } from './enhanceCards.ts';
 
 /**
  * Groups cards based on their group specified in fronts tool

@@ -1,10 +1,10 @@
-import { ClassNames } from '@emotion/react';
-import { body } from '@guardian/source-foundations';
+import { ClassNames } from 'npm:@emotion/react';
+import { body } from 'npm:@guardian/source-foundations';
 import { renderToString } from 'react-dom/server';
-import { unwrapHtml } from '../../model/unwrapHtml';
-import type { Palette } from '../../types/palette';
-import { QuoteIcon } from './QuoteIcon';
-import { RewrappedComponent } from './RewrappedComponent';
+import { unwrapHtml } from '../../model/unwrapHtml.ts';
+import type { Palette } from '../../types/palette.ts';
+import { QuoteIcon } from './QuoteIcon.ts';
+import { RewrappedComponent } from './RewrappedComponent.ts';
 
 type Props = {
 	html: string;

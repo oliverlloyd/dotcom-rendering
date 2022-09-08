@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { space, text, textSans } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { space, text, textSans } from 'npm:@guardian/source-foundations';
 import { useState } from 'react';
-import { stringifyFileBase64 } from '../../lib/stringifyFileBase64';
-import { FieldLabel } from './FieldLabel';
+import { stringifyFileBase64 } from '../../lib/stringifyFileBase64.ts';
+import { FieldLabel } from './FieldLabel.ts';
 
 const fileUploadInputStyles = css`
 	padding-top: 10px;

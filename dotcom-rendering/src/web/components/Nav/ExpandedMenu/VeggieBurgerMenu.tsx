@@ -1,13 +1,13 @@
-import { css } from '@emotion/react';
-import { ArticleDisplay } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDisplay } from 'npm:@guardian/libs';
 import {
 	brandAlt,
 	from,
 	neutral,
 	visuallyHidden,
-} from '@guardian/source-foundations';
-import { getZIndex } from '../../../lib/getZIndex';
-import { navInputCheckboxId, veggieBurgerId } from '../config';
+} from 'npm:@guardian/source-foundations';
+import { getZIndex } from '../../../lib/getZIndex.ts';
+import { navInputCheckboxId, veggieBurgerId } from '../config.ts';
 
 const screenReadable = css`
 	${visuallyHidden};

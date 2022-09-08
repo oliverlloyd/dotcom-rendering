@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
 import {
 	between,
 	border,
@@ -8,14 +8,14 @@ import {
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import { decidePalette } from '../lib/decidePalette';
-import { Distribution } from './Distribution';
-import { Doughnut } from './Doughnut';
-import { GoalAttempts } from './GoalAttempts';
-import { GridItem } from './GridItem';
-import { Hide } from './Hide';
-import { Lineup } from './Lineup';
+} from 'npm:@guardian/source-foundations';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Distribution } from './Distribution.ts';
+import { Doughnut } from './Doughnut.ts';
+import { GoalAttempts } from './GoalAttempts.ts';
+import { GridItem } from './GridItem.ts';
+import { Hide } from './Hide.ts';
+import { Lineup } from './Lineup.ts';
 
 type Props = {
 	home: TeamType;

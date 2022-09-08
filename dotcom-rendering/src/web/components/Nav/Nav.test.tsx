@@ -1,7 +1,7 @@
-import { ArticleDesign, ArticleDisplay, ArticlePillar } from '@guardian/libs';
+import { ArticleDesign, ArticleDisplay, ArticlePillar } from 'npm:@guardian/libs';
 import { render, within } from '@testing-library/react';
-import { Nav } from './Nav';
-import { nav } from './Nav.mock';
+import { Nav } from './Nav.ts';
+import { nav } from './Nav.mock.ts';
 
 describe('Nav', () => {
 	it('should display pillar titles', () => {

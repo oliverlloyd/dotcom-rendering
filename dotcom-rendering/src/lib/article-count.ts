@@ -1,15 +1,15 @@
-import { storage } from '@guardian/libs';
+import { storage } from 'npm:@guardian/libs';
 import {
 	getWeeklyArticleHistory,
 	incrementWeeklyArticleCount,
-} from '@guardian/support-dotcom-components';
-import type { WeeklyArticleHistory } from '@guardian/support-dotcom-components/dist/dotcom/src/types';
-import { hasOptedOutOfArticleCount } from '../web/lib/contributions';
-import type { DailyArticleHistory } from '../web/lib/dailyArticleCount';
+} from 'npm:@guardian/support-dotcom-components';
+import type { WeeklyArticleHistory } from 'npm:@guardian/support-dotcom-components/dist/dotcom/src/types';
+import { hasOptedOutOfArticleCount } from '../web/lib/contributions.ts';
+import type { DailyArticleHistory } from '../web/lib/dailyArticleCount.ts';
 import {
 	getDailyArticleCount,
 	incrementDailyArticleCount,
-} from '../web/lib/dailyArticleCount';
+} from '../web/lib/dailyArticleCount.ts';
 
 export interface ArticleCounts {
 	weeklyArticleHistory: WeeklyArticleHistory;

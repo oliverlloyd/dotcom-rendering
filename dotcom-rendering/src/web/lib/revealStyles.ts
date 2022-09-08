@@ -1,4 +1,4 @@
-import { css, keyframes } from '@emotion/react';
+import { css, keyframes } from 'npm:@emotion/react';
 
 /**
  * Sometimes we want to animate in new content using plain

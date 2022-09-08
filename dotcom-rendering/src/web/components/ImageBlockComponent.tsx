@@ -1,4 +1,4 @@
-import { ImageComponent } from './ImageComponent';
+import { ImageComponent } from './ImageComponent.ts';
 
 type Props = {
 	format: ArticleFormat;

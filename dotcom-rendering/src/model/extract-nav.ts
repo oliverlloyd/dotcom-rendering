@@ -1,5 +1,5 @@
-import { ArticlePillar } from '@guardian/libs';
-import { findPillar } from './find-pillar';
+import { ArticlePillar } from 'npm:@guardian/libs';
+import { findPillar } from './find-pillar.ts';
 
 interface BaseLinkType {
 	url: string;

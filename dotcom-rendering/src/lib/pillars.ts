@@ -1,5 +1,5 @@
-import { ArticlePillar, ArticleSpecial } from '@guardian/libs';
-import type { ArticleTheme } from '@guardian/libs';
+import { ArticlePillar, ArticleSpecial } from 'npm:@guardian/libs';
+import type { ArticleTheme } from 'npm:@guardian/libs';
 import {
 	border,
 	culture,
@@ -9,7 +9,7 @@ import {
 	opinion,
 	specialReport,
 	sport,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 
 type ColourType = string;
 

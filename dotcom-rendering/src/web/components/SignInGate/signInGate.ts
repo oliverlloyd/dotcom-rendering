@@ -1,13 +1,13 @@
-import type { ABTest } from '@guardian/ab-core';
+import type { ABTest } from 'npm:@guardian/ab-core';
 
 // Sign in Gate A/B Tests
-import { signInGateMainControl } from '../../experiments/tests/sign-in-gate-main-control';
-import { signInGateMainVariant } from '../../experiments/tests/sign-in-gate-main-variant';
+import { signInGateMainControl } from '../../experiments/tests/sign-in-gate-main-control.ts';
+import { signInGateMainVariant } from '../../experiments/tests/sign-in-gate-main-variant.ts';
 
 // Sign in Gate Types
-import { signInGateComponent as gateMainControl } from './gates/main-control';
-import { signInGateComponent as gateMainVariant } from './gates/main-variant';
-import type { SignInGateTestMap } from './types';
+import { signInGateComponent as gateMainControl } from './gates/main-control.ts';
+import { signInGateComponent as gateMainVariant } from './gates/main-variant.ts';
+import type { SignInGateTestMap } from './types.ts';
 
 // component name, should always be sign-in-gate
 export const componentName = 'sign-in-gate';

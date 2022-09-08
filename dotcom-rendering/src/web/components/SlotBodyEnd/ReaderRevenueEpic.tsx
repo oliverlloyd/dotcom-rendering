@@ -1,17 +1,17 @@
-import { css } from '@emotion/react';
-import { cmp } from '@guardian/consent-management-platform';
-import { getCookie, storage } from '@guardian/libs';
-import { getEpic, getEpicViewLog } from '@guardian/support-dotcom-components';
+import { css } from 'npm:@emotion/react';
+import { cmp } from 'npm:@guardian/consent-management-platform';
+import { getCookie, storage } from 'npm:@guardian/libs';
+import { getEpic, getEpicViewLog } from 'npm:@guardian/support-dotcom-components';
 import type {
 	EpicPayload,
 	ModuleData,
 	ModuleDataResponse,
 	WeeklyArticleHistory,
-} from '@guardian/support-dotcom-components/dist/dotcom/src/types';
+} from 'npm:@guardian/support-dotcom-components/dist/dotcom/src/types';
 import { useEffect, useState } from 'react';
-import { initPerf } from '../../browser/initPerf';
-import type { OphanComponentEvent } from '../../browser/ophan/ophan';
-import { submitComponentEvent } from '../../browser/ophan/ophan';
+import { initPerf } from '../../browser/initPerf.ts';
+import type { OphanComponentEvent } from '../../browser/ophan/ophan.ts';
+import { submitComponentEvent } from '../../browser/ophan/ophan.ts';
 import {
 	getLastOneOffContributionTimestamp,
 	hasCmpConsentForArticleCount,
@@ -21,9 +21,9 @@ import {
 	lazyFetchEmailWithTimeout,
 	MODULES_VERSION,
 	shouldHideSupportMessaging,
-} from '../../lib/contributions';
-import type { CanShowResult } from '../../lib/messagePicker';
-import { setAutomat } from '../../lib/setAutomat';
+} from '../../lib/contributions.ts';
+import type { CanShowResult } from '../../lib/messagePicker.ts';
+import { setAutomat } from '../../lib/setAutomat.ts';
 
 export type EpicConfig = {
 	module: ModuleData;

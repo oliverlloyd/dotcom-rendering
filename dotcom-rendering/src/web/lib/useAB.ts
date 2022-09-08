@@ -1,4 +1,4 @@
-import type { ABTestAPI } from '@guardian/ab-core';
+import type { ABTestAPI } from 'npm:@guardian/ab-core';
 import { mutate } from 'swr';
 import useSWRImmutable from 'swr/immutable';
 

@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { headline } from '@guardian/source-foundations';
-import { decidePalette } from '../lib/decidePalette';
-import { Byline } from './Byline';
-import { Kicker } from './Kicker';
-import { QuoteIcon } from './QuoteIcon';
+import { css } from 'npm:@emotion/react';
+import { headline } from 'npm:@guardian/source-foundations';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Byline } from './Byline.ts';
+import { Kicker } from './Kicker.ts';
+import { QuoteIcon } from './QuoteIcon.ts';
 
 type Props = {
 	headlineText: string; // The text shown

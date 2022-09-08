@@ -1,5 +1,5 @@
-import type { CommercialProperties } from '../../types/commercial';
-import type { EditionId } from '../../types/edition';
+import type { CommercialProperties } from '../../types/commercial.ts';
+import type { EditionId } from '../../types/edition.ts';
 
 // This is a subset of CAPIArticleType for use in AMP and as a result there needs to be parity between the types of shared fields.
 export interface ArticleModel {

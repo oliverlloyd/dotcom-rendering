@@ -1,7 +1,7 @@
 // All GA fields should  fall back to default values -
 
 import type { EditionId } from 'src/types/edition';
-import type { CAPIArticleType } from '../types/frontend';
+import type { CAPIArticleType } from '../types/frontend.ts';
 
 const filterTags = (
 	tags: CAPIArticleType['tags'],

@@ -1,5 +1,5 @@
-import type { CAPIArticleType } from '../../types/frontend';
-import { decideNavTheme } from './decideNavTheme';
+import type { CAPIArticleType } from '../../types/frontend.ts';
+import { decideNavTheme } from './decideNavTheme.ts';
 
 export const getCurrentPillar = (
 	CAPIArticle: CAPIArticleType,

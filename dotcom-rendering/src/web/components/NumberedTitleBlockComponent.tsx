@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { headline } from '@guardian/source-foundations';
-import type { Palette } from '../../types/palette';
-import { decideFormat } from '../lib/decideFormat';
-import { decidePalette } from '../lib/decidePalette';
+import { css } from 'npm:@emotion/react';
+import { headline } from 'npm:@guardian/source-foundations';
+import type { Palette } from '../../types/palette.ts';
+import { decideFormat } from '../lib/decideFormat.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 type Props = {
 	position: number;

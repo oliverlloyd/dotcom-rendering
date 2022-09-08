@@ -1,6 +1,6 @@
-import { getCookie, getLocale, isString, storage } from '@guardian/libs';
-import type { CountryCode } from '@guardian/libs';
-import { countries } from './countryCodes';
+import { getCookie, getLocale, isString, storage } from 'npm:@guardian/libs';
+import type { CountryCode } from 'npm:@guardian/libs';
+import { countries } from './countryCodes.ts';
 
 const COUNTRY_CODE_KEY = 'GU_geo_country';
 const COUNTRY_CODE_KEY_OVERRIDE = 'gu.geo.override';

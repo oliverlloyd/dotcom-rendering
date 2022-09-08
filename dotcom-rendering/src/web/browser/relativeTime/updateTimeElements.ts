@@ -1,4 +1,4 @@
-import { timeAgo } from '@guardian/libs';
+import { timeAgo } from 'npm:@guardian/libs';
 
 export const updateTimeElement = (element: Element): void => {
 	if (element instanceof HTMLElement) {

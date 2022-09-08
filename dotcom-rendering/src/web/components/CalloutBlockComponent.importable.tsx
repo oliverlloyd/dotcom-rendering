@@ -1,12 +1,12 @@
-import { css } from '@emotion/react';
-import { neutral, textSans } from '@guardian/source-foundations';
-import { Button } from '@guardian/source-react-components';
+import { css } from 'npm:@emotion/react';
+import { neutral, textSans } from 'npm:@guardian/source-foundations';
+import { Button } from 'npm:@guardian/source-react-components';
 import { useEffect, useState } from 'react';
-import MinusIcon from '../../static/icons/minus.svg';
-import PlusIcon from '../../static/icons/plus.svg';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { Form } from './Callout/Form';
+import MinusIcon from '../../static/icons/minus.svg.ts';
+import PlusIcon from '../../static/icons/plus.svg.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Form } from './Callout/Form.ts';
 
 const wrapperStyles = css`
 	margin-bottom: 26px;

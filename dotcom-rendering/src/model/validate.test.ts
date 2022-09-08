@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { validateAsCAPIType } from './validate';
+import { validateAsCAPIType } from './validate.ts';
 
 // TODO avoid fetch, write script to fetch new version in gen-schema.js and store as fixture files
 const urlsToTest = [

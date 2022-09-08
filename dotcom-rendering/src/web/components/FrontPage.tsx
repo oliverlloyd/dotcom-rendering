@@ -1,16 +1,16 @@
-import { css, Global } from '@emotion/react';
-import { brandAlt, focusHalo, neutral } from '@guardian/source-foundations';
-import { StrictMode } from 'react';
-import type { NavType } from '../../model/extract-nav';
-import type { DCRFrontType } from '../../types/front';
-import { FrontLayout } from '../layouts/FrontLayout';
-import { AlreadyVisited } from './AlreadyVisited.importable';
-import { CoreVitals } from './CoreVitals.importable';
-import { FetchCommentCounts } from './FetchCommentCounts.importable';
-import { FocusStyles } from './FocusStyles.importable';
-import { Island } from './Island';
-import { ShowHideContainers } from './ShowHideContainers.importable';
-import { SkipTo } from './SkipTo';
+import { css, Global } from 'npm:@emotion/react';
+import { brandAlt, focusHalo, neutral } from 'npm:@guardian/source-foundations';
+import { StrictMode } from 'npm:react';
+import type { NavType } from '../../model/extract-nav.ts';
+import type { DCRFrontType } from '../../types/front.ts';
+import { FrontLayout } from '../layouts/FrontLayout.tsx';
+import { AlreadyVisited } from './AlreadyVisited.importable.tsx';
+import { CoreVitals } from './CoreVitals.importable.tsx';
+import { FetchCommentCounts } from './FetchCommentCounts.importable.tsx';
+import { FocusStyles } from './FocusStyles.importable.tsx';
+import { Island } from './Island.tsx';
+import { ShowHideContainers } from './ShowHideContainers.importable.tsx';
+import { SkipTo } from './SkipTo.tsx';
 
 type Props = {
 	front: DCRFrontType;

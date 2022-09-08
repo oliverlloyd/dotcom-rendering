@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { ArticleDesign, ArticleDisplay } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign, ArticleDisplay } from 'npm:@guardian/libs';
 import {
 	between,
 	brandAltBackground,
@@ -7,13 +7,13 @@ import {
 	headline,
 	neutral,
 	until,
-} from '@guardian/source-foundations';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { Caption } from './Caption';
-import { Hide } from './Hide';
-import { Picture } from './Picture';
-import { StarRating } from './StarRating/StarRating';
+} from 'npm:@guardian/source-foundations';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { Caption } from './Caption.ts';
+import { Hide } from './Hide.ts';
+import { Picture } from './Picture.ts';
+import { StarRating } from './StarRating/StarRating.ts';
 
 type Props = {
 	element: ImageBlockElement;

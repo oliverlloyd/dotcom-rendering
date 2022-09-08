@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
-import { initPerf } from '../../../browser/initPerf';
-import { Lazy } from '../../Lazy';
-import { canShowMandatoryUs } from '../displayRule';
-import type { SignInGateComponent } from '../types';
+import { initPerf } from '../../../browser/initPerf.ts';
+import { Lazy } from '../../Lazy.ts';
+import { canShowMandatoryUs } from '../displayRule.ts';
+import type { SignInGateComponent } from '../types.ts';
 
 const SignInGateMain = React.lazy(() => {
 	const { start, end } = initPerf('SignInGateMain');

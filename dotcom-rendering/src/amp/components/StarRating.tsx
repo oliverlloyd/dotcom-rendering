@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { brandAlt } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { brandAlt } from 'npm:@guardian/source-foundations';
 import React from 'react';
-import { Star } from '../../static/icons/Star';
+import { Star } from '../../static/icons/Star.ts';
 
 const ratingsWrapper = css`
 	background-color: ${brandAlt[400]};

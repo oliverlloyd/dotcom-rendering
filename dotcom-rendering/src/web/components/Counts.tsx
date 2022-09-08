@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import type { ArticleFormat } from '@guardian/libs';
-import { ArticleDesign } from '@guardian/libs';
-import { border, until } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import type { ArticleFormat } from 'npm:@guardian/libs';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { border, until } from 'npm:@guardian/source-foundations';
 
 type Props = {
 	children: React.ReactNode;

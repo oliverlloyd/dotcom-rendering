@@ -1,36 +1,36 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
-import { brandAltBackground, space } from '@guardian/source-foundations';
-import { Link } from '@guardian/source-react-components';
-import { StraightLines } from '@guardian/source-react-components-development-kitchen';
-import type { Branding } from '../../../types/branding';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import { brandAltBackground, space } from 'npm:@guardian/source-foundations';
+import { Link } from 'npm:@guardian/source-react-components';
+import { StraightLines } from 'npm:@guardian/source-react-components-development-kitchen';
+import type { Branding } from '../../../types/branding.ts';
 import type {
 	DCRContainerPalette,
 	DCRContainerType,
 	DCRSnapType,
 	DCRSupportingContent,
-} from '../../../types/front';
-import type { Palette } from '../../../types/palette';
-import { decidePalette } from '../../lib/decidePalette';
-import { getZIndex } from '../../lib/getZIndex';
-import { Avatar } from '../Avatar';
-import { CardHeadline } from '../CardHeadline';
-import { Hide } from '../Hide';
-import { MediaMeta } from '../MediaMeta';
-import { Snap } from '../Snap';
-import { StarRating } from '../StarRating/StarRating';
-import { SupportingContent } from '../SupportingContent';
-import { AvatarContainer } from './components/AvatarContainer';
-import { CardAge } from './components/CardAge';
-import { CardBranding } from './components/CardBranding';
-import { CardFooter } from './components/CardFooter';
-import { CardLayout } from './components/CardLayout';
-import { CardLink } from './components/CardLink';
-import { CardWrapper } from './components/CardWrapper';
-import { ContentWrapper } from './components/ContentWrapper';
-import { HeadlineWrapper } from './components/HeadlineWrapper';
-import { ImageWrapper } from './components/ImageWrapper';
-import { TrailTextWrapper } from './components/TrailTextWrapper';
+} from '../../../types/front.ts';
+import type { Palette } from '../../../types/palette.ts';
+import { decidePalette } from '../../lib/decidePalette.ts';
+import { getZIndex } from '../../lib/getZIndex.ts';
+import { Avatar } from '../Avatar.ts';
+import { CardHeadline } from '../CardHeadline.ts';
+import { Hide } from '../Hide.ts';
+import { MediaMeta } from '../MediaMeta.ts';
+import { Snap } from '../Snap.ts';
+import { StarRating } from '../StarRating/StarRating.ts';
+import { SupportingContent } from '../SupportingContent.ts';
+import { AvatarContainer } from './components/AvatarContainer.ts';
+import { CardAge } from './components/CardAge.ts';
+import { CardBranding } from './components/CardBranding.ts';
+import { CardFooter } from './components/CardFooter.ts';
+import { CardLayout } from './components/CardLayout.ts';
+import { CardLink } from './components/CardLink.ts';
+import { CardWrapper } from './components/CardWrapper.ts';
+import { ContentWrapper } from './components/ContentWrapper.ts';
+import { HeadlineWrapper } from './components/HeadlineWrapper.ts';
+import { ImageWrapper } from './components/ImageWrapper.ts';
+import { TrailTextWrapper } from './components/TrailTextWrapper.ts';
 
 export type Props = {
 	linkTo: string;

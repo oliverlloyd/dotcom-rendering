@@ -1,8 +1,8 @@
-import { ArticleDesign, ArticleDisplay, ArticleSpecial } from '@guardian/libs';
-import { decideFormat } from '../lib/decideFormat';
-import { useApi } from '../lib/useApi';
-import type { RichLinkImageData } from './RichLink';
-import { RichLink } from './RichLink';
+import { ArticleDesign, ArticleDisplay, ArticleSpecial } from 'npm:@guardian/libs';
+import { decideFormat } from '../lib/decideFormat.ts';
+import { useApi } from '../lib/useApi.ts';
+import type { RichLinkImageData } from './RichLink.ts';
+import { RichLink } from './RichLink.ts';
 
 type Props = {
 	element: RichLinkBlockElement;

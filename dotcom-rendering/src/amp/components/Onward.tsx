@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import React from 'react';
-import { OnwardContainer } from './OnwardContainer';
+import { OnwardContainer } from './OnwardContainer.ts';
 
 const wrapper = css`
 	background-color: white;

@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/naming-convention -- because underscores work here*/
 import type { TrailType } from 'src/types/trails';
-import type { DCRContainerPalette, DCRGroupedTrails } from '../../types/front';
+import type { DCRContainerPalette, DCRGroupedTrails } from '../../types/front.ts';
 import {
 	Card25_Card75,
 	Card50_Card50,
 	Card75_Card25,
 	shouldPadWrappableRows,
-} from '../lib/dynamicSlices';
-import { LI } from './Card/components/LI';
-import { UL } from './Card/components/UL';
-import { FrontCard } from './FrontCard';
+} from '../lib/dynamicSlices.ts';
+import { LI } from './Card/components/LI.ts';
+import { UL } from './Card/components/UL.ts';
+import { FrontCard } from './FrontCard.ts';
 
 type Props = {
 	groupedTrails: DCRGroupedTrails;

@@ -1,7 +1,7 @@
-import { joinUrl } from '@guardian/libs';
+import { joinUrl } from 'npm:@guardian/libs';
 import type { Props as DiscussionProps } from 'src/web/components/Discussion';
-import { useApi } from '../lib/useApi';
-import { Discussion } from './Discussion';
+import { useApi } from '../lib/useApi.ts';
+import { Discussion } from './Discussion.ts';
 
 export const DiscussionWhenSignedIn = (props: DiscussionProps) => {
 	const { discussionApiUrl } = props;

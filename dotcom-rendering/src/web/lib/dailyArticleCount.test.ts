@@ -1,9 +1,9 @@
-import type { DailyArticleHistory } from './dailyArticleCount';
+import type { DailyArticleHistory } from './dailyArticleCount.ts';
 import {
 	DailyArticleCountKey,
 	getDailyArticleCount,
 	incrementDailyArticleCount,
-} from './dailyArticleCount';
+} from './dailyArticleCount.ts';
 
 const today = Math.floor(Date.now() / 86400000);
 

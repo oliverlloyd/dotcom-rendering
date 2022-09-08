@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
-import type { EditionId } from '../../types/edition';
-import { shouldHideSupportMessaging as shouldHideSupportMessaging_ } from '../lib/contributions';
-import { ReaderRevenueLinks } from './ReaderRevenueLinks.importable';
+import type { EditionId } from '../../types/edition.ts';
+import { shouldHideSupportMessaging as shouldHideSupportMessaging_ } from '../lib/contributions.ts';
+import { ReaderRevenueLinks } from './ReaderRevenueLinks.importable.ts';
 
 const shouldHideSupportMessaging: {
 	[key: string]: any;

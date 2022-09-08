@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	from,
 	headline,
@@ -6,10 +6,10 @@ import {
 	space,
 	sport,
 	textSans,
-} from '@guardian/source-foundations';
-import { buildDetailText } from '../lib/buildNewsletterSignUpText';
-import { NewsletterDetail } from './NewsletterDetail';
-import { SecureSignup } from './SecureSignup';
+} from 'npm:@guardian/source-foundations';
+import { buildDetailText } from '../lib/buildNewsletterSignUpText.ts';
+import { NewsletterDetail } from './NewsletterDetail.ts';
+import { SecureSignup } from './SecureSignup.ts';
 
 type Props = {
 	identityName: string;

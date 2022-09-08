@@ -1,5 +1,5 @@
 import React from 'react';
-import { Caption } from '../Caption';
+import { Caption } from '../Caption.ts';
 
 export const GuVideoBlockComponent: React.FC<{
 	element: GuVideoBlockElement;

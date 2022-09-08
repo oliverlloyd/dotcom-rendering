@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { log } from '@guardian/libs';
+import { log } from 'npm:@guardian/libs';
 import type { Attributes } from 'preact';
 import { h, hydrate, render } from 'preact';
-import { initPerf } from '../initPerf';
+import { initPerf } from '../initPerf.ts';
 
 /**
  * This function dynamically imports and then hydrates a specific component in

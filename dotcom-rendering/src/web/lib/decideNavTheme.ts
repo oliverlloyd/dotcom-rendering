@@ -1,4 +1,4 @@
-import { ArticlePillar, ArticleSpecial } from '@guardian/libs';
+import { ArticlePillar, ArticleSpecial } from 'npm:@guardian/libs';
 
 export const decideNavTheme = (pillar: LegacyPillar): ArticleTheme => {
 	switch (pillar) {

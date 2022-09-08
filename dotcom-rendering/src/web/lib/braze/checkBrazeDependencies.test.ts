@@ -1,4 +1,4 @@
-import { checkBrazeDependencies } from './checkBrazeDependencies';
+import { checkBrazeDependencies } from './checkBrazeDependencies.ts';
 
 let mockBrazeUuid: string | null;
 jest.mock('../getBrazeUuid', () => ({

@@ -1,4 +1,4 @@
-import { bylineTokens } from './byline-tokens';
+import { bylineTokens } from './byline-tokens.ts';
 
 describe('byline-tokens', () => {
 	it('should split out tag titles from the text', () => {

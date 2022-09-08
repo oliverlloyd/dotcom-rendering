@@ -1,4 +1,4 @@
-import { hasRequiredConsents } from './hasRequiredConsents';
+import { hasRequiredConsents } from './hasRequiredConsents.ts';
 
 const brazeVendorId = '5ed8c49c4b8ce4571c7ad801';
 

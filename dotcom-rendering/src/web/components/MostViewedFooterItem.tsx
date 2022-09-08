@@ -1,15 +1,15 @@
-import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { ArticleDesign } from 'npm:@guardian/libs';
 import {
 	border,
 	headline,
 	neutral,
 	text,
 	until,
-} from '@guardian/source-foundations';
-import { AgeWarning } from './AgeWarning';
-import { BigNumber } from './BigNumber/BigNumber';
-import { LinkHeadline } from './LinkHeadline';
+} from 'npm:@guardian/source-foundations';
+import { AgeWarning } from './AgeWarning.ts';
+import { BigNumber } from './BigNumber/BigNumber.ts';
+import { LinkHeadline } from './LinkHeadline.ts';
 
 const gridItem = (position: number) => css`
 	position: relative;

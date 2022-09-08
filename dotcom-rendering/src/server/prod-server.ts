@@ -5,8 +5,8 @@ import responseTime from 'response-time';
 import {
 	render as renderAMPArticle,
 	renderPerfTest as renderAMPArticlePerfTest,
-} from '../amp/server';
-import type { CAPIArticleType } from '../types/frontend';
+} from '../amp/server/amp-server.tsx';
+import type { CAPIArticleType } from '../types/frontend.ts';
 import {
 	renderArticle,
 	renderArticleJson,
@@ -17,15 +17,16 @@ import {
 	renderInteractive,
 	renderKeyEvents,
 	renderOnwards,
-} from '../web/server';
-import { recordBaselineCloudWatchMetrics } from './lib/aws/metrics-baseline';
-import { getContentFromURLMiddleware } from './lib/get-content-from-url';
-import { logger } from './lib/logging';
+} from '../web/server/web-server.ts';
+import { recordBaselineCloudWatchMetrics } from './lib/aws/metrics-baseline.ts';
+import { getContentFromURLMiddleware } from './lib/get-content-from-url.ts';
+import { logger } from './lib/logging.ts';
 
 // Middleware to track route performance using 'response-time' lib
 // Usage: app.post('/Article', logRenderTime, renderArticle);
 const logRenderTime = responseTime(
 	(req: Request, _: Response, time: number) => {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- we’re pretty the body will have this format
 		const body: CAPIArticleType = req.body;
 		logger.info({
 			pageId: body.pageId,

@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { ArticleSpecial } from '@guardian/libs';
-import type { FontScaleArgs, FontWeight } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { ArticleSpecial } from 'npm:@guardian/libs';
+import type { FontScaleArgs, FontWeight } from 'npm:@guardian/source-foundations';
 import {
 	between,
 	from,
@@ -8,16 +8,16 @@ import {
 	space,
 	textSans,
 	until,
-} from '@guardian/source-foundations';
-import { Link } from '@guardian/source-react-components';
+} from 'npm:@guardian/source-foundations';
+import { Link } from 'npm:@guardian/source-react-components';
 import React from 'react';
-import type { DCRContainerPalette } from '../../types/front';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
-import { getZIndex } from '../lib/getZIndex';
-import { Byline } from './Byline';
-import { Kicker } from './Kicker';
-import { QuoteIcon } from './QuoteIcon';
+import type { DCRContainerPalette } from '../../types/front.ts';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { getZIndex } from '../lib/getZIndex.ts';
+import { Byline } from './Byline.ts';
+import { Kicker } from './Kicker.ts';
+import { QuoteIcon } from './QuoteIcon.ts';
 
 type Props = {
 	headlineText: string; // The text shown

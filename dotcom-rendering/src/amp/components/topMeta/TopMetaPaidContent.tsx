@@ -1,17 +1,17 @@
-import { css } from '@emotion/react';
-import { body, neutral, text, textSans } from '@guardian/source-foundations';
+import { css } from 'npm:@emotion/react';
+import { body, neutral, text, textSans } from 'npm:@guardian/source-foundations';
 import React from 'react';
-import { getAgeWarning } from '../../../lib/age-warning';
-import { getSoleContributor } from '../../../lib/byline';
-import { getSharingUrls } from '../../../lib/sharing-urls';
-import type { Branding } from '../../../types/branding';
-import type { ArticleModel } from '../../types/ArticleModel';
-import { MainMedia } from '../MainMedia';
-import { BrandingRegionContainer } from './Branding';
-import { Byline } from './Byline';
-import { PaidForBand } from './PaidForBand';
-import { Standfirst } from './Standfirst';
-import { TopMetaExtras } from './TopMetaExtras';
+import { getAgeWarning } from '../../../lib/age-warning.ts';
+import { getSoleContributor } from '../../../lib/byline.ts';
+import { getSharingUrls } from '../../../lib/sharing-urls.ts';
+import type { Branding } from '../../../types/branding.ts';
+import type { ArticleModel } from '../../types/ArticleModel.ts';
+import { MainMedia } from '../MainMedia.ts';
+import { BrandingRegionContainer } from './Branding.ts';
+import { Byline } from './Byline.ts';
+import { PaidForBand } from './PaidForBand.ts';
+import { Standfirst } from './Standfirst.ts';
+import { TopMetaExtras } from './TopMetaExtras.ts';
 
 const headerStyle = css`
 	${textSans.xlarge()};

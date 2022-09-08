@@ -1,13 +1,13 @@
-import { Hide } from '@guardian/source-react-components';
-import type { Switches } from '../../types/config';
-import { EnhancePinnedPost } from '../components/EnhancePinnedPost.importable';
-import { FilterKeyEventsToggle } from '../components/FilterKeyEventsToggle.importable';
-import { Island } from '../components/Island';
-import { KeyEventsCarousel } from '../components/KeyEventsCarousel.importable';
-import { LiveBlock } from '../components/LiveBlock';
-import { LiveBlogEpic } from '../components/LiveBlogEpic.importable';
-import { PinnedPost } from '../components/PinnedPost';
-import { TopicFilterBank } from '../components/TopicFilterBank.importable';
+import { Hide } from 'npm:@guardian/source-react-components';
+import type { Switches } from '../../types/config.ts';
+import { EnhancePinnedPost } from '../components/EnhancePinnedPost.importable.tsx';
+import { FilterKeyEventsToggle } from '../components/FilterKeyEventsToggle.importable.tsx';
+import { Island } from '../components/Island.tsx';
+import { KeyEventsCarousel } from '../components/KeyEventsCarousel.importable.tsx';
+import { LiveBlock } from '../components/LiveBlock.tsx';
+import { LiveBlogEpic } from '../components/LiveBlogEpic.importable.tsx';
+import { PinnedPost } from '../components/PinnedPost.tsx';
+import { TopicFilterBank } from '../components/TopicFilterBank.importable.tsx';
 
 type Props = {
 	format: ArticleFormat;

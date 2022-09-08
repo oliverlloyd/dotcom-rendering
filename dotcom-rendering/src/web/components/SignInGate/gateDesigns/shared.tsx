@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 import {
 	background,
 	brand,
@@ -9,7 +9,7 @@ import {
 	space,
 	text,
 	textSans,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 
 export const signInGateContainer = css`
 	max-width: 617px;

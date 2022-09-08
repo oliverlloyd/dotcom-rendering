@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
+import { css } from 'npm:@emotion/react';
 // eslint-disable-next-line import/no-extraneous-dependencies -- it’s a yarn workspace
-import Accordion from '@guardian/common-rendering/src/components/accordion';
+import Accordion from 'npm:@guardian/common-rendering/src/components/accordion';
 // eslint-disable-next-line import/no-extraneous-dependencies -- it’s a yarn workspace
-import { Pagination } from '@guardian/common-rendering/src/components/Pagination';
-import { ArticleDesign } from '@guardian/libs';
-import type { ArticleFormat } from '@guardian/libs';
+import { Pagination } from 'npm:@guardian/common-rendering/src/components/Pagination';
+import { ArticleDesign } from 'npm:@guardian/libs';
+import type { ArticleFormat } from 'npm:@guardian/libs';
 import {
 	brandAltBackground,
 	brandBackground,
@@ -14,54 +14,54 @@ import {
 	neutral,
 	space,
 	until,
-} from '@guardian/source-foundations';
-import { Hide } from '@guardian/source-react-components';
-import { StraightLines } from '@guardian/source-react-components-development-kitchen';
-import { buildAdTargeting } from '../../lib/ad-targeting';
-import type { NavType } from '../../model/extract-nav';
-import type { CAPIArticleType } from '../../types/frontend';
-import { AdSlot, MobileStickyContainer } from '../components/AdSlot';
-import { ArticleBody } from '../components/ArticleBody';
-import { ArticleContainer } from '../components/ArticleContainer';
-import { ArticleHeadline } from '../components/ArticleHeadline';
-import { ArticleLastUpdated } from '../components/ArticleLastUpdated';
-import { ArticleMeta } from '../components/ArticleMeta';
-import { ArticleTitle } from '../components/ArticleTitle';
-import { Carousel } from '../components/Carousel.importable';
-import { DecideLines } from '../components/DecideLines';
-import { DecideOnwards } from '../components/DecideOnwards';
-import { DiscussionLayout } from '../components/DiscussionLayout';
-import { FilterKeyEventsToggle } from '../components/FilterKeyEventsToggle.importable';
-import { Footer } from '../components/Footer';
-import { GetCricketScoreboard } from '../components/GetCricketScoreboard.importable';
-import { GetMatchNav } from '../components/GetMatchNav.importable';
-import { GetMatchStats } from '../components/GetMatchStats.importable';
-import { GetMatchTabs } from '../components/GetMatchTabs.importable';
-import { GridItem } from '../components/GridItem';
-import { Header } from '../components/Header';
-import { HeaderAdSlot } from '../components/HeaderAdSlot';
-import { Island } from '../components/Island';
-import { KeyEventsCarousel } from '../components/KeyEventsCarousel.importable';
-import { Liveness } from '../components/Liveness.importable';
-import { MainMedia } from '../components/MainMedia';
-import { MostViewedFooterData } from '../components/MostViewedFooterData.importable';
-import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout';
-import { Nav } from '../components/Nav/Nav';
-import { OnwardsUpper } from '../components/OnwardsUpper.importable';
-import { RightColumn } from '../components/RightColumn';
-import { Section } from '../components/Section';
-import { Standfirst } from '../components/Standfirst';
-import { StarRating } from '../components/StarRating/StarRating';
-import { StickyBottomBanner } from '../components/StickyBottomBanner.importable';
-import { SubMeta } from '../components/SubMeta';
-import { SubNav } from '../components/SubNav.importable';
-import { TopicFilterBank } from '../components/TopicFilterBank.importable';
-import { getContributionsServiceUrl } from '../lib/contributions';
-import { decidePalette } from '../lib/decidePalette';
-import { decideTrail } from '../lib/decideTrail';
-import { getZIndex } from '../lib/getZIndex';
-import { getCurrentPillar } from '../lib/layoutHelpers';
-import { BannerWrapper, SendToBack, Stuck } from './lib/stickiness';
+} from 'npm:@guardian/source-foundations';
+import { Hide } from 'npm:@guardian/source-react-components';
+import { StraightLines } from 'npm:@guardian/source-react-components-development-kitchen';
+import { buildAdTargeting } from '../../lib/ad-targeting.ts';
+import type { NavType } from '../../model/extract-nav.ts';
+import type { CAPIArticleType } from '../../types/frontend.ts';
+import { AdSlot, MobileStickyContainer } from '../components/AdSlot.tsx';
+import { ArticleBody } from '../components/ArticleBody.tsx';
+import { ArticleContainer } from '../components/ArticleContainer.tsx';
+import { ArticleHeadline } from '../components/ArticleHeadline.tsx';
+import { ArticleLastUpdated } from '../components/ArticleLastUpdated.tsx';
+import { ArticleMeta } from '../components/ArticleMeta.tsx';
+import { ArticleTitle } from '../components/ArticleTitle.tsx';
+import { Carousel } from '../components/Carousel.importable.tsx';
+import { DecideLines } from '../components/DecideLines.tsx';
+import { DecideOnwards } from '../components/DecideOnwards.tsx';
+import { DiscussionLayout } from '../components/DiscussionLayout.tsx';
+import { FilterKeyEventsToggle } from '../components/FilterKeyEventsToggle.importable.tsx';
+import { Footer } from '../components/Footer.tsx';
+import { GetCricketScoreboard } from '../components/GetCricketScoreboard.importable.tsx';
+import { GetMatchNav } from '../components/GetMatchNav.importable.tsx';
+import { GetMatchStats } from '../components/GetMatchStats.importable.tsx';
+import { GetMatchTabs } from '../components/GetMatchTabs.importable.tsx';
+import { GridItem } from '../components/GridItem.tsx';
+import { Header } from '../components/Header.tsx';
+import { HeaderAdSlot } from '../components/HeaderAdSlot.tsx';
+import { Island } from '../components/Island.tsx';
+import { KeyEventsCarousel } from '../components/KeyEventsCarousel.importable.tsx';
+import { Liveness } from '../components/Liveness.importable.tsx';
+import { MainMedia } from '../components/MainMedia.tsx';
+import { MostViewedFooterData } from '../components/MostViewedFooterData.importable.tsx';
+import { MostViewedFooterLayout } from '../components/MostViewedFooterLayout.tsx';
+import { Nav } from '../components/Nav/Nav.tsx';
+import { OnwardsUpper } from '../components/OnwardsUpper.importable.tsx';
+import { RightColumn } from '../components/RightColumn.tsx';
+import { Section } from '../components/Section.tsx';
+import { Standfirst } from '../components/Standfirst.tsx';
+import { StarRating } from '../components/StarRating/StarRating.tsx';
+import { StickyBottomBanner } from '../components/StickyBottomBanner.importable.tsx';
+import { SubMeta } from '../components/SubMeta.tsx';
+import { SubNav } from '../components/SubNav.importable.tsx';
+import { TopicFilterBank } from '../components/TopicFilterBank.importable.tsx';
+import { getContributionsServiceUrl } from '../lib/contributions.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
+import { decideTrail } from '../lib/decideTrail.ts';
+import { getZIndex } from '../lib/getZIndex.tsx';
+import { getCurrentPillar } from '../lib/layoutHelpers.ts';
+import { BannerWrapper, SendToBack, Stuck } from './lib/stickiness.tsx';
 
 const HeadlineGrid = ({ children }: { children: React.ReactNode }) => (
 	<div

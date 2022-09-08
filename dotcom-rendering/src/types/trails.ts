@@ -1,5 +1,5 @@
-import type { Branding } from './branding';
-import type { DCRSnapType, DCRSupportingContent } from './front';
+import type { Branding } from './branding.ts';
+import type { DCRSnapType, DCRSupportingContent } from './front.ts';
 
 type MediaType = 'Video' | 'Audio' | 'Gallery';
 

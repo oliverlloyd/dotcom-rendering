@@ -1,8 +1,8 @@
-import type { ArticlePillar, ArticleSpecial } from '@guardian/libs';
-import type { ServerSideTests, Switches } from './config';
-import type { EditionId } from './edition';
-import type { FooterType } from './footer';
-import type { TrailType } from './trails';
+import type { ArticlePillar, ArticleSpecial } from 'npm:@guardian/libs';
+import type { ServerSideTests, Switches } from './config.ts';
+import type { EditionId } from './edition.ts';
+import type { FooterType } from './footer.ts';
+import type { TrailType } from './trails.ts';
 
 export interface FEFrontType {
 	pressedPage: FEPressedPageType;

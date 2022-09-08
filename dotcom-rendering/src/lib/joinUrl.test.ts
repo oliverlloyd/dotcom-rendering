@@ -1,4 +1,4 @@
-import { joinUrl } from './joinUrl';
+import { joinUrl } from './joinUrl.ts';
 
 const expectedOutput = 'http://example.com/abc/xyz';
 

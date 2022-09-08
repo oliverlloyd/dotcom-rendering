@@ -1,5 +1,5 @@
-import type { CountryCode } from '@guardian/libs';
-import * as geo from './getCountryCode';
+import type { CountryCode } from 'npm:@guardian/libs';
+import * as geo from './getCountryCode.ts';
 
 let localePromise: Promise<CountryCode | null>;
 let overriddenCountry: string;

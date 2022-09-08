@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { Radio, RadioGroup } from '@guardian/source-react-components';
-import { FieldLabel } from './FieldLabel';
+import { css } from 'npm:@emotion/react';
+import { Radio, RadioGroup } from 'npm:@guardian/source-react-components';
+import { FieldLabel } from './FieldLabel.ts';
 
 type FieldProp = {
 	formField: CampaignFieldRadio;

@@ -1,4 +1,4 @@
-import { filterForTagsOfType } from './tag-utils';
+import { filterForTagsOfType } from './tag-utils.ts';
 
 describe('filterForTagsOfType', () => {
 	it('should extract tags of specified type from ArticleModel data', () => {

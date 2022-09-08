@@ -1,5 +1,5 @@
-import { ArticleDesign, ArticlePillar, ArticleSpecial } from '@guardian/libs';
-import type { Branding } from '../../types/branding';
+import { ArticleDesign, ArticlePillar, ArticleSpecial } from 'npm:@guardian/libs';
+import type { Branding } from '../../types/branding.ts';
 
 const shouldUseLogoForDarkBackground = (format: ArticleFormat): boolean => {
 	if (format.theme === ArticleSpecial.SpecialReport) return true;

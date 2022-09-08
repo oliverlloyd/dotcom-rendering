@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { space, textSans } from '@guardian/source-foundations';
-import { SvgClock } from '@guardian/source-react-components';
+import { css } from 'npm:@emotion/react';
+import { space, textSans } from 'npm:@guardian/source-foundations';
+import { SvgClock } from 'npm:@guardian/source-react-components';
 
 type Props = {
 	frequency: string;

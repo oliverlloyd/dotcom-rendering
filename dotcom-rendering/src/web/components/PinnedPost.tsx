@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { timeAgo } from '@guardian/libs';
+import { css } from 'npm:@emotion/react';
+import { timeAgo } from 'npm:@guardian/libs';
 import {
 	focusHalo,
 	from,
@@ -9,14 +9,14 @@ import {
 	textSans,
 	transitions,
 	visuallyHidden,
-} from '@guardian/source-foundations';
+} from 'npm:@guardian/source-foundations';
 import {
 	SvgMinus,
 	SvgPinned,
 	SvgPlus,
-} from '@guardian/source-react-components';
-import type { Palette } from '../../types/palette';
-import { decidePalette } from '../lib/decidePalette';
+} from 'npm:@guardian/source-react-components';
+import type { Palette } from '../../types/palette.ts';
+import { decidePalette } from '../lib/decidePalette.ts';
 
 const pinnedPostContainer = (palette: Palette) => css`
 	border: 3px solid ${palette.border.pinnedPost};

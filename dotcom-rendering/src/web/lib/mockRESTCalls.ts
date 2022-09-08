@@ -1,13 +1,13 @@
 import fetchMock from 'fetch-mock';
-import { matchReport } from '../../../fixtures/generated/match-report';
-import { series } from '../../../fixtures/generated/series';
-import { storyPackage } from '../../../fixtures/generated/story-package';
-import { discussion } from '../../../fixtures/manual/discussion';
-import { discussionNoTopComments } from '../../../fixtures/manual/discussion-no-top-comments';
-import { mostRead } from '../../../fixtures/manual/most-read';
-import { mostReadGeo } from '../../../fixtures/manual/most-read-geo';
-import { related } from '../../../fixtures/manual/related';
-import { shortDiscussion } from '../../../fixtures/manual/short-discussion';
+import { matchReport } from '../../../fixtures/generated/match-report.ts';
+import { series } from '../../../fixtures/generated/series.ts';
+import { storyPackage } from '../../../fixtures/generated/story-package.ts';
+import { discussion } from '../../../fixtures/manual/discussion.ts';
+import { discussionNoTopComments } from '../../../fixtures/manual/discussion-no-top-comments.ts';
+import { mostRead } from '../../../fixtures/manual/most-read.ts';
+import { mostReadGeo } from '../../../fixtures/manual/most-read-geo.ts';
+import { related } from '../../../fixtures/manual/related.ts';
+import { shortDiscussion } from '../../../fixtures/manual/short-discussion.ts';
 
 const richLinkCard = {
 	tags: [

@@ -1,9 +1,9 @@
-import { renderToString } from 'react-dom/server';
-import type { CAPIOnwards } from '../../types/onwards';
-import type { CAPITrailType, TrailType } from '../../types/trails';
-import { Carousel } from '../components/Carousel.importable';
-import { decideFormat } from '../lib/decideFormat';
-import { decideTrail } from '../lib/decideTrail';
+import { renderToString } from 'npm:react-dom/server';
+import type { CAPIOnwards } from '../../types/onwards.ts';
+import type { CAPITrailType, TrailType } from '../../types/trails.ts';
+import { Carousel } from '../components/Carousel.importable.tsx';
+import { decideFormat } from '../lib/decideFormat.ts';
+import { decideTrail } from '../lib/decideTrail.ts';
 
 const buildTrails = (
 	trails: CAPITrailType[],

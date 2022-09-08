@@ -1,7 +1,7 @@
-import { renderToString } from 'react-dom/server';
-import { buildAdTargeting } from '../../lib/ad-targeting';
-import { decideFormat } from '../lib/decideFormat';
-import { LiveBlogRenderer } from '../lib/LiveBlogRenderer';
+import { renderToString } from 'npm:react-dom/server';
+import { buildAdTargeting } from '../../lib/ad-targeting.ts';
+import { decideFormat } from '../lib/decideFormat.ts';
+import { LiveBlogRenderer } from '../lib/LiveBlogRenderer.tsx';
 
 /**
  * blocksToHtml is used by the /Blocks endpoint as part of keeping liveblogs live

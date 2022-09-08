@@ -1,15 +1,15 @@
-import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
-import createEmotionServer from '@emotion/server/create-instance';
-import { renderToString } from 'react-dom/server';
-import { getScriptArrayFromFile } from '../../lib/assets';
-import { escapeData } from '../../lib/escapeData';
-import { extractNAV } from '../../model/extract-nav';
-import { makeWindowGuardian } from '../../model/window-guardian';
-import type { DCRFrontType } from '../../types/front';
-import { FrontPage } from '../components/FrontPage';
-import { getHttp3Url } from '../lib/getHttp3Url';
-import { pageTemplate } from './pageTemplate';
+import createCache from 'npm:@emotion/cache';
+import { CacheProvider } from 'npm:@emotion/react';
+import createEmotionServer from 'npm:@emotion/server/create-instance';
+import { renderToString } from 'npm:react-dom/server';
+import { getScriptArrayFromFile } from '../../lib/assets.ts';
+import { escapeData } from '../../lib/escapeData.tsx';
+import { extractNAV } from '../../model/extract-nav.ts';
+import { makeWindowGuardian } from '../../model/window-guardian.ts';
+import type { DCRFrontType } from '../../types/front.ts';
+import { FrontPage } from '../components/FrontPage.tsx';
+import { getHttp3Url } from '../lib/getHttp3Url.ts';
+import { pageTemplate } from './pageTemplate.ts';
 
 interface Props {
 	front: DCRFrontType;

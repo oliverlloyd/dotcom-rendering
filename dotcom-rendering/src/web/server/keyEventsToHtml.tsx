@@ -1,6 +1,6 @@
 import { renderToString } from 'react-dom/server';
-import { KeyEventsContainer } from '../components/KeyEventsContainer';
-import { decideFormat } from '../lib/decideFormat';
+import { KeyEventsContainer } from '../components/KeyEventsContainer.tsx';
+import { decideFormat } from '../lib/decideFormat.ts';
 
 /**
  * keyEventsToHtml is used by the /KeyEvents endpoint as part of keeping liveblogs live

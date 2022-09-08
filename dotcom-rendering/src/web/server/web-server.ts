@@ -1,18 +1,21 @@
 import type express from 'express';
-import { Standard as ExampleArticle } from '../../../fixtures/generated/articles/Standard';
-import { enhanceBlocks } from '../../model/enhanceBlocks';
-import { enhanceCollections } from '../../model/enhanceCollections';
-import { enhanceCommercialProperties } from '../../model/enhanceCommercialProperties';
-import { enhanceStandfirst } from '../../model/enhanceStandfirst';
-import { validateAsCAPIType, validateAsFrontType } from '../../model/validate';
-import type { DCRFrontType, FEFrontType } from '../../types/front';
-import type { CAPIArticleType } from '../../types/frontend';
-import type { CAPIOnwards } from '../../types/onwards';
-import { articleToHtml } from './articleToHtml';
-import { blocksToHtml } from './blocksToHtml';
-import { frontToHtml } from './frontToHtml';
-import { keyEventsToHtml } from './keyEventsToHtml';
-import { onwardsToHtml } from './onwardsToHtml';
+import { Standard as ExampleArticle } from '../../../fixtures/generated/articles/Standard.ts';
+import { enhanceBlocks } from '../../model/enhanceBlocks.ts';
+import { enhanceCollections } from '../../model/enhanceCollections.ts';
+import { enhanceCommercialProperties } from '../../model/enhanceCommercialProperties.ts';
+import { enhanceStandfirst } from '../../model/enhanceStandfirst.ts';
+import {
+	validateAsCAPIType,
+	validateAsFrontType,
+} from '../../model/validate.ts';
+import type { DCRFrontType, FEFrontType } from '../../types/front.ts';
+import type { CAPIArticleType } from '../../types/frontend.ts';
+import type { CAPIOnwards } from '../../types/onwards.ts';
+import { articleToHtml } from './articleToHtml.tsx';
+import { blocksToHtml } from './blocksToHtml.tsx';
+import { frontToHtml } from './frontToHtml.tsx';
+import { keyEventsToHtml } from './keyEventsToHtml.tsx';
+import { onwardsToHtml } from './onwardsToHtml.tsx';
 
 function enhancePinnedPost(format: CAPIFormat, block?: Block) {
 	return block ? enhanceBlocks([block], format)[0] : block;

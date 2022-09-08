@@ -1,8 +1,8 @@
-import { brandBackground, resets } from '@guardian/source-foundations';
-import he from 'he';
-import { ASSET_ORIGIN } from '../../lib/assets';
-import { getFontsCss } from '../../lib/fonts-css';
-import { getHttp3Url } from '../lib/getHttp3Url';
+import { brandBackground, resets } from 'npm:@guardian/source-foundations';
+import he from 'npm:he';
+import { ASSET_ORIGIN } from '../../lib/assets.ts';
+import { getFontsCss } from '../../lib/fonts-css.ts';
+import { getHttp3Url } from '../lib/getHttp3Url.ts';
 
 export const pageTemplate = ({
 	css,

@@ -1,7 +1,8 @@
 {
-	"deno.enablePaths": ["scripts/deno"],
+	"deno.enablePaths": ["scripts/deno", "dotcom-rendering"],
 	"deno.lint": true,
 	"deno.unstable": false,
+	"deno.importMap": "import_map.json",
     "eslint.validate": ["typescript", "typescriptreact"],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true

@@ -3,7 +3,8 @@ import plugins from './cypress/plugins';
 
 // https://docs.cypress.io/guides/references/configuration
 
-module.exports = defineConfig({
+// eslint-disable-next-line import/no-default-export
+export default defineConfig({
 	viewportWidth: 1500,
 	viewportHeight: 860,
 	video: false,

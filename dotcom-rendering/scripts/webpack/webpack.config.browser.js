@@ -1,5 +1,5 @@
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const GuStatsReportPlugin = require('./plugins/gu-stats-report-plugin');
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
+import GuStatsReportPlugin from './plugins/gu-stats-report-plugin.js';
 
 const DEV = process.env.NODE_ENV === 'development';
 
@@ -109,7 +109,7 @@ const getLoaders = (bundle) => {
  * @param {{ bundle: 'legacy' | 'modern'  | 'variant', sessionId: string }} options
  * @returns {import('webpack').Configuration}
  */
-module.exports = ({ bundle, sessionId }) => ({
+export default ({ isLegacyJS, sessionId }) => ({
 	entry: {
 		sentryLoader: './src/web/browser/sentryLoader/init.ts',
 		bootCmp: './src/web/browser/bootCmp/init.ts',
@@ -153,8 +153,45 @@ module.exports = ({ bundle, sessionId }) => ({
 		rules: [
 			{
 				test: /\.[jt]sx?|mjs$/,
-				exclude: module.exports.babelExclude,
-				use: getLoaders(bundle),
+				exclude: babelExclude,
+
+				use: [
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: [
+								'@babel/preset-react',
+								isLegacyJS
+									? [
+											'@babel/preset-env',
+											{
+												targets: {
+													ie: '11',
+												},
+												modules: false,
+											},
+									  ]
+									: [
+											'@babel/preset-env',
+											{
+												bugfixes: true,
+												targets: {
+													esmodules: true,
+												},
+											},
+									  ],
+							],
+							compact: true,
+						},
+					},
+					{
+						loader: 'ts-loader',
+						options: {
+							configFile: 'tsconfig.build.json',
+							transpileOnly: true,
+						},
+					},
+				],
 			},
 			{
 				test: /\.css$/,
@@ -168,7 +205,7 @@ module.exports = ({ bundle, sessionId }) => ({
 	},
 });
 
-module.exports.babelExclude = {
+export const babelExclude = {
 	and: [/node_modules/],
 	not: [
 		// Include all @guardian modules, except automat-modules

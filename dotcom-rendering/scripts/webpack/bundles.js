@@ -7,8 +7,4 @@
  *
  * @type {boolean} prevent TS from narrowing this to its current value
  */
-const BUILD_VARIANT = false;
-
-module.exports = {
-	BUILD_VARIANT,
-};
+export const BUILD_VARIANT = false;

@@ -109,7 +109,7 @@ const getLoaders = (bundle) => {
  * @param {{ bundle: 'legacy' | 'modern'  | 'variant', sessionId: string }} options
  * @returns {import('webpack').Configuration}
  */
-export default ({ isLegacyJS, sessionId }) => ({
+export default ({ bundle, sessionId }) => ({
 	entry: {
 		sentryLoader: './src/web/browser/sentryLoader/init.ts',
 		bootCmp: './src/web/browser/bootCmp/init.ts',
@@ -155,43 +155,7 @@ export default ({ isLegacyJS, sessionId }) => ({
 				test: /\.[jt]sx?|mjs$/,
 				exclude: babelExclude,
 
-				use: [
-					{
-						loader: 'babel-loader',
-						options: {
-							presets: [
-								'@babel/preset-react',
-								isLegacyJS
-									? [
-											'@babel/preset-env',
-											{
-												targets: {
-													ie: '11',
-												},
-												modules: false,
-											},
-									  ]
-									: [
-											'@babel/preset-env',
-											{
-												bugfixes: true,
-												targets: {
-													esmodules: true,
-												},
-											},
-									  ],
-							],
-							compact: true,
-						},
-					},
-					{
-						loader: 'ts-loader',
-						options: {
-							configFile: 'tsconfig.build.json',
-							transpileOnly: true,
-						},
-					},
-				],
+				use: getLoaders(bundle)
 			},
 			{
 				test: /\.css$/,

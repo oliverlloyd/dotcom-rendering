@@ -3,6 +3,8 @@ import {
 	Button,
 	ButtonLink,
 	Checkbox,
+	Option,
+	Select,
 } from '@guardian/source-react-components';
 import { ToggleSwitch } from '@guardian/source-react-components-development-kitchen';
 import { useState } from 'react';
@@ -28,7 +30,6 @@ import {
 // 6. Regional costs of energy
 // 7. Graph needs units?
 
-
 // Oat milk costs v
 // 1.91","1.91","1.88","1.85","1.98","2.01","1.97","1.97","1.95","1.94","1.95","1.95","1.93"
 
@@ -51,78 +52,91 @@ const allData = [
 	{
 		month: 'Nov 21',
 		cowMilk: 0.000675,
+		oatMilk: 1.91 / 1000,
 		teabag: 1.625,
 		energyPerCup: 2.079,
 	},
 	{
 		month: 'Dec 21',
 		cowMilk: 0.000675,
+		oatMilk: 1.91 / 1000,
 		teabag: 1.729166667,
 		energyPerCup: 2.079,
 	},
 	{
 		month: 'Jan 22',
 		cowMilk: 0.000675,
+		oatMilk: 1.88 / 1000,
 		teabag: 1.595833333,
 		energyPerCup: 2.079,
 	},
 	{
 		month: 'Feb 22',
 		cowMilk: 0.000675,
+		oatMilk: 1.85 / 1000,
 		teabag: 1.5625,
 		energyPerCup: 2.079,
 	},
 	{
 		month: 'Mar 22',
 		cowMilk: 0.000675,
+		oatMilk: 1.98 / 1000,
 		teabag: 1.520833333,
 		energyPerCup: 2.079,
 	},
 	{
 		month: 'Apr 22',
 		cowMilk: 0.00075,
+		oatMilk: 2.01 / 1000,
 		teabag: 1.85,
 		energyPerCup: 3.08,
 	},
 	{
 		month: 'May 22',
 		cowMilk: 0.00075,
+		oatMilk: 1.97 / 1000,
 		teabag: 1.783333333,
 		energyPerCup: 3.08,
 	},
 	{
 		month: 'Jun 22',
 		cowMilk: 0.00085,
+		oatMilk: 1.97 / 1000,
 		teabag: 1.654166667,
 		energyPerCup: 3.08,
 	},
 	{
 		month: 'Jul 22',
 		cowMilk: 0.0008,
+		oatMilk: 1.95 / 1000,
 		teabag: 1.616666667,
 		energyPerCup: 3.08,
 	},
 	{
 		month: 'Aug 22',
 		cowMilk: 0.000875,
+		oatMilk: 1.94 / 1000,
 		teabag: 1.766666667,
 		energyPerCup: 3.08,
 	},
 	{
 		month: 'Sep 22',
 		cowMilk: 0.000875,
+		oatMilk: 1.95 / 1000,
 		teabag: 1.766666667,
 		energyPerCup: 3.08,
 	},
 	{
 		month: 'Oct 22',
 		cowMilk: 0.000875,
+		oatMilk: 1.95 / 1000,
 		teabag: 1.766666667,
 		energyPerCup: 3.74,
 	},
 	{
 		month: 'Nov 22',
 		cowMilk: 0.00095,
+		oatMilk: 1.93 / 1000,
 		teabag: 1.766666667,
 		energyPerCup: 3.74,
 	},
@@ -173,40 +187,41 @@ export const CostOfLiving = () => {
 						left: 20,
 						bottom: 5,
 					}}
+					style={{ fontFamily: 'GuardianTextSans' }}
 				>
 					{/* <CartesianGrid strokeDasharray="3 3" /> */}
 					<XAxis dataKey="month" />
-					<YAxis />
+					<YAxis domain={[1, 'auto']} />
 					<Tooltip />
 					<Legend />
-					{/* <Line type="monotone" dataKey="teabag" stroke="#8884d8" /> */}
-					{/* <Line type="monotone" dataKey="milk" stroke="#82ca9d" /> */}
 					<Line
 						type="monotone"
 						dataKey="costPerCupOfTea"
-						stroke="#82ca9d"
+						stroke="#052962"
 					/>
-					{showBreakdown && <Bar dataKey="teabag" stackId="a" fill="#8884d8" />}
-					{showBreakdown && <Bar dataKey="milk" stackId="a" fill="#82ca9d" />}
-					{showBreakdown && <Bar dataKey="energyCost" stackId="a" fill="#FF0000" />}
-
+					{showBreakdown && (
+						<Bar dataKey="teabag" stackId="a" fill="#8884d8" />
+					)}
+					{showBreakdown && (
+						<Bar dataKey="milk" stackId="a" fill="#82ca9d" />
+					)}
+					{showBreakdown && (
+						<Bar dataKey="energyCost" stackId="a" fill="#FF0000" />
+					)}
 				</ComposedChart>
 				{/* </ResponsiveContainer> */}
 			</div>
-			<Checkbox
-				checked={milkType === 'cowMilk'}
-				label="With milk?"
-				onChange={(event) =>
-					event.target.checked
-						? setMilkType('cowMilk')
-						: setMilkType('none')
-				}
-			/>
 			<Checkbox
 				checked={showBreakdown}
 				label="Show breakdown of costs?"
 				onChange={(event) => setShowBreakdown(event.target.checked)}
 			/>
+
+			<Select label="Milk" onChange={(e) => setMilkType(e.target.value)}>
+				<Option value="cowMilk">Cow</Option>
+				<Option value="none">None</Option>
+				<Option value="oatMilk">Oat</Option>
+			</Select>
 
 			{/* <ToggleSwitch
 				label="With sugar"

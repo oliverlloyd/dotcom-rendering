@@ -11,7 +11,7 @@ import { StraightLines } from '@guardian/source-react-components-development-kit
 import type { NavType } from '../../model/extract-nav';
 import type { DCRCollectionType, DCRFrontType } from '../../types/front';
 import { AdSlot } from '../components/AdSlot';
-import { CostOfLivingThrasher } from '../components/CostOfLivingThrasher';
+import { CostOfLiving } from '../components/CostOfLiving.importable';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { HeaderAdSlot } from '../components/HeaderAdSlot';
@@ -402,7 +402,9 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 							>
 								{collection.displayName ===
 									'Cost of living crisis' && (
-									<CostOfLivingThrasher />
+									<Island deferUntil="visible">
+										<CostOfLiving />
+									</Island>
 								)}
 								<DecideContainer
 									trails={trails}

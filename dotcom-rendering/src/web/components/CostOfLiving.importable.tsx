@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable array-callback-return */
+
 import { css } from '@emotion/react';
 import {
 	Button,
@@ -6,16 +9,12 @@ import {
 	Option,
 	Select,
 } from '@guardian/source-react-components';
-import { ToggleSwitch } from '@guardian/source-react-components-development-kitchen';
 import { useState } from 'react';
 import {
 	Bar,
-	CartesianGrid,
 	ComposedChart,
 	Legend,
 	Line,
-	LineChart,
-	ResponsiveContainer,
 	Tooltip,
 	XAxis,
 	YAxis,
@@ -146,6 +145,7 @@ const milkMap = {
 	dash: 25,
 	splash: 37,
 };
+
 export const CostOfLiving = () => {
 	const [milkType, setMilkType] = useState('cowMilk');
 	const [showBreakdown, setShowBreakdown] = useState(false);

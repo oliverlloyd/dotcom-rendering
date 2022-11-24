@@ -375,6 +375,10 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 						);
 					}
 
+					if (collection.displayName === 'Cost of living crisis') {
+						collection.containerPalette = 'LongRunningAltPalette';
+					}
+
 					return (
 						<>
 							<Section

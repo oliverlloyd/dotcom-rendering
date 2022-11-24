@@ -6,19 +6,16 @@ import {
 	Accordion,
 	AccordionRow,
 	Button,
-	ButtonLink,
 	Checkbox,
 	LinkButton,
 	Option,
 	Select,
 } from '@guardian/source-react-components';
-import { NumericInput } from '@guardian/source-react-components-development-kitchen';
 import { useState } from 'react';
 import {
 	Bar,
 	ComposedChart,
 	Legend,
-	Line,
 	ResponsiveContainer,
 	Tooltip,
 	XAxis,
@@ -264,54 +261,48 @@ const allDataFullEnglish: FullEnglishDataType[] = [
 	},
 ];
 
-const interpolateValue = (a: number, b: number) => {
-	return (a + b) / 2;
-};
+// const interpolateValue = (a: number, b: number) => {
+// 	return (a + b) / 2;
+// };
 
-const interpolate = (data: RawData[]) => {
-	const newData: RawData[] = [];
+// const interpolate = (data: RawData[]) => {
+// 	const newData: RawData[] = [];
 
-	data.forEach((element, index) => {
-		newData.push(element);
+// 	data.forEach((element, index) => {
+// 		newData.push(element);
 
-		if (index + 1 < data.length - 1) {
-			const next = data[index + 1];
-			newData.push({
-				month: element.month,
-				cowMilk: interpolateValue(element.cowMilk, next.cowMilk),
-				oatMilk: interpolateValue(element.oatMilk, next.oatMilk),
-				teabag: interpolateValue(element.teabag, next.teabag),
-				energyPerCup: interpolateValue(
-					element.energyPerCup,
-					next.energyPerCup
-				),
-				tomato: interpolateValue(element.tomato, next.tomato),
-				sausage: interpolateValue(element.sausage, next.sausage),
-				mushroom: interpolateValue(element.mushroom, next.mushroom),
-				bread: interpolateValue(element.bread, next.bread),
-				egg: interpolateValue(element.egg, next.egg),
-				bacon: interpolateValue(element.bacon, next.bacon),
-				beans: interpolateValue(element.beans, next.beans),
-			});
-		}
-	});
+// 		if (index + 1 < data.length - 1) {
+// 			const next = data[index + 1];
+// 			newData.push({
+// 				month: element.month,
+// 				cowMilk: interpolateValue(element.cowMilk, next.cowMilk),
+// 				oatMilk: interpolateValue(element.oatMilk, next.oatMilk),
+// 				teabag: interpolateValue(element.teabag, next.teabag),
+// 				energyPerCup: interpolateValue(
+// 					element.energyPerCup,
+// 					next.energyPerCup
+// 				),
+// 				tomato: interpolateValue(element.tomato, next.tomato),
+// 				sausage: interpolateValue(element.sausage, next.sausage),
+// 				mushroom: interpolateValue(element.mushroom, next.mushroom),
+// 				bread: interpolateValue(element.bread, next.bread),
+// 				egg: interpolateValue(element.egg, next.egg),
+// 				bacon: interpolateValue(element.bacon, next.bacon),
+// 				beans: interpolateValue(element.beans, next.beans),
+// 			});
+// 		}
+// 	});
 
-	return newData;
-};
+// 	return newData;
+// };
 
 const SPLASH_OF_MILK = 37;
-type RawData = {
-	month: string;
-	cowMilk: number;
-	oatMilk: number;
-	teabag: number;
-	energyPerCup: number;
-};
 
 type ChartData = {
 	month: string;
 	costPerCupOfTea: number;
 	teabag: number;
+	total: number;
 	milk: number;
 	energyCost: number;
 	tomato: number;
@@ -329,13 +320,28 @@ export const CostOfLiving = () => {
 	const getData = () => {
 		const finalData: ChartData[] = [];
 		allDataFullEnglish.map((all: FullEnglishDataType) => {
-			const milkCost = all[milkType as keyof FullEnglishDataType] as number;
+			const milkCost = all[
+				milkType as keyof FullEnglishDataType
+			] as number;
 			const milkPricePerQuantity =
 				milkType === 'none' ? 0 : milkCost * SPLASH_OF_MILK;
 			finalData.push({
 				month: all.month,
-				total: Math.ceil(all.teabag + milkPricePerQuantity + all.energyPerCup + all.tomato + all.sausage + all.mushroom + all.bread + all.egg + all.bacon + all.beans),
-				costPerCupOfTea: Math.ceil(all.teabag + milkPricePerQuantity + all.energyPerCup / 4),
+				total: Math.ceil(
+					all.teabag +
+						milkPricePerQuantity +
+						all.energyPerCup +
+						all.tomato +
+						all.sausage +
+						all.mushroom +
+						all.bread +
+						all.egg +
+						all.bacon +
+						all.beans,
+				),
+				costPerCupOfTea: Math.ceil(
+					all.teabag + milkPricePerQuantity + all.energyPerCup / 4,
+				),
 				teabag: Math.ceil(all.teabag),
 				milk: Math.ceil(milkPricePerQuantity),
 				energyCost: all.energyPerCup / 4,
@@ -369,11 +375,15 @@ export const CostOfLiving = () => {
 						<YAxis domain={[300, 400]} />
 						<Tooltip />
 						<Legend />
-						 {!showBreakdown && (
+						{!showBreakdown && (
 							<Bar dataKey="total" fill="#9d6f13" />
 						)}
-						 {showBreakdown && (
-							<Bar stackId="a" dataKey="costPerCupOfTea" fill="#9d6f13" />
+						{showBreakdown && (
+							<Bar
+								stackId="a"
+								dataKey="costPerCupOfTea"
+								fill="#9d6f13"
+							/>
 						)}
 						{/* {!showBreakdown && (
 							<Bar dataKey="teabag" stackId="a" fill="#9d6f13" />
@@ -388,7 +398,11 @@ export const CostOfLiving = () => {
 							<Bar dataKey="sausage" stackId="a" fill="#402103" />
 						)}
 						{showBreakdown && (
-							<Bar dataKey="mushroom" stackId="a" fill="#766B5F" />
+							<Bar
+								dataKey="mushroom"
+								stackId="a"
+								fill="#766B5F"
+							/>
 						)}
 						{showBreakdown && (
 							<Bar dataKey="bread" stackId="a" fill="#CCB59D" />
@@ -464,22 +478,40 @@ export const CostOfLiving = () => {
 			>
 				<AccordionRow label="How do we calculate this?">
 					<ul>
-						<li css={css`padding: 5px`}>
+						<li
+							css={css`
+								padding: 5px;
+							`}
+						>
 							- We used the website{' '}
 							<a href="https://www.trolley.co.uk/">Trolley</a> to
-							find the price of a single Tetley teabag, as well as the cost of a splash of milk.
+							find the price of a single Tetley teabag, as well as
+							the cost of a splash of milk.
 						</li>
-						<li css={css`padding: 5px`}>
-							- Full english ingredients came from Trolley and ONS.
+						<li
+							css={css`
+								padding: 5px;
+							`}
+						>
+							- Full english ingredients came from Trolley and
+							ONS.
 						</li>
-						<li css={css`padding: 5px`}>
+						<li
+							css={css`
+								padding: 5px;
+							`}
+						>
 							-{' '}
 							<a href="https://www.foodstandards.gov.au/science/monitoringnutrients/ausnut/foodmeasures/Pages/2011-Dash-and-splash-measures-program.aspx">
 								The Australia New Zealand Food Standards
 							</a>{' '}
 							define a splash of milk as 37ml (on average).
 						</li>
-						<li css={css`padding: 5px`}>
+						<li
+							css={css`
+								padding: 5px;
+							`}
+						>
 							-{' '}
 							<a href="https://www.ofgem.gov.uk/information-consumers/energy-advice-households/check-if-energy-price-cap-affects-you">
 								Ofgem

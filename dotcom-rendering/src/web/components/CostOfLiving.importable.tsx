@@ -47,7 +47,7 @@ const grid = css`
 		'graph graph graph graph about';
 `;
 
-const allData = [
+const allData: RawData[] = [
 	{
 		month: 'Nov 21',
 		cowMilk: 0.000675,
@@ -141,21 +141,32 @@ const allData = [
 	},
 ];
 
-const milkMap = {
-	dash: 25,
-	splash: 37,
+const SPLASH_OF_MILK = 37;
+type RawData = {
+	month: string;
+	cowMilk: number;
+	oatMilk: number;
+	teabag: number;
+	energyPerCup: number;
 };
 
+type ChartData = {
+	month: string;
+	costPerCupOfTea: number;
+	teabag: number;
+	milk: number;
+	energyCost: number;
+};
 export const CostOfLiving = () => {
 	const [milkType, setMilkType] = useState('cowMilk');
 	const [showBreakdown, setShowBreakdown] = useState(false);
-	const [milkQuanity] = useState('splash');
 
 	const getData = () => {
-		const finalData = [];
-		allData.map((all) => {
+		const finalData: ChartData[] = [];
+		allData.map((all: RawData) => {
+			const milkCost = all[milkType as keyof RawData] as number;
 			const milkPricePerQuantity =
-				milkType === 'none' ? 0 : all[milkType] * milkMap[milkQuanity];
+				milkType === 'none' ? 0 : milkCost * SPLASH_OF_MILK;
 			finalData.push({
 				month: all.month,
 				costPerCupOfTea:

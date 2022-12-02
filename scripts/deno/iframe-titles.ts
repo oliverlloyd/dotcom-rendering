@@ -7,7 +7,7 @@ import {
 import { octokit } from './github.ts';
 
 const searchParams = new URLSearchParams({
-	'api-key': 'test',
+	'api-key': 'a015b41d-f7c5-4c16-9b10-e081808f7f66',
 	'query-fields': 'body',
 	q: 'iframe',
 	'show-fields': 'body',

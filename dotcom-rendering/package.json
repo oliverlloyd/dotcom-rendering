@@ -85,7 +85,7 @@
 		"@guardian/source-react-components": "^9.0.0",
 		"@guardian/source-react-components-development-kitchen": "6.0.2",
 		"@guardian/support-dotcom-components": "^1.0.7",
-		"@guardian/tsconfig": "^0.1.4",
+		"@guardian/tsconfig": "^0.2.0",
 		"@percy/cli": "^1.4.0",
 		"@percy/cypress": "^3.1.2",
 		"@sentry/browser": "^6.19.7",

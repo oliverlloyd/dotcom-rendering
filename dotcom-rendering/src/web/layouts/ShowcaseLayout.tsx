@@ -227,7 +227,7 @@ export const ShowcaseLayout = ({ CAPIArticle, NAV, format }: Props) => {
 	});
 
 	const showBodyEndSlot =
-		parse(CAPIArticle.slotMachineFlags || '').showBodyEnd ||
+		parse(CAPIArticle.slotMachineFlags ?? '').showBodyEnd ||
 		CAPIArticle.config.switches.slotBodyEnd;
 
 	// TODO:
@@ -465,8 +465,8 @@ export const ShowcaseLayout = ({ CAPIArticle, NAV, format }: Props) => {
 										CAPIArticle.webPublicationDateDeprecated
 									}
 									hasStarRating={
-										!!CAPIArticle.starRating ||
-										CAPIArticle.starRating === 0
+										typeof CAPIArticle.starRating ===
+										'number'
 									}
 								/>
 							</PositionHeadline>
@@ -560,9 +560,9 @@ export const ShowcaseLayout = ({ CAPIArticle, NAV, format }: Props) => {
 										contributionsServiceUrl
 									}
 									contentType={CAPIArticle.contentType}
-									sectionName={CAPIArticle.sectionName || ''}
+									sectionName={CAPIArticle.sectionName ?? ''}
 									isPreview={CAPIArticle.config.isPreview}
-									idUrl={CAPIArticle.config.idUrl || ''}
+									idUrl={CAPIArticle.config.idUrl ?? ''}
 									isDev={!!CAPIArticle.config.isDev}
 									keywordIds={CAPIArticle.config.keywordIds}
 								/>
@@ -732,7 +732,7 @@ export const ShowcaseLayout = ({ CAPIArticle, NAV, format }: Props) => {
 								isAdFreeUser={CAPIArticle.isAdFreeUser}
 								pageId={CAPIArticle.pageId}
 								isPaidContent={
-									CAPIArticle.config.isPaidContent || false
+									!!CAPIArticle.config.isPaidContent
 								}
 								showRelatedContent={
 									CAPIArticle.config.showRelatedContent

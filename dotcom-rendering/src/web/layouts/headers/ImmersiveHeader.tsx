@@ -49,14 +49,8 @@ interface Props {
 
 const decideCaption = (mainMedia: ImageBlockElement): string => {
 	const caption = [];
-	if (mainMedia && mainMedia.data && mainMedia.data.caption)
-		caption.push(mainMedia.data.caption);
-	if (
-		mainMedia &&
-		mainMedia.displayCredit &&
-		mainMedia.data &&
-		mainMedia.data.credit
-	)
+	if (mainMedia.data.caption) caption.push(mainMedia.data.caption);
+	if (mainMedia.displayCredit && mainMedia.data.credit)
 		caption.push(mainMedia.data.credit);
 	return caption.join(' ');
 };
@@ -274,8 +268,8 @@ export const ImmersiveHeader = ({ CAPIArticle, NAV, format }: Props) => {
 											CAPIArticle.webPublicationDateDeprecated
 										}
 										hasStarRating={
-											!!CAPIArticle.starRating ||
-											CAPIArticle.starRating === 0
+											typeof CAPIArticle.starRating ===
+											'number'
 										}
 									/>
 								</Section>

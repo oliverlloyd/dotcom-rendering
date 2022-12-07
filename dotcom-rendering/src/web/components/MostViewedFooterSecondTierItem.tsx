@@ -96,7 +96,7 @@ export const MostViewedFooterSecondTierItem = ({
 		headline: headlineText,
 	} = trail;
 
-	const avatarToShow = avatarUrl || image;
+	const avatarToShow = avatarUrl ?? image;
 
 	return (
 		<div css={itemStyles(showRightBorder)}>

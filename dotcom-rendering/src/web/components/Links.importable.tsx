@@ -295,8 +295,8 @@ export const Links = ({
 	const discussionApiUrl =
 		discussionApiUrlFromConfig ||
 		'https://discussion.theguardian.com/discussion-api';
-	const idUrl = idUrlServerFromConfig || 'https://profile.theguardian.com';
-	const mmaUrl = mmaUrlServerFromConfig || 'https://manage.theguardian.com';
+	const idUrl = idUrlServerFromConfig ?? 'https://profile.theguardian.com';
+	const mmaUrl = mmaUrlServerFromConfig ?? 'https://manage.theguardian.com';
 
 	const isServer = typeof window === 'undefined';
 

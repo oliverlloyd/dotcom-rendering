@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { space, text, textSans } from '@guardian/source-foundations';
 import { useState } from 'react';
-import { CampaignFieldFile } from '../../../types/content';
+import type { CampaignFieldFile } from '../../../types/content';
 import { stringifyFileBase64 } from '../../lib/stringifyFileBase64';
 import { FieldLabel } from './FieldLabel';
 
@@ -25,7 +25,7 @@ type Props = {
 export const FileUpload = ({ formField, formData, setFormData }: Props) => {
 	const [error, setError] = useState('');
 	const onSelectFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (event.target.files && event.target.files[0]) {
+		if (event.target.files?.[0]) {
 			setError('');
 			try {
 				const stringifiedFile = await stringifyFileBase64(

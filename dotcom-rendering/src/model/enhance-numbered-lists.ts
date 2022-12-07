@@ -45,7 +45,7 @@ const extractH3 = (element: CAPIElement): string => {
 				.split('<strong>')
 				.join('')
 				.split('</strong>')
-				.join('') || ''
+				.join('') ?? ''
 		);
 	}
 	return '';
@@ -62,7 +62,7 @@ const isStarRating = (element: CAPIElement): boolean => {
 		return false;
 	const frag = JSDOM.fragment(element.html);
 	const hasPTags = frag.firstElementChild?.nodeName === 'P';
-	const text = frag.textContent || '';
+	const text = frag.textContent ?? '';
 	// Loop the string making sure each letter is a star
 	for (const letter of text) {
 		if (!isStar(letter)) return false;
@@ -78,7 +78,7 @@ const extractStarCount = (element: CAPIElement): number => {
 	// Returns the count of stars
 	const textElement = element as TextBlockElement;
 	const frag = JSDOM.fragment(textElement.html);
-	const text = frag.textContent || '';
+	const text = frag.textContent ?? '';
 	// Loop the string counting selected stars
 	let starCount = 0;
 	for (const letter of text) {

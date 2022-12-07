@@ -1,4 +1,4 @@
-import { CampaignFieldSelect } from '../../../types/content';
+import type { CampaignFieldSelect } from '../../../types/content';
 import { FieldLabel } from './FieldLabel';
 
 type Props = {
@@ -25,12 +25,11 @@ export const Select = ({ formField, formData, setFormData }: Props) => (
 				})
 			}
 		>
-			{formField.options &&
-				formField.options.map((option, index) => (
-					<option key={index} value={option.value}>
-						{option.value}
-					</option>
-				))}
+			{formField.options.map((option, index) => (
+				<option key={index} value={option.value}>
+					{option.value}
+				</option>
+			))}
 		</select>
 	</>
 );

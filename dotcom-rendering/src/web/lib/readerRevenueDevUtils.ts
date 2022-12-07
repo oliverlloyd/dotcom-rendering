@@ -37,7 +37,7 @@ const MULTIVARIATE_ID_COOKIE = 'GU_mvt_id';
 const MAX_CLIENT_MVT_ID = 1000000;
 const incrementMvtCookie = (): void => {
 	const mvtId = parseInt(
-		getCookie({ name: MULTIVARIATE_ID_COOKIE }) || '10',
+		getCookie({ name: MULTIVARIATE_ID_COOKIE }) ?? '10',
 		10,
 	);
 	if (mvtId) {
@@ -51,7 +51,7 @@ const incrementMvtCookie = (): void => {
 };
 const decrementMvtCookie = (): void => {
 	const mvtId = parseInt(
-		getCookie({ name: MULTIVARIATE_ID_COOKIE }) || '10',
+		getCookie({ name: MULTIVARIATE_ID_COOKIE }) ?? '10',
 		10,
 	);
 	if (mvtId) {

@@ -31,6 +31,7 @@ import type {
 	Letter,
 	MatchReport,
 	NewsletterSignup,
+	Obituary,
 	PhotoEssay,
 	PrintShop,
 	Quiz,
@@ -522,6 +523,11 @@ const explainer: Explainer = {
 	outline: fromBodyElements(fields.body),
 };
 
+const obituary: Obituary = {
+	design: ArticleDesign.Obituary,
+	...fields,
+};
+
 const newsletterSignUp: NewsletterSignup = {
 	...fields,
 	design: ArticleDesign.NewsletterSignup,
@@ -567,4 +573,5 @@ export {
 	immersive,
 	gallery,
 	parseHtml,
+	obituary,
 };

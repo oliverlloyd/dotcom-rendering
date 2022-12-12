@@ -8,6 +8,7 @@ import {
 	comment,
 	editorial,
 	explainer,
+	obituary,
 	feature,
 	gallery,
 	immersive,
@@ -85,6 +86,9 @@ export const Explainer = (): ReactElement => (
 	<StandardLayout item={explainer} />
 );
 Explainer.story = { name: formatToString(explainer) };
+
+export const Obituary = (): ReactElement => <StandardLayout item={obituary} />;
+Obituary.story = { name: formatToString(obituary) };
 
 export const LiveBlog = (): ReactElement => (
 	<LiveLayout

@@ -28,7 +28,8 @@ const STORIES_PATH = path.resolve(
 );
 const LAYOUT_STORIES_FILE = path.resolve(STORIES_PATH, 'Layout.stories.tsx');
 const CARD_STORIES_FILE = path.resolve(STORIES_PATH, 'Card.stories.tsx');
-const README_FILE = (componentName) => path.resolve(STORIES_PATH, `${componentName}Readme.stories.jsx`);
+const README_FILE = (componentName) =>
+	path.resolve(STORIES_PATH, `${componentName}Readme.stories.jsx`);
 
 const CARD_TEMPLATE_HEADER = `
 /*
@@ -196,9 +197,7 @@ const saveStories = () => {
 	);
 
 	writeFileSync(README_FILE('Layout'), README_TEMPLATE('Layout'));
-	success(
-		`[scripts/gen-stories] Saved Readme ${README_FILE('Card')}!`,
-	);
+	success(`[scripts/gen-stories] Saved Readme ${README_FILE('Card')}!`);
 
 	const cardContents = generateCardStories();
 	writeFileSync(CARD_STORIES_FILE, cardContents);
@@ -207,9 +206,7 @@ const saveStories = () => {
 	);
 
 	writeFileSync(README_FILE('Card'), README_TEMPLATE('Card'));
-	success(
-		`[scripts/gen-stories] Saved Readme ${README_FILE('Card')}!`,
-	);
+	success(`[scripts/gen-stories] Saved Readme ${README_FILE('Card')}!`);
 };
 
 const checkStories = () => {

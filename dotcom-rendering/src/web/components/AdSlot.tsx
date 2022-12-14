@@ -11,6 +11,7 @@ import {
 	textSans,
 } from '@guardian/source-foundations';
 import { getZIndex } from '../lib/getZIndex';
+import { Dropdown } from './Dropdown';
 import { Island } from './Island';
 import { TopRightAdSlot } from './TopRightAdSlot.importable';
 
@@ -91,8 +92,26 @@ export const labelStyles = css`
 		${individualLabelCSS}
 	}
 
+	.ad-slot[opt-out-data-label-show='true']::before {
+		content: attr(ad-label-text);
+		display: block;
+		position: relative;
+		${individualLabelCSS}
+	}
+
 	.ad-slot__adtest-cookie-clear-link {
 		${textSans.xxsmall()};
+		text-align: left;
+		position: absolute;
+		right: 3px;
+		top: -22px;
+		padding: 0;
+		border: 0;
+	}
+
+	.ad-slot__ad-options-text {
+		${textSans.xxsmall()};
+		color: ${text.supporting};
 		text-align: left;
 		position: absolute;
 		right: 3px;
@@ -254,6 +273,15 @@ export const AdSlot = ({
 				case ArticleDisplay.NumberedList: {
 					return (
 						<div css={[adStyles]}>
+							<Dropdown
+								label="About"
+								links={[]}
+								id="paidfor"
+								cssOverrides={css`
+									color: ${neutral[0]};
+								`}
+								dataLinkName=""
+							></Dropdown>
 							<div
 								id="dfp-ad--right"
 								className={[

@@ -22,7 +22,6 @@ import {
 	TextInput,
 } from '@guardian/source-react-components';
 import FileInput from 'components/FileInput';
-import RadioInput from 'components/RadioInput';
 import type { FC, ReactElement } from 'react';
 import { plainTextElement } from 'renderer';
 import { darkModeCss } from 'styles';
@@ -176,15 +175,17 @@ const renderField = ({
 					label={label}
 				/>
 			);
-		case 'radio':
-			return (
-				<RadioInput
-					cssOverrides={input}
-					options={options}
-					name={name}
-					label={label}
-				/>
-			);
+		// We have repurposed the RadioInput for the new callout form.
+		// We can comment this because the old calloutForm (this one) is never used anyway.
+		// case 'radio':
+		// 	return (
+		// 		<RadioInput
+		// 			cssOverrides={input}
+		// 			options={options}
+		// 			name={name}
+		// 			label={label}
+		// 		/>
+		// 	);
 		default:
 			return null;
 	}

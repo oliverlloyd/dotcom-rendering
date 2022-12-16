@@ -638,15 +638,6 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 						</GridItem>
 						<GridItem area="body">
 							<ArticleContainer format={format}>
-								{CAPIArticle.tableOfContents && (
-									<div>
-										<TableOfContents
-											tableOfContents={
-												CAPIArticle.tableOfContents
-											}
-										></TableOfContents>
-									</div>
-								)}
 								<ArticleBody
 									format={format}
 									blocks={CAPIArticle.blocks}
@@ -676,6 +667,9 @@ export const StandardLayout = ({ CAPIArticle, NAV, format }: Props) => {
 									idUrl={CAPIArticle.config.idUrl || ''}
 									isDev={!!CAPIArticle.config.isDev}
 									keywordIds={CAPIArticle.config.keywordIds}
+									tableOfContents={
+										CAPIArticle.tableOfContents
+									}
 								/>
 								{format.design === ArticleDesign.MatchReport &&
 									!!footballMatchUrl && (

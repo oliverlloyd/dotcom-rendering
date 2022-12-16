@@ -19,7 +19,6 @@ import Logo from 'components/Logo';
 import MainMedia from 'components/MainMedia';
 import Metadata from 'components/Metadata';
 import RelatedContent from 'components/RelatedContent';
-import Series from 'components/Series';
 import Standfirst from 'components/Standfirst';
 import Tags from 'components/Tags';
 import { getFormat } from 'item';
@@ -77,7 +76,6 @@ const CommentLayout: FC<Props> = ({ item }) => (
 	<main css={[Styles, DarkStyles]}>
 		<article css={BorderStyles}>
 			<header>
-				<Series item={item} />
 				<Headline item={item} />
 				<div css={articleWidthStyles}>
 					<Byline {...item} />

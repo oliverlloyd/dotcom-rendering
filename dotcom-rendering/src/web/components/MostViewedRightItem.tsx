@@ -1,13 +1,15 @@
 import { css } from '@emotion/react';
 import { ArticleDesign } from '@guardian/libs';
 import { border, headline, neutral, text } from '@guardian/source-foundations';
+import type { Palette } from '../../types/palette';
 import type { TrailType } from '../../types/trails';
+import { decidePalette } from '../lib/decidePalette';
 import { useHover } from '../lib/useHover';
 import { AgeWarning } from './AgeWarning';
 import { Avatar } from './Avatar';
 import { LinkHeadline } from './LinkHeadline';
 
-const listItemStyles = css`
+const listItemStyles = (palette: Palette) => css`
 	list-style: none;
 	/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns */
 	/* Needs double escape char: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#es2018_revision_of_illegal_escape_sequences */
@@ -19,7 +21,7 @@ const listItemStyles = css`
 	}
 	padding-top: 4px;
 	margin-bottom: 12px;
-	border-top: 1px solid ${border.secondary};
+	border-top: 1px solid ${palette.border.article};
 
 	&:first-of-type {
 		padding-top: 0;
@@ -27,18 +29,18 @@ const listItemStyles = css`
 	}
 `;
 
-const linkTagStyles = css`
+const linkTagStyles = (palette: Palette) => css`
 	text-decoration: none;
 	font-weight: 500;
 	${headline.xxxsmall()};
 
 	&:link,
 	&:active {
-		color: ${text.anchorSecondary};
+		color: ${palette.text.mostViewed};
 	}
 
 	&:visited h4 {
-		color: ${neutral[46]};
+		color: ${palette.text.mostViewedVisited};
 	}
 
 	&:hover h4 {
@@ -70,17 +72,23 @@ const marginTopStyles = css`
 type Props = {
 	trail: TrailType;
 	mostViewedItemIndex: number;
+	format: ArticleFormat;
 };
 
-export const MostViewedRightItem = ({ trail, mostViewedItemIndex }: Props) => {
+export const MostViewedRightItem = ({
+	trail,
+	mostViewedItemIndex,
+	format,
+}: Props) => {
 	const [hoverRef, isHovered] = useHover<HTMLAnchorElement>();
+	const palette = decidePalette(format);
 
 	return (
 		<li
-			css={listItemStyles}
+			css={listItemStyles(palette)}
 			data-link-name={`trail | ${mostViewedItemIndex + 1}`}
 		>
-			<a css={linkTagStyles} href={trail.url} ref={hoverRef}>
+			<a css={linkTagStyles(palette)} href={trail.url} ref={hoverRef}>
 				<div css={lineWrapperStyles}>
 					{!!trail.image && (
 						<div css={imageWrapperStyles}>

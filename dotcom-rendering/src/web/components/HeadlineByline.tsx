@@ -110,6 +110,20 @@ const analysisStyles = (palette: Palette, hasSingleContributor: boolean) => css`
 	}
 `;
 
+const mediaStyles = (palette: Palette) => css`
+	${headline.xxsmall({ lineHeight: 'tight', fontStyle: 'italic' })}
+	margin-bottom: ${space[1]}px;
+	color: ${palette.text.headlineByline};
+	background: ${palette.background.headlineByline};
+	a {
+		color: inherit;
+		text-decoration: none;
+		:hover {
+			text-decoration: underline;
+		}
+	}
+`;
+
 const immersiveStyles = (format: ArticleFormat) => css`
 	${format.theme === ArticleSpecial.Labs
 		? textSans.large({ lineHeight: 'tight' })
@@ -157,18 +171,36 @@ export const HeadlineByline = ({ format, byline, tags }: Props) => {
 
 	switch (format.display) {
 		case ArticleDisplay.Immersive:
-			return (
-				<div css={immersiveStyles(format)}>
-					by{' '}
-					<span css={immersiveLinkStyles(palette, format)}>
-						<BylineLink
-							byline={byline}
-							tags={tags}
-							format={format}
-						/>
-					</span>
-				</div>
-			);
+			switch (format.design) {
+				case ArticleDesign.Audio:
+				case ArticleDesign.Video:
+				case ArticleDesign.Gallery:
+					return (
+						<div css={mediaStyles(palette)}>
+							by{' '}
+							<span>
+								<BylineLink
+									byline={byline}
+									tags={tags}
+									format={format}
+								/>
+							</span>
+						</div>
+					);
+				default:
+					return (
+						<div css={immersiveStyles(format)}>
+							by{' '}
+							<span css={immersiveLinkStyles(palette, format)}>
+								<BylineLink
+									byline={byline}
+									tags={tags}
+									format={format}
+								/>
+							</span>
+						</div>
+					);
+			}
 		case ArticleDisplay.Showcase:
 		case ArticleDisplay.NumberedList:
 		case ArticleDisplay.Standard:

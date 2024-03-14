@@ -333,9 +333,11 @@ export const ShowcaseLayout = ({
 							{NAV.subNavSections && (
 								<Section
 									fullWidth={true}
+									showTopBorder={false}
 									backgroundColour={
 										palette.background.article
 									}
+									borderColour={palette.border.article}
 									padSides={false}
 									element="aside"
 								>
@@ -352,6 +354,7 @@ export const ShowcaseLayout = ({
 							<Section
 								fullWidth={true}
 								backgroundColour={palette.background.article}
+								borderColour={palette.border.article}
 								padSides={false}
 								showTopBorder={false}
 							>
@@ -360,6 +363,7 @@ export const ShowcaseLayout = ({
 									cssOverrides={css`
 										display: block;
 									`}
+									color={palette.border.article}
 								/>
 							</Section>
 						</SendToBack>
@@ -435,6 +439,7 @@ export const ShowcaseLayout = ({
 					fullWidth={true}
 					showTopBorder={false}
 					backgroundColour={palette.background.article}
+					borderColour={palette.border.article}
 					element="article"
 				>
 					<ShowcaseGrid>
@@ -499,7 +504,10 @@ export const ShowcaseLayout = ({
 						<GridItem area="lines">
 							<div css={maxWidth}>
 								<div css={stretchLines}>
-									<DecideLines format={format} />
+									<DecideLines
+										format={format}
+										color={palette.border.article}
+									/>
 								</div>
 							</div>
 						</GridItem>
@@ -640,7 +648,7 @@ export const ShowcaseLayout = ({
 							>
 								<RightColumn>
 									<MostViewedRightWithAd
-										display={format.display}
+										format={format}
 										isPaidContent={
 											article.pageType.isPaidContent
 										}

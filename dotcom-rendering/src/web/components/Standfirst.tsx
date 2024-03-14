@@ -71,6 +71,19 @@ const standfirstStyles = (format: ArticleFormat, palette: Palette) => {
 	switch (format.display) {
 		case ArticleDisplay.Immersive:
 			switch (format.design) {
+				case ArticleDesign.Audio:
+				case ArticleDesign.Video:
+				case ArticleDesign.Gallery:
+					return css`
+						${headline.xxsmall()};
+						margin-bottom: ${space[3]}px;
+						max-width: 540px;
+						color: ${palette.text.standfirst};
+						li:before {
+							height: 15px;
+							width: 15px;
+						}
+					`;
 				case ArticleDesign.PhotoEssay:
 					if (format.theme === ArticleSpecial.Labs) {
 						return css`

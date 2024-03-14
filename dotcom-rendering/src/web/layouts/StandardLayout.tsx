@@ -62,197 +62,244 @@ import { BannerWrapper, Stuck } from './lib/stickiness';
 
 const StandardGrid = ({
 	children,
+	format,
 	isMatchReport,
 }: {
 	children: React.ReactNode;
+	format: ArticleFormat;
 	isMatchReport: boolean;
-}) => (
-	<div
-		css={css`
-			/* IE Fallback */
-			display: flex;
-			flex-direction: column;
-			${until.leftCol} {
-				margin-left: 0px;
-			}
-			${from.leftCol} {
-				margin-left: 151px;
-			}
-			${from.wide} {
-				margin-left: 230px;
-			}
-
-			@supports (display: grid) {
-				display: grid;
-				width: 100%;
-				margin-left: 0;
-
-				grid-column-gap: 10px;
-
-				/*
-					Explanation of each unit of grid-template-columns
-
-					Left Column (220 - 1px border)
-					Vertical grey border
-					Main content
-					Right Column
-				*/
-				${from.wide} {
-					grid-template-columns: 219px 1px 1fr 300px;
-
-					${isMatchReport
-						? css`
-								grid-template-areas:
-									'title  border  matchNav     right-column'
-									'title  border  matchtabs    right-column'
-									'.      border  headline     right-column'
-									'.      border  standfirst   right-column'
-									'lines  border  media        right-column'
-									'meta   border  media        right-column'
-									'meta   border  body         right-column'
-									'.      border  .            right-column';
-						  `
-						: css`
-								grid-template-areas:
-									'title  border  headline     right-column'
-									'.      border  standfirst   right-column'
-									'lines  border  media        right-column'
-									'meta   border  media        right-column'
-									'meta   border  body         right-column'
-									'.      border  .            right-column';
-						  `}
-				}
-
-				/*
-					Explanation of each unit of grid-template-columns
-
-					Left Column
-					Vertical grey border
-					Main content
-					Right Column
-				*/
-				${until.wide} {
-					grid-template-columns: 140px 1px 1fr 300px;
-
-					${isMatchReport
-						? css`
-								grid-template-areas:
-									'title  border  matchNav     right-column'
-									'title  border  matchtabs    right-column'
-									'.      border  headline     right-column'
-									'.      border  standfirst   right-column'
-									'lines  border  media        right-column'
-									'meta   border  media        right-column'
-									'meta   border  body         right-column'
-									'.      border  .            right-column';
-						  `
-						: css`
-								grid-template-areas:
-									'title  border  headline     right-column'
-									'.      border  standfirst   right-column'
-									'lines  border  media        right-column'
-									'meta   border  media        right-column'
-									'meta   border  body         right-column'
-									'.      border  .            right-column';
-						  `}
-				}
-
-				/*
-					Explanation of each unit of grid-template-columns
-
-					Main content
-					Right Column
-				*/
+}) => {
+	return (
+		<div
+			css={css`
+				/* IE Fallback */
+				display: flex;
+				flex-direction: column;
 				${until.leftCol} {
-					grid-template-columns: 1fr 300px;
-					${isMatchReport
-						? css`
-								grid-template-areas:
-									'matchNav      right-column'
-									'matchtabs	   right-column'
-									'title         right-column'
-									'headline      right-column'
-									'standfirst    right-column'
-									'media         right-column'
-									'lines         right-column'
-									'meta          right-column'
-									'body          right-column'
-									'.             right-column';
-						  `
-						: css`
-								grid-template-areas:
-									'title         right-column'
-									'headline      right-column'
-									'standfirst    right-column'
-									'media         right-column'
-									'lines         right-column'
-									'meta          right-column'
-									'body          right-column'
-									'.             right-column';
-						  `}
+					margin-left: 0px;
+				}
+				${from.leftCol} {
+					margin-left: 151px;
+				}
+				${from.wide} {
+					margin-left: 230px;
 				}
 
-				${until.desktop} {
-					grid-template-columns: 1fr; /* Main content */
-					${isMatchReport
-						? css`
-								grid-template-areas:
-									'matchNav'
-									'matchtabs'
-									'title'
-									'headline'
-									'standfirst'
-									'media'
-									'lines'
-									'meta'
-									'body';
-						  `
-						: css`
-								grid-template-areas:
-									'title'
-									'headline'
-									'standfirst'
-									'media'
-									'lines'
-									'meta'
-									'body';
-						  `}
-				}
+				@supports (display: grid) {
+					display: grid;
+					width: 100%;
+					margin-left: 0;
 
-				${until.tablet} {
-					grid-column-gap: 0px;
+					grid-column-gap: 10px;
 
-					grid-template-columns: 100%; /* Main content */
-					${isMatchReport
-						? css`
-								grid-template-areas:
-									'matchNav'
-									'matchtabs'
-									'media'
-									'title'
-									'headline'
-									'standfirst'
-									'lines'
-									'meta'
-									'body';
-						  `
-						: css`
-								grid-template-areas:
-									'media'
-									'title'
-									'headline'
-									'standfirst'
-									'lines'
-									'meta'
-									'body';
-						  `}
+					/*
+								Explanation of each unit of grid-template-columns
+
+								Left Column (220 - 1px border)
+								Vertical grey border
+								Main content
+								Right Column
+							*/
+					${from.wide} {
+						grid-template-columns: 219px 1px 1fr 300px;
+
+						${isMatchReport
+							? css`
+									grid-template-areas:
+										'title  border  matchNav     right-column'
+										'title  border  matchtabs    right-column'
+										'.      border  headline     right-column'
+										'.      border  standfirst   right-column'
+										'lines  border  media        right-column'
+										'meta   border  media        right-column'
+										'meta   border  body         right-column'
+										'.      border  .            right-column';
+							  `
+							: format.design === ArticleDesign.Video
+							? css`
+									grid-template-areas:
+										'title  border  headline     right-column'
+										'lines  border  media	   	 right-column'
+										'meta   border  media        right-column'
+										'meta   border  standfirst   right-column'
+										'meta   border  body         right-column'
+										'.      border  .            right-column';
+							  `
+							: css`
+									grid-template-areas:
+										'title  border  headline     right-column'
+										'.      border  standfirst   right-column'
+										'lines  border  media        right-column'
+										'meta   border  media        right-column'
+										'meta   border  body         right-column'
+										'.      border  .            right-column';
+							  `}
+					}
+
+					/*
+				Explanation of each unit of grid-template-columns
+
+				Left Column
+				Vertical grey border
+				Main content
+				Right Column
+			*/
+					${until.wide} {
+						grid-template-columns: 140px 1px 1fr 300px;
+
+						${isMatchReport
+							? css`
+									grid-template-areas:
+										'title  border  matchNav     right-column'
+										'title  border  matchtabs    right-column'
+										'.      border  headline     right-column'
+										'.      border  standfirst   right-column'
+										'lines  border  media        right-column'
+										'meta   border  media        right-column'
+										'meta   border  body         right-column'
+										'.      border  .            right-column';
+							  `
+							: format.design === ArticleDesign.Video
+							? css`
+									grid-template-areas:
+										'title  border  headline     right-column'
+										'lines  border  media	   	 right-column'
+										'meta   border  media        right-column'
+										'meta   border  standfirst   right-column'
+										'meta   border  body         right-column'
+										'.      border  .            right-column';
+							  `
+							: css`
+									grid-template-areas:
+										'title  border  headline     right-column'
+										'.      border  standfirst   right-column'
+										'lines  border  media        right-column'
+										'meta   border  media        right-column'
+										'meta   border  body         right-column'
+										'.      border  .            right-column';
+							  `}
+					}
+
+					/*
+				Explanation of each unit of grid-template-columns
+
+				Main content
+				Right Column
+			*/
+					${until.leftCol} {
+						grid-template-columns: 1fr 300px;
+						${isMatchReport
+							? css`
+									grid-template-areas:
+										'matchNav      right-column'
+										'matchtabs	   right-column'
+										'title         right-column'
+										'headline      right-column'
+										'standfirst    right-column'
+										'media         right-column'
+										'lines         right-column'
+										'meta          right-column'
+										'body          right-column'
+										'.             right-column';
+							  `
+							: format.design === ArticleDesign.Video
+							? css`
+									grid-template-areas:
+										'title         right-column'
+										'headline      right-column'
+										'media         right-column'
+										'standfirst    right-column'
+										'lines         right-column'
+										'meta          right-column'
+										'body          right-column'
+										'.             right-column';
+							  `
+							: css`
+									grid-template-areas:
+										'title         right-column'
+										'headline      right-column'
+										'standfirst    right-column'
+										'media         right-column'
+										'lines         right-column'
+										'meta          right-column'
+										'body          right-column'
+										'.             right-column';
+							  `}
+					}
+
+					${until.desktop} {
+						grid-template-columns: 1fr; /* Main content */
+						${isMatchReport
+							? css`
+									grid-template-areas:
+										'matchNav'
+										'matchtabs'
+										'title'
+										'headline'
+										'standfirst'
+										'media'
+										'lines'
+										'meta'
+										'body';
+							  `
+							: format.design === ArticleDesign.Video
+							? css`
+									grid-template-areas:
+										'title'
+										'headline'
+										'media'
+										'standfirst'
+										'lines'
+										'meta'
+										'body';
+							  `
+							: css`
+									grid-template-areas:
+										'title'
+										'headline'
+										'standfirst'
+										'media'
+										'lines'
+										'meta'
+										'body';
+							  `}
+					}
+
+					${until.tablet} {
+						grid-column-gap: 0px;
+
+						grid-template-columns: 100%; /* Main content */
+						${isMatchReport
+							? css`
+									grid-template-areas:
+										'matchNav'
+										'matchtabs'
+										'media'
+										'title'
+										'headline'
+										'standfirst'
+										'lines'
+										'meta'
+										'body';
+							  `
+							: css`
+									grid-template-areas:
+										'media'
+										'title'
+										'headline'
+										'standfirst'
+										'lines'
+										'meta'
+										'body';
+							  `}
+					}
 				}
-			}
-		`}
-	>
-		{children}
-	</div>
-);
+			`}
+		>
+			{children}
+		</div>
+	);
+};
 
 const maxWidth = css`
 	${from.desktop} {
@@ -432,7 +479,9 @@ export const StandardLayout = (props: WebProps | AppProps) => {
 						<>
 							<Section
 								fullWidth={true}
+								showTopBorder={false}
 								backgroundColour={palette.background.article}
+								borderColour={palette.border.article}
 								padSides={false}
 								element="aside"
 							>
@@ -451,6 +500,7 @@ export const StandardLayout = (props: WebProps | AppProps) => {
 							<Section
 								fullWidth={true}
 								backgroundColour={palette.background.article}
+								borderColour={palette.border.article}
 								padSides={false}
 								showTopBorder={false}
 							>
@@ -459,7 +509,7 @@ export const StandardLayout = (props: WebProps | AppProps) => {
 									cssOverrides={css`
 										display: block;
 									`}
-									color={palette.border.secondary}
+									color={palette.border.article}
 								/>
 							</Section>
 						</>
@@ -496,7 +546,7 @@ export const StandardLayout = (props: WebProps | AppProps) => {
 					borderColour={palette.border.article}
 					element="article"
 				>
-					<StandardGrid isMatchReport={isMatchReport}>
+					<StandardGrid isMatchReport={isMatchReport} format={format}>
 						<GridItem area="matchNav" element="aside">
 							<div css={maxWidth}>
 								{isMatchReport && (
@@ -728,7 +778,7 @@ export const StandardLayout = (props: WebProps | AppProps) => {
 									cssOverrides={css`
 										display: block;
 									`}
-									color={palette.border.secondary}
+									color={palette.border.article}
 								/>
 								<SubMeta
 									format={format}
@@ -767,7 +817,7 @@ export const StandardLayout = (props: WebProps | AppProps) => {
 							>
 								<RightColumn>
 									<MostViewedRightWithAd
-										display={format.display}
+										format={format}
 										isPaidContent={
 											article.pageType.isPaidContent
 										}

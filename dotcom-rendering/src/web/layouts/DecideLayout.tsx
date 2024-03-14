@@ -5,6 +5,7 @@ import type { FEArticleType } from '../../types/frontend';
 import type { RenderingTarget } from '../../types/renderingTarget';
 import { CommentLayout } from './CommentLayout';
 import { FullPageInteractiveLayout } from './FullPageInteractiveLayout';
+import { GalleryLayout } from './GalleryLayout';
 import { ImmersiveLayout } from './ImmersiveLayout';
 import { InteractiveLayout } from './InteractiveLayout';
 import { LiveLayout } from './LiveLayout';
@@ -56,6 +57,16 @@ const DecideLayoutWeb = ({
 	NAV,
 	renderingTarget,
 }: WebProps) => {
+	if (format.design === ArticleDesign.Gallery) {
+		return (
+			<GalleryLayout
+				article={article}
+				NAV={NAV}
+				format={format}
+				renderingTarget={renderingTarget}
+			/>
+		);
+	}
 	switch (format.display) {
 		case ArticleDisplay.Immersive: {
 			switch (format.design) {

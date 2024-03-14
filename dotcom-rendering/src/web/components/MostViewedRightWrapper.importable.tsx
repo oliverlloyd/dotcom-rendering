@@ -4,6 +4,7 @@ import { useAdBlockInUse } from '../lib/useAdBlockInUse';
 import { MostViewedRight } from './MostViewedRight';
 
 type Props = {
+	format: ArticleFormat;
 	componentDataAttribute: string;
 	maxHeightPx: number;
 	limitItems?: number;
@@ -14,6 +15,7 @@ type Props = {
  * Wrapping MostViewedRight so we can determine whether or not there's enough vertical space in the container to render it
  */
 export const MostViewedRightWrapper = ({
+	format,
 	componentDataAttribute,
 	maxHeightPx,
 	limitItems,
@@ -44,7 +46,11 @@ export const MostViewedRightWrapper = ({
 				height: auto;
 			`}
 		>
-			<MostViewedRight limitItems={limitItems} stickToTop={stickToTop} />
+			<MostViewedRight
+				format={format}
+				limitItems={limitItems}
+				stickToTop={stickToTop}
+			/>
 		</div>
 	);
 };

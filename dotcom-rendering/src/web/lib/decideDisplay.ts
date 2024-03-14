@@ -3,6 +3,7 @@ import { ArticleDisplay } from '@guardian/libs';
 export const decideDisplay = ({
 	display,
 }: Partial<FEFormat>): ArticleDisplay => {
+	return ArticleDisplay.Immersive;
 	switch (display) {
 		case 'StandardDisplay':
 			return ArticleDisplay.Standard;

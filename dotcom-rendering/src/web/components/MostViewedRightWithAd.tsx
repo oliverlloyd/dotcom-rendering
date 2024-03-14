@@ -4,7 +4,7 @@ import { Island } from './Island';
 import { MostViewedRightWrapper } from './MostViewedRightWrapper.importable';
 
 type Props = {
-	display: ArticleDisplay;
+	format: ArticleFormat;
 	isPaidContent: boolean;
 	renderAds: boolean;
 	shouldHideReaderRevenue: boolean;
@@ -17,7 +17,7 @@ type Props = {
 const MAX_HEIGHT_PX = 1600;
 
 export const MostViewedRightWithAd = ({
-	display,
+	format,
 	isPaidContent,
 	renderAds,
 	shouldHideReaderRevenue,
@@ -39,7 +39,7 @@ export const MostViewedRightWithAd = ({
 			{renderAds ? (
 				<AdSlot
 					position="right"
-					display={display}
+					display={format.display}
 					shouldHideReaderRevenue={shouldHideReaderRevenue}
 					isPaidContent={isPaidContent}
 				/>
@@ -55,6 +55,7 @@ export const MostViewedRightWithAd = ({
 					rootMargin="700px 100px"
 				>
 					<MostViewedRightWrapper
+						format={format}
 						maxHeightPx={MAX_HEIGHT_PX}
 						componentDataAttribute={componentDataAttribute}
 						renderAds={renderAds}

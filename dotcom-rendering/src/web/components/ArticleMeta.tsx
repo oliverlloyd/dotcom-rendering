@@ -167,6 +167,7 @@ const metaContainer = (format: ArticleFormat) => {
 			margin-right: -10px;
 		}
 	`;
+
 	switch (format.display) {
 		case ArticleDisplay.Immersive:
 		case ArticleDisplay.Showcase:
@@ -192,6 +193,7 @@ const metaContainer = (format: ArticleFormat) => {
 									margin-left: 40px;
 								}
 						  `;
+				case ArticleDesign.Gallery:
 				case ArticleDesign.LiveBlog:
 				case ArticleDesign.DeadBlog: {
 					return '';

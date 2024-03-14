@@ -7,6 +7,7 @@ import type { NavType } from '../../model/extract-nav';
 import type { FEArticleType } from '../../types/frontend';
 import type { RenderingTarget } from '../../types/renderingTarget';
 import { DecideLayout } from '../layouts/DecideLayout';
+import { decidePalette } from '../lib/decidePalette';
 import { AlreadyVisited } from './AlreadyVisited.importable';
 import { AnimatePulsingDots } from './AnimatePulsingDots.importable';
 import { BrazeMessaging } from './BrazeMessaging.importable';
@@ -39,6 +40,7 @@ interface AppProps extends BaseProps {
  * */
 export const ArticlePage = (props: WebProps | AppProps) => {
 	const { article, format, renderingTarget } = props;
+	const palette = decidePalette(format);
 	return (
 		<StrictMode>
 			<Global
@@ -51,6 +53,9 @@ export const ArticlePage = (props: WebProps | AppProps) => {
 					::selection {
 						background: ${brandAlt[400]};
 						color: ${neutral[7]};
+					}
+					article {
+						color: ${palette.text.article};
 					}
 				`}
 			/>

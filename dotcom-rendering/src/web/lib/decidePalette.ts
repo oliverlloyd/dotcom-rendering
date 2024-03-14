@@ -30,6 +30,11 @@ import { transparentColour } from './transparentColour';
 const WHITE = neutral[100];
 const BLACK = neutral[7];
 
+// Used by media articles
+const INVERTED_BACKGROUND = neutral[7];
+const INVERTED_BORDER = neutral[20];
+const INVERTED_TEXT = neutral[86];
+
 const blogsGrayBackgroundPalette = (format: ArticleFormat): string => {
 	switch (format.theme) {
 		case ArticlePillar.News:
@@ -48,6 +53,17 @@ const blogsGrayBackgroundPalette = (format: ArticleFormat): string => {
 			return news[400];
 		case ArticleSpecial.Labs:
 			return labs[300];
+	}
+};
+
+const textArticle = (format: ArticleFormat): string => {
+	switch (format.design) {
+		case ArticleDesign.Gallery:
+		case ArticleDesign.Video:
+		case ArticleDesign.Audio:
+			return INVERTED_TEXT;
+		default:
+			return BLACK;
 	}
 };
 
@@ -88,6 +104,9 @@ const textHeadline = (format: ArticleFormat): string => {
 					return pillarPalette[format.theme].dark;
 				case ArticleDesign.Interview:
 				case ArticleDesign.LiveBlog:
+				case ArticleDesign.Gallery:
+				case ArticleDesign.Video:
+				case ArticleDesign.Audio:
 					return WHITE;
 				default:
 					return BLACK;
@@ -130,6 +149,10 @@ const textSeriesTitle = (format: ArticleFormat): string => {
 							return pillarPalette[format.theme].main;
 					}
 				}
+				case ArticleDesign.Gallery:
+				case ArticleDesign.Video:
+				case ArticleDesign.Audio:
+					return INVERTED_TEXT;
 				case ArticleDesign.LiveBlog:
 					switch (format.theme) {
 						case ArticlePillar.News:
@@ -205,6 +228,10 @@ const textByline = (format: ArticleFormat): string => {
 							return pillarPalette[format.theme].main;
 					}
 				}
+				case ArticleDesign.Gallery:
+				case ArticleDesign.Video:
+				case ArticleDesign.Audio:
+					return INVERTED_TEXT;
 				case ArticleDesign.Interview:
 					return BLACK;
 				default:
@@ -216,6 +243,13 @@ const textByline = (format: ArticleFormat): string => {
 };
 
 const textHeadlineByline = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.design === ArticleDesign.Analysis) {
 		switch (format.theme) {
 			case ArticlePillar.News:
@@ -259,6 +293,13 @@ const textHeadlineByline = (format: ArticleFormat): string => {
 };
 
 const textStandfirst = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.design === ArticleDesign.LiveBlog) return WHITE;
 	if (
 		format.theme === ArticleSpecial.SpecialReportAlt &&
@@ -270,6 +311,13 @@ const textStandfirst = (format: ArticleFormat): string => {
 };
 
 const textLastUpdated = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.design === ArticleDesign.LiveBlog) {
 		switch (format.theme) {
 			case ArticlePillar.News:
@@ -294,6 +342,13 @@ const textLastUpdated = (format: ArticleFormat): string => {
 };
 
 const textTwitterHandle = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.theme === ArticleSpecial.Labs) return BLACK;
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return specialReport[300];
@@ -304,12 +359,26 @@ const textTwitterHandle = (format: ArticleFormat): string => {
 };
 
 const textTwitterHandleBelowDesktop = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.design === ArticleDesign.LiveBlog) return WHITE;
 
 	return textTwitterHandle(format);
 };
 
 const textCaption = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return specialReport[100];
 	if (
@@ -330,6 +399,13 @@ const textCaption = (format: ArticleFormat): string => {
 };
 
 const textCaptionLink = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return specialReport[300];
 	if (format.design === ArticleDesign.NewsletterSignup) return BLACK;
@@ -345,6 +421,13 @@ const textCaptionLink = (format: ArticleFormat): string => {
 };
 
 const textSubMeta = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.theme === ArticleSpecial.Labs) return BLACK;
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return specialReport[100];
@@ -365,6 +448,13 @@ const textSubMeta = (format: ArticleFormat): string => {
 };
 
 const textSubMetaLabel = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.theme === ArticleSpecial.Labs) return BLACK;
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return specialReport[300];
@@ -378,6 +468,13 @@ const textSubMetaLabel = (format: ArticleFormat): string => {
 };
 
 const textSubMetaLink = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.theme === ArticleSpecial.Labs) return BLACK;
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return specialReport[300];
@@ -385,6 +482,13 @@ const textSubMetaLink = (format: ArticleFormat): string => {
 };
 
 const textSyndicationButton = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.theme === ArticleSpecial.Labs) return BLACK;
 	if (format.theme === ArticleSpecial.SpecialReport)
 		return specialReport[100];
@@ -524,6 +628,14 @@ const textKeyEventFromDesktop = ({ theme }: ArticleFormat) => {
 };
 
 const textStandfirstLink = (format: ArticleFormat): string => {
+	switch (format.design) {
+		case ArticleDesign.Gallery:
+		case ArticleDesign.Video:
+		case ArticleDesign.Audio:
+			return INVERTED_TEXT;
+		default:
+			break;
+	}
 	if (format.design === ArticleDesign.LiveBlog) return WHITE;
 	if (format.design === ArticleDesign.DeadBlog) {
 		switch (format.theme) {
@@ -773,6 +885,27 @@ const textCricketScoreboardLink = (): string => {
 	return sport[300];
 };
 
+const textMostViewed = (format: ArticleFormat): string => {
+	switch (format.design) {
+		case ArticleDesign.Gallery:
+		case ArticleDesign.Video:
+		case ArticleDesign.Audio:
+			return WHITE;
+		default:
+			return text.anchorSecondary;
+	}
+};
+
+const textMostViewedVisited = (format: ArticleFormat): string => {
+	switch (format.design) {
+		case ArticleDesign.Gallery:
+		case ArticleDesign.Video:
+		case ArticleDesign.Audio:
+		default:
+			return neutral[46];
+	}
+};
+
 const backgroundArticle = (format: ArticleFormat): string => {
 	// specialreport blogs should have specialreport background
 	if (
@@ -781,6 +914,13 @@ const backgroundArticle = (format: ArticleFormat): string => {
 		format.theme !== ArticleSpecial.SpecialReport
 	)
 		return neutral[97];
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_BACKGROUND;
+	}
 	// Order matters. We want comment special report pieces to have the opinion background
 	if (format.design === ArticleDesign.Letter) return opinion[800];
 	if (format.design === ArticleDesign.Comment) {
@@ -1093,6 +1233,14 @@ const backgroundFilterButtonActive = (format: ArticleFormat): string => {
 };
 
 const fillCommentCount = (format: ArticleFormat): string => {
+	switch (format.design) {
+		case ArticleDesign.Gallery:
+		case ArticleDesign.Video:
+		case ArticleDesign.Audio:
+			return INVERTED_TEXT;
+		default:
+			break;
+	}
 	if (
 		format.design === ArticleDesign.LiveBlog ||
 		format.design === ArticleDesign.DeadBlog
@@ -1123,6 +1271,13 @@ const fillCommentCountUntilDesktop = (format: ArticleFormat): string => {
 };
 
 const fillShareIcon = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.design === ArticleDesign.DeadBlog) {
 		switch (format.theme) {
 			case ArticlePillar.Culture:
@@ -1609,6 +1764,13 @@ const borderNavPillar: (format: ArticleFormat) => string = (format) =>
 	pillarPalette[format.theme].bright;
 
 const borderArticle: (format: ArticleFormat) => string = (format) => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_BORDER;
+	}
 	if (format.theme === ArticleSpecial.SpecialReportAlt)
 		return transparentColour(neutral[60], 0.3);
 
@@ -1618,6 +1780,13 @@ const borderArticle: (format: ArticleFormat) => string = (format) => {
 };
 
 const borderLines = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_BORDER;
+	}
 	if (format.theme === ArticleSpecial.Labs) return neutral[60];
 	if (
 		format.theme === ArticleSpecial.SpecialReport &&
@@ -1661,6 +1830,13 @@ const borderKeyEvent = (): string => neutral[46];
 const borderFilterButton = (): string => neutral[60];
 
 const borderSecondary = (format: ArticleFormat) => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (format.theme === ArticleSpecial.SpecialReportAlt)
 		return transparentColour(neutral[60], 0.3);
 
@@ -1798,6 +1974,13 @@ const textDesignTag = (format: ArticleFormat): string => {
 };
 
 const textDateLine = (format: ArticleFormat): string => {
+	if (
+		format.design === ArticleDesign.Gallery ||
+		format.design === ArticleDesign.Video ||
+		format.design === ArticleDesign.Audio
+	) {
+		return INVERTED_TEXT;
+	}
 	if (
 		format.theme === ArticleSpecial.SpecialReportAlt &&
 		format.design !== ArticleDesign.DeadBlog &&
@@ -2063,6 +2246,7 @@ export const decidePalette = (
 		containerPalette && decideContainerOverrides(containerPalette);
 	return {
 		text: {
+			article: textArticle(format),
 			headline: textHeadline(format),
 			headlineWhenMatch: textHeadlineWhenMatch(format),
 			seriesTitle: textSeriesTitle(format),
@@ -2125,6 +2309,8 @@ export const decidePalette = (
 			designTag: textDesignTag(format),
 			dateLine: textDateLine(format),
 			tableOfContents: textTableOfContents(),
+			mostViewed: textMostViewed(format),
+			mostViewedVisited: textMostViewedVisited(format),
 		},
 		background: {
 			article: backgroundArticle(format),

@@ -691,7 +691,7 @@ export const CommentLayout = ({
 							>
 								<RightColumn>
 									<MostViewedRightWithAd
-										display={format.display}
+										format={format}
 										isPaidContent={
 											article.pageType.isPaidContent
 										}

@@ -54,7 +54,7 @@ const collapsedStyles = css`
 	}
 `;
 
-const fontStyle = css`
+const fontStyle = (palette: Palette) => css`
 	${textSans.small()};
 	font-size: 14px;
 	${from.tablet} {
@@ -62,7 +62,7 @@ const fontStyle = css`
 		font-size: 16px;
 	}
 	font-weight: 500;
-	color: ${neutral[7]};
+	color: ${palette.text.article};
 	padding: 0 5px;
 	height: 36px;
 	/* Design System: Line height is being used here for centering layout, we need the primitives */
@@ -76,7 +76,7 @@ const fontStyle = css`
 `;
 
 const linkStyle = (palette: Palette) => css`
-	${fontStyle};
+	${fontStyle(palette)};
 	float: left;
 	text-decoration: none;
 
@@ -105,8 +105,8 @@ const spaceBetween = css`
 	justify-content: space-between;
 `;
 
-const showMoreStyle = css`
-	${fontStyle};
+const showMoreStyle = (palette: Palette) => css`
+	${fontStyle(palette)};
 
 	padding-left: 10px;
 	padding-right: 10px;
@@ -233,7 +233,7 @@ export const SubNav = ({ subNavSections, currentNavLink, format }: Props) => {
 			{showMore && (
 				<button
 					onClick={() => setIsExpanded(!isExpanded)}
-					css={showMoreStyle}
+					css={showMoreStyle(palette)}
 					data-link-name="nav2 : subnav-toggle"
 					data-cy="subnav-toggle"
 				>
